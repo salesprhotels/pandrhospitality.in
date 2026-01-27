@@ -13,17 +13,18 @@
       color: #222;
     }
 
+    /* ===== HEADER ===== */
     header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 12px 20px;
       border-bottom: 1px solid #eee;
+      background: #ffffff;
     }
 
-    header strong {
-      font-size: 18px;
-      color: #0b2a4a;
+    .site-logo {
+      height: 55px;
     }
 
     nav a {
@@ -31,10 +32,105 @@
       text-decoration: none;
       color: #0b2a4a;
       font-weight: 600;
+      font-size: 15px;
     }
 
     nav a:hover {
       color: #d18b2c;
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      padding: 70px 20px;
+      text-align: center;
+      background: #f9f9f9;
+    }
+
+    .hero h1 {
+      font-size: 34px;
+      margin-bottom: 12px;
+      color: #0b2a4a;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #444;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      margin-top: 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 26px;
+      margin: 10px;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    .btn-pms {
+      background: #0b2a4a;
+      color: #ffffff;
+    }
+
+    .btn-travel {
+      background: #d18b2c;
+      color: #ffffff;
+    }
+
+    /* ===== HINDI SECTION ===== */
+    .hindi {
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    .hindi h2 {
+      font-size: 26px;
+      color: #0b2a4a;
+      margin-bottom: 10px;
+    }
+
+    .hindi p {
+      font-size: 17px;
+      color: #333;
+      max-width: 900px;
+      margin: auto;
+      line-height: 1.6;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #0b2a4a;
+      color: #ffffff;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+    }
+
+    footer p {
+      margin: 5px 0;
+    }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+      }
+
+      nav {
+        margin-top: 10px;
+      }
+
+      nav a {
+        margin: 0 10px;
+      }
+
+      .hero h1 {
+        font-size      color: #d18b2c;
     }
 
     .hero {
