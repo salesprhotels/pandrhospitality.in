@@ -13,6 +13,7 @@
       color: #222;
     }
 
+    /* ===== HEADER ===== */
     header {
       display: flex;
       align-items: center;
@@ -35,6 +36,199 @@
     }
 
     nav a:hover {
+      color: #d18b2c;
+    }
+
+    /* ===== PAGE HEADER ===== */
+    .page-header {
+      background: #f5f7fa;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .page-header h1 {
+      font-size: 34px;
+      color: #0b2a4a;
+      margin-bottom: 10px;
+    }
+
+    .page-header p {
+      font-size: 18px;
+      color: #444;
+    }
+
+    /* ===== CONTENT ===== */
+    .content {
+      max-width: 1100px;
+      margin: auto;
+      padding: 50px 20px;
+    }
+
+    .content h2 {
+      color: #0b2a4a;
+      margin-bottom: 10px;
+    }
+
+    .content p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: #333;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .feature-box {
+      border: 1px solid #eee;
+      padding: 20px;
+      border-radius: 6px;
+      background: #fafafa;
+    }
+
+    .feature-box h3 {
+      color: #0b2a4a;
+      margin-bottom: 8px;
+    }
+
+    /* ===== CTA ===== */
+    .cta {
+      background: #0b2a4a;
+      color: #ffffff;
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    .cta h2 {
+      margin-bottom: 10px;
+    }
+
+    .cta a {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 12px 26px;
+      background: #d18b2c;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #0b2a4a;
+      color: #ffffff;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+    }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+      }
+
+      nav {
+        margin-top: 10px;
+      }
+
+      nav a {
+        margin: 0 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header>
+    <img src="images/logo.png" alt="P and R Hospitality Management Services Logo" class="site-logo">
+
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="pms.html">PMS Services</a>
+      <a href="travel.html">Travel Services</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <!-- ===== PAGE HEADER ===== -->
+  <section class="page-header">
+    <h1>Property Management System (PMS)</h1>
+    <p>Smart, Simple & Reliable PMS Solutions for Hospitality Businesses</p>
+  </section>
+
+  <!-- ===== CONTENT ===== -->
+  <section class="content">
+    <h2>Our PMS Services</h2>
+    <p>
+      P and R Hospitality Management Services provides complete Property
+      Management System (PMS) solutions for hotels, resorts, homestays,
+      guest houses and serviced apartments.
+    </p>
+
+    <div class="features">
+      <div class="feature-box">
+        <h3>Front Office Management</h3>
+        <p>Reservations, check-in, check-out, room allocation and guest profiles.</p>
+      </div>
+
+      <div class="feature-box">
+        <h3>Billing & Invoicing</h3>
+        <p>Accurate billing, GST-ready invoices and payment tracking.</p>
+      </div>
+
+      <div class="feature-box">
+        <h3>Housekeeping Management</h3>
+        <p>Room status, cleaning schedules and staff coordination.</p>
+      </div>
+
+      <div class="feature-box">
+        <h3>Reports & Analytics</h3>
+        <p>Occupancy reports, revenue analysis and management insights.</p>
+      </div>
+
+      <div class="feature-box">
+        <h3>Multi-Property Support</h3>
+        <p>Manage multiple hotels or properties from a single system.</p>
+      </div>
+
+      <div class="feature-box">
+        <h3>Training & Support</h3>
+        <p>Complete staff training and ongoing technical support.</p>
+      </div>
+    </div>
+
+    <h2 style="margin-top:40px;">Why Choose Us?</h2>
+    <p>
+      ✔ Hospitality-focused solutions<br>
+      ✔ Easy to use system<br>
+      ✔ Affordable pricing<br>
+      ✔ Reliable support<br>
+      ✔ Suitable for small & mid-size properties
+    </p>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="cta">
+    <h2>Want to See PMS in Action?</h2>
+    <p>Request a demo and let us help you simplify your operations.</p>
+    <a href="#">Request PMS Demo</a>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p>© P and R Hospitality Management Services</p>
+    <p>Professional PMS Solutions for Hospitality Industry</p>
+  </footer>
+
+</body>
+</html>    nav a:hover {
       color: #d18b2c;
     }
 
