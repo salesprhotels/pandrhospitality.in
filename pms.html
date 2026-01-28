@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>PMS Services | P & R Hospitality Management Services</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>PMS Services | P & R Hospitality Management</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
@@ -15,56 +18,137 @@
 
 <body class="bg-slate-50 text-slate-800">
 
-<!-- HEADER -->
+<!-- ================= HEADER ================= -->
 <header class="bg-white shadow-sm">
   <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-    <div class="text-xl font-bold text-indigo-700">P & R Hospitality</div>
-    <nav class="space-x-6 font-medium">
-      <a href="index.html">Home</a>
-      <a href="pms.html" class="text-indigo-700 font-semibold">PMS Services</a>
-      <a href="travel.html">Travel Services</a>
-      <a href="contact.html">Contact</a>
+    <div class="text-xl font-bold text-indigo-700">
+      P & R Hospitality
+    </div>
+    <nav class="space-x-6 text-sm font-medium">
+      <a href="index.html" class="hover:text-indigo-700">Home</a>
+      <a href="pms.html" class="text-indigo-700">PMS Services</a>
+      <a href="travel.html" class="hover:text-indigo-700">Travel Services</a>
+      <a href="contact.html" class="hover:text-indigo-700">Contact</a>
     </nav>
   </div>
 </header>
 
-<!-- HERO -->
-<section class="bg-indigo-700 text-white py-16 text-center">
-  <h1 class="text-3xl font-bold mb-3">PMS & Digital Services</h1>
-  <p class="text-indigo-100 max-w-2xl mx-auto">
-    Complete hospitality, technology and local business solutions under one roof.
-  </p>
+<!-- ================= HERO ================= -->
+<section class="bg-indigo-700 text-white py-16">
+  <div class="max-w-4xl mx-auto px-4 text-center">
+    <h1 class="text-3xl md:text-4xl font-bold mb-4">
+      PMS & Hospitality Management Services
+    </h1>
+    <p class="text-indigo-100 text-lg">
+      Technology, consulting & digital solutions for hotels, resorts and homestays
+    </p>
+  </div>
 </section>
 
-<!-- SERVICES -->
+<!-- ================= SERVICES ================= -->
 <section class="max-w-7xl mx-auto px-4 py-16 space-y-12">
 
-  <!-- PMS -->
-  <div class="grid md:grid-cols-2 gap-8 items-center bg-white rounded-xl shadow p-6">
-    <img src="https://images.unsplash.com/photo-1559526324-593bc073d938"
-         alt="Hotel PMS System"
-         class="rounded-lg w-full h-64 object-cover">
+  <!-- PMS SOLUTIONS -->
+  <div class="bg-white rounded-xl shadow p-8 grid md:grid-cols-2 gap-8 items-center">
+    <img
+      src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2"
+      alt="Property Management System"
+      class="rounded-lg h-64 w-full object-cover"
+    />
     <div>
-      <h2 class="text-2xl font-semibold text-indigo-700 mb-2">PMS Solutions</h2>
-      <p class="mb-3 text-sm">
-        End-to-end Property Management System setup for hotels, resorts & homestays.
-      </p>
-      <ul class="list-disc pl-5 text-sm space-y-1">
-        <li>Reservations & front office</li>
-        <li>Housekeeping & billing</li>
-        <li>Reports & analytics</li>
-        <li>PMS training & support</li>
+      <h2 class="text-2xl font-bold text-indigo-700 mb-3">PMS Solutions</h2>
+      <ul class="list-disc pl-5 space-y-2 text-sm">
+        <li>Hotel / Resort / Homestay PMS setup</li>
+        <li>OTA integration (Booking, Airbnb, Goibibo)</li>
+        <li>Inventory, billing & reporting</li>
+        <li>Staff training & support</li>
       </ul>
     </div>
   </div>
 
-  <!-- CONSULTING -->
-  <div class="grid md:grid-cols-2 gap-8 items-center bg-white rounded-xl shadow p-6">
+  <!-- HOSPITALITY CONSULTING -->
+  <div class="bg-white rounded-xl shadow p-8 grid md:grid-cols-2 gap-8 items-center">
+    <img
+      src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
+      alt="Hospitality Consulting"
+      class="rounded-lg h-64 w-full object-cover"
+    />
     <div>
-      <h2 class="text-2xl font-semibold text-indigo-700 mb-2">Hospitality Consulting</h2>
-      <p class="mb-3 text-sm">
-        Improve operations, revenue and guest satisfaction with expert guidance.
-      </p>
+      <h2 class="text-2xl font-bold text-indigo-700 mb-3">Hospitality Consulting</h2>
+      <ul class="list-disc pl-5 space-y-2 text-sm">
+        <li>Operational setup & SOPs</li>
+        <li>Staff hiring & training</li>
+        <li>Revenue & pricing strategy</li>
+        <li>Guest experience optimization</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- WEBSITE DESIGN -->
+  <div class="bg-white rounded-xl shadow p-8 grid md:grid-cols-2 gap-8 items-center">
+    <img
+      src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4"
+      alt="Website Design"
+      class="rounded-lg h-64 w-full object-cover"
+    />
+    <div>
+      <h2 class="text-2xl font-bold text-indigo-700 mb-3">
+        Website Design & Digital Setup
+      </h2>
+      <ul class="list-disc pl-5 space-y-2 text-sm">
+        <li>Hotel & travel websites</li>
+        <li>Landing pages & enquiry forms</li>
+        <li>Domain & hosting guidance</li>
+        <li>Basic SEO setup</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- GOOGLE BUSINESS -->
+  <div class="bg-white rounded-xl shadow p-8 grid md:grid-cols-2 gap-8 items-center">
+    <img
+      src="https://images.unsplash.com/photo-1556761175-4b46a572b786"
+      alt="Google Business Profile"
+      class="rounded-lg h-64 w-full object-cover"
+    />
+    <div>
+      <h2 class="text-2xl font-bold text-indigo-700 mb-3">
+        Google Business Profile (Maps)
+      </h2>
+      <ul class="list-disc pl-5 space-y-2 text-sm">
+        <li>Profile creation & verification</li>
+        <li>Correct business category setup</li>
+        <li>Maps & website linking</li>
+        <li>Image & branding optimization</li>
+        <li>Call & lead integration</li>
+      </ul>
+    </div>
+  </div>
+
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="bg-slate-100 py-12">
+  <div class="max-w-4xl mx-auto px-4 text-center">
+    <h3 class="text-2xl font-bold mb-4">
+      Want to upgrade your hospitality business?
+    </h3>
+    <a
+      href="contact.html"
+      class="inline-block bg-indigo-700 text-white px-8 py-3 rounded-lg font-semibold hover:bg-indigo-800 transition"
+    >
+      Contact Us
+    </a>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="bg-white border-t text-center text-sm text-slate-500 py-6">
+  © 2024 P & R Hospitality Management Services. All rights reserved.
+</footer>
+
+</body>
+</html>      </p>
       <ul class="list-disc pl-5 text-sm space-y-1">
         <li>Operational SOPs</li>
         <li>Staff training</li>
