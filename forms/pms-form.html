@@ -132,16 +132,16 @@
   <form id="pmsForm">
 
     <label>Full Name *</label>
-    <input type="text" id="name" required>
+    <input type="text" id="name" name="name" required>
 
     <label>Mobile Number *</label>
-    <input type="tel" id="mobile" required>
+    <input type="tel" id="mobile" name="mobile" required>
 
     <label>Email Address</label>
-    <input type="email" id="email">
+    <input type="email" id="email" name="email">
 
     <label>Property Type</label>
-    <select id="propertyType">
+    <select id="propertyType" name="propertyType">
       <option value="">Select Property Type</option>
       <option>Hotel</option>
       <option>Homestay</option>
@@ -151,10 +151,10 @@
     </select>
 
     <label>Number of Rooms</label>
-    <input type="number" id="rooms" min="1">
+    <input type="number" id="rooms" name="rooms" min="1">
 
     <label>Required Service</label>
-    <select id="service">
+    <select id="service" name="service">
       <option value="">Select Service</option>
       <option>PMS Setup</option>
       <option>Hospitality Management</option>
@@ -164,7 +164,7 @@
     </select>
 
     <label>Message / Requirements</label>
-    <textarea id="message"></textarea>
+    <textarea id="message" name="message"></textarea>
 
     <button type="submit" id="submitBtn">Submit PMS Enquiry</button>
   </form>
@@ -187,7 +187,6 @@ document.getElementById("pmsForm").addEventListener("submit", function(e) {
   btn.disabled = true;
   btn.innerText = "Submitting...";
 
-  // FormData बनाओ
   const formData = new FormData(document.getElementById("pmsForm"));
 
   fetch("https://script.google.com/macros/s/AKfycbzYDveKcaeXGh0BHlZGg8ERNbxTctXattUDv0Udsjx6sBD4iB5W0dc5TtNAVE2-4x9fjA/exec", {
@@ -213,5 +212,6 @@ document.getElementById("pmsForm").addEventListener("submit", function(e) {
   });
 });
 </script>
+
 </body>
 </html>
