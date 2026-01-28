@@ -6,148 +6,122 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background: #f5f7fa;
-  color: #333;
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:Arial, Helvetica, sans-serif;
+  background:#f5f7fb;
+  color:#333;
 }
 
-header {
-  background: #ffffff;
-  padding: 15px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+/* HEADER */
+header{
+  background:#ffffff;
+  border-bottom:1px solid #ddd;
+  padding:12px 16px;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  align-items:center;
 }
-
-header h1 {
-  font-size: 20px;
-  color: #4f46e5;
+header .logo{
+  font-weight:bold;
+  color:#4b3fd6;
+  font-size:18px;
 }
-
-nav a {
-  margin-left: 15px;
-  text-decoration: none;
-  color: #333;
-  font-weight: 500;
+nav a{
+  margin-left:12px;
+  text-decoration:none;
+  color:#333;
+  font-weight:600;
 }
-
-nav a:hover {
-  color: #4f46e5;
-}
+nav a:hover{color:#4b3fd6}
 
 /* HERO */
-.hero {
-  background: #4f46e5;
-  color: #fff;
-  text-align: center;
-  padding: 60px 20px;
+.hero{
+  background:#4b3fd6;
+  color:#fff;
+  padding:40px 20px;
+  text-align:center;
+}
+.hero h1{font-size:28px;margin-bottom:10px}
+.hero p{font-size:16px;margin-bottom:20px}
+.hero a{
+  background:#f5b400;
+  color:#000;
+  padding:12px 22px;
+  text-decoration:none;
+  border-radius:6px;
+  font-weight:bold;
 }
 
-.hero h2 {
-  font-size: 32px;
-  margin-bottom: 10px;
+/* SECTION */
+.section{
+  max-width:1100px;
+  margin:auto;
+  padding:40px 20px;
+}
+.section h2{
+  text-align:center;
+  color:#4b3fd6;
+  margin-bottom:30px;
 }
 
-.hero p {
-  font-size: 18px;
-  opacity: 0.9;
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:20px;
 }
-
-.hero a {
-  display: inline-block;
-  margin-top: 25px;
-  background: #facc15;
-  color: #000;
-  padding: 14px 30px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: bold;
+.card{
+  background:#fff;
+  border-radius:8px;
+  padding:20px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.06);
 }
-
-/* CONTENT */
-.container {
-  max-width: 1100px;
-  margin: auto;
-  padding: 50px 20px;
+.card h3{
+  color:#4b3fd6;
+  margin-bottom:8px;
 }
+.card p{font-size:14px}
 
-.container h3 {
-  text-align: center;
-  font-size: 26px;
-  margin-bottom: 30px;
-  color: #1f2937;
-}
-
-.features {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
-}
-
-.feature {
-  background: #fff;
-  padding: 22px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-}
-
-.feature h4 {
-  margin-bottom: 8px;
-  color: #4f46e5;
-}
-
-.feature p {
-  font-size: 15px;
-  line-height: 1.6;
+/* IMAGE */
+.banner-img{
+  width:100%;
+  border-radius:8px;
+  margin-bottom:20px;
 }
 
 /* CTA */
-.cta {
-  background: #eef2ff;
-  text-align: center;
-  padding: 50px 20px;
+.cta{
+  background:#eef1ff;
+  text-align:center;
+  padding:40px 20px;
 }
-
-.cta h3 {
-  font-size: 26px;
-  margin-bottom: 15px;
+.cta a{
+  margin:10px;
+  display:inline-block;
+  padding:12px 22px;
+  border-radius:6px;
+  text-decoration:none;
+  font-weight:bold;
 }
-
-.cta a {
-  display: inline-block;
-  margin: 10px;
-  padding: 14px 28px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.cta .primary {
-  background: #4f46e5;
-  color: #fff;
-}
-
-.cta .secondary {
-  background: #16a34a;
-  color: #fff;
-}
+.cta .contact{background:#4b3fd6;color:#fff}
+.cta .enquiry{background:#28a745;color:#fff}
 
 /* FOOTER */
-footer {
-  background: #1f2937;
-  color: #d1d5db;
-  text-align: center;
-  padding: 18px;
-  font-size: 14px;
+footer{
+  background:#2c2c2c;
+  color:#fff;
+  text-align:center;
+  padding:15px;
+  font-size:14px;
 }
 
-@media(max-width: 768px) {
-  nav {
-    font-size: 14px;
-  }
+/* MOBILE */
+@media(max-width:600px){
+  nav{width:100%;margin-top:8px;text-align:center}
+  nav a{margin:0 6px}
+  .hero h1{font-size:22px}
 }
 </style>
 </head>
@@ -155,7 +129,7 @@ footer {
 <body>
 
 <header>
-  <h1>P & R Hospitality</h1>
+  <div class="logo">P & R Hospitality</div>
   <nav>
     <a href="index.html">Home</a>
     <a href="pms.html">PMS Services</a>
@@ -165,494 +139,52 @@ footer {
 </header>
 
 <section class="hero">
-  <h2>Property Management System (PMS)</h2>
-  <p>Smart, simple & reliable PMS solutions for hospitality businesses</p>
-
-  <a href="forms/pms-form.html">Request PMS Demo</a>
+  <h1>Property Management System (PMS)</h1>
+  <p>Smart, reliable & easy-to-use PMS solutions for hospitality businesses.</p>
+  <a href="pms-form.html">Request PMS Demo</a>
 </section>
 
-<section class="container">
-  <h3>Our PMS Services</h3>
+<section class="section">
+  <img src="images/pms-banner.jpg" class="banner-img" alt="PMS System">
 
-  <div class="features">
-    <div class="feature">
-      <h4>Front Office Management</h4>
-      <p>Reservations, check-in/check-out, room allocation and guest profiles.</p>
+  <h2>Our PMS Services</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Front Office Management</h3>
+      <p>Reservations, check-in/out, room allocation and guest profiles.</p>
     </div>
-
-    <div class="feature">
-      <h4>Billing & Invoicing</h4>
-      <p>GST-ready invoices, accurate billing and payment tracking.</p>
+    <div class="card">
+      <h3>Billing & Invoicing</h3>
+      <p>GST-ready invoices, payment tracking and reports.</p>
     </div>
-
-    <div class="feature">
-      <h4>Housekeeping Management</h4>
-      <p>Room status updates, cleaning schedules and staff coordination.</p>
+    <div class="card">
+      <h3>Housekeeping</h3>
+      <p>Room status, cleaning schedules and staff coordination.</p>
     </div>
-
-    <div class="feature">
-      <h4>Reports & Analytics</h4>
-      <p>Daily reports, revenue insights and performance tracking.</p>
+    <div class="card">
+      <h3>Reports & Analytics</h3>
+      <p>Revenue insights, performance tracking and MIS reports.</p>
     </div>
-
-    <div class="feature">
-      <h4>Website Design & Digital Setup</h4>
-      <p>Hotel websites, enquiry forms, domain & hosting guidance.</p>
+    <div class="card">
+      <h3>Website Design & Digital Setup</h3>
+      <p>Hospitality websites, enquiry forms, hosting & SEO basics.</p>
     </div>
-
-    <div class="feature">
-      <h4>Google Business Profile (Maps)</h4>
-      <p>Business listing, verification, branding & lead integration.</p>
+    <div class="card">
+      <h3>Google Business Profile</h3>
+      <p>Maps setup, verification, branding and lead integration.</p>
     </div>
   </div>
 </section>
 
 <section class="cta">
-  <h3>Need a PMS for Your Property?</h3>
-
-  <a href="contact.html" class="primary">Contact Us</a>
-  <a href="forms/pms-form.html" class="secondary">PMS Enquiry</a>
+  <h2>Need a PMS for Your Property?</h2>
+  <a href="contact.html" class="contact">Contact Us</a>
+  <a href="pms-form.html" class="enquiry">PMS Enquiry</a>
 </section>
 
 <footer>
-  © 2026 P & R Hospitality Management Services. All rights reserved.
-</footer>
-
-</body>
-</html>  </div>
-
-  <!-- HOSPITALITY CONSULTING -->
-  <div class="bg-white rounded-xl shadow p-8 grid md:grid-cols-2 gap-8 items-center">
-    <img
-      src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
-      alt="Hospitality Consulting"
-      class="rounded-lg h-64 w-full object-cover"
-    />
-    <div>
-      <h2 class="text-2xl font-bold text-indigo-700 mb-3">Hospitality Consulting</h2>
-      <ul class="list-disc pl-5 space-y-2 text-sm">
-        <li>Operational setup & SOPs</li>
-        <li>Staff hiring & training</li>
-        <li>Revenue & pricing strategy</li>
-        <li>Guest experience optimization</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- WEBSITE DESIGN -->
-  <div class="bg-white rounded-xl shadow p-8 grid md:grid-cols-2 gap-8 items-center">
-    <img
-      src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4"
-      alt="Website Design"
-      class="rounded-lg h-64 w-full object-cover"
-    />
-    <div>
-      <h2 class="text-2xl font-bold text-indigo-700 mb-3">
-        Website Design & Digital Setup
-      </h2>
-      <ul class="list-disc pl-5 space-y-2 text-sm">
-        <li>Hotel & travel websites</li>
-        <li>Landing pages & enquiry forms</li>
-        <li>Domain & hosting guidance</li>
-        <li>Basic SEO setup</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- GOOGLE BUSINESS -->
-  <div class="bg-white rounded-xl shadow p-8 grid md:grid-cols-2 gap-8 items-center">
-    <img
-      src="https://images.unsplash.com/photo-1556761175-4b46a572b786"
-      alt="Google Business Profile"
-      class="rounded-lg h-64 w-full object-cover"
-    />
-    <div>
-      <h2 class="text-2xl font-bold text-indigo-700 mb-3">
-        Google Business Profile (Maps)
-      </h2>
-      <ul class="list-disc pl-5 space-y-2 text-sm">
-        <li>Profile creation & verification</li>
-        <li>Correct business category setup</li>
-        <li>Maps & website linking</li>
-        <li>Image & branding optimization</li>
-        <li>Call & lead integration</li>
-      </ul>
-    </div>
-  </div>
-
-</section>
-
-<!-- ================= CTA ================= -->
-<section class="bg-slate-100 py-12">
-  <div class="max-w-4xl mx-auto px-4 text-center">
-    <h3 class="text-2xl font-bold mb-4">
-      Want to upgrade your hospitality business?
-    </h3>
-    <a
-      href="contact.html"
-      class="inline-block bg-indigo-700 text-white px-8 py-3 rounded-lg font-semibold hover:bg-indigo-800 transition"
-    >
-      Contact Us
-    </a>
-  </div>
-</section>
-
-<!-- ================= FOOTER ================= -->
-<footer class="bg-white border-t text-center text-sm text-slate-500 py-6">
-  © 2024 P & R Hospitality Management Services. All rights reserved.
-</footer>
-
-</body>
-</html>      </p>
-      <ul class="list-disc pl-5 text-sm space-y-1">
-        <li>Operational SOPs</li>
-        <li>Staff training</li>
-        <li>Revenue optimization</li>
-        <li>New property launch</li>
-      </ul>
-    </div>
-    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
-         alt="Hospitality Consulting"
-         class="rounded-lg w-full h-64 object-cover">
-  </div>
-
-  <!-- WEBSITE -->
-  <div class="grid md:grid-cols-2 gap-8 items-center bg-white rounded-xl shadow p-6">
-    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f"
-         alt="Website Design"
-         class="rounded-lg w-full h-64 object-cover">
-    <div>
-      <h2 class="text-2xl font-semibold text-indigo-700 mb-2">
-        Website Design & Digital Setup
-      </h2>
-      <p class="mb-3 text-sm">
-        Modern, fast & mobile-friendly websites designed for hospitality & travel brands.
-      </p>
-      <ul class="list-disc pl-5 text-sm space-y-1">
-        <li>Hotel & travel websites</li>
-        <li>Landing pages & enquiry forms</li>
-        <li>Domain & hosting guidance</li>
-        <li>Basic SEO setup</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- GOOGLE BUSINESS -->
-  <div class="grid md:grid-cols-2 gap-8 items-center bg-white rounded-xl shadow p-6 border-2 border-indigo-100">
-    <div>
-      <h2 class="text-2xl font-semibold text-indigo-700 mb-2">
-        Google Business Profile (Maps)
-      </h2>
-      <p class="mb-3 text-sm">
-        Boost your local presence and customer trust with Google Maps & Business setup.
-      </p>
-      <ul class="list-disc pl-5 text-sm space-y-1">
-        <li>Profile creation & verification</li>
-        <li>Correct business category</li>
-        <li>Maps & website linking</li>
-        <li>Image & branding optimization</li>
-        <li>Lead & call integration</li>
-      </ul>
-    </div>
-    <img src="https://images.unsplash.com/photo-1581091870622-3b9c1a4a7b8b"
-         alt="Google Business Profile"
-         class="rounded-lg w-full h-64 object-cover">
-  </div>
-
-</section>
-
-<!-- CTA -->
-<section class="bg-slate-100 py-12 text-center">
-  <h3 class="text-2xl font-bold mb-3">Need PMS or Digital Support?</h3>
-  <p class="mb-6 text-slate-600">
-    Let us help you grow your hospitality or travel business.
-  </p>
-  <a href="contact.html"
-     class="inline-block bg-indigo-700 text-white px-8 py-3 rounded-lg hover:bg-indigo-800">
-    Contact Us
-  </a>
-</section>
-
-<!-- FOOTER -->
-<footer class="bg-white border-t py-6 text-center text-sm text-slate-500">
-  © 2026 P & R Hospitality Management Services. All rights reserved.
+© 2026 P & R Hospitality Management Services. All rights reserved.
 </footer>
 
 </body>
 </html>
-    nav a:hover {
-      color: #d18b2c;
-    }
-
-    /* ===== PAGE HEADER ===== */
-    .page-header {
-      background: #f5f7fa;
-      padding: 60px 20px;
-      text-align: center;
-    }
-
-    .page-header h1 {
-      font-size: 34px;
-      color: #0b2a4a;
-      margin-bottom: 10px;
-    }
-
-    .page-header p {
-      font-size: 18px;
-      color: #444;
-    }
-
-    /* ===== CONTENT ===== */
-    .content {
-      max-width: 1100px;
-      margin: auto;
-      padding: 50px 20px;
-    }
-
-    .content h2 {
-      color: #0b2a4a;
-      margin-bottom: 10px;
-    }
-
-    .content p {
-      font-size: 16px;
-      line-height: 1.7;
-      color: #333;
-    }
-
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-      margin-top: 30px;
-    }
-
-    .feature-box {
-      border: 1px solid #eee;
-      padding: 20px;
-      border-radius: 6px;
-      background: #fafafa;
-    }
-
-    .feature-box h3 {
-      color: #0b2a4a;
-      margin-bottom: 8px;
-    }
-
-    /* ===== CTA ===== */
-    .cta {
-      background: #0b2a4a;
-      color: #ffffff;
-      text-align: center;
-      padding: 50px 20px;
-    }
-
-    .cta h2 {
-      margin-bottom: 10px;
-    }
-
-    .cta a {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 12px 26px;
-      background: #d18b2c;
-      color: #ffffff;
-      text-decoration: none;
-      border-radius: 4px;
-      font-weight: bold;
-    }
-
-    /* ===== FOOTER ===== */
-    footer {
-      background: #0b2a4a;
-      color: #ffffff;
-      text-align: center;
-      padding: 20px;
-      font-size: 14px;
-    }
-
-    /* ===== MOBILE ===== */
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-      }
-
-      nav {
-        margin-top: 10px;
-      }
-
-      nav a {
-        margin: 0 10px;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <!-- ===== HEADER ===== -->
-  <header>
-    <img src="images/logo.png" alt="P and R Hospitality Management Services Logo" class="site-logo">
-
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="pms.html">PMS Services</a>
-      <a href="travel.html">Travel Services</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
-
-  <!-- ===== PAGE HEADER ===== -->
-  <section class="page-header">
-    <h1>Property Management System (PMS)</h1>
-    <p>Smart, Simple & Reliable PMS Solutions for Hospitality Businesses</p>
-  </section>
-
-  <!-- ===== CONTENT ===== -->
-  <section class="content">
-    <h2>Our PMS Services</h2>
-    <p>
-      P and R Hospitality Management Services provides complete Property
-      Management System (PMS) solutions for hotels, resorts, homestays,
-      guest houses and serviced apartments.
-    </p>
-
-    <div class="features">
-      <div class="feature-box">
-        <h3>Front Office Management</h3>
-        <p>Reservations, check-in, check-out, room allocation and guest profiles.</p>
-      </div>
-
-      <div class="feature-box">
-        <h3>Billing & Invoicing</h3>
-        <p>Accurate billing, GST-ready invoices and payment tracking.</p>
-      </div>
-
-      <div class="feature-box">
-        <h3>Housekeeping Management</h3>
-        <p>Room status, cleaning schedules and staff coordination.</p>
-      </div>
-
-      <div class="feature-box">
-        <h3>Reports & Analytics</h3>
-        <p>Occupancy reports, revenue analysis and management insights.</p>
-      </div>
-
-      <div class="feature-box">
-        <h3>Multi-Property Support</h3>
-        <p>Manage multiple hotels or properties from a single system.</p>
-      </div>
-
-      <div class="feature-box">
-        <h3>Training & Support</h3>
-        <p>Complete staff training and ongoing technical support.</p>
-      </div>
-    </div>
-
-    <h2 style="margin-top:40px;">Why Choose Us?</h2>
-    <p>
-      ✔ Hospitality-focused solutions<br>
-      ✔ Easy to use system<br>
-      ✔ Affordable pricing<br>
-      ✔ Reliable support<br>
-      ✔ Suitable for small & mid-size properties
-    </p>
-  </section>
-
-  <!-- ===== CTA ===== -->
-  <section class="cta">
-    <h2>Want to See PMS in Action?</h2>
-    <p>Request a demo and let us help you simplify your operations.</p>
-    <a href="#">Request PMS Demo</a>
-  </section>
-
-  <!-- ===== FOOTER ===== -->
-  <footer>
-    <p>© P and R Hospitality Management Services</p>
-    <p>Professional PMS Solutions for Hospitality Industry</p>
-  </footer>
-
-</body>
-</html>    nav a:hover {
-      color: #d18b2c;
-    }
-
-    .page-header {
-      background: #0b2a4a;
-      color: #ffffff;
-      padding: 60px 20px;
-      text-align: center;
-    }
-
-    .page-header h1 {
-      margin: 0;
-      font-size: 32px;
-    }
-
-    .page-header p {
-      margin-top: 10px;
-      font-size: 18px;
-    }
-
-    .content {
-      padding: 50px 20px;
-      max-width: 1100px;
-      margin: auto;
-    }
-
-    .content h2 {
-      color: #0b2a4a;
-      margin-bottom: 10px;
-    }
-
-    .content p {
-      font-size: 16px;
-      line-height: 1.6;
-      margin-bottom: 25px;
-    }
-
-    .services {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      margin-top: 30px;
-    }
-
-    .service-box {
-      border: 1px solid #eee;
-      padding: 20px;
-      border-radius: 6px;
-      background: #fafafa;
-    }
-
-    .service-box h3 {
-      margin-top: 0;
-      color: #0b2a4a;
-      font-size: 18px;
-    }
-
-    .cta {
-      background: #f5f5f5;
-      padding: 50px 20px;
-      text-align: center;
-      margin-top: 50px;
-    }
-
-    .cta h2 {
-      color: #0b2a4a;
-      margin-bottom: 15px;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 12px 26px;
-      margin-top: 15px;
-      background: #d18b2c;
-      color: #ffffff;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 4px;
-    }
-
-    footer {
-      background: #
