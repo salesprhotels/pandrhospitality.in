@@ -6,28 +6,42 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body{font-family:Arial,Helvetica,sans-serif;background:#f4f6fb}
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  background:#f4f6fb;
+  margin:0;
+  padding:0;
+}
 .container{
   max-width:600px;
-  margin:40px auto;
-  background:#fff;
+  margin:30px auto;
+  background:#ffffff;
   padding:25px;
   border-radius:8px;
-  box-shadow:0 4px 14px rgba(0,0,0,.1);
+  box-shadow:0 4px 15px rgba(0,0,0,0.1);
 }
-h1{text-align:center;color:#4b3fd6}
-label{display:block;margin-top:14px;font-weight:600}
-input,select,textarea{
+h1{
+  text-align:center;
+  color:#2b2f7a;
+  margin-bottom:20px;
+}
+label{
+  display:block;
+  margin-top:14px;
+  font-weight:600;
+}
+input, select, textarea{
   width:100%;
   padding:10px;
   margin-top:6px;
   border:1px solid #ccc;
   border-radius:5px;
+  font-size:15px;
 }
 textarea{min-height:90px}
 button{
-  margin-top:20px;
   width:100%;
+  margin-top:22px;
   padding:12px;
   background:#f5b400;
   border:none;
@@ -35,6 +49,20 @@ button{
   font-size:16px;
   font-weight:bold;
   cursor:pointer;
+}
+button:disabled{
+  background:#ccc;
+  cursor:not-allowed;
+}
+.back-links{
+  text-align:center;
+  margin-top:15px;
+}
+.back-links a{
+  text-decoration:none;
+  color:#2b2f7a;
+  font-weight:600;
+  margin:0 8px;
 }
 </style>
 </head>
@@ -46,31 +74,30 @@ button{
 
 <form id="pmsForm">
 
-<label>Full Name</label>
+<label>Full Name *</label>
 <input type="text" name="fullName" required>
 
-<label>Mobile Number</label>
+<label>Mobile Number *</label>
 <input type="tel" name="mobile" required>
 
-<label>Email</label>
+<label>Email Address</label>
 <input type="email" name="email">
 
 <label>Property Type</label>
 <select name="propertyType">
+  <option value="">Select Property Type</option>
   <option>Hotel</option>
   <option>Homestay</option>
   <option>Resort</option>
   <option>Guest House</option>
 </select>
 
-<label>Room Number</label>
-<input type="text" name="roomNumber">
-
 <label>Number of Rooms</label>
-<input type="number" name="numberOfRooms">
+<input type="number" name="numberOfRooms" min="1">
 
 <label>Required Service</label>
 <select name="requiredService">
+  <option value="">Select Service</option>
   <option>PMS Software</option>
   <option>Staff Training</option>
   <option>Website Designing</option>
@@ -80,54 +107,42 @@ button{
 <label>Message / Requirement</label>
 <textarea name="message"></textarea>
 
-<button type="submit">Submit Enquiry</button>
+<button type="submit" id="submitBtn">Submit PMS Enquiry</button>
 </form>
+
+<div class="back-links">
+  <a href="../pms.html">← Back to PMS Services</a> |
+  <a href="../index.html">← Back to Website</a>
+</div>
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function(){
+document.getElementById("pmsForm").addEventListener("submit", function(e){
+  e.preventDefault();
 
-  var form = document.getElementById("pmsForm");
+  const btn = document.getElementById("submitBtn");
+  btn.disabled = true;
+  btn.innerText = "Submitting...";
 
-  if(!form){
-    alert("Form not loaded properly");
-    return;
-  }
+  const formData = new FormData(this);
+  const data = Object.fromEntries(formData.entries());
 
-  form.addEventListener("submit", function(e){
-    e.preventDefault();
-
-    const data = {
-      fullName: form.fullName.value,
-      mobile: form.mobile.value,
-      email: form.email.value,
-      propertyType: form.propertyType.value,
-      numberOfRooms: form.numberOfRooms.value,
-      requiredService: form.requiredService.value,
-      message: form.message.value
-    };
-
-    fetch("https://script.google.com/macros/s/AKfycbxg4hK_ajfXAcM7SnbanYWmDiLt3z7EFlopu-nTmV0z1FkDtmR-oGCnvo3nOQCVj_knsA/exec", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
-    })
-    .then(res => res.json())
-    .then(resp => {
-      if(resp.result === "success"){
-        alert("PMS Enquiry submitted successfully");
-        form.reset();
-      } else {
-        alert("Submission failed: " + resp.message);
-      }
-    })
-    .catch(err => {
-      alert("Connection error. Please try again.");
-      console.error(err);
-    });
-
+  fetch("https://script.google.com/macros/s/AKfycbxg4hK_ajfXAcM7SnbanYWmDiLt3z7EFlopu-nTmV0z1FkDtmR-oGCnvo3nOQCVj_knsA/exec", {
+    method: "POST",
+    mode: "no-cors",
+    body: JSON.stringify(data)
+  })
+  .then(() => {
+    alert("PMS Enquiry submitted successfully");
+    document.getElementById("pmsForm").reset();
+    btn.disabled = false;
+    btn.innerText = "Submit PMS Enquiry";
+  })
+  .catch(() => {
+    alert("Submission failed. Please try again.");
+    btn.disabled = false;
+    btn.innerText = "Submit PMS Enquiry";
   });
-
 });
 </script>
 
