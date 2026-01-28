@@ -2,120 +2,68 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>PMS Enquiry Form | P & R Hospitality</title>
-
+<title>PMS Enquiry | P & R Hospitality</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-*{
-  box-sizing:border-box;
-  font-family: Arial, sans-serif;
-}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,Helvetica,sans-serif;background:#f4f6fb}
 
-body{
-  margin:0;
-  background:#f5f7fb;
-  color:#333;
+/* HEADER */
+header{background:#fff;border-bottom:1px solid #eee}
+.header-wrap{
+  max-width:1100px;
+  margin:auto;
+  padding:10px 16px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
 }
-
-/* ===== HEADER ===== */
-header{
-  background:#4a3fd9;
-  color:#fff;
-  padding:15px;
-  text-align:center;
-}
-
-header a{
-  color:#fff;
+.logos{display:flex;gap:12px}
+.logos img{height:45px}
+nav a{
+  margin:0 10px;
   text-decoration:none;
+  color:#0b2a4a;
   font-weight:600;
-  margin:0 8px;
 }
 
-/* ===== FORM WRAPPER ===== */
+/* FORM */
 .container{
-  max-width:720px;
-  margin:30px auto;
+  max-width:600px;
   background:#fff;
+  margin:30px auto;
   padding:25px;
   border-radius:8px;
-  box-shadow:0 6px 16px rgba(0,0,0,0.08);
+  box-shadow:0 4px 14px rgba(0,0,0,.1);
 }
-
-h1{
-  text-align:center;
-  color:#4a3fd9;
-  margin-bottom:20px;
-}
-
-/* ===== FORM ===== */
-form label{
-  display:block;
-  margin-top:15px;
-  font-weight:600;
-}
-
-form input,
-form select,
-form textarea{
+h1{text-align:center;color:#4b3fd6;margin-bottom:20px}
+label{font-weight:600;margin-top:14px;display:block}
+input,textarea{
   width:100%;
-  padding:12px;
+  padding:10px;
   margin-top:6px;
   border:1px solid #ccc;
   border-radius:5px;
-  font-size:15px;
 }
-
-textarea{
-  resize:vertical;
-  min-height:90px;
-}
-
+textarea{min-height:90px}
 button{
   width:100%;
   margin-top:20px;
-  padding:14px;
-  background:#ffc107;
+  background:#f5b400;
+  padding:12px;
   border:none;
   border-radius:6px;
   font-size:16px;
   font-weight:bold;
-  cursor:pointer;
 }
+.back{text-align:center;margin-top:15px}
+.back a{text-decoration:none;color:#4b3fd6;font-weight:600}
 
-button:hover{
-  background:#e0a800;
-}
-
-/* ===== BACK LINKS ===== */
-.back-links{
-  text-align:center;
-  margin-top:20px;
-}
-
-.back-links a{
-  display:inline-block;
-  margin:6px 10px;
-  text-decoration:none;
-  color:#4a3fd9;
-  font-weight:600;
-}
-
-/* ===== FOOTER ===== */
-footer{
-  text-align:center;
-  padding:15px;
-  font-size:14px;
-  color:#666;
-}
-
-/* ===== MOBILE FIX ===== */
+/* MOBILE */
 @media(max-width:600px){
-  .container{
-    margin:15px;
-    padding:20px;
-  }
+  nav{margin-top:8px}
 }
 </style>
 </head>
@@ -123,154 +71,53 @@ footer{
 <body>
 
 <header>
-  <div><strong>P & R Hospitality Management Services</strong></div>
-  <div style="margin-top:6px;">
-    <a href="../index.html">Home</a>
-    <a href="../fullconnectedpms.html">PMS Services</a>
-    <a href="../travel.html">Travel Services</a>
-    <a href="../contact.html">Contact</a>
+  <div class="header-wrap">
+    <div class="logos">
+      <img src="../images/logo-pr-hospitality.png">
+      <img src="../images/logo-pms.png">
+    </div>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../pms.html">PMS Services</a>
+      <a href="../travel.html">Travel Services</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
   </div>
 </header>
 
 <div class="container">
-  <h1>PMS Enquiry Form</h1>
+<h1>PMS Enquiry Form</h1>
 
-  <!-- FORM -->
-  <form action="../thank-you-pms.html" method="POST">
+<form>
+  <label>Full Name</label>
+  <input type="text" required>
 
-    <label>Full Name *</label>
-    <input type="text" name="name" required>
+  <label>Mobile Number</label>
+  <input type="tel" required>
 
-    <label>Mobile Number *</label>
-    <input type="tel" name="mobile" required>
+  <label>Email</label>
+  <input type="email">
 
-    <label>Email Address</label>
-    <input type="email" name="email">
+  <label>Property Name</label>
+  <input type="text">
 
-    <label>Property Type</label>
-    <select name="property_type">
-      <option>Hotel</option>
-      <option>Resort</option>
-      <option>Homestay</option>
-      <option>Guest House</option>
-      <option>Service Apartment</option>
-    </select>
+  <label>Number of Rooms</label>
+  <input type="number">
 
-    <label>Number of Rooms</label>
-    <input type="number" name="rooms">
+  <label>Message / Requirement</label>
+  <textarea></textarea>
 
-    <label>City / Location</label>
-    <input type="text" name="location">
+  <button type="submit">Submit Enquiry</button>
+</form>
 
-    <label>Message / Requirement</label>
-    <textarea name="message"></textarea>
-
-    <button type="submit">Submit PMS Enquiry</button>
-  </form>
-
-  <div class="back-links">
-    ← <a href="../fullconnectedpms.html">Back to PMS Services</a> |
-    ← <a href="../index.html">Back to Website</a>
-  </div>
+<div class="back">
+  <a href="../pms.html">← Back to PMS Services</a> |
+  <a href="../index.html">← Back to Website</a>
+</div>
 </div>
 
-<footer>
-  © 2026 P & R Hospitality Management Services
-</footer>
-
-</body>
-</html>button:hover{
-  background:#e0a800;
-}
-
-/* ===== BACK LINKS ===== */
-.back-links{
-  text-align:center;
-  margin-top:20px;
-}
-
-.back-links a{
-  display:inline-block;
-  margin:6px 10px;
-  text-decoration:none;
-  color:#4a3fd9;
-  font-weight:600;
-}
-
-/* ===== FOOTER ===== */
-footer{
-  text-align:center;
-  padding:15px;
-  font-size:14px;
-  color:#666;
-}
-
-/* ===== MOBILE FIX ===== */
-@media(max-width:600px){
-  .container{
-    margin:15px;
-    padding:20px;
-  }
-}
-</style>
-</head>
-
-<body>
-
-<header>
-  <div><strong>P & R Hospitality Management Services</strong></div>
-  <div style="margin-top:6px;">
-    <a href="../index.html">Home</a>
-    <a href="../fullconnectedpms.html">PMS Services</a>
-    <a href="../travel.html">Travel Services</a>
-    <a href="../contact.html">Contact</a>
-  </div>
-</header>
-
-<div class="container">
-  <h1>PMS Enquiry Form</h1>
-
-  <!-- FORM -->
-  <form action="../thank-you-pms.html" method="POST">
-
-    <label>Full Name *</label>
-    <input type="text" name="name" required>
-
-    <label>Mobile Number *</label>
-    <input type="tel" name="mobile" required>
-
-    <label>Email Address</label>
-    <input type="email" name="email">
-
-    <label>Property Type</label>
-    <select name="property_type">
-      <option>Hotel</option>
-      <option>Resort</option>
-      <option>Homestay</option>
-      <option>Guest House</option>
-      <option>Service Apartment</option>
-    </select>
-
-    <label>Number of Rooms</label>
-    <input type="number" name="rooms">
-
-    <label>City / Location</label>
-    <input type="text" name="location">
-
-    <label>Message / Requirement</label>
-    <textarea name="message"></textarea>
-
-    <button type="submit">Submit PMS Enquiry</button>
-  </form>
-
-  <div class="back-links">
-    ← <a href="../fullconnectedpms.html">Back to PMS Services</a> |
-    ← <a href="../index.html">Back to Website</a>
-  </div>
-</div>
-
-<footer>
-  © 2026 P & R Hospitality Management Services
+<footer style="text-align:center;font-size:13px;color:#777;margin-bottom:15px">
+© 2026 P & R Hospitality Management Services
 </footer>
 
 </body>
