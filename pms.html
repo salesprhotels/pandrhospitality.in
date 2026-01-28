@@ -1,70 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>PMS Services | P & R Hospitality Management</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<title>PMS Services | P & R Hospitality</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f5f7fa;
+  color: #333;
+}
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+header {
+  background: #ffffff;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
 
-  <style>
-    body { font-family: 'Inter', sans-serif; }
-  </style>
+header h1 {
+  font-size: 20px;
+  color: #4f46e5;
+}
+
+nav a {
+  margin-left: 15px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+nav a:hover {
+  color: #4f46e5;
+}
+
+/* HERO */
+.hero {
+  background: #4f46e5;
+  color: #fff;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.hero h2 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+.hero a {
+  display: inline-block;
+  margin-top: 25px;
+  background: #facc15;
+  color: #000;
+  padding: 14px 30px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* CONTENT */
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 50px 20px;
+}
+
+.container h3 {
+  text-align: center;
+  font-size: 26px;
+  margin-bottom: 30px;
+  color: #1f2937;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.feature {
+  background: #fff;
+  padding: 22px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.feature h4 {
+  margin-bottom: 8px;
+  color: #4f46e5;
+}
+
+.feature p {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* CTA */
+.cta {
+  background: #eef2ff;
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.cta h3 {
+  font-size: 26px;
+  margin-bottom: 15px;
+}
+
+.cta a {
+  display: inline-block;
+  margin: 10px;
+  padding: 14px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.cta .primary {
+  background: #4f46e5;
+  color: #fff;
+}
+
+.cta .secondary {
+  background: #16a34a;
+  color: #fff;
+}
+
+/* FOOTER */
+footer {
+  background: #1f2937;
+  color: #d1d5db;
+  text-align: center;
+  padding: 18px;
+  font-size: 14px;
+}
+
+@media(max-width: 768px) {
+  nav {
+    font-size: 14px;
+  }
+}
+</style>
 </head>
 
-<body class="bg-slate-50 text-slate-800">
+<body>
 
-<!-- ================= HEADER ================= -->
-<header class="bg-white shadow-sm">
-  <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-    <div class="text-xl font-bold text-indigo-700">
-      P & R Hospitality
-    </div>
-    <nav class="space-x-6 text-sm font-medium">
-      <a href="index.html" class="hover:text-indigo-700">Home</a>
-      <a href="pms.html" class="text-indigo-700">PMS Services</a>
-      <a href="travel.html" class="hover:text-indigo-700">Travel Services</a>
-      <a href="contact.html" class="hover:text-indigo-700">Contact</a>
-    </nav>
-  </div>
+<header>
+  <h1>P & R Hospitality</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="pms.html">PMS Services</a>
+    <a href="travel.html">Travel Services</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 </header>
 
-<!-- ================= HERO ================= -->
-<section class="bg-indigo-700 text-white py-16">
-  <div class="max-w-4xl mx-auto px-4 text-center">
-    <h1 class="text-3xl md:text-4xl font-bold mb-4">
-      PMS & Hospitality Management Services
-    </h1>
-    <p class="text-indigo-100 text-lg">
-      Technology, consulting & digital solutions for hotels, resorts and homestays
-    </p>
+<section class="hero">
+  <h2>Property Management System (PMS)</h2>
+  <p>Smart, simple & reliable PMS solutions for hospitality businesses</p>
+
+  <a href="forms/pms-form.html">Request PMS Demo</a>
+</section>
+
+<section class="container">
+  <h3>Our PMS Services</h3>
+
+  <div class="features">
+    <div class="feature">
+      <h4>Front Office Management</h4>
+      <p>Reservations, check-in/check-out, room allocation and guest profiles.</p>
+    </div>
+
+    <div class="feature">
+      <h4>Billing & Invoicing</h4>
+      <p>GST-ready invoices, accurate billing and payment tracking.</p>
+    </div>
+
+    <div class="feature">
+      <h4>Housekeeping Management</h4>
+      <p>Room status updates, cleaning schedules and staff coordination.</p>
+    </div>
+
+    <div class="feature">
+      <h4>Reports & Analytics</h4>
+      <p>Daily reports, revenue insights and performance tracking.</p>
+    </div>
+
+    <div class="feature">
+      <h4>Website Design & Digital Setup</h4>
+      <p>Hotel websites, enquiry forms, domain & hosting guidance.</p>
+    </div>
+
+    <div class="feature">
+      <h4>Google Business Profile (Maps)</h4>
+      <p>Business listing, verification, branding & lead integration.</p>
+    </div>
   </div>
 </section>
 
-<!-- ================= SERVICES ================= -->
-<section class="max-w-7xl mx-auto px-4 py-16 space-y-12">
+<section class="cta">
+  <h3>Need a PMS for Your Property?</h3>
 
-  <!-- PMS SOLUTIONS -->
-  <div class="bg-white rounded-xl shadow p-8 grid md:grid-cols-2 gap-8 items-center">
-    <img
-      src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2"
-      alt="Property Management System"
-      class="rounded-lg h-64 w-full object-cover"
-    />
-    <div>
-      <h2 class="text-2xl font-bold text-indigo-700 mb-3">PMS Solutions</h2>
-      <ul class="list-disc pl-5 space-y-2 text-sm">
-        <li>Hotel / Resort / Homestay PMS setup</li>
-        <li>OTA integration (Booking, Airbnb, Goibibo)</li>
-        <li>Inventory, billing & reporting</li>
-        <li>Staff training & support</li>
-      </ul>
-    </div>
-  </div>
+  <a href="contact.html" class="primary">Contact Us</a>
+  <a href="forms/pms-form.html" class="secondary">PMS Enquiry</a>
+</section>
+
+<footer>
+  © 2026 P & R Hospitality Management Services. All rights reserved.
+</footer>
+
+</body>
+</html>  </div>
 
   <!-- HOSPITALITY CONSULTING -->
   <div class="bg-white rounded-xl shadow p-8 grid md:grid-cols-2 gap-8 items-center">
