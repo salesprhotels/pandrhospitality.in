@@ -2,39 +2,99 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Travel Services | P and R Hospitality Management Services</title>
+  <title>Yes, We Care Travels | P & R Hospitality Management Services</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #ffffff;
-      color: #222;
-    }
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
 
-    /* ===== HEADER ===== */
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 20px;
-      border-bottom: 1px solid #eee;
-      background: #ffffff;
-    }
+<body class="bg-white text-slate-800">
 
-    .site-logo {
-      height: 55px;
-    }
+  <!-- HEADER -->
+  <header class="border-b bg-white">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="index.html" class="font-bold text-indigo-700 text-lg">
+        P & R Hospitality
+      </a>
+      <nav class="flex gap-6 text-sm font-medium">
+        <a href="index.html" class="hover:text-indigo-700">Home</a>
+        <a href="pms.html" class="hover:text-indigo-700">PMS Services</a>
+        <a href="travel.html" class="text-indigo-700">Travel</a>
+      </nav>
+    </div>
+  </header>
 
-    nav a {
-      margin-left: 20px;
-      text-decoration: none;
-      color: #0b2a4a;
-      font-weight: 600;
-      font-size: 15px;
-    }
+  <!-- HERO -->
+  <section class="bg-slate-50 py-14">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h1 class="text-3xl font-bold mb-2">
+        Yes, We Care Travels
+      </h1>
+      <p class="text-slate-600 text-lg">
+        by P & R Hospitality Management Services
+      </p>
+    </div>
+  </section>
 
+  <!-- CONTENT -->
+  <section class="max-w-4xl mx-auto px-4 py-12 space-y-8">
+
+    <p class="text-lg leading-relaxed">
+      <strong>Yes, We Care Travels</strong> is the travel services vertical of
+      <strong>P & R Hospitality Management Services</strong>, offering reliable,
+      customer-focused travel solutions for individuals, families, groups, and
+      corporate clients.
+    </p>
+
+    <div>
+      <h2 class="text-xl font-semibold mb-3">Our Travel Services</h2>
+      <ul class="list-disc list-inside space-y-2">
+        <li>Domestic tour packages</li>
+        <li>Pilgrimage and religious tours</li>
+        <li>Hotel bookings</li>
+        <li>Taxi & transport arrangements</li>
+        <li>Group and corporate travel planning</li>
+        <li>Customized itineraries</li>
+      </ul>
+    </div>
+
+    <div class="bg-slate-50 border rounded-lg p-6">
+      <h3 class="font-semibold text-lg mb-2">Travel Enquiries</h3>
+      <p class="mb-2">
+        For travel-related enquiries, please use the form below or contact us:
+      </p>
+      <p class="font-medium">
+        📧 <a href="mailto:yeswecaretravels@gmail.com"
+              class="text-indigo-700 hover:underline">
+          yeswecaretravels@gmail.com
+        </a>
+      </p>
+    </div>
+
+    <div class="text-center">
+      <a href="forms/travel-form.html"
+         class="inline-block bg-indigo-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-indigo-800">
+        Travel Enquiry Form
+      </a>
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t bg-slate-50">
+    <div class="max-w-6xl mx-auto px-4 py-6 text-sm text-slate-600 flex flex-col sm:flex-row justify-between gap-2">
+      <span>© P & R Hospitality Management Services</span>
+      <span>Travel: yeswecaretravels@gmail.com</span>
+    </div>
+  </footer>
+
+</body>
+</html>
     nav a:hover {
       color: #d18b2c;
     }
