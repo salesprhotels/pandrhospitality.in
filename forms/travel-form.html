@@ -6,73 +6,100 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+*{box-sizing:border-box;margin:0;padding:0}
 body{
-  margin:0;
   font-family:Arial, Helvetica, sans-serif;
   background:#f4f6fb;
+  color:#333;
 }
+
+/* HEADER */
 header{
   background:#4b3fd6;
   color:#fff;
-  padding:15px;
+  padding:12px 16px;
   text-align:center;
 }
-header a{
+header nav a{
   color:#fff;
-  text-decoration:none;
-  font-weight:bold;
   margin:0 10px;
+  text-decoration:none;
+  font-weight:600;
 }
+
+/* FORM WRAPPER */
 .container{
-  max-width:700px;
-  margin:20px auto;
+  max-width:600px;
+  margin:30px auto;
   background:#fff;
-  padding:20px;
+  padding:25px;
   border-radius:8px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.08);
 }
-h2{
-  color:#4b3fd6;
+h1{
   text-align:center;
+  color:#4b3fd6;
+  margin-bottom:20px;
 }
+
+/* FORM */
 label{
+  font-weight:600;
   display:block;
-  margin-top:15px;
-  font-weight:bold;
+  margin-top:14px;
 }
 input, select, textarea{
   width:100%;
   padding:10px;
-  margin-top:5px;
+  margin-top:6px;
   border:1px solid #ccc;
   border-radius:5px;
-  font-size:16px;
+  font-size:15px;
 }
+textarea{min-height:90px}
+
+.row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+/* BUTTON */
 button{
-  margin-top:20px;
   width:100%;
-  background:#f5b400;
-  color:#000;
+  margin-top:20px;
   padding:12px;
+  background:#f5b400;
   border:none;
   border-radius:6px;
-  font-size:18px;
+  font-size:16px;
+  font-weight:bold;
   cursor:pointer;
 }
+
+/* BACK LINKS */
 .back-links{
   text-align:center;
-  margin-top:15px;
+  margin-top:18px;
 }
 .back-links a{
-  margin:0 8px;
   color:#4b3fd6;
-  font-weight:bold;
   text-decoration:none;
+  font-weight:600;
+  margin:0 8px;
 }
+
+/* FOOTER */
 footer{
   text-align:center;
-  padding:15px;
-  font-size:14px;
-  color:#555;
+  font-size:13px;
+  color:#777;
+  margin:20px 0;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+  .row{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -80,55 +107,82 @@ footer{
 <body>
 
 <header>
-  <div>P & R Hospitality Management Services</div>
-  <div>
-    <a href="index.html">Home</a>
-    <a href="pms.html">PMS Services</a>
-    <a href="travel.html">Travel Services</a>
-    <a href="contact.html">Contact</a>
-  </div>
+  <strong>P & R Hospitality Management Services</strong><br>
+  <nav>
+    <a href="../index.html">Home</a>
+    <a href="../pms.html">PMS Services</a>
+    <a href="../travel.html">Travel Services</a>
+    <a href="../contact.html">Contact</a>
+  </nav>
 </header>
 
 <div class="container">
-<h2>Travel Enquiry Form</h2>
+<h1>Travel Enquiry Form</h1>
 
-<form action="thank-you-travel.html" method="GET">
+<form action="../thank-you-travel.html" method="post">
 
 <label>Full Name</label>
-<input type="text" required>
+<input type="text" name="name" required>
 
 <label>Mobile Number</label>
-<input type="tel" required>
+<input type="tel" name="mobile" required>
 
 <label>Email</label>
-<input type="email">
+<input type="email" name="email">
 
 <label>Travel Type</label>
-<select>
+<select name="travel_type">
   <option>Domestic Tour</option>
-  <option>Pilgrimage</option>
+  <option>Pilgrimage Tour</option>
   <option>Hotel Booking</option>
   <option>Taxi / Transport</option>
-  <option>Group / Corporate</option>
-  <option>Air Ticket</option>
-  <option>Bus Ticket</option>
+  <option>Group / Corporate Travel</option>
+  <option>Air Tickets</option>
+  <option>Bus Tickets</option>
 </select>
 
 <label>Destination</label>
-<input type="text">
+<input type="text" name="destination" required>
 
-<label>Travel Dates</label>
-<input type="text" placeholder="From – To">
+<div class="row">
+  <div>
+    <label>Journey Date</label>
+    <input type="date" name="journey_date">
+  </div>
+  <div>
+    <label>Return Date</label>
+    <input type="date" name="return_date">
+  </div>
+</div>
 
-<label>Message</label>
-<textarea rows="4"></textarea>
+<div class="row">
+  <div>
+    <label>Adults</label>
+    <input type="number" min="1" value="1" name="adults">
+  </div>
+  <div>
+    <label>Children</label>
+    <input type="number" min="0" value="0" name="children">
+  </div>
+</div>
+
+<label>Budget Range</label>
+<select name="budget">
+  <option>Below ₹20,000</option>
+  <option>₹20,000 – ₹50,000</option>
+  <option>₹50,000 – ₹1,00,000</option>
+  <option>Above ₹1,00,000</option>
+</select>
+
+<label>Message / Special Requirement</label>
+<textarea name="message"></textarea>
 
 <button type="submit">Submit Travel Enquiry</button>
 </form>
 
 <div class="back-links">
-  <a href="travel.html">← Back to Travel Services</a> |
-  <a href="index.html">← Back to Website</a>
+  <a href="../travel.html">← Back to Travel Services</a> |
+  <a href="../index.html">← Back to Website</a>
 </div>
 </div>
 
