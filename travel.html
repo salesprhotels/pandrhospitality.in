@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Yes, We Care Travels | P & R Hospitality Management Services</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>Travel Services | Yes, We Care Travels</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
@@ -13,58 +16,146 @@
   </style>
 </head>
 
-<body class="bg-white text-slate-800">
+<body class="bg-slate-50 text-slate-800">
 
-  <!-- HEADER -->
-  <header class="border-b bg-white">
-    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-      <a href="index.html" class="font-bold text-indigo-700 text-lg">
-        P & R Hospitality
-      </a>
-      <nav class="flex gap-6 text-sm font-medium">
-        <a href="index.html" class="hover:text-indigo-700">Home</a>
-        <a href="pms.html" class="hover:text-indigo-700">PMS Services</a>
-        <a href="travel.html" class="text-indigo-700">Travel</a>
-      </nav>
-    </div>
-  </header>
+<!-- HEADER -->
+<header class="bg-white shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold text-indigo-700">
+      P & R Hospitality
+    </h1>
+    <nav class="space-x-4 text-sm font-medium">
+      <a href="index.html" class="hover:text-indigo-700">Home</a>
+      <a href="pms.html" class="hover:text-indigo-700">PMS Services</a>
+      <a href="travel.html" class="text-indigo-700 font-semibold">Travel Services</a>
+      <a href="contact.html" class="hover:text-indigo-700">Contact</a>
+    </nav>
+  </div>
+</header>
 
-  <!-- HERO -->
-  <section class="bg-slate-50 py-14">
-    <div class="max-w-4xl mx-auto px-4 text-center">
-      <h1 class="text-3xl font-bold mb-2">
-        Yes, We Care Travels
-      </h1>
-      <p class="text-slate-600 text-lg">
-        by P & R Hospitality Management Services
+<!-- HERO -->
+<section class="bg-indigo-700 text-white text-center py-16 px-4">
+  <h2 class="text-3xl font-bold mb-3">Yes, We Care Travels</h2>
+  <p class="text-indigo-100">
+    Trusted Travel Solutions by P & R Hospitality Management Services
+  </p>
+</section>
+
+<!-- SERVICES -->
+<section class="max-w-7xl mx-auto px-4 py-12">
+  <h3 class="text-2xl font-bold text-center mb-10">Our Travel Services</h3>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+    <!-- Service Card -->
+    <div class="bg-white rounded-xl shadow p-6">
+      <img src="images/domestic-tour.jpg" alt="Domestic Tours"
+           class="rounded-lg mb-4 w-full h-40 object-cover">
+      <h4 class="font-semibold text-lg mb-2">Domestic Tour Packages</h4>
+      <p class="text-sm text-slate-600">
+        Customized holiday packages across India including hill stations,
+        beaches, heritage and weekend getaways.
       </p>
     </div>
-  </section>
 
-  <!-- CONTENT -->
-  <section class="max-w-4xl mx-auto px-4 py-12 space-y-8">
-
-    <p class="text-lg leading-relaxed">
-      <strong>Yes, We Care Travels</strong> is the travel services vertical of
-      <strong>P & R Hospitality Management Services</strong>, offering reliable,
-      customer-focused travel solutions for individuals, families, groups, and
-      corporate clients.
-    </p>
-
-    <div>
-      <h2 class="text-xl font-semibold mb-3">Our Travel Services</h2>
-      <ul class="list-disc list-inside space-y-2">
-        <li>Domestic tour packages</li>
-        <li>Pilgrimage and religious tours</li>
-        <li>Hotel bookings</li>
-        <li>Taxi & transport arrangements</li>
-        <li>Group and corporate travel planning</li>
-        <li>Customized itineraries</li>
-      </ul>
+    <div class="bg-white rounded-xl shadow p-6">
+      <img src="images/pilgrimage.jpg" alt="Pilgrimage Tours"
+           class="rounded-lg mb-4 w-full h-40 object-cover">
+      <h4 class="font-semibold text-lg mb-2">Pilgrimage & Religious Tours</h4>
+      <p class="text-sm text-slate-600">
+        Special arrangements for Vaishno Devi, Amarnath, Char Dham
+        and other religious destinations.
+      </p>
     </div>
 
-    <div class="bg-slate-50 border rounded-lg p-6">
-      <h3 class="font-semibold text-lg mb-2">Travel Enquiries</h3>
+    <div class="bg-white rounded-xl shadow p-6">
+      <img src="images/hotel-booking.jpg" alt="Hotel Booking"
+           class="rounded-lg mb-4 w-full h-40 object-cover">
+      <h4 class="font-semibold text-lg mb-2">Hotel Bookings</h4>
+      <p class="text-sm text-slate-600">
+        Budget to premium hotel bookings with verified stays
+        and competitive pricing.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-xl shadow p-6">
+      <img src="images/taxi.jpg" alt="Taxi Services"
+           class="rounded-lg mb-4 w-full h-40 object-cover">
+      <h4 class="font-semibold text-lg mb-2">Taxi & Transport</h4>
+      <p class="text-sm text-slate-600">
+        Local sightseeing, outstation cabs,
+        airport & railway station transfers.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-xl shadow p-6">
+      <img src="images/group-travel.jpg" alt="Group Travel"
+           class="rounded-lg mb-4 w-full h-40 object-cover">
+      <h4 class="font-semibold text-lg mb-2">Group & Corporate Travel</h4>
+      <p class="text-sm text-slate-600">
+        Complete travel planning for corporate trips,
+        educational tours and family groups.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-xl shadow p-6">
+      <img src="images/custom-itinerary.jpg" alt="Custom Itinerary"
+           class="rounded-lg mb-4 w-full h-40 object-cover">
+      <h4 class="font-semibold text-lg mb-2">Customized Itineraries</h4>
+      <p class="text-sm text-slate-600">
+        Personalized travel plans based on budget,
+        duration and special requirements.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-xl shadow p-6">
+      <img src="images/air-ticket.jpg" alt="Air Tickets"
+           class="rounded-lg mb-4 w-full h-40 object-cover">
+      <h4 class="font-semibold text-lg mb-2">Air Ticket Booking</h4>
+      <p class="text-sm text-slate-600">
+        Domestic flight tickets with best available fares
+        and flexible options.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-xl shadow p-6">
+      <img src="images/bus-ticket.jpg" alt="Bus Tickets"
+           class="rounded-lg mb-4 w-full h-40 object-cover">
+      <h4 class="font-semibold text-lg mb-2">Bus Ticket Booking</h4>
+      <p class="text-sm text-slate-600">
+        Intercity and interstate bus ticket booking
+        with trusted operators.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="bg-slate-100 py-12 text-center px-4">
+  <h3 class="text-xl font-bold mb-3">Plan Your Journey With Us</h3>
+  <p class="text-slate-600 mb-6">
+    Get in touch for travel enquiries, bookings and customized packages.
+  </p>
+  <div class="space-x-4">
+    <a href="travel-form.html"
+       class="inline-block bg-indigo-700 text-white px-6 py-3 rounded-lg font-medium hover:bg-indigo-800">
+      Travel Enquiry
+    </a>
+    <a href="contact.html"
+       class="inline-block bg-green-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700">
+      Contact Us
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-white border-t text-center text-sm text-slate-500 py-6">
+  © 2024 P & R Hospitality Management Services | Yes, We Care Travels
+</footer>
+
+</body>
+</html>      <h3 class="font-semibold text-lg mb-2">Travel Enquiries</h3>
       <p class="mb-2">
         For travel-related enquiries, please use the form below or contact us:
       </p>
