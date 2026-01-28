@@ -102,13 +102,12 @@ document.addEventListener("DOMContentLoaded", function(){
       mobile: form.mobile.value,
       email: form.email.value,
       propertyType: form.propertyType.value,
-      roomNumber: form.roomNumber.value,
       numberOfRooms: form.numberOfRooms.value,
       requiredService: form.requiredService.value,
       message: form.message.value
     };
 
-    fetch("https://https://script.google.com/macros/s/AKfycbxg4hK_ajfXAcM7SnbanYWmDiLt3z7EFlopu-nTmV0z1FkDtmR-oGCnvo3nOQCVj_knsA/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbxg4hK_ajfXAcM7SnbanYWmDiLt3z7EFlopu-nTmV0z1FkDtmR-oGCnvo3nOQCVj_knsA/exec", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
