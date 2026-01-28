@@ -1,147 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>PMS Enquiry | P & R Hospitality</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>PMS Enquiry | P & R Hospitality</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-body{
-  font-family: Arial, Helvetica, sans-serif;
-  background:#f4f6fb;
-  margin:0;
-  padding:0;
-}
-.container{
-  max-width:600px;
-  margin:30px auto;
-  background:#ffffff;
-  padding:25px;
-  border-radius:8px;
-  box-shadow:0 4px 15px rgba(0,0,0,0.1);
-}
-h1{
-  text-align:center;
-  color:#2b2f7a;
-  margin-bottom:20px;
-}
-label{
-  display:block;
-  margin-top:14px;
-  font-weight:600;
-}
-input, select, textarea{
-  width:100%;
-  padding:10px;
-  margin-top:6px;
-  border:1px solid #ccc;
-  border-radius:5px;
-  font-size:15px;
-}
-textarea{min-height:90px}
-button{
-  width:100%;
-  margin-top:22px;
-  padding:12px;
-  background:#f5b400;
-  border:none;
-  border-radius:6px;
-  font-size:16px;
-  font-weight:bold;
-  cursor:pointer;
-}
-button:disabled{
-  background:#ccc;
-  cursor:not-allowed;
-}
-.back-links{
-  text-align:center;
-  margin-top:15px;
-}
-.back-links a{
-  text-decoration:none;
-  color:#2b2f7a;
-  font-weight:600;
-  margin:0 8px;
-}
-</style>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f6fb;
+      color: #333;
+    }
+
+    /* HEADER */
+    header {
+      background: #0b2a4a;
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+    }
+
+    header nav a {
+      color: #fff;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    /* FORM BOX */
+    .container {
+      max-width: 600px;
+      margin: 30px auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    h1 {
+      text-align: center;
+      color: #0b2a4a;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 14px;
+      font-weight: 600;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 15px;
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 22px;
+      padding: 12px;
+      background: #d18b2c;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      color: #fff;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .back-links {
+      text-align: center;
+      margin-top: 18px;
+    }
+
+    .back-links a {
+      color: #0b2a4a;
+      text-decoration: none;
+      font-weight: 600;
+      margin: 0 8px;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: #777;
+      margin: 20px 0;
+    }
+
+    @media (max-width: 600px) {
+      .row { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 
 <body>
 
+<header>
+  <strong>P & R Hospitality Management Services</strong><br>
+  <nav>
+    <a href="../index.html">Home</a>
+    <a href="../pms.html">PMS Services</a>
+    <a href="../travel.html">Travel Services</a>
+    <a href="../contact.html">Contact</a>
+  </nav>
+</header>
+
 <div class="container">
-<h1>PMS Enquiry Form</h1>
+  <h1>PMS Enquiry Form</h1>
 
-<form id="pmsForm">
+  <form id="pmsForm">
 
-<label>Full Name *</label>
-<input type="text" name="fullName" required>
+    <label>Full Name *</label>
+    <input type="text" id="name" required>
 
-<label>Mobile Number *</label>
-<input type="tel" name="mobile" required>
+    <label>Mobile Number *</label>
+    <input type="tel" id="mobile" required>
 
-<label>Email Address</label>
-<input type="email" name="email">
+    <label>Email Address</label>
+    <input type="email" id="email">
 
-<label>Property Type</label>
-<select name="propertyType">
-  <option value="">Select Property Type</option>
-  <option>Hotel</option>
-  <option>Homestay</option>
-  <option>Resort</option>
-  <option>Guest House</option>
-</select>
+    <label>Property Type</label>
+    <select id="propertyType">
+      <option value="">Select Property Type</option>
+      <option>Hotel</option>
+      <option>Homestay</option>
+      <option>Resort</option>
+      <option>Guest House</option>
+      <option>Other</option>
+    </select>
 
-<label>Number of Rooms</label>
-<input type="number" name="numberOfRooms" min="1">
+    <label>Number of Rooms</label>
+    <input type="number" id="rooms" min="1">
 
-<label>Required Service</label>
-<select name="requiredService">
-  <option value="">Select Service</option>
-  <option>PMS Software</option>
-  <option>Staff Training</option>
-  <option>Website Designing</option>
-  <option>Google Business Listing</option>
-</select>
+    <label>Required Service</label>
+    <select id="service">
+      <option value="">Select Service</option>
+      <option>PMS Setup</option>
+      <option>Hospitality Management</option>
+      <option>Staff Training</option>
+      <option>Website & Google Listing</option>
+      <option>Consulting</option>
+    </select>
 
-<label>Message / Requirement</label>
-<textarea name="message"></textarea>
+    <label>Message / Requirements</label>
+    <textarea id="message"></textarea>
 
-<button type="submit" id="submitBtn">Submit PMS Enquiry</button>
-</form>
+    <button type="submit" id="submitBtn">Submit PMS Enquiry</button>
+  </form>
 
-<div class="back-links">
-  <a href="../pms.html">← Back to PMS Services</a> |
-  <a href="../index.html">← Back to Website</a>
+  <div class="back-links">
+    <a href="../pms.html">← Back to PMS Services</a> |
+    <a href="../index.html">← Back to Website</a>
+  </div>
 </div>
-</div>
+
+<footer>
+  © 2026 P & R Hospitality Management Services
+</footer>
 
 <script>
 document.getElementById("pmsForm").addEventListener("submit", function(e) {
   e.preventDefault();
 
+  const btn = document.getElementById("submitBtn");
+  btn.disabled = true;
+  btn.innerText = "Submitting...";
+
   const data = {
-    fullName: document.querySelector("[name='fullName']").value,
-    mobile: document.querySelector("[name='mobile']").value,
-    email: document.querySelector("[name='email']").value,
-    propertyType: document.querySelector("[name='propertyType']").value,
-    numberOfRooms: document.querySelector("[name='numberOfRooms']").value,
-    requiredService: document.querySelector("[name='requiredService']").value,
-    message: document.querySelector("[name='message']").value
+    name: document.getElementById("name").value,
+    mobile: document.getElementById("mobile").value,
+    email: document.getElementById("email").value,
+    propertyType: document.getElementById("propertyType").value,
+    rooms: document.getElementById("rooms").value,
+    service: document.getElementById("service").value,
+    message: document.getElementById("message").value
   };
 
   fetch("https://script.google.com/macros/s/AKfycbzYDveKcaeXGh0BHlZGg8ERNbxTctXattUDv0Udsjx6sBD4iB5W0dc5TtNAVE2-4x9fjA/exec", {
     method: "POST",
-    body: JSON.stringify(data),
-    headers: { "Content-Type": "application/json" }
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
   })
   .then(res => res.json())
-  .then(response => {
-    alert("PMS Enquiry submitted successfully");
-    document.getElementById("pmsForm").reset();
+  .then(resp => {
+    if (resp.status === "success") {
+      alert("PMS Enquiry submitted successfully");
+      document.getElementById("pmsForm").reset();
+    } else {
+      alert("Submission failed. Please try again.");
+    }
+    btn.disabled = false;
+    btn.innerText = "Submit PMS Enquiry";
   })
   .catch(err => {
     alert("Connection error. Please try again.");
+    btn.disabled = false;
+    btn.innerText = "Submit PMS Enquiry";
+    console.error(err);
   });
 });
 </script>
