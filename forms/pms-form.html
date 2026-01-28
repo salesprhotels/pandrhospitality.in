@@ -6,41 +6,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
 body{font-family:Arial,Helvetica,sans-serif;background:#f4f6fb}
-
-/* HEADER */
-header{background:#fff;border-bottom:1px solid #eee}
-.header-wrap{
-  max-width:1100px;
-  margin:auto;
-  padding:10px 16px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  flex-wrap:wrap;
-}
-.logos{display:flex;gap:12px}
-.logos img{height:45px}
-nav a{
-  margin:0 10px;
-  text-decoration:none;
-  color:#0b2a4a;
-  font-weight:600;
-}
-
-/* FORM */
 .container{
   max-width:600px;
+  margin:40px auto;
   background:#fff;
-  margin:30px auto;
   padding:25px;
   border-radius:8px;
   box-shadow:0 4px 14px rgba(0,0,0,.1);
 }
-h1{text-align:center;color:#4b3fd6;margin-bottom:20px}
-label{font-weight:600;margin-top:14px;display:block}
-input,textarea{
+h1{text-align:center;color:#4b3fd6}
+label{display:block;margin-top:14px;font-weight:600}
+input,select,textarea{
   width:100%;
   padding:10px;
   margin-top:6px;
@@ -49,76 +26,92 @@ input,textarea{
 }
 textarea{min-height:90px}
 button{
-  width:100%;
   margin-top:20px;
-  background:#f5b400;
+  width:100%;
   padding:12px;
+  background:#f5b400;
   border:none;
   border-radius:6px;
   font-size:16px;
   font-weight:bold;
-}
-.back{text-align:center;margin-top:15px}
-.back a{text-decoration:none;color:#4b3fd6;font-weight:600}
-
-/* MOBILE */
-@media(max-width:600px){
-  nav{margin-top:8px}
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <div class="header-wrap">
-    <div class="logos">
-      <img src="../images/logo-pr-hospitality.png">
-      <img src="../images/logo-pms.png">
-    </div>
-    <nav>
-      <a href="../index.html">Home</a>
-      <a href="../pms.html">PMS Services</a>
-      <a href="../travel.html">Travel Services</a>
-      <a href="../contact.html">Contact</a>
-    </nav>
-  </div>
-</header>
-
 <div class="container">
 <h1>PMS Enquiry Form</h1>
 
-<form>
-  <label>Full Name</label>
-  <input type="text" required>
+<form id="pmsForm">
 
-  <label>Mobile Number</label>
-  <input type="tel" required>
+<label>Full Name</label>
+<input type="text" name="fullName" required>
 
-  <label>Email</label>
-  <input type="email">
+<label>Mobile Number</label>
+<input type="tel" name="mobile" required>
 
-  <label>Property Name</label>
-  <input type="text">
+<label>Email</label>
+<input type="email" name="email">
 
-  <label>Number of Rooms</label>
-  <input type="number">
+<label>Property Type</label>
+<select name="propertyType">
+  <option>Hotel</option>
+  <option>Homestay</option>
+  <option>Resort</option>
+  <option>Guest House</option>
+</select>
 
-  <label>Message / Requirement</label>
-  <textarea></textarea>
+<label>Room Number</label>
+<input type="text" name="roomNumber">
 
-  <button type="submit">Submit Enquiry</button>
+<label>Number of Rooms</label>
+<input type="number" name="numberOfRooms">
+
+<label>Required Service</label>
+<select name="requiredService">
+  <option>PMS Software</option>
+  <option>Staff Training</option>
+  <option>Website Designing</option>
+  <option>Google Business Listing</option>
+</select>
+
+<label>Message / Requirement</label>
+<textarea name="message"></textarea>
+
+<button type="submit">Submit Enquiry</button>
 </form>
-
-<div class="back">
-  <a href="../pms.html">← Back to PMS Services</a> |
-  <a href="../index.html">← Back to Website</a>
-</div>
 </div>
 
-<footer style="text-align:center;font-size:13px;color:#777;margin-bottom:15px">
-© 2026 P & R Hospitality Management Services
-</footer>
+<script>
+document.getElementById("pmsForm").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  const data = {
+    fullName: document.querySelector("[name='fullName']").value,
+    mobile: document.querySelector("[name='mobile']").value,
+    email: document.querySelector("[name='email']").value,
+    propertyType: document.querySelector("[name='propertyType']").value,
+    roomNumber: document.querySelector("[name='roomNumber']").value,
+    numberOfRooms: document.querySelector("[name='numberOfRooms']").value,
+    requiredService: document.querySelector("[name='requiredService']").value,
+    message: document.querySelector("[name='message']").value
+  };
+
+  fetch("https://script.google.com/macros/s/AKfycby4bs00-Lr_SGFbHRPG5D-fyOSnnTVynmTwyKrxQo5NxfRhK09fFMEvOJQNTH44_m0_0g/exec", {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {"Content-Type":"application/json"}
+  })
+  .then(res => res.json())
+  .then(() => {
+    alert("Form submitted successfully");
+  })
+  .catch(() => {
+    alert("Error submitting form");
+  });
+});
+</script>
 
 </body>
 </html>
