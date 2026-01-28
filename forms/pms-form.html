@@ -187,20 +187,12 @@ document.getElementById("pmsForm").addEventListener("submit", function(e) {
   btn.disabled = true;
   btn.innerText = "Submitting...";
 
-  const data = {
-    name: document.getElementById("name").value,
-    mobile: document.getElementById("mobile").value,
-    email: document.getElementById("email").value,
-    propertyType: document.getElementById("propertyType").value,
-    rooms: document.getElementById("rooms").value,
-    service: document.getElementById("service").value,
-    message: document.getElementById("message").value
-  };
+  // FormData बनाओ
+  const formData = new FormData(document.getElementById("pmsForm"));
 
   fetch("https://script.google.com/macros/s/AKfycbzYDveKcaeXGh0BHlZGg8ERNbxTctXattUDv0Udsjx6sBD4iB5W0dc5TtNAVE2-4x9fjA/exec", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data)
+    body: formData
   })
   .then(res => res.json())
   .then(resp => {
@@ -221,6 +213,5 @@ document.getElementById("pmsForm").addEventListener("submit", function(e) {
   });
 });
 </script>
-
 </body>
 </html>
