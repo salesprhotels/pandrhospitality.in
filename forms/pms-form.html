@@ -34,6 +34,7 @@ button{
   border-radius:6px;
   font-size:16px;
   font-weight:bold;
+  cursor:pointer;
 }
 </style>
 </head>
@@ -84,32 +85,50 @@ button{
 </div>
 
 <script>
-document.getElementById("pmsForm").addEventListener("submit", function(e){
-  e.preventDefault();
+document.addEventListener("DOMContentLoaded", function(){
 
-  const data = {
-    fullName: document.querySelector("[name='fullName']").value,
-    mobile: document.querySelector("[name='mobile']").value,
-    email: document.querySelector("[name='email']").value,
-    propertyType: document.querySelector("[name='propertyType']").value,
-    roomNumber: document.querySelector("[name='roomNumber']").value,
-    numberOfRooms: document.querySelector("[name='numberOfRooms']").value,
-    requiredService: document.querySelector("[name='requiredService']").value,
-    message: document.querySelector("[name='message']").value
-  };
+  var form = document.getElementById("pmsForm");
 
-  fetch("https://script.google.com/macros/s/AKfycby4bs00-Lr_SGFbHRPG5D-fyOSnnTVynmTwyKrxQo5NxfRhK09fFMEvOJQNTH44_m0_0g/exec", {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: {"Content-Type":"application/json"}
-  })
-  .then(res => res.json())
-  .then(() => {
-    alert("Form submitted successfully");
-  })
-  .catch(() => {
-    alert("Error submitting form");
+  if(!form){
+    alert("Form not loaded properly");
+    return;
+  }
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const data = {
+      fullName: form.fullName.value,
+      mobile: form.mobile.value,
+      email: form.email.value,
+      propertyType: form.propertyType.value,
+      roomNumber: form.roomNumber.value,
+      numberOfRooms: form.numberOfRooms.value,
+      requiredService: form.requiredService.value,
+      message: form.message.value
+    };
+
+    fetch("https://script.google.com/macros/s/AKfycby4bs00-Lr_SGFbHRPG5D-fyOSnnTVynmTwyKrxQo5NxfRhK09fFMEvOJQNTH44_m0_0g/exec", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(resp => {
+      if(resp.result === "success"){
+        alert("PMS Enquiry submitted successfully");
+        form.reset();
+      } else {
+        alert("Submission failed: " + resp.message);
+      }
+    })
+    .catch(err => {
+      alert("Connection error. Please try again.");
+      console.error(err);
+    });
+
   });
+
 });
 </script>
 
