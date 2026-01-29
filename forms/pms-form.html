@@ -15,14 +15,25 @@
     }
 
     /* HEADER */
-    header {
+    .site-header {
       background: #0b2a4a;
       color: #fff;
-      padding: 15px;
-      text-align: center;
     }
-
-    header nav a {
+    .header-wrap {
+      max-width: 1100px;
+      margin: auto;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .logo img { height: 40px; }
+    .nav {
+      text-align: center;
+      padding-bottom: 8px;
+    }
+    .nav a {
       color: #fff;
       margin: 0 10px;
       text-decoration: none;
@@ -116,16 +127,26 @@
 
 <body>
 
-<header>
-  <strong>P & R Hospitality Management Services</strong><br>
-  <nav>
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-wrap">
+    <div class="logo">
+      <img src="../images/logo-pr-hospitality.png" alt="P & R Hospitality">
+    </div>
+    <div class="logo">
+      <img src="../images/logo-pms.png" alt="PMS Services">
+    </div>
+  </div>
+
+  <div class="nav">
     <a href="../index.html">Home</a>
     <a href="../pms.html">PMS Services</a>
     <a href="../travel.html">Travel Services</a>
     <a href="../contact.html">Contact</a>
-  </nav>
+  </div>
 </header>
 
+<!-- FORM -->
 <div class="container">
   <h1>PMS Enquiry Form</h1>
 
@@ -179,6 +200,7 @@
   © 2026 P & R Hospitality Management Services
 </footer>
 
+<!-- SCRIPT -->
 <script>
 document.getElementById("pmsForm").addEventListener("submit", function(e) {
   e.preventDefault();
@@ -196,8 +218,9 @@ document.getElementById("pmsForm").addEventListener("submit", function(e) {
   .then(res => res.json())
   .then(resp => {
     if (resp.status === "success") {
-      alert("PMS Enquiry submitted successfully");
       document.getElementById("pmsForm").reset();
+      // ✅ Redirect to Thank You page
+      window.location.href = "../thank-you-pms.html";
     } else {
       alert("Submission failed. Please try again.");
     }
