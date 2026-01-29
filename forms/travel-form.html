@@ -141,65 +141,65 @@ footer{
 <div class="container">
 <h1>Travel Enquiry Form</h1>
 
-<form action="../thank-you-travel.html" method="post">
+<form id="travelForm">
 
-<label>Full Name</label>
-<input type="text" name="name" required>
+  <label>Full Name</label>
+  <input type="text" name="name" required>
 
-<label>Mobile Number</label>
-<input type="tel" name="mobile" required>
+  <label>Mobile Number</label>
+  <input type="tel" name="mobile" required>
 
-<label>Email</label>
-<input type="email" name="email">
+  <label>Email</label>
+  <input type="email" name="email">
 
-<label>Travel Type</label>
-<select name="travel_type">
-  <option>Domestic Tour</option>
-  <option>Pilgrimage Tour</option>
-  <option>Hotel Booking</option>
-  <option>Taxi / Transport</option>
-  <option>Group / Corporate Travel</option>
-  <option>Air Tickets</option>
-  <option>Bus Tickets</option>
-</select>
+  <label>Travel Type</label>
+  <select name="travel_type">
+    <option>Domestic Tour</option>
+    <option>Pilgrimage Tour</option>
+    <option>Hotel Booking</option>
+    <option>Taxi / Transport</option>
+    <option>Group / Corporate Travel</option>
+    <option>Air Tickets</option>
+    <option>Bus Tickets</option>
+  </select>
 
-<label>Destination</label>
-<input type="text" name="destination" required>
+  <label>Destination</label>
+  <input type="text" name="destination" required>
 
-<div class="row">
-  <div>
-    <label>Journey Date</label>
-    <input type="date" name="journey_date">
+  <div class="row">
+    <div>
+      <label>Journey Date</label>
+      <input type="date" name="journey_date">
+    </div>
+    <div>
+      <label>Return Date</label>
+      <input type="date" name="return_date">
+    </div>
   </div>
-  <div>
-    <label>Return Date</label>
-    <input type="date" name="return_date">
+
+  <div class="row">
+    <div>
+      <label>Adults</label>
+      <input type="number" min="1" value="1" name="adults">
+    </div>
+    <div>
+      <label>Children</label>
+      <input type="number" min="0" value="0" name="children">
+    </div>
   </div>
-</div>
 
-<div class="row">
-  <div>
-    <label>Adults</label>
-    <input type="number" min="1" value="1" name="adults">
-  </div>
-  <div>
-    <label>Children</label>
-    <input type="number" min="0" value="0" name="children">
-  </div>
-</div>
+  <label>Budget Range</label>
+  <select name="budget">
+    <option>Below ₹20,000</option>
+    <option>₹20,000 – ₹50,000</option>
+    <option>₹50,000 – ₹1,00,000</option>
+    <option>Above ₹1,00,000</option>
+  </select>
 
-<label>Budget Range</label>
-<select name="budget">
-  <option>Below ₹20,000</option>
-  <option>₹20,000 – ₹50,000</option>
-  <option>₹50,000 – ₹1,00,000</option>
-  <option>Above ₹1,00,000</option>
-</select>
+  <label>Message / Special Requirement</label>
+  <textarea name="message"></textarea>
 
-<label>Message / Special Requirement</label>
-<textarea name="message"></textarea>
-
-<button type="submit">Submit Travel Enquiry</button>
+  <button type="submit">Submit Travel Enquiry</button>
 </form>
 
 <div class="back-links">
@@ -211,6 +211,34 @@ footer{
 <footer>
 © 2026 P & R Hospitality Management Services
 </footer>
+
+<!-- SCRIPT -->
+<script>
+document.getElementById("travelForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const formData = new FormData(document.getElementById("travelForm"));
+
+  fetch("https://script.google.com/macros/s/AKfycbxmWvcT7JgC9-P4_OK-MmN77GpgWT4wlh-IikkIRYbktZxGJmgvOKfB3M3obyPhEtO85A/exec", {
+    method: "POST",
+    body: formData
+  })
+  .then(res => res.json())
+  .then(resp => {
+    if (resp.status === "success") {
+      alert("Travel Enquiry submitted successfully!");
+      document.getElementById("travelForm").reset();
+      window.location.href = "../thank-you-travel.html"; // optional redirect
+    } else {
+      alert("Submission failed. Please try again.");
+    }
+  })
+  .catch(err => {
+    alert("Connection error. Please try again.");
+    console.error(err);
+  });
+});
+</script>
 
 </body>
 </html>
