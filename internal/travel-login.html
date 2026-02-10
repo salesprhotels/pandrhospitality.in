@@ -2,26 +2,35 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>P&R Hospitality – Internal Travel Panel</title>
+<title>P&R Hospitality – Internal Travel Login</title>
 <meta name="robots" content="noindex, nofollow">
 
 <style>
+*{
+  box-sizing:border-box;
+}
 body{
   margin:0;
-  font-family:Arial, sans-serif;
-  background:#0b132b;
-  color:#fff;
+  font-family:Arial, Helvetica, sans-serif;
+  background:linear-gradient(135deg,#0b132b,#1c2541);
+  color:#ffffff;
 }
 .container{
   max-width:420px;
   margin:70px auto;
   padding:25px;
 }
-h1{text-align:center;margin-bottom:25px;}
+h1{
+  text-align:center;
+  margin-bottom:25px;
+}
+
+/* LOGIN BOX */
 .login-box{
   background:#1c2541;
   padding:25px;
-  border-radius:12px;
+  border-radius:14px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.35);
 }
 .login-box input{
   width:100%;
@@ -29,6 +38,7 @@ h1{text-align:center;margin-bottom:25px;}
   border:none;
   border-radius:8px;
   margin-bottom:15px;
+  font-size:16px;
 }
 .login-box button{
   width:100%;
@@ -40,32 +50,43 @@ h1{text-align:center;margin-bottom:25px;}
   font-size:16px;
   cursor:pointer;
 }
-.panel{display:none;}
+.login-box button:hover{
+  background:#2563eb;
+}
+
+/* PANEL */
+.panel{
+  display:none;
+}
 .card{
   display:flex;
   align-items:center;
   gap:15px;
   background:#1c2541;
-  padding:15px;
-  margin:15px 0;
-  border-radius:10px;
+  padding:16px;
+  margin:16px 0;
+  border-radius:14px;
   text-decoration:none;
-  color:#fff;
+  color:#ffffff;
+  box-shadow:0 6px 20px rgba(0,0,0,0.3);
+  transition:0.2s ease;
 }
-.card:hover{background:#3a86ff;}
+.card:hover{
+  background:#3a86ff;
+}
 .card img{
-  width:42px;
-  height:42px;
-  background:#fff;
-  padding:5px;
-  border-radius:8px;
+  width:44px;
+  height:44px;
+  background:#ffffff;
+  padding:6px;
+  border-radius:10px;
   object-fit:contain;
 }
 .note{
   text-align:center;
-  opacity:.6;
-  font-size:13px;
   margin-top:30px;
+  font-size:13px;
+  opacity:0.6;
 }
 </style>
 </head>
@@ -85,24 +106,24 @@ h1{text-align:center;margin-bottom:25px;}
 <div class="panel" id="panel">
   <h1>✈️ Travel Partner Portals</h1>
 
-  <a class="card" href="https://www.travclan.com/login" target="_blank">
+  <a class="card" href="https://www.travclan.com/home" target="_blank">
     <img src="/images/travclan.png" alt="TravClan">
     TravClan – Partner Login
   </a>
 
-  <a class="card" href="https://partners.makemytrip.com/" target="_blank">
+  <a class="card" href="https://in3.seatseller.travel/ssui/NewLoginPage-iFrm" target="_blank">
+    <img src="/images/seatseller.png" alt="SeatSeller">
+    SeatSeller – Agent Login
+  </a>
+
+  <a class="card" href="https://mypartner.makemytrip.com/" target="_blank">
     <img src="/images/mmt.png" alt="MakeMyTrip">
     MakeMyTrip – My Partner
   </a>
 
-  <a class="card" href="https://partner.tripjack.com/" target="_blank">
+  <a class="card" href="https://www.tripjack.com/home/login" target="_blank">
     <img src="/images/tripjack.png" alt="TripJack">
     TripJack – Partner Login
-  </a>
-
-  <a class="card" href="https://in3.seatseller.travel/ssui/home" target="_blank">
-    <img src="/images/seatseller.png" alt="SeatSeller">
-    SeatSeller – Agent Login
   </a>
 
   <a class="card" href="https://digitalseva.csc.gov.in/" target="_blank">
@@ -118,12 +139,13 @@ h1{text-align:center;margin-bottom:25px;}
 </div>
 
 <script>
-const CORRECT_PIN = "2580"; // 🔴 APNA PIN YAHA CHANGE KARNA
+const CORRECT_PIN = "2580"; // 🔴 CHANGE THIS PIN
 
 function checkPin(){
-  if(document.getElementById("pin").value === CORRECT_PIN){
-    document.getElementById("loginBox").style.display="none";
-    document.getElementById("panel").style.display="block";
+  const entered = document.getElementById("pin").value;
+  if(entered === CORRECT_PIN){
+    document.getElementById("loginBox").style.display = "none";
+    document.getElementById("panel").style.display = "block";
   } else {
     alert("Wrong PIN");
   }
