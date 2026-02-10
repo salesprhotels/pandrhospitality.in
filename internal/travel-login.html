@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>P&R Hospitality – Internal Travel Panel</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0b132b, #1c2541);
+      color: #ffffff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 420px;
+      margin: 80px auto;
+      padding: 30px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    /* LOGIN BOX */
+    .login-box {
+      background: #1c2541;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+    }
+
+    .login-box button {
+      width: 100%;
+      padding: 14px;
+      background: #3a86ff;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .login-box button:hover {
+      background: #2563eb;
+    }
+
+    /* PANEL */
+    .panel {
+      display: none;
+    }
+
+    .card {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      background: #1c2541;
+      padding: 16px;
+      margin: 16px 0;
+      border-radius: 12px;
+      text-decoration: none;
+      color: #ffffff;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    }
+
+    .card:hover {
+      background: #3a86ff;
+    }
+
+    .card img {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      background: #ffffff;
+      padding: 5px;
+      border-radius: 8px;
+    }
+
+    .note {
+      text-align: center;
+      font-size: 13px;
+      opacity: 0.6;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- LOGIN -->
+  <div class="login-box" id="loginBox">
+    <h1>🔐 Internal Access</h1>
+    <input type="password" id="pin" placeholder="Enter PIN">
+    <button onclick="checkPin()">Login</button>
+  </div>
+
+  <!-- PANEL -->
+  <div class="panel" id="panel">
+    <h1>✈️ Travel Partner Logins</h1>
+
+    <a class="card" href="https://www.travclan.com/login" target="_blank">
+      <img src="https://www.travclan.com/assets/images/logo.png" alt="TravClan">
+      TravClan Partner Login
+    </a>
+
+    <a class="card" href="https://partner.tripjack.com/" target="_blank">
+      <img src="https://tripjack.com/assets/img/logo.png" alt="TripJack">
+      TripJack Partner Login
+    </a>
+
+    <a class="card" href="https://in3.seatseller.travel/ssui/home" target="_blank">
+      <img src="https://seatseller.travel/images/logo.png" alt="SeatSeller">
+      SeatSeller Agent Login
+    </a>
+
+    <a class="card" href="https://digitalseva.csc.gov.in/" target="_blank">
+      <img src="https://digitalseva.csc.gov.in/assets/images/logo.png" alt="Digital Seva">
+      Digital Seva Portal
+    </a>
+
+    <div class="note">
+      Internal use only – Do not share
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const CORRECT_PIN = "2580"; // 🔴 CHANGE THIS PIN
+
+  function checkPin() {
+    const enteredPin = document.getElementById("pin").value;
+    if (enteredPin === CORRECT_PIN) {
+      document.getElementById("loginBox").style.display = "none";
+      document.getElementById("panel").style.display = "block";
+    } else {
+      alert("Wrong PIN");
+    }
+  }
+</script>
+
+</body>
+</html>
