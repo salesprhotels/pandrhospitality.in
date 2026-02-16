@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>Cab Services | Yes We Care Travels</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -12,98 +13,82 @@
 <!-- HEADER -->
 <header class="bg-white shadow">
   <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+
     <div class="flex items-center gap-4">
-      <img src="images/logo-pr-hospitality.png" class="h-9" alt="">
-      <img src="images/logo-yes-we-care-travels-1.png" class="h-9" alt="">
+      <img src="images/logo-yes-we-care-travels-1.png" class="h-10" alt="Yes We Care Travels">
     </div>
 
-    <nav class="flex gap-4 text-sm font-semibold">
-      <a href="index.html">Home</a>
+    <nav class="hidden md:flex gap-6 font-semibold text-sm">
       <a href="travel.html">Travel</a>
       <a href="contact-travel.html">Contact</a>
     </nav>
   </div>
 </header>
 
-<!-- HERO (AI IMAGE STYLE) -->
+<!-- HERO SECTION -->
 <section class="relative h-[85vh] flex items-center justify-center text-center text-white">
-  <!-- Background Image (replace later with AI image / video) -->
-  <div class="absolute inset-0 bg-[url('images/cab-hero.jpg')] bg-cover bg-center"></div>
-  <div class="absolute inset-0 bg-black/55"></div>
 
-  <div class="relative max-w-3xl px-4">
+  <!-- BACKGROUND IMAGE -->
+  <div class="absolute inset-0 bg-[url('images/cab-landing-hero.jpg')] bg-cover bg-center"></div>
+
+  <!-- DARK OVERLAY -->
+  <div class="absolute inset-0 bg-black/60"></div>
+
+  <!-- CONTENT -->
+  <div class="relative z-10 max-w-3xl px-4">
+
     <h1 class="text-3xl md:text-4xl font-bold mb-4">
-      Clean • Comfortable • Tension-Free Cab Services
+      Travel Without Worry
     </h1>
 
     <p class="text-lg text-slate-200 mb-8">
-      Reliable cab journeys for pilgrimage, hills & intercity travel — 24×7 support.
+      Whether you are travelling for pilgrimage, leisure or family tours,
+      our cab services ensure comfort, safety and punctual travel.
+      From Jammu to Katra, hill stations of Himachal or intercity journeys,
+      we take care of everything so you can enjoy the ride.
     </p>
 
-    <a href="contact-travel.html"
-       class="inline-block bg-yellow-400 text-black font-semibold px-8 py-3 rounded-lg">
-      Contact Travel Team
-    </a>
-  </div>
-</section>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="contact-travel.html"
+         class="bg-yellow-400 text-black font-semibold px-6 py-3 rounded-lg hover:bg-yellow-500">
+        Contact Travel Team
+      </a>
 
-<!-- SERVICE AREAS -->
-<section class="bg-white py-10 px-4">
-  <div class="max-w-6xl mx-auto text-center">
-    <h2 class="text-xl font-bold mb-6">Service Areas</h2>
-
-    <div class="flex flex-wrap justify-center gap-4 text-sm font-semibold text-slate-700">
-      <span class="bg-slate-100 px-4 py-2 rounded-full">Jammu</span>
-      <span class="bg-slate-100 px-4 py-2 rounded-full">Katra / Vaishno Devi</span>
-      <span class="bg-slate-100 px-4 py-2 rounded-full">Himachal Pradesh</span>
-      <span class="bg-slate-100 px-4 py-2 rounded-full">Chandigarh – Manali</span>
-      <span class="bg-slate-100 px-4 py-2 rounded-full">Intercity North India</span>
-    </div>
-  </div>
-</section>
-
-<!-- TRUST MESSAGES -->
-<section class="bg-slate-100 py-12 px-4">
-  <div class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 text-center">
-
-    <div class="bg-white rounded-xl shadow p-6">
-      ✔ Clean & Well-Maintained Cabs
-    </div>
-
-    <div class="bg-white rounded-xl shadow p-6">
-      ✔ 100% Tension-Free Travel
-    </div>
-
-    <div class="bg-white rounded-xl shadow p-6">
-      ✔ Professional & Verified Drivers
-    </div>
-
-    <div class="bg-white rounded-xl shadow p-6">
-      ✔ On-Time Pickup & Drop
-    </div>
-
-    <div class="bg-white rounded-xl shadow p-6">
-      ✔ 24×7 Customer Support
+      <a href="https://wa.me/919419287356"
+         class="bg-green-600 hover:bg-green-700 px-6 py-3 rounded-lg font-semibold">
+        WhatsApp
+      </a>
     </div>
 
   </div>
 </section>
 
-<!-- FINAL CTA -->
-<section class="bg-indigo-700 text-white text-center py-12 px-4">
-  <h3 class="text-2xl font-bold mb-3">
-    Planning a Comfortable Cab Journey?
-  </h3>
+<!-- SERVICES INFO -->
+<section class="max-w-6xl mx-auto px-4 py-12 text-center">
+  <h2 class="text-2xl font-bold mb-6">Cab Services We Provide</h2>
 
-  <a href="contact-travel.html"
-     class="inline-block mt-4 bg-yellow-400 text-black px-8 py-3 rounded-lg font-semibold">
-    Contact Travel Team
-  </a>
+  <div class="grid md:grid-cols-3 gap-6 text-sm">
+    <div class="bg-white p-6 rounded-xl shadow">
+      <h3 class="font-semibold mb-2">Pilgrimage Travel</h3>
+      <p>Jammu – Katra, Vaishno Devi, religious destinations.</p>
+    </div>
+
+    <div class="bg-white p-6 rounded-xl shadow">
+      <h3 class="font-semibold mb-2">Hill Stations</h3>
+      <p>Himachal Pradesh, Uttarakhand & scenic routes.</p>
+    </div>
+
+    <div class="bg-white p-6 rounded-xl shadow">
+      <h3 class="font-semibold mb-2">Intercity Travel</h3>
+      <p>Comfortable and reliable long-distance journeys.</p>
+    </div>
+  </div>
 </section>
 
 <!-- FOOTER -->
-<footer class="text-center text-sm text-slate-400 py-6">
-  © 2026 Yes We Care Travels | Operated by P & R Hospitality Management Services
+<footer class="text-center text-sm text-slate-500 py-6">
+  © 2026 Yes We Care Travels<br>
+  Operated by P & R Hospitality Management Services
 </footer>
 
 </body>
