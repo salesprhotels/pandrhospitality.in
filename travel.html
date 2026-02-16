@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Travel Services | P & R Hospitality</title>
+<title>Travel Services | Yes We Care Travels</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -19,10 +19,9 @@
       <img src="images/logo-yes-we-care-travels-1.png" class="h-10" alt="Yes We Care Travels">
     </div>
 
-    <!-- NAV -->
+    <!-- NAV (TRAVEL ONLY) -->
     <nav class="mt-3 md:mt-0 flex gap-5 font-semibold text-sm">
       <a href="index.html">Home</a>
-      <a href="pms.html">PMS Services</a>
       <a href="travel.html" class="text-indigo-700">Travel Services</a>
       <a href="contact.html">Contact</a>
     </nav>
@@ -34,7 +33,7 @@
 <section class="bg-indigo-700 text-white text-center py-14 px-4">
   <h1 class="text-3xl font-bold">Travel Services</h1>
   <p class="mt-2 text-indigo-100">
-    Domestic tours, pilgrimage, transport & ticketing solutions.
+    Cab services, pilgrimage tours, Volvo packages & holiday destinations.
   </p>
 
   <a href="forms/travel-form.html"
@@ -43,59 +42,55 @@
   </a>
 </section>
 
-<!-- SERVICES -->
+<!-- SERVICES OVERVIEW -->
 <section class="max-w-7xl mx-auto px-4 py-12">
   <h2 class="text-2xl font-bold text-center mb-10">Our Travel Services</h2>
 
   <div class="grid md:grid-cols-2 gap-6">
 
-    <div class="bg-white rounded-xl shadow overflow-hidden">
-      <img src="images/travel-domestic.jpg" class="h-48 w-full object-cover">
+    <!-- CAB SERVICES -->
+    <a href="cab-services.html" class="bg-white rounded-xl shadow overflow-hidden hover:shadow-lg transition">
+      <img src="images/travel-transport.jpg" class="h-48 w-full object-cover">
       <div class="p-4">
-        <h3 class="font-semibold">Domestic Tour Packages</h3>
-        <p class="text-sm text-slate-600">Customized tours across India.</p>
+        <h3 class="font-semibold">Cab Services</h3>
+        <p class="text-sm text-slate-600">
+          Katra, Himachal Pradesh, Chandigarh–Manali & intercity travel.
+        </p>
       </div>
-    </div>
+    </a>
 
-    <div class="bg-white rounded-xl shadow overflow-hidden">
+    <!-- VOLVO PACKAGES -->
+    <a href="volvo-tour-packages.html" class="bg-white rounded-xl shadow overflow-hidden hover:shadow-lg transition">
+      <img src="images/travel-bus.jpg" class="h-48 w-full object-cover">
+      <div class="p-4">
+        <h3 class="font-semibold">Volvo Tour Packages</h3>
+        <p class="text-sm text-slate-600">
+          Comfortable Volvo tours for Manali & Himachal destinations.
+        </p>
+      </div>
+    </a>
+
+    <!-- PILGRIMAGE TOURS -->
+    <a href="pilgrimage-services.html" class="bg-white rounded-xl shadow overflow-hidden hover:shadow-lg transition">
       <img src="images/travel-pilgrimage.jpg" class="h-48 w-full object-cover">
       <div class="p-4">
         <h3 class="font-semibold">Pilgrimage Tours</h3>
-        <p class="text-sm text-slate-600">Vaishno Devi, Char Dham & more.</p>
+        <p class="text-sm text-slate-600">
+          Vaishno Devi, Himachal & Uttarakhand pilgrimage tours.
+        </p>
       </div>
-    </div>
+    </a>
 
-    <div class="bg-white rounded-xl shadow overflow-hidden">
-      <img src="images/travel-hotel.jpg" class="h-48 w-full object-cover">
+    <!-- HOLIDAY PACKAGES -->
+    <a href="holiday-packages.html" class="bg-white rounded-xl shadow overflow-hidden hover:shadow-lg transition">
+      <img src="images/travel-domestic.jpg" class="h-48 w-full object-cover">
       <div class="p-4">
-        <h3 class="font-semibold">Hotel Bookings</h3>
-        <p class="text-sm text-slate-600">Budget to luxury stays.</p>
+        <h3 class="font-semibold">Holiday Packages</h3>
+        <p class="text-sm text-slate-600">
+          Goa, Kerala, Sikkim, Gangtok & North East India.
+        </p>
       </div>
-    </div>
-
-    <div class="bg-white rounded-xl shadow overflow-hidden">
-      <img src="images/travel-transport.jpg" class="h-48 w-full object-cover">
-      <div class="p-4">
-        <h3 class="font-semibold">Taxi & Transport</h3>
-        <p class="text-sm text-slate-600">Local & outstation travel.</p>
-      </div>
-    </div>
-
-    <div class="bg-white rounded-xl shadow overflow-hidden">
-      <img src="images/travel-air.jpg" class="h-48 w-full object-cover">
-      <div class="p-4">
-        <h3 class="font-semibold">Air Tickets</h3>
-        <p class="text-sm text-slate-600">Domestic flight bookings.</p>
-      </div>
-    </div>
-
-    <div class="bg-white rounded-xl shadow overflow-hidden">
-      <img src="images/travel-bus.jpg" class="h-48 w-full object-cover">
-      <div class="p-4">
-        <h3 class="font-semibold">Bus Tickets</h3>
-        <p class="text-sm text-slate-600">Affordable bus travel.</p>
-      </div>
-    </div>
+    </a>
 
   </div>
 </section>
@@ -110,8 +105,18 @@
   </a>
 </section>
 
-<footer class="text-center text-sm text-slate-500 py-4">
-  © 2026 P & R Hospitality Management Services
+<!-- FOOTER -->
+<footer class="text-center text-sm text-slate-500 py-6">
+  <p>© 2026 Yes We Care Travels | P & R Hospitality Management Services</p>
+
+  <div class="flex justify-center gap-6 mt-3">
+    <a href="https://www.instagram.com/yeswecaretravels/?hl=en" target="_blank" class="hover:text-indigo-600">
+      Instagram
+    </a>
+    <a href="https://www.facebook.com/ywctravels/" target="_blank" class="hover:text-indigo-600">
+      Facebook
+    </a>
+  </div>
 </footer>
 
 </body>
