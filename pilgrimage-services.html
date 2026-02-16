@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Pilgrimage Services | Yes We Care Travels</title>
+<title>Pilgrimage Tours | Yes We Care Travels</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -11,113 +12,121 @@
 
 <!-- HEADER -->
 <header class="bg-white shadow">
-  <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row items-center justify-between">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
 
-    <!-- LOGOS -->
     <div class="flex items-center gap-4">
-      <img src="images/logo-pr-hospitality.png" class="h-9 md:h-10" alt="P & R Hospitality Management Services">
-      <img src="images/logo-yes-we-care-travels-1.png" class="h-9 md:h-10" alt="Yes We Care Travels">
+      <img src="images/logo-yes-we-care-travels-1.png" class="h-10" alt="Yes We Care Travels">
     </div>
 
-    <!-- NAV -->
-    <nav class="mt-3 md:mt-0 flex gap-4 font-semibold text-sm">
-      <a href="index.html">Home</a>
-      <a href="travel.html">Travel Services</a>
+    <nav class="hidden md:flex gap-6 font-semibold text-sm">
+      <a href="travel.html">Travel</a>
       <a href="contact-travel.html">Contact</a>
     </nav>
-
   </div>
 </header>
 
-<!-- HERO -->
-<section class="bg-indigo-700 text-white text-center py-14 px-4">
-  <h1 class="text-2xl md:text-3xl font-bold">Pilgrimage Services</h1>
-  <p class="mt-2 text-indigo-100 max-w-2xl mx-auto">
-    Spiritual journeys with comfort, safety & reliable travel arrangements.
-  </p>
+<!-- HERO SECTION -->
+<section class="relative h-[85vh] flex items-center justify-center text-center text-white">
 
-  <a href="forms/travel-form.html"
-     class="inline-block mt-6 bg-yellow-400 text-black font-semibold px-6 py-3 rounded-lg">
-    Pilgrimage Enquiry
-  </a>
+  <!-- BACKGROUND IMAGE (NO TEXT INSIDE IMAGE) -->
+  <div class="absolute inset-0 bg-[url('images/file_00000000ea3c71fd9f3a711a6e1c1217 (1).png')] bg-cover bg-center"></div>
+
+  <!-- OVERLAY -->
+  <div class="absolute inset-0 bg-black/60"></div>
+
+  <!-- CONTENT -->
+  <div class="relative z-10 max-w-3xl px-4">
+
+    <h1 class="text-3xl md:text-4xl font-bold mb-4">
+      Sacred Journeys, Comfortably Planned
+    </h1>
+
+    <p class="text-lg text-slate-200 mb-8">
+      Travel peacefully to India’s most revered pilgrimage destinations.
+      We offer safe, comfortable and well-managed pilgrimage tours so you can
+      focus on devotion while we take care of the journey.
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="contact-travel.html"
+         class="bg-yellow-400 text-black font-semibold px-6 py-3 rounded-lg hover:bg-yellow-500">
+        Contact Travel Team
+      </a>
+
+      <a href="https://wa.me/919419287356"
+         class="bg-green-600 hover:bg-green-700 px-6 py-3 rounded-lg font-semibold">
+        WhatsApp
+      </a>
+    </div>
+
+  </div>
 </section>
 
 <!-- PILGRIMAGE DESTINATIONS -->
-<section class="max-w-7xl mx-auto px-4 py-12">
-  <h2 class="text-xl md:text-2xl font-bold text-center mb-10">
-    Our Pilgrimage Tour Services
-  </h2>
+<section class="max-w-6xl mx-auto px-4 py-12 text-center">
+  <h2 class="text-2xl font-bold mb-6">Pilgrimage Destinations We Cover</h2>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-
-    <!-- VAISHNO DEVI -->
-    <div class="bg-white rounded-xl shadow p-6">
-      <h3 class="font-semibold text-lg mb-2">Vaishno Devi Yatra</h3>
-      <p class="text-sm text-slate-600">
-        Jammu to Katra cab services, hotel bookings & yatra assistance.
-      </p>
+  <div class="grid md:grid-cols-3 gap-6 text-sm">
+    <div class="bg-white p-6 rounded-xl shadow">
+      <h3 class="font-semibold mb-2">Vaishno Devi</h3>
+      <p>Jammu – Katra pilgrimage with reliable cab services.</p>
     </div>
 
-    <!-- HIMACHAL -->
-    <div class="bg-white rounded-xl shadow p-6">
-      <h3 class="font-semibold text-lg mb-2">Himachal Pilgrimage Tours</h3>
-      <p class="text-sm text-slate-600">
-        Chamunda Devi, Jwala Ji, Chintpurni & other sacred temples.
-      </p>
+    <div class="bg-white p-6 rounded-xl shadow">
+      <h3 class="font-semibold mb-2">Kedarnath</h3>
+      <p>Uttarakhand spiritual journeys with complete travel support.</p>
     </div>
 
-    <!-- UTTARAKHAND -->
-    <div class="bg-white rounded-xl shadow p-6">
-      <h3 class="font-semibold text-lg mb-2">Uttarakhand Pilgrimage</h3>
-      <p class="text-sm text-slate-600">
-        Char Dham Yatra, Haridwar, Rishikesh & holy destinations.
-      </p>
+    <div class="bg-white p-6 rounded-xl shadow">
+      <h3 class="font-semibold mb-2">Jwala Ji</h3>
+      <p>Himachal Pradesh temple tours with comfort and care.</p>
     </div>
-
-    <!-- CUSTOM -->
-    <div class="bg-white rounded-xl shadow p-6">
-      <h3 class="font-semibold text-lg mb-2">Custom Pilgrimage Tours</h3>
-      <p class="text-sm text-slate-600">
-        Tailor-made pilgrimage itineraries for families & groups.
-      </p>
-    </div>
-
   </div>
 </section>
 
-<!-- SERVICES INCLUDED -->
+<!-- TRUST SECTION -->
 <section class="bg-slate-100 py-12 px-4">
-  <h2 class="text-xl md:text-2xl font-bold text-center mb-8">
-    Services Included
-  </h2>
+  <div class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 text-center text-sm">
 
-  <div class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 text-center">
-    <div class="bg-white rounded-lg shadow p-4">Cab & Transport Services</div>
-    <div class="bg-white rounded-lg shadow p-4">Hotel & Dharamshala Bookings</div>
-    <div class="bg-white rounded-lg shadow p-4">Local Sightseeing</div>
-    <div class="bg-white rounded-lg shadow p-4">Experienced Drivers</div>
-    <div class="bg-white rounded-lg shadow p-4">Flexible Tour Planning</div>
+    <div class="bg-white p-6 rounded-xl shadow">
+      ✔ Clean & Comfortable Travel
+    </div>
+
+    <div class="bg-white p-6 rounded-xl shadow">
+      ✔ Experienced Drivers
+    </div>
+
+    <div class="bg-white p-6 rounded-xl shadow">
+      ✔ 24×7 Support During Yatra
+    </div>
+
+    <div class="bg-white p-6 rounded-xl shadow">
+      ✔ Family & Senior Citizen Friendly
+    </div>
+
+    <div class="bg-white p-6 rounded-xl shadow">
+      ✔ Safe & Tension-Free Journeys
+    </div>
+
   </div>
 </section>
 
-<!-- CTA -->
-<section class="bg-indigo-50 text-center py-10 px-4">
-  <h3 class="text-xl md:text-2xl font-bold mb-3">
-    Plan Your Pilgrimage Journey
+<!-- FINAL CTA -->
+<section class="bg-indigo-700 text-white text-center py-12 px-4">
+  <h3 class="text-2xl font-bold mb-3">
+    Plan Your Pilgrimage with Peace of Mind
   </h3>
-  <p class="text-slate-600 mb-6">
-    Contact our travel team for pilgrimage packages & assistance.
-  </p>
 
   <a href="contact-travel.html"
-     class="inline-block bg-indigo-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-indigo-800">
+     class="inline-block mt-4 bg-yellow-400 text-black px-8 py-3 rounded-lg font-semibold">
     Contact Travel Team
   </a>
 </section>
 
 <!-- FOOTER -->
-<footer class="text-center text-sm text-slate-500 py-6 px-4">
-  © 2026 Yes We Care Travels | Operated by P & R Hospitality Management Services
+<footer class="text-center text-sm text-slate-500 py-6">
+  © 2026 Yes We Care Travels<br>
+  Operated by P & R Hospitality Management Services
 </footer>
 
 </body>
