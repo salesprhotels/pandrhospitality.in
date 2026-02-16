@@ -14,15 +14,24 @@
   <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row items-center justify-between">
 
     <!-- LOGOS -->
-    <div class="flex items-center gap-4">
-      <img src="images/logo-pr-hospitality.png" class="h-9 md:h-10" alt="P & R Hospitality">
-      <img src="images/logo-yes-we-care-travels-1.png" class="h-9 md:h-10" alt="Yes We Care Travels">
+    <div class="flex items-center gap-6">
+      <!-- Main Company Logo -->
+      <a href="index.html">
+        <img src="images/logo-pr-hospitality.png" class="h-10" alt="P & R Hospitality">
+      </a>
+
+      <!-- Travel Brand Logo -->
+      <a href="travel.html">
+        <img src="images/logo-yes-we-care-travels-1.png" class="h-10" alt="Yes We Care Travels">
+      </a>
     </div>
 
-    <!-- NAV (TRAVEL ONLY) -->
-    <nav class="mt-3 md:mt-0 flex gap-4 font-semibold text-sm">
-      <a href="index.html">Home</a>
+    <!-- NAVIGATION -->
+    <nav class="mt-3 md:mt-0 flex gap-5 font-semibold text-sm">
       <a href="travel.html" class="text-indigo-700">Travel</a>
+      <a href="cab-services.html">Cabs</a>
+      <a href="pilgrimage-services.html">Pilgrimage</a>
+      <a href="holiday-packages.html">Holidays</a>
       <a href="contact-travel.html">Contact</a>
     </nav>
 
@@ -30,132 +39,71 @@
 </header>
 
 <!-- HERO -->
-<section class="bg-indigo-700 text-white text-center py-12 px-4">
-  <h1 class="text-2xl md:text-3xl font-bold">Travel Services</h1>
-  <p class="mt-2 text-indigo-100 max-w-2xl mx-auto">
-    Cab services, Volvo tours, pilgrimage journeys, bus & air ticket bookings.
+<section class="bg-indigo-700 text-white text-center py-16 px-4">
+  <h1 class="text-3xl font-bold mb-3">Travel Services</h1>
+  <p class="text-indigo-100 max-w-2xl mx-auto">
+    Comfortable journeys, trusted planning and personalised travel solutions
+    across pilgrimage, hill stations and holiday destinations.
   </p>
-
-  <a href="forms/travel-form.html"
-     class="inline-block mt-6 bg-yellow-400 text-black font-semibold px-6 py-3 rounded-lg">
-    Travel Enquiry
-  </a>
 </section>
 
-<!-- SERVICES OVERVIEW -->
-<section class="max-w-7xl mx-auto px-4 py-12">
-  <h2 class="text-xl md:text-2xl font-bold text-center mb-10">
-    Our Travel Services
-  </h2>
+<!-- SERVICES -->
+<section class="max-w-7xl mx-auto px-4 py-14">
+  <h2 class="text-2xl font-bold text-center mb-10">Our Travel Services</h2>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-    <!-- CAB SERVICES -->
-    <a href="cab-services.html" class="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-      <img src="images/travel-transport.jpg" class="h-44 w-full object-cover">
-      <div class="p-4">
-        <h3 class="font-semibold text-lg">Cab Services</h3>
-        <p class="text-sm text-slate-600">
-          Katra, Himachal Pradesh, Chandigarh–Manali & intercity travel.
-        </p>
-      </div>
+    <a href="cab-services.html" class="bg-white rounded-xl shadow p-6 hover:shadow-lg transition">
+      <h3 class="font-semibold text-lg mb-2">Cab Services</h3>
+      <p class="text-sm text-slate-600">
+        Clean, comfortable cabs for Jammu, Katra, Himachal & intercity travel.
+      </p>
     </a>
 
-    <!-- VOLVO PACKAGES -->
-    <a href="volvo-tour-packages.html" class="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-      <img src="images/travel-bus.jpg" class="h-44 w-full object-cover">
-      <div class="p-4">
-        <h3 class="font-semibold text-lg">Volvo Tour Packages</h3>
-        <p class="text-sm text-slate-600">
-          Comfortable Volvo tour packages for Manali & Himachal destinations.
-        </p>
-      </div>
+    <a href="pilgrimage-services.html" class="bg-white rounded-xl shadow p-6 hover:shadow-lg transition">
+      <h3 class="font-semibold text-lg mb-2">Pilgrimage Tours</h3>
+      <p class="text-sm text-slate-600">
+        Vaishno Devi, Kedarnath, Jwala Ji & Uttarakhand pilgrimage journeys.
+      </p>
     </a>
 
-    <!-- PILGRIMAGE TOURS -->
-    <a href="pilgrimage-services.html" class="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-      <img src="images/travel-pilgrimage.jpg" class="h-44 w-full object-cover">
-      <div class="p-4">
-        <h3 class="font-semibold text-lg">Pilgrimage Tours</h3>
-        <p class="text-sm text-slate-600">
-          Vaishno Devi, Himachal & Uttarakhand pilgrimage tours.
-        </p>
-      </div>
+    <a href="holiday-packages.html" class="bg-white rounded-xl shadow p-6 hover:shadow-lg transition">
+      <h3 class="font-semibold text-lg mb-2">Holiday Packages</h3>
+      <p class="text-sm text-slate-600">
+        Goa, Kerala, Sikkim, North East & customised holiday tours.
+      </p>
     </a>
 
-    <!-- HOLIDAY PACKAGES -->
-    <a href="holiday-packages.html" class="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-      <img src="images/travel-domestic.jpg" class="h-44 w-full object-cover">
-      <div class="p-4">
-        <h3 class="font-semibold text-lg">Holiday Packages</h3>
-        <p class="text-sm text-slate-600">
-          Goa, Kerala, Sikkim, Gangtok & North East India.
-        </p>
-      </div>
-    </a>
-
-    <!-- BUS / VOLVO TICKETS -->
-    <a href="bus-ticket-services.html" class="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-      <img src="images/travel-bus.jpg" class="h-44 w-full object-cover">
-      <div class="p-4">
-        <h3 class="font-semibold text-lg">Bus & Volvo Tickets</h3>
-        <p class="text-sm text-slate-600">
-          Online bus & Volvo ticket booking for major routes.
-        </p>
-      </div>
-    </a>
-
-    <!-- AIR TICKETS -->
-    <a href="air-ticket-services.html" class="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-      <img src="images/travel-air.jpg" class="h-44 w-full object-cover">
-      <div class="p-4">
-        <h3 class="font-semibold text-lg">Air Tickets</h3>
-        <p class="text-sm text-slate-600">
-          Domestic flight ticket bookings at best available fares.
-        </p>
-      </div>
+    <a href="volvo-tour-packages.html" class="bg-white rounded-xl shadow p-6 hover:shadow-lg transition">
+      <h3 class="font-semibold text-lg mb-2">Volvo Tour Packages</h3>
+      <p class="text-sm text-slate-600">
+        Comfortable Volvo travel for Himachal & hill destinations.
+      </p>
     </a>
 
   </div>
 </section>
 
-<!-- CTA -->
-<section class="bg-slate-100 text-center py-10 px-4">
-  <h3 class="text-xl md:text-2xl font-bold mb-4">
-    Plan Your Journey With Us
-  </h3>
-
-  <a href="forms/travel-form.html"
-     class="bg-yellow-400 px-6 py-3 rounded-lg font-semibold">
-    Submit Travel Enquiry
-  </a>
-</section>
-  <!-- CONTACT CTA -->
-<section class="bg-indigo-50 text-center py-10 px-4">
-  <h3 class="text-xl md:text-2xl font-bold mb-3">
-    Need Help or Custom Travel Assistance?
-  </h3>
-  <p class="text-slate-600 mb-6">
-    Our team is here to assist you with bookings, routes, and packages.
-  </p>
-
-  <a href="contact-travel.html"
-     class="inline-block bg-indigo-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-indigo-800">
-    Contact Us
-  </a>
-</section>
-
 <!-- FOOTER -->
-<footer class="text-center text-sm text-slate-500 py-6 px-4">
-  <p>© 2026 Yes We Care Travels | P & R Hospitality Management Services</p>
+<footer class="bg-white border-t py-8">
+  <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
 
-  <div class="flex justify-center gap-6 mt-3">
-    <a href="https://www.instagram.com/yeswecaretravels/?hl=en" target="_blank" class="hover:text-indigo-600">
-      Instagram
-    </a>
-    <a href="https://www.facebook.com/ywctravels/" target="_blank" class="hover:text-indigo-600">
-      Facebook
-    </a>
+    <p class="text-sm text-slate-500">
+      © 2026 Yes We Care Travels<br>
+      Operated by P & R Hospitality Management Services
+    </p>
+
+    <!-- SOCIAL ICONS -->
+    <div class="flex gap-4 mt-4 md:mt-0">
+      <a href="https://www.instagram.com/yeswecaretravels/?hl=en" target="_blank">
+        <img src="images/icon-instagram.jpg" alt="Instagram" class="h-7 hover:scale-110 transition">
+      </a>
+
+      <a href="https://www.facebook.com/ywctravels/" target="_blank">
+        <img src="images/icon-facebook.png" alt="Facebook" class="h-7 hover:scale-110 transition">
+      </a>
+    </div>
+
   </div>
 </footer>
 
