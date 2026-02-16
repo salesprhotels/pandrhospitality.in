@@ -2,34 +2,34 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Travel Services | Yes We Care Travels</title>
+<title>Cab Services | Yes We Care Travels</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="bg-slate-50 text-slate-800">
 
-<!-- HEADER -->
+<!-- HEADER (SAME AS TRAVEL PAGE) -->
 <header class="bg-white shadow">
   <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row items-center justify-between">
 
     <!-- LOGOS -->
     <div class="flex items-center gap-6">
-      <!-- Main Company Logo -->
+      <!-- Main Company -->
       <a href="index.html">
         <img src="images/logo-pr-hospitality.png" class="h-10" alt="P & R Hospitality">
       </a>
 
-      <!-- Travel Brand Logo -->
+      <!-- Travel Brand -->
       <a href="travel.html">
         <img src="images/logo-yes-we-care-travels-1.png" class="h-10" alt="Yes We Care Travels">
       </a>
     </div>
 
-    <!-- NAVIGATION -->
+    <!-- NAV -->
     <nav class="mt-3 md:mt-0 flex gap-5 font-semibold text-sm">
-      <a href="travel.html" class="text-indigo-700">Travel</a>
-      <a href="cab-services.html">Cabs</a>
+      <a href="travel.html">Travel</a>
+      <a href="cab-services.html" class="text-indigo-700">Cabs</a>
       <a href="pilgrimage-services.html">Pilgrimage</a>
       <a href="holiday-packages.html">Holidays</a>
       <a href="contact-travel.html">Contact</a>
@@ -39,52 +39,69 @@
 </header>
 
 <!-- HERO -->
-<section class="bg-indigo-700 text-white text-center py-16 px-4">
-  <h1 class="text-3xl font-bold mb-3">Travel Services</h1>
-  <p class="text-indigo-100 max-w-2xl mx-auto">
-    Comfortable journeys, trusted planning and personalised travel solutions
-    across pilgrimage, hill stations and holiday destinations.
-  </p>
+<section class="relative h-[80vh] flex items-center justify-center text-center text-white">
+
+  <!-- BACKGROUND IMAGE -->
+  <div class="absolute inset-0 bg-[url('images/file_000000007d3871fd90ad2277c6000ca0.png')] bg-cover bg-center"></div>
+
+  <!-- OVERLAY -->
+  <div class="absolute inset-0 bg-black/60"></div>
+
+  <!-- CONTENT -->
+  <div class="relative z-10 max-w-3xl px-4">
+    <h1 class="text-3xl md:text-4xl font-bold mb-4">
+      Travel Without Worry
+    </h1>
+
+    <p class="text-lg text-slate-200 mb-8">
+      Clean, comfortable and reliable cab services for pilgrimage,
+      hill stations and intercity journeys across North India.
+    </p>
+
+    <a href="contact-travel.html"
+       class="inline-block bg-yellow-400 text-black font-semibold px-8 py-3 rounded-lg hover:bg-yellow-500">
+      Contact Travel Team
+    </a>
+  </div>
 </section>
 
 <!-- SERVICES -->
 <section class="max-w-7xl mx-auto px-4 py-14">
-  <h2 class="text-2xl font-bold text-center mb-10">Our Travel Services</h2>
+  <h2 class="text-2xl font-bold text-center mb-10">Cab Services We Provide</h2>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
 
-    <a href="cab-services.html" class="bg-white rounded-xl shadow p-6 hover:shadow-lg transition">
-      <h3 class="font-semibold text-lg mb-2">Cab Services</h3>
-      <p class="text-sm text-slate-600">
-        Clean, comfortable cabs for Jammu, Katra, Himachal & intercity travel.
-      </p>
-    </a>
+    <div class="bg-white rounded-xl shadow p-6 text-center">
+      <h3 class="font-semibold mb-2">Pilgrimage Cabs</h3>
+      <p>Jammu – Katra, Vaishno Devi & temple travel.</p>
+    </div>
 
-    <a href="pilgrimage-services.html" class="bg-white rounded-xl shadow p-6 hover:shadow-lg transition">
-      <h3 class="font-semibold text-lg mb-2">Pilgrimage Tours</h3>
-      <p class="text-sm text-slate-600">
-        Vaishno Devi, Kedarnath, Jwala Ji & Uttarakhand pilgrimage journeys.
-      </p>
-    </a>
+    <div class="bg-white rounded-xl shadow p-6 text-center">
+      <h3 class="font-semibold mb-2">Hill Station Travel</h3>
+      <p>Himachal Pradesh, Uttarakhand & scenic routes.</p>
+    </div>
 
-    <a href="holiday-packages.html" class="bg-white rounded-xl shadow p-6 hover:shadow-lg transition">
-      <h3 class="font-semibold text-lg mb-2">Holiday Packages</h3>
-      <p class="text-sm text-slate-600">
-        Goa, Kerala, Sikkim, North East & customised holiday tours.
-      </p>
-    </a>
-
-    <a href="volvo-tour-packages.html" class="bg-white rounded-xl shadow p-6 hover:shadow-lg transition">
-      <h3 class="font-semibold text-lg mb-2">Volvo Tour Packages</h3>
-      <p class="text-sm text-slate-600">
-        Comfortable Volvo travel for Himachal & hill destinations.
-      </p>
-    </a>
+    <div class="bg-white rounded-xl shadow p-6 text-center">
+      <h3 class="font-semibold mb-2">Intercity Cabs</h3>
+      <p>Safe, punctual and comfortable long-distance travel.</p>
+    </div>
 
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- TRUST -->
+<section class="bg-slate-100 py-12 px-4">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 text-center text-sm">
+
+    <div class="bg-white rounded-xl shadow p-5">✔ Clean & Maintained Cabs</div>
+    <div class="bg-white rounded-xl shadow p-5">✔ Professional Drivers</div>
+    <div class="bg-white rounded-xl shadow p-5">✔ On-Time Pickup & Drop</div>
+    <div class="bg-white rounded-xl shadow p-5">✔ 24×7 Support</div>
+
+  </div>
+</section>
+
+<!-- FOOTER (SAME AS TRAVEL PAGE) -->
 <footer class="bg-white border-t py-8">
   <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
 
@@ -93,14 +110,13 @@
       Operated by P & R Hospitality Management Services
     </p>
 
-    <!-- SOCIAL ICONS -->
+    <!-- SOCIAL -->
     <div class="flex gap-4 mt-4 md:mt-0">
       <a href="https://www.instagram.com/yeswecaretravels/?hl=en" target="_blank">
-        <img src="images/icon-instagram.png" alt="Instagram" class="h-7 hover:scale-110 transition">
+        <img src="images/icon-instagram.png" class="h-7 hover:scale-110 transition" alt="Instagram">
       </a>
-
       <a href="https://www.facebook.com/ywctravels/" target="_blank">
-        <img src="images/icon-facebook.png" alt="Facebook" class="h-7 hover:scale-110 transition">
+        <img src="images/icon-facebook.png" class="h-7 hover:scale-110 transition" alt="Facebook">
       </a>
     </div>
 
