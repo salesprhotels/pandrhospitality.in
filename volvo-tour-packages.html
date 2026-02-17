@@ -16,7 +16,7 @@
 body{
   font-family:Arial,Helvetica,sans-serif;
   background:#f4f6fb;
-  color:#222
+  color:#222;
 }
 
 /* HEADER */
@@ -25,7 +25,7 @@ header{
   border-bottom:1px solid #ddd;
   position:sticky;
   top:0;
-  z-index:50;
+  z-index:100;
 }
 .header-wrap{
   max-width:1200px;
@@ -58,12 +58,12 @@ header{
 .dropdown{
   display:none;
   position:absolute;
-  top:28px;
+  top:30px;
   right:0;
   background:#fff;
   border:1px solid #ccc;
   box-shadow:0 4px 12px rgba(0,0,0,.12);
-  min-width:200px;
+  min-width:220px;
 }
 .dropdown a{
   display:block;
@@ -75,7 +75,7 @@ header{
 .dropdown a:hover{
   background:#f4f6fb;
 }
-.menu:hover .dropdown{
+.dropdown.show{
   display:block;
 }
 
@@ -191,6 +191,7 @@ footer{
 
 <body>
 
+<!-- HEADER -->
 <header>
   <div class="header-wrap">
     <div class="logos">
@@ -203,8 +204,9 @@ footer{
     </div>
 
     <div class="nav">
-      <div class="menu">☰ Services
-        <div class="dropdown">
+      <div class="menu" onclick="toggleServices()">
+        ☰ Services
+        <div class="dropdown" id="servicesMenu">
           <a href="cab-services.html">Cab Services</a>
           <a href="pilgrimage-services.html">Pilgrimage Tours</a>
           <a href="holiday-packages.html">Holiday Packages</a>
@@ -271,6 +273,12 @@ footer{
 <footer>
   © 2026 Yes We Care Travels · Operated by P & R Hospitality Management Services
 </footer>
+
+<script>
+function toggleServices(){
+  document.getElementById("servicesMenu").classList.toggle("show");
+}
+</script>
 
 </body>
 </html>
