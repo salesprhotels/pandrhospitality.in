@@ -1,4 +1,4 @@
-2<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -13,7 +13,7 @@ body{
   color:#222;
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
 header{
   background:#fff;
   border-bottom:1px solid #ddd;
@@ -27,7 +27,7 @@ header{
   justify-content:space-between;
 }
 .logos img{
-  height:42px;
+  height:40px;
   margin-right:10px;
 }
 .nav{
@@ -40,47 +40,50 @@ header{
 .dropdown{
   display:none;
   position:absolute;
-  top:30px;
+  top:28px;
   right:0;
   background:#fff;
   border:1px solid #ccc;
   box-shadow:0 4px 12px rgba(0,0,0,.1);
+  z-index:99;
 }
 .dropdown a{
   display:block;
   padding:10px 16px;
   text-decoration:none;
   color:#222;
-  white-space:nowrap;
 }
 .dropdown a:hover{background:#f4f6fb}
 .menu:hover .dropdown{display:block}
 
-/* HERO */
+/* ================= HERO ================= */
 .hero{
-  background:url("images/cab-hero.jpg") center/cover no-repeat;
+  background:
+    linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+    url("images/travel-transport.jpg") center/cover no-repeat;
   color:#fff;
   text-align:center;
   padding:70px 20px;
 }
-.hero h1{font-size:36px;margin-bottom:10px}
+.hero h1{font-size:36px;margin-bottom:12px}
 .hero p{
   max-width:900px;
   margin:auto;
   font-size:18px;
+  line-height:1.6;
 }
 .hero a{
   display:inline-block;
-  margin-top:22px;
+  margin-top:24px;
   background:#f5b400;
   color:#000;
-  padding:12px 26px;
+  padding:12px 28px;
   border-radius:6px;
   text-decoration:none;
   font-weight:bold;
 }
 
-/* SECTION */
+/* ================= SECTION ================= */
 .section{
   max-width:1200px;
   margin:auto;
@@ -88,11 +91,19 @@ header{
 }
 .section h2{
   text-align:center;
-  margin-bottom:30px;
+  margin-bottom:12px;
   color:#0b2a4a;
 }
+.section .desc{
+  text-align:center;
+  max-width:850px;
+  margin:0 auto 30px;
+  color:#555;
+  font-size:16px;
+  line-height:1.6;
+}
 
-/* CARDS */
+/* ================= CARDS ================= */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
@@ -105,11 +116,11 @@ header{
   overflow:hidden;
   text-decoration:none;
   color:#222;
-  transition:.2s;
+  transition:.25s;
 }
 .card:hover{
-  transform:translateY(-4px);
-  box-shadow:0 8px 22px rgba(0,0,0,.12);
+  transform:translateY(-5px);
+  box-shadow:0 8px 24px rgba(0,0,0,.12);
 }
 .card img{
   width:100%;
@@ -118,8 +129,9 @@ header{
 }
 .card div{padding:16px}
 .card h3{color:#4b3fd6;margin-bottom:6px}
+.card p{font-size:14px;color:#555}
 
-/* WHY US */
+/* ================= WHY ================= */
 .why{
   background:#eef1ff;
   padding:40px 20px;
@@ -130,54 +142,32 @@ header{
   list-style:none;
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:12px;
+  gap:14px;
 }
 .why li{
   background:#fff;
-  padding:12px;
+  padding:14px;
   border-radius:6px;
   box-shadow:0 2px 8px rgba(0,0,0,.05);
+  font-size:14px;
 }
 
-/* CTA */
+/* ================= CTA ================= */
 .cta{
   text-align:center;
   padding:40px 20px;
 }
+.cta p{margin-bottom:16px;font-size:16px}
 .cta a{
   background:#4b3fd6;
   color:#fff;
-  padding:12px 24px;
+  padding:12px 26px;
   border-radius:6px;
   text-decoration:none;
   font-weight:bold;
 }
 
-/* CHATBOT */
-.chat-btn{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:#4b3fd6;
-  color:#fff;
-  padding:14px;
-  border-radius:50%;
-  cursor:pointer;
-  font-weight:bold;
-}
-#chatbot{
-  display:none;
-  position:fixed;
-  bottom:90px;
-  right:20px;
-  width:260px;
-  background:#fff;
-  box-shadow:0 6px 20px rgba(0,0,0,.2);
-  border-radius:10px;
-  padding:12px;
-}
-
-/* FOOTER */
+/* ================= FOOTER ================= */
 footer{
   background:#fff;
   text-align:center;
@@ -186,6 +176,11 @@ footer{
   color:#666;
 }
 footer img{height:22px;margin:0 8px}
+
+/* ================= MOBILE ================= */
+@media(max-width:600px){
+  .hero h1{font-size:28px}
+}
 </style>
 </head>
 
@@ -196,10 +191,10 @@ footer img{height:22px;margin:0 8px}
   <div class="header-wrap">
     <div class="logos">
       <a href="index.html">
-        <img src="images/logo-pr-hospitality.png">
+        <img src="images/logo-pr-hospitality.png" alt="P&R Hospitality">
       </a>
       <a href="travel.html">
-        <img src="images/logo-yes-we-care-travels-1.png">
+        <img src="images/logo-yes-we-care-travels-1.png" alt="Yes We Care Travels">
       </a>
     </div>
 
@@ -207,9 +202,9 @@ footer img{height:22px;margin:0 8px}
       <div class="menu">☰ Services
         <div class="dropdown">
           <a href="cab-services.html">Cab Services</a>
-          <a href="pilgrimage-services.html">Pilgrimage Tours</a>
+          <a href="pilgrimage-services.html">Pilgrimage Services</a>
           <a href="holiday-packages.html">Holiday Packages</a>
-          <a href="hotels.html">Hotel Bookings</a>
+          <a href="#">Hotel Booking</a>
           <a href="#">Bus Tickets</a>
           <a href="#">Air Tickets</a>
         </div>
@@ -223,103 +218,88 @@ footer img{height:22px;margin:0 8px}
 <section class="hero">
   <h1>Reliable Cab Services</h1>
   <p>
-    Clean cabs • Verified drivers • On-time pickup • 24×7 support
+    Travel without worry. Whether it’s pilgrimage, hill stations or intercity journeys,  
+    our clean cabs, verified drivers and 24×7 support ensure a safe, comfortable and on-time ride.
   </p>
   <a href="forms/travel-form.html">Cab Enquiry</a>
 </section>
 
-<!-- CAB TYPES -->
+<!-- SERVICES -->
 <section class="section">
   <h2>Our Cab Services</h2>
+  <p class="desc">
+    We provide professional taxi services for Jammu, Katra, Himachal, Uttarakhand and other
+    destinations. From local travel to long-distance journeys, we handle everything end-to-end.
+  </p>
 
   <div class="grid">
     <a class="card" href="#">
-      <img src="images/cab-katra.jpg">
+      <img src="images/travel-pilgrimage.jpg">
       <div>
         <h3>Jammu ⇄ Katra</h3>
-        <p>Vaishno Devi pilgrimage taxi services.</p>
+        <p>Comfortable taxis for Vaishno Devi pilgrimage with flexible pickup options.</p>
       </div>
     </a>
 
     <a class="card" href="#">
-      <img src="images/cab-himachal.jpg">
+      <img src="images/travel-domestic.jpg">
       <div>
         <h3>Himachal Tours</h3>
-        <p>Manali, Dharamshala, Dalhousie cabs.</p>
+        <p>Manali, Dharamshala, Dalhousie & hill station cab services.</p>
       </div>
     </a>
 
     <a class="card" href="#">
-      <img src="images/cab-pilgrimage.jpg">
+      <img src="images/travel-pilgrimage.jpg">
       <div>
         <h3>Pilgrimage Cabs</h3>
-        <p>Kedarnath, Jwala Ji, Vaishno Devi.</p>
+        <p>Kedarnath, Jwala Ji, Vaishno Devi & Uttarakhand routes.</p>
       </div>
     </a>
 
     <a class="card" href="#">
-      <img src="images/cab-local.jpg">
+      <img src="images/travel-transport.jpg">
       <div>
         <h3>Local City Taxi</h3>
-        <p>Hourly & daily city taxi services.</p>
+        <p>Hourly and daily taxi services for city travel.</p>
       </div>
     </a>
 
     <a class="card" href="#">
-      <img src="images/cab-outstation.jpg">
+      <img src="images/travel-custom.jpg">
       <div>
         <h3>Outstation Taxi</h3>
-        <p>Inter-city and long-distance travel.</p>
+        <p>Intercity and long-distance taxi services across states.</p>
       </div>
     </a>
 
     <a class="card" href="#">
-      <img src="images/cab-airport.jpg">
+      <img src="images/travel-air.jpg">
       <div>
         <h3>Airport / Railway Transfer</h3>
-        <p>On-time pickups & drops.</p>
+        <p>On-time pickups and drops with professional drivers.</p>
       </div>
     </a>
   </div>
 </section>
 
-<!-- WHY US -->
+<!-- WHY -->
 <section class="why">
   <ul>
-    <li>✔ Clean & sanitized cabs</li>
-    <li>✔ Professional drivers</li>
+    <li>✔ Clean & sanitized vehicles</li>
+    <li>✔ Verified & experienced drivers</li>
     <li>✔ Transparent pricing</li>
-    <li>✔ On-time pickup</li>
     <li>✔ 24×7 customer support</li>
     <li>✔ Safe & comfortable journeys</li>
+    <li>✔ On-time pickup guarantee</li>
   </ul>
 </section>
 
 <!-- CTA -->
 <section class="cta">
-  <p style="margin-bottom:16px">
-    Need a cab for any destination?
-  </p>
+  <p>Need a cab for any destination?</p>
   <a href="forms/travel-form.html">Submit Cab Enquiry</a>
 </section>
-
-<!-- CHATBOT -->
-<div id="chatbot">
-  <p><strong>Hi 👋</strong></p>
-  <p style="font-size:14px;margin-top:6px">
-    Looking for cab services?
-  </p>
-  <p style="margin-top:10px;font-size:13px">
-    • Katra Taxi<br>
-    • Himachal Tours<br>
-    • Pilgrimage Cabs
-  </p>
-  <p style="margin-top:10px;font-size:13px">
-    Click enquiry to contact our team.
-  </p>
-</div>
-
-<div class="chat-btn" onclick="toggleChat()">💬</div>
 
 <!-- FOOTER -->
 <footer>
@@ -333,13 +313,6 @@ footer img{height:22px;margin:0 8px}
   </div>
   © 2026 Yes We Care Travels · Operated by P & R Hospitality Management Services
 </footer>
-
-<script>
-function toggleChat(){
-  const box=document.getElementById("chatbot");
-  box.style.display = box.style.display==="block" ? "none" : "block";
-}
-</script>
 
 </body>
 </html>
