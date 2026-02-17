@@ -8,20 +8,20 @@
 <script src="https://cdn.tailwindcss.com"></script>
 
 <style>
-  body{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont}
+  body { font-family: 'Inter', sans-serif; }
 </style>
 </head>
 
 <body class="bg-slate-50 text-slate-800">
 
-<!-- ================= HEADER ================= -->
-<header class="bg-white shadow sticky top-0 z-50">
+<!-- HEADER -->
+<header class="bg-white shadow">
   <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
 
     <!-- LOGOS -->
-    <div class="flex items-center gap-4">
+    <div class="flex items-center gap-6">
       <a href="index.html">
-        <img src="images/logo-pr-hospitality.png" class="h-10" alt="P&R Hospitality">
+        <img src="images/logo-pr-hospitality.png" class="h-10" alt="P & R Hospitality">
       </a>
       <a href="travel.html">
         <img src="images/logo-yes-we-care-travels-1.png" class="h-10" alt="Yes We Care Travels">
@@ -29,124 +29,111 @@
     </div>
 
     <!-- NAV -->
-    <nav class="hidden md:flex items-center gap-6 font-semibold">
-      <a href="travel.html" class="hover:text-indigo-600">Travel</a>
-      <a href="contact-travel.html" class="hover:text-indigo-600">Contact</a>
+    <nav class="hidden md:flex gap-6 font-semibold text-sm">
+      <a href="travel.html">Travel</a>
+      <a href="cab-services.html">Cabs</a>
+      <a href="pilgrimage-services.html">Pilgrimage</a>
+      <a href="holidays.html" class="text-indigo-700">Holidays</a>
+      <a href="contact-travel.html">Contact</a>
     </nav>
 
-    <!-- HAMBURGER -->
-    <button onclick="toggleMenu()" class="md:hidden text-2xl">
-      ☰
-    </button>
-  </div>
+    <!-- MOBILE MENU -->
+    <details class="md:hidden">
+      <summary class="cursor-pointer font-semibold">☰ Services</summary>
+      <div class="mt-2 bg-white rounded shadow p-3 space-y-2 text-sm">
+        <a href="travel.html" class="block">Travel</a>
+        <a href="cab-services.html" class="block">Cabs</a>
+        <a href="pilgrimage-services.html" class="block">Pilgrimage</a>
+        <a href="holidays.html" class="block">Holidays</a>
+        <a href="contact-travel.html" class="block">Contact</a>
+      </div>
+    </details>
 
-  <!-- MOBILE MENU -->
-  <div id="mobileMenu" class="hidden bg-white border-t">
-    <a href="cab-services.html" class="block px-4 py-3 border-b">Cab Services</a>
-    <a href="pilgrimage-services.html" class="block px-4 py-3 border-b">Pilgrimage Tours</a>
-    <a href="holidays.html" class="block px-4 py-3 border-b font-semibold text-indigo-600">Holiday Packages</a>
-    <a href="travel.html" class="block px-4 py-3 border-b">Travel Home</a>
-    <a href="contact-travel.html" class="block px-4 py-3">Contact</a>
   </div>
 </header>
 
-<!-- ================= HERO ================= -->
-<section class="relative bg-indigo-700 text-white">
-  <div class="absolute inset-0">
-    <!-- BACKGROUND IMAGE -->
-    <img src="images/travel-custom.jpg" class="w-full h-full object-cover opacity-20">
-  </div>
-
-  <div class="relative max-w-5xl mx-auto text-center py-20 px-4">
-    <h1 class="text-4xl font-bold mb-4">Holiday Packages</h1>
-    <p class="text-indigo-100 max-w-3xl mx-auto">
-      Handcrafted leisure holidays, family tours and honeymoon packages across India.
-      Relax, explore and create memories while we take care of planning.
-    </p>
-
-    <a href="forms/travel-form.html"
-       class="inline-block mt-8 bg-yellow-400 text-black px-7 py-3 rounded-lg font-semibold">
-      Holiday Enquiry
-    </a>
-  </div>
-</section>
-
-<!-- ================= DESCRIPTION ================= -->
-<section class="max-w-6xl mx-auto px-4 py-14 text-center">
-  <h2 class="text-2xl font-bold mb-4">Explore India with Comfort</h2>
-  <p class="text-slate-600 max-w-4xl mx-auto">
-    Our holiday packages are designed for travellers who seek comfort, flexibility and authentic experiences.
-    Whether it’s beaches, hill stations, nature retreats or cultural destinations,
-    we customise each journey based on your preferences and budget.
+<!-- HERO -->
+<section class="bg-indigo-700 text-white text-center py-16 px-4">
+  <h1 class="text-3xl font-bold mb-3">Holiday Packages</h1>
+  <p class="max-w-2xl mx-auto text-indigo-100">
+    Carefully planned holiday experiences across India — beaches, hills, culture and romance, all designed for comfort and memorable journeys.
   </p>
+
+  <a href="forms/travel-form.html"
+     class="inline-block mt-6 bg-yellow-400 text-black font-semibold px-6 py-3 rounded-lg">
+    Holiday Enquiry
+  </a>
 </section>
 
-<!-- ================= HOLIDAY PACKAGES ================= -->
-<section class="max-w-7xl mx-auto px-4 pb-16">
-  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- HOLIDAY PACKAGES -->
+<section class="max-w-7xl mx-auto px-4 py-14">
+  <h2 class="text-2xl font-bold text-center mb-10">Our Holiday Packages</h2>
+
+  <div class="grid md:grid-cols-3 gap-6">
 
     <!-- GOA -->
-    <a href="#" class="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-      <img src="images/travel-custom.jpg" class="h-52 w-full object-cover">
-      <div class="p-5">
+    <a href="forms/travel-form.html" class="bg-white rounded-xl shadow hover:shadow-lg overflow-hidden">
+      <img src="images/holiday-goa.png" class="h-48 w-full object-cover">
+      <div class="p-4">
         <h3 class="font-semibold text-lg">Goa Holidays</h3>
-        <p class="text-sm text-slate-600 mt-2">
-          Beach resorts, nightlife, leisure stays and family-friendly packages.
+        <p class="text-sm text-slate-600">
+          Beachside resorts, nightlife, leisure and relaxed coastal experiences.
         </p>
       </div>
     </a>
 
     <!-- KERALA -->
-    <a href="#" class="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-      <img src="images/travel-domestic.jpg" class="h-52 w-full object-cover">
-      <div class="p-5">
-        <h3 class="font-semibold text-lg">Kerala Tours</h3>
-        <p class="text-sm text-slate-600 mt-2">
-          Backwaters, hill stations, Ayurveda retreats and scenic nature experiences.
+    <a href="forms/travel-form.html" class="bg-white rounded-xl shadow hover:shadow-lg overflow-hidden">
+      <img src="images/holiday-kerala.png" class="h-48 w-full object-cover">
+      <div class="p-4">
+        <h3 class="font-semibold text-lg">Kerala Holidays</h3>
+        <p class="text-sm text-slate-600">
+          Backwaters, hill stations, Ayurveda and peaceful nature retreats.
         </p>
       </div>
     </a>
 
     <!-- HIMACHAL -->
-    <a href="#" class="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-      <img src="images/travel-group.jpg" class="h-52 w-full object-cover">
-      <div class="p-5">
-        <h3 class="font-semibold text-lg">Himachal Packages</h3>
-        <p class="text-sm text-slate-600 mt-2">
-          Manali, Shimla, Dharamshala and peaceful mountain getaways.
-        </p>
-      </div>
-    </a>
-
-    <!-- SIKKIM -->
-    <a href="#" class="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-      <img src="images/travel-hotel.jpg" class="h-52 w-full object-cover">
-      <div class="p-5">
-        <h3 class="font-semibold text-lg">Sikkim & Gangtok</h3>
-        <p class="text-sm text-slate-600 mt-2">
-          North East beauty, monasteries, mountains and cultural tours.
+    <a href="forms/travel-form.html" class="bg-white rounded-xl shadow hover:shadow-lg overflow-hidden">
+      <img src="images/holiday-himachal.png" class="h-48 w-full object-cover">
+      <div class="p-4">
+        <h3 class="font-semibold text-lg">Himachal Holidays</h3>
+        <p class="text-sm text-slate-600">
+          Manali, Shimla, Dharamshala and scenic mountain escapes.
         </p>
       </div>
     </a>
 
     <!-- NORTH EAST -->
-    <a href="#" class="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-      <img src="images/travel-domestic.jpg" class="h-52 w-full object-cover">
-      <div class="p-5">
+    <a href="forms/travel-form.html" class="bg-white rounded-xl shadow hover:shadow-lg overflow-hidden">
+      <img src="images/holiday-northeast.png" class="h-48 w-full object-cover">
+      <div class="p-4">
         <h3 class="font-semibold text-lg">North East India</h3>
-        <p class="text-sm text-slate-600 mt-2">
-          Assam, Meghalaya and offbeat destinations with nature and culture.
+        <p class="text-sm text-slate-600">
+         Sikkim, Assam, Meghalaya, Manipur and unexplored cultural destinations.
+          Serene landscapes, monasteries and Himalayan beauty.
+        </p>
+      </div>
+    </a>
+
+    <!-- HONEYMOON -->
+    <a href="forms/travel-form.html" class="bg-white rounded-xl shadow hover:shadow-lg overflow-hidden">
+      <img src="images/holiday-honeymoon.png" class="h-48 w-full object-cover">
+      <div class="p-4">
+        <h3 class="font-semibold text-lg">Honeymoon Packages</h3>
+        <p class="text-sm text-slate-600">
+          Thoughtfully designed romantic getaways for unforgettable beginnings.
         </p>
       </div>
     </a>
 
     <!-- CUSTOM -->
-    <a href="#" class="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-      <img src="images/travel-custom.jpg" class="h-52 w-full object-cover">
-      <div class="p-5">
+    <a href="forms/travel-form.html" class="bg-white rounded-xl shadow hover:shadow-lg overflow-hidden">
+      <img src="images/holiday-custom.png" class="h-48 w-full object-cover">
+      <div class="p-4">
         <h3 class="font-semibold text-lg">Customised Holidays</h3>
-        <p class="text-sm text-slate-600 mt-2">
-          Tailor-made itineraries for families, couples and group travellers.
+        <p class="text-sm text-slate-600">
+          Flexible itineraries designed as per your travel needs and budget.
         </p>
       </div>
     </a>
@@ -154,24 +141,16 @@
   </div>
 </section>
 
-<!-- ================= WHATSAPP ================= -->
+<!-- WHATSAPP -->
 <a href="https://wa.me/919419287356"
-   class="fixed bottom-6 right-6 bg-green-600 text-white w-14 h-14 flex items-center justify-center rounded-full shadow-lg text-2xl"
-   target="_blank">
-  💬
+   class="fixed bottom-5 right-5 bg-green-600 text-white px-4 py-3 rounded-full shadow-lg">
+  WhatsApp Us
 </a>
 
-<!-- ================= FOOTER ================= -->
-<footer class="bg-white border-t text-center text-sm text-slate-500 py-6">
-  © 2026 P & R Hospitality Management Services · Operated by Yes We Care Travels
+<!-- FOOTER -->
+<footer class="text-center text-sm text-slate-500 py-6 bg-white border-t">
+  © 2026 Yes We Care Travels | Operated by P & R Hospitality Management Services
 </footer>
-
-<!-- ================= SCRIPT ================= -->
-<script>
-function toggleMenu(){
-  document.getElementById("mobileMenu").classList.toggle("hidden");
-}
-</script>
 
 </body>
 </html>
