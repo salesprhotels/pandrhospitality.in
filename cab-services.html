@@ -2,91 +2,189 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Travel Services | Yes We Care Travels</title>
+<title>Cab Services | Yes We Care Travels</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,Helvetica,sans-serif;background:#f4f6fb;color:#222}
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f4f6fb;
+  color:#222;
+}
 
 /* HEADER */
-header{background:#fff;border-bottom:1px solid #ddd}
-.header-wrap{
-  max-width:1200px;margin:auto;
-  padding:10px 16px;
-  display:flex;align-items:center;justify-content:space-between
+header{
+  background:#fff;
+  border-bottom:1px solid #ddd;
 }
-.logos img{height:42px;margin-right:10px}
-.nav{display:flex;align-items:center;gap:20px;font-weight:600}
+.header-wrap{
+  max-width:1200px;
+  margin:auto;
+  padding:10px 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.logos img{
+  height:42px;
+  margin-right:10px;
+}
+.nav{
+  display:flex;
+  align-items:center;
+  gap:20px;
+  font-weight:600;
+}
 .menu{position:relative;cursor:pointer}
 .dropdown{
-  display:none;position:absolute;top:30px;right:0;
-  background:#fff;border:1px solid #ccc;
-  box-shadow:0 4px 12px rgba(0,0,0,.1)
+  display:none;
+  position:absolute;
+  top:30px;
+  right:0;
+  background:#fff;
+  border:1px solid #ccc;
+  box-shadow:0 4px 12px rgba(0,0,0,.1);
 }
 .dropdown a{
-  display:block;padding:10px 16px;
-  text-decoration:none;color:#222;white-space:nowrap
+  display:block;
+  padding:10px 16px;
+  text-decoration:none;
+  color:#222;
+  white-space:nowrap;
 }
 .dropdown a:hover{background:#f4f6fb}
 .menu:hover .dropdown{display:block}
 
 /* HERO */
 .hero{
-  background:#4b3fd6;color:#fff;text-align:center;
-  padding:60px 20px
+  background:url("images/cab-hero.jpg") center/cover no-repeat;
+  color:#fff;
+  text-align:center;
+  padding:70px 20px;
 }
-.hero h1{font-size:34px;margin-bottom:10px}
-.hero p{max-width:800px;margin:auto;font-size:18px}
+.hero h1{font-size:36px;margin-bottom:10px}
+.hero p{
+  max-width:900px;
+  margin:auto;
+  font-size:18px;
+}
 .hero a{
-  display:inline-block;margin-top:20px;
-  background:#f5b400;color:#000;
-  padding:12px 26px;border-radius:6px;
-  text-decoration:none;font-weight:bold
+  display:inline-block;
+  margin-top:22px;
+  background:#f5b400;
+  color:#000;
+  padding:12px 26px;
+  border-radius:6px;
+  text-decoration:none;
+  font-weight:bold;
 }
 
-/* SERVICES */
-.section{max-width:1200px;margin:auto;padding:50px 20px}
-.section h2{text-align:center;margin-bottom:30px}
+/* SECTION */
+.section{
+  max-width:1200px;
+  margin:auto;
+  padding:50px 20px;
+}
+.section h2{
+  text-align:center;
+  margin-bottom:30px;
+  color:#0b2a4a;
+}
+
+/* CARDS */
 .grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
 }
 .card{
-  background:#fff;border-radius:8px;
+  background:#fff;
+  border-radius:8px;
   box-shadow:0 4px 14px rgba(0,0,0,.08);
-  overflow:hidden;text-decoration:none;color:#222
+  overflow:hidden;
+  text-decoration:none;
+  color:#222;
+  transition:.2s;
 }
-.card img{width:100%;height:170px;object-fit:cover}
+.card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 8px 22px rgba(0,0,0,.12);
+}
+.card img{
+  width:100%;
+  height:170px;
+  object-fit:cover;
+}
 .card div{padding:16px}
-.card h3{margin-bottom:6px;color:#4b3fd6}
+.card h3{color:#4b3fd6;margin-bottom:6px}
 
-/* ENQUIRY CTA */
+/* WHY US */
+.why{
+  background:#eef1ff;
+  padding:40px 20px;
+}
+.why ul{
+  max-width:900px;
+  margin:auto;
+  list-style:none;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:12px;
+}
+.why li{
+  background:#fff;
+  padding:12px;
+  border-radius:6px;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+
+/* CTA */
 .cta{
-  background:#eef1ff;text-align:center;
-  padding:40px 20px
+  text-align:center;
+  padding:40px 20px;
 }
 .cta a{
-  background:#4b3fd6;color:#fff;
-  padding:12px 24px;border-radius:6px;
-  text-decoration:none;font-weight:bold
+  background:#4b3fd6;
+  color:#fff;
+  padding:12px 24px;
+  border-radius:6px;
+  text-decoration:none;
+  font-weight:bold;
 }
 
 /* CHATBOT */
-#chatbot{display:none;position:fixed;bottom:90px;right:20px;
-  background:#fff;width:260px;
-  box-shadow:0 6px 20px rgba(0,0,0,.2);
-  border-radius:10px;padding:12px
-}
 .chat-btn{
-  position:fixed;bottom:20px;right:20px;
-  background:#4b3fd6;color:#fff;
-  padding:14px;border-radius:50%;
-  cursor:pointer;font-weight:bold
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#4b3fd6;
+  color:#fff;
+  padding:14px;
+  border-radius:50%;
+  cursor:pointer;
+  font-weight:bold;
+}
+#chatbot{
+  display:none;
+  position:fixed;
+  bottom:90px;
+  right:20px;
+  width:260px;
+  background:#fff;
+  box-shadow:0 6px 20px rgba(0,0,0,.2);
+  border-radius:10px;
+  padding:12px;
 }
 
 /* FOOTER */
-footer{text-align:center;padding:20px;font-size:14px;color:#666}
+footer{
+  background:#fff;
+  text-align:center;
+  padding:20px;
+  font-size:14px;
+  color:#666;
+}
 footer img{height:22px;margin:0 8px}
 </style>
 </head>
@@ -97,8 +195,12 @@ footer img{height:22px;margin:0 8px}
 <header>
   <div class="header-wrap">
     <div class="logos">
-      <a href="index.html"><img src="images/logo-pr-hospitality.png"></a>
-      <a href="travel.html"><img src="images/logo-yes-we-care-travels-1.png"></a>
+      <a href="index.html">
+        <img src="images/logo-pr-hospitality.png">
+      </a>
+      <a href="travel.html">
+        <img src="images/logo-yes-we-care-travels-1.png">
+      </a>
     </div>
 
     <div class="nav">
@@ -108,7 +210,6 @@ footer img{height:22px;margin:0 8px}
           <a href="pilgrimage.html">Pilgrimage Tours</a>
           <a href="holidays.html">Holiday Packages</a>
           <a href="hotels.html">Hotel Bookings</a>
-          <a href="#">Volvo Tours</a>
           <a href="#">Bus Tickets</a>
           <a href="#">Air Tickets</a>
         </div>
@@ -120,89 +221,101 @@ footer img{height:22px;margin:0 8px}
 
 <!-- HERO -->
 <section class="hero">
-  <h1>Travel Services</h1>
+  <h1>Reliable Cab Services</h1>
   <p>
-    Comfortable, reliable and affordable travel solutions for
-    pilgrimage, holidays, transport and hotel bookings.
+    Clean cabs • Verified drivers • On-time pickup • 24×7 support
   </p>
-
-  <a href="forms/travel-form.html">Travel Enquiry</a>
+  <a href="forms/travel-form.html">Cab Enquiry</a>
 </section>
 
-<!-- SERVICES -->
+<!-- CAB TYPES -->
 <section class="section">
-  <h2>Our Services</h2>
+  <h2>Our Cab Services</h2>
 
   <div class="grid">
-    <a class="card" href="cab-services.html">
-      <img src="images/travel-cab.jpg">
+    <a class="card" href="#">
+      <img src="images/cab-katra.jpg">
       <div>
-        <h3>Cab Services</h3>
-        <p>Local & outstation cabs with professional drivers.</p>
+        <h3>Jammu ⇄ Katra</h3>
+        <p>Vaishno Devi pilgrimage taxi services.</p>
       </div>
     </a>
 
-    <a class="card" href="pilgrimage.html">
-      <img src="images/travel-pilgrimage.jpg">
+    <a class="card" href="#">
+      <img src="images/cab-himachal.jpg">
       <div>
-        <h3>Pilgrimage Tours</h3>
-        <p>Vaishno Devi, Kedarnath, Jwala Ji & more.</p>
+        <h3>Himachal Tours</h3>
+        <p>Manali, Dharamshala, Dalhousie cabs.</p>
       </div>
     </a>
 
-    <a class="card" href="holidays.html">
-      <img src="images/travel-holiday.jpg">
+    <a class="card" href="#">
+      <img src="images/cab-pilgrimage.jpg">
       <div>
-        <h3>Holiday Packages</h3>
-        <p>Goa, Kerala, Himachal, North East.</p>
+        <h3>Pilgrimage Cabs</h3>
+        <p>Kedarnath, Jwala Ji, Vaishno Devi.</p>
       </div>
     </a>
 
-    <div class="card">
-      <img src="images/travel-hotel.jpg">
+    <a class="card" href="#">
+      <img src="images/cab-local.jpg">
       <div>
-        <h3>Hotel Bookings</h3>
-        <p>Budget to luxury stays across India.</p>
+        <h3>Local City Taxi</h3>
+        <p>Hourly & daily city taxi services.</p>
       </div>
-    </div>
+    </a>
 
-    <div class="card">
-      <img src="images/travel-bus.jpg">
+    <a class="card" href="#">
+      <img src="images/cab-outstation.jpg">
       <div>
-        <h3>Bus Tickets</h3>
-        <p>Volvo & online bus ticket booking.</p>
+        <h3>Outstation Taxi</h3>
+        <p>Inter-city and long-distance travel.</p>
       </div>
-    </div>
+    </a>
 
-    <div class="card">
-      <img src="images/travel-air.jpg">
+    <a class="card" href="#">
+      <img src="images/cab-airport.jpg">
       <div>
-        <h3>Air Tickets</h3>
-        <p>Domestic flight bookings at best fares.</p>
+        <h3>Airport / Railway Transfer</h3>
+        <p>On-time pickups & drops.</p>
       </div>
-    </div>
+    </a>
   </div>
 </section>
 
-<!-- ENQUIRY CTA -->
+<!-- WHY US -->
+<section class="why">
+  <ul>
+    <li>✔ Clean & sanitized cabs</li>
+    <li>✔ Professional drivers</li>
+    <li>✔ Transparent pricing</li>
+    <li>✔ On-time pickup</li>
+    <li>✔ 24×7 customer support</li>
+    <li>✔ Safe & comfortable journeys</li>
+  </ul>
+</section>
+
+<!-- CTA -->
 <section class="cta">
   <p style="margin-bottom:16px">
-    For any travel-related services, click on enquiry below.
+    Need a cab for any destination?
   </p>
-  <a href="forms/travel-form.html">Submit Enquiry</a>
+  <a href="forms/travel-form.html">Submit Cab Enquiry</a>
 </section>
 
 <!-- CHATBOT -->
 <div id="chatbot">
-  <p><strong>Hi 👋</strong><br>How can we help you?</p>
-  <p style="margin-top:8px;font-size:14px">
-    • Cab Services<br>
-    • Pilgrimage Tours<br>
-    • Holiday Packages<br>
-    • Hotel Booking
+  <p><strong>Hi 👋</strong></p>
+  <p style="font-size:14px;margin-top:6px">
+    Looking for cab services?
   </p>
   <p style="margin-top:10px;font-size:13px">
-    Please click on enquiry to contact our team.
+    • Katra Taxi<br>
+    • Himachal Tours<br>
+    • Pilgrimage Cabs
+  </p>
+  <p style="margin-top:10px;font-size:13px">
+    Click enquiry to contact our team.
   </p>
 </div>
 
@@ -211,10 +324,10 @@ footer img{height:22px;margin:0 8px}
 <!-- FOOTER -->
 <footer>
   <div style="margin-bottom:10px">
-    <a href="https://www.instagram.com/yeswecaretravels/">
+    <a href="https://www.instagram.com/yeswecaretravels/" target="_blank">
       <img src="images/instagram-icon.png">
     </a>
-    <a href="https://www.facebook.com/ywctravels/">
+    <a href="https://www.facebook.com/ywctravels/" target="_blank">
       <img src="images/facebook-icon.png">
     </a>
   </div>
@@ -223,8 +336,8 @@ footer img{height:22px;margin:0 8px}
 
 <script>
 function toggleChat(){
-  const c=document.getElementById("chatbot");
-  c.style.display=c.style.display==="block"?"none":"block";
+  const box=document.getElementById("chatbot");
+  box.style.display = box.style.display==="block" ? "none" : "block";
 }
 </script>
 
