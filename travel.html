@@ -2,7 +2,18 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Travel Services | Yes We Care Travels</title>
+
+<!-- SEO BASIC -->
+<title>Travel Services in India | Cab, Pilgrimage, Holidays | Yes We Care Travels</title>
+<meta name="description" content="Yes We Care Travels provides cab services, pilgrimage tours, holiday packages, hotel bookings, Volvo bus, bus tickets and air tickets across India including Jammu, Himachal and Uttarakhand.">
+<meta name="keywords" content="cab services Jammu, Vaishno Devi taxi, pilgrimage tours India, holiday packages Himachal, hotel booking India, Volvo bus booking, travel services India">
+<meta name="robots" content="index, follow">
+
+<!-- OPEN GRAPH -->
+<meta property="og:title" content="Yes We Care Travels – Trusted Travel Services Across India">
+<meta property="og:description" content="Cab services, pilgrimage tours, holidays, hotels, bus & air tickets across India.">
+<meta property="og:type" content="website">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -26,9 +37,13 @@ header{
   align-items:center;
   justify-content:space-between;
 }
+.logos{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
 .logos img{
   height:42px;
-  margin-right:10px;
 }
 .nav{
   display:flex;
@@ -104,7 +119,7 @@ header{
   overflow:hidden;
   text-decoration:none;
   color:#222;
-  transition:transform .2s, box-shadow .2s;
+  transition:.2s;
 }
 .card:hover{
   transform:translateY(-4px);
@@ -160,6 +175,19 @@ header{
   padding:12px;
 }
 
+/* WHATSAPP */
+.whatsapp{
+  position:fixed;
+  bottom:20px;
+  left:20px;
+  background:#25D366;
+  color:#fff;
+  padding:12px 18px;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:bold;
+}
+
 /* FOOTER */
 footer{
   text-align:center;
@@ -195,10 +223,9 @@ footer img{
           <a href="cab-services.html">Cab Services</a>
           <a href="pilgrimage-services.html">Pilgrimage Tours</a>
           <a href="holiday-packages.html">Holiday Packages</a>
-          <a href="hotel-booking.html">Hotel Bookings</a>
-          <a href="volvo-tour-packages.html">Volvo Tour Packages</a>
-          <a href="#">Bus Tickets</a>
-          <a href="#">Air Tickets</a>
+          <a href="hotel-booking.html">Hotel Booking</a>
+          <a href="volvo-tour-packages.html">Volvo / Bus Booking</a>
+          <a href="air-tickets.html">Air Tickets</a>
         </div>
       </div>
       <a href="contact-travel.html">Contact</a>
@@ -213,7 +240,6 @@ footer img{
     Comfortable, reliable and affordable travel solutions for pilgrimage,
     holidays, cab services, hotel bookings and ticketing across India.
   </p>
-
   <a href="forms/travel-form.html">Travel Enquiry</a>
 </section>
 
@@ -224,91 +250,92 @@ footer img{
   <div class="grid">
 
     <a class="card" href="cab-services.html">
-      <img src="images/travel-transport.jpg" alt="Cab Services">
+      <img src="images/travel-transport.jpg">
       <div>
         <h3>Cab Services</h3>
-        <p>Local & outstation cabs with professional drivers.</p>
+        <p>Local & outstation taxis with verified drivers.</p>
       </div>
     </a>
 
     <a class="card" href="pilgrimage-services.html">
-      <img src="images/travel-pilgrimage.jpg" alt="Pilgrimage Tours">
+      <img src="images/travel-pilgrimage.jpg">
       <div>
         <h3>Pilgrimage Tours</h3>
-        <p>Vaishno Devi, Kedarnath, Jwala Ji & more.</p>
+        <p>Vaishno Devi, Char Dham, Shaktipeeth & more.</p>
       </div>
     </a>
 
     <a class="card" href="holiday-packages.html">
-      <img src="images/travel-domestic.jpg" alt="Holiday Packages">
+      <img src="images/travel-domestic.jpg">
       <div>
         <h3>Holiday Packages</h3>
-        <p>Goa, Kerala, Himachal, North East tours.</p>
+        <p>Goa, Kerala, Himachal, North East & honeymoon tours.</p>
       </div>
     </a>
 
     <a class="card" href="hotel-booking.html">
-      <img src="images/travel-hotel.jpg" alt="Hotel Bookings">
+      <img src="images/travel-hotel.jpg">
       <div>
-        <h3>Hotel Bookings</h3>
-        <p>Budget to luxury stays across India.</p>
+        <h3>Hotel Booking</h3>
+        <p>Verified hotels from budget to luxury.</p>
       </div>
     </a>
 
     <a class="card" href="volvo-tour-packages.html">
-      <img src="images/travel-bus.jpg" alt="Bus Tickets">
+      <img src="images/travel-bus.jpg">
       <div>
-        <h3>Bus Tickets</h3>
-        <p>Volvo & online bus ticket bookings.</p>
+        <h3>Bus / Volvo Tickets</h3>
+        <p>Pan-India online bus & Volvo bookings.</p>
       </div>
     </a>
 
-    <a class="card" href="volvo-tour-packages.html">
-      <img src="images/travel-air.jpg" alt="Air Tickets">
+    <a class="card" href="air-tickets.html">
+      <img src="images/travel-air.jpg">
       <div>
         <h3>Air Tickets</h3>
-        <p>Domestic flight booking services.</p>
+        <p>Domestic flight ticket bookings.</p>
       </div>
     </a>
 
   </div>
 </section>
 
-<!-- ENQUIRY CTA -->
+<!-- CTA -->
 <section class="cta">
   <p style="margin-bottom:16px">
-    For any travel-related services, please click on enquiry below.
+    For any travel-related service, please submit an enquiry.
   </p>
   <a href="forms/travel-form.html">Submit Enquiry</a>
 </section>
 
 <!-- CHATBOT -->
 <div id="chatbot">
-  <p><strong>Hi 👋</strong></p>
+  <strong>Hi 👋</strong>
   <p style="font-size:14px;margin-top:6px">
     How can we help you today?
   </p>
-  <p style="margin-top:10px;font-size:13px">
+  <p style="font-size:13px;margin-top:10px">
     • Cab Services<br>
     • Pilgrimage Tours<br>
     • Holiday Packages<br>
     • Hotel Booking
   </p>
-  <p style="margin-top:10px;font-size:13px">
-    Please click on enquiry to contact our team.
-  </p>
 </div>
-
 <div class="chat-btn" onclick="toggleChat()">💬</div>
+
+<!-- WHATSAPP -->
+<a class="whatsapp" href="https://wa.me/919419287356" target="_blank">
+  WhatsApp
+</a>
 
 <!-- FOOTER -->
 <footer>
   <div style="margin-bottom:10px">
     <a href="https://www.instagram.com/yeswecaretravels/" target="_blank">
-      <img src="images/icon-instagram.png" alt="Instagram">
+      <img src="images/icon-instagram.png">
     </a>
     <a href="https://www.facebook.com/ywctravels/" target="_blank">
-      <img src="images/icon-facebook.png" alt="Facebook">
+      <img src="images/icon-facebook.png">
     </a>
   </div>
   © 2026 Yes We Care Travels · Operated by P & R Hospitality Management Services
@@ -316,8 +343,8 @@ footer img{
 
 <script>
 function toggleChat(){
-  const box = document.getElementById("chatbot");
-  box.style.display = box.style.display === "block" ? "none" : "block";
+  const box=document.getElementById("chatbot");
+  box.style.display=box.style.display==="block"?"none":"block";
 }
 </script>
 
