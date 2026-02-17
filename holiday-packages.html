@@ -15,31 +15,61 @@
 <body class="bg-slate-50 text-slate-800">
 
 <!-- HEADER -->
-<header>
-  <div class="header-wrap">
-    <div class="logos">
+<header class="bg-white border-b shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+
+    <!-- LOGOS -->
+    <div class="flex items-center gap-4">
       <a href="index.html">
-        <img src="images/logo-pr-hospitality.png" alt="P&R Hospitality">
+        <img src="images/logo-pr-hospitality.png" alt="P&R Hospitality" class="h-10">
       </a>
       <a href="travel.html">
-        <img src="images/logo-yes-we-care-travels-1.png" alt="Yes We Care Travels">
+        <img src="images/logo-yes-we-care-travels-1.png" alt="Yes We Care Travels" class="h-10">
       </a>
     </div>
 
-    <div class="nav">
-      <div class="menu">☰ Services
-        <div class="dropdown">
-          <a href="travel.html">Travel Services</a>
-          <a href="cab-services.html">Cab Services</a>
-          <a href="pilgrimage-services.html">Pilgrimage Services</a>
-          <a href="holiday-packages.html">Holiday Packages</a>
-          <a href="hotel-booking.html">Hotel Booking</a>
-          <a href="#">Bus Tickets</a>
-          <a href="#">Air Tickets</a>
+    <!-- DESKTOP NAV -->
+    <nav class="hidden md:flex items-center gap-6 text-sm font-semibold text-slate-700">
+
+      <!-- SERVICES DROPDOWN -->
+      <div class="relative group cursor-pointer">
+        <span class="flex items-center gap-1">
+          ☰ Services
+        </span>
+
+        <div class="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border
+                    opacity-0 invisible group-hover:opacity-100 group-hover:visible
+                    transition-all duration-200 z-50">
+
+          <a href="travel.html" class="block px-4 py-2 hover:bg-slate-100">Travel Services</a>
+          <a href="cab-services.html" class="block px-4 py-2 hover:bg-slate-100">Cab Services</a>
+          <a href="pilgrimage-services.html" class="block px-4 py-2 hover:bg-slate-100">Pilgrimage Services</a>
+          <a href="holiday-packages.html" class="block px-4 py-2 hover:bg-slate-100">Holiday Packages</a>
+          <a href="hotel-booking.html" class="block px-4 py-2 hover:bg-slate-100">Hotel Booking</a>
+          <a href="#" class="block px-4 py-2 hover:bg-slate-100">Bus Tickets</a>
+          <a href="#" class="block px-4 py-2 hover:bg-slate-100">Air Tickets</a>
         </div>
       </div>
-      <a href="contact-travel.html">Contact</a>
-    </div>
+
+      <a href="contact-travel.html" class="hover:text-indigo-700">Contact</a>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <details class="md:hidden relative">
+      <summary class="cursor-pointer text-lg font-semibold">☰</summary>
+      <div class="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border p-3 space-y-2 text-sm z-50">
+        <a href="travel.html" class="block">Travel Services</a>
+        <a href="cab-services.html" class="block">Cab Services</a>
+        <a href="pilgrimage-services.html" class="block">Pilgrimage Services</a>
+        <a href="holiday-packages.html" class="block">Holiday Packages</a>
+        <a href="hotel-booking.html" class="block">Hotel Booking</a>
+        <a href="#" class="block">Bus Tickets</a>
+        <a href="#" class="block">Air Tickets</a>
+        <hr>
+        <a href="contact-travel.html" class="block font-semibold">Contact</a>
+      </div>
+    </details>
+
   </div>
 </header>
       
