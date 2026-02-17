@@ -19,13 +19,12 @@ body{
   color:#222;
 }
 
-/* HEADER */
 header{
   background:#fff;
   border-bottom:1px solid #ddd;
   position:sticky;
   top:0;
-  z-index:100;
+  z-index:9999;   /* 🔥 VERY IMPORTANT */
 }
 
 .header-wrap{
@@ -33,34 +32,10 @@ header{
   margin:auto;
   padding:10px 16px;
   display:flex;
-  flex-wrap:wrap;                 /* ✅ FIX */
   justify-content:space-between;
   align-items:center;
 }
 
-.logos{
-  display:flex;
-  align-items:center;
-}
-
-.logos img{
-  height:40px;
-  margin-right:8px;
-}
-
-.nav{
-  display:flex;
-  align-items:center;
-  gap:20px;
-  font-weight:600;
-}
-
-.nav a{
-  text-decoration:none;
-  color:#222;
-}
-
-/* SERVICES DROPDOWN */
 .menu{
   position:relative;
   cursor:pointer;
@@ -69,12 +44,13 @@ header{
 .dropdown{
   display:none;
   position:absolute;
-  top:32px;
+  top:100%;              /* 🔥 header के नीचे */
   right:0;
   background:#fff;
   border:1px solid #ccc;
-  box-shadow:0 4px 12px rgba(0,0,0,.12);
+  box-shadow:0 6px 18px rgba(0,0,0,.15);
   min-width:220px;
+  z-index:99999;         /* 🔥 hero से ऊपर */
 }
 
 .dropdown a{
@@ -82,7 +58,6 @@ header{
   padding:10px 14px;
   text-decoration:none;
   color:#222;
-  font-size:14px;
 }
 
 .dropdown a:hover{
