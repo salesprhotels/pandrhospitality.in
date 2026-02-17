@@ -2,137 +2,218 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Hotel Booking Assistance | Yes We Care Travels</title>
+<title>Hotel Booking Assistance Across India | Yes We Care Travels</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- SEO -->
-<meta name="description" content="Assisted hotel booking services across India. Budget to luxury hotels with confirmed availability. Trusted travel assistance by Yes We Care Travels.">
-<meta name="keywords" content="hotel booking India, budget hotels, luxury hotels, assisted hotel booking, travel agency hotel booking">
-
-<link rel="stylesheet" href="https://cdn.tailwindcss.com">
+<meta name="description" content="Verified hotel booking assistance across India. Budget to luxury hotels with personal support. Operated by Yes We Care Travels.">
+<meta name="keywords" content="hotel booking India, budget hotels, luxury hotels, pilgrimage hotels, Yes We Care Travels">
 
 <style>
-.hero-bg{
-  background-image:url('images/hotel-bg.png'); /* CHANGE IMAGE HERE */
-  background-size:cover;
-  background-position:center;
+body{
+  margin:0;
+  font-family: Arial, Helvetica, sans-serif;
+  background:#f5f7fb;
+  color:#222;
 }
-.overlay{
+
+/* HEADER */
+header{
+  background:#fff;
+  border-bottom:1px solid #e5e7eb;
+}
+.header-wrap{
+  max-width:1200px;
+  margin:auto;
+  padding:12px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.logo-group{
+  display:flex;
+  gap:15px;
+  align-items:center;
+}
+.logo-group img{
+  height:42px;
+}
+nav a{
+  margin-left:18px;
+  text-decoration:none;
+  font-weight:600;
+  color:#4b3fd6;
+}
+
+/* HERO */
+.hero{
+  background:url("images/hotel-bg.jpg") center/cover no-repeat;
+  position:relative;
+  color:#fff;
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
   background:rgba(0,0,0,0.55);
+}
+.hero-content{
+  position:relative;
+  max-width:900px;
+  margin:auto;
+  padding:90px 20px;
+  text-align:center;
+}
+.hero h1{
+  font-size:34px;
+  margin-bottom:10px;
+}
+.hero p{
+  font-size:18px;
+  opacity:0.95;
+}
+.hero a{
+  display:inline-block;
+  margin-top:25px;
+  background:#f5b400;
+  color:#000;
+  padding:14px 28px;
+  border-radius:6px;
+  font-weight:bold;
+  text-decoration:none;
+}
+
+/* CONTENT */
+.section{
+  max-width:1000px;
+  margin:40px auto;
+  padding:0 20px;
+}
+.section h2{
+  text-align:center;
+  color:#4b3fd6;
+  margin-bottom:25px;
+}
+.features{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+.card{
+  background:#fff;
+  padding:22px;
+  border-radius:10px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+.card h3{
+  margin-top:0;
+  color:#222;
+}
+
+/* CTA */
+.cta{
+  background:#4b3fd6;
+  color:#fff;
+  text-align:center;
+  padding:50px 20px;
+}
+.cta a{
+  display:inline-block;
+  margin-top:20px;
+  background:#f5b400;
+  color:#000;
+  padding:14px 26px;
+  border-radius:6px;
+  font-weight:bold;
+  text-decoration:none;
+}
+
+/* FOOTER */
+footer{
+  background:#fff;
+  text-align:center;
+  font-size:13px;
+  color:#666;
+  padding:15px;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+  .hero h1{font-size:26px}
 }
 </style>
 </head>
 
-<body class="bg-slate-50 text-slate-800">
+<body>
 
 <!-- HEADER -->
-<header class="bg-white shadow">
-  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-
-    <!-- LOGOS -->
-    <div class="flex items-center gap-5">
+<header>
+  <div class="header-wrap">
+    <div class="logo-group">
       <a href="index.html">
-        <img src="images/logo-pr-hospitality.png" class="h-10" alt="P & R Hospitality">
+        <img src="images/logo-pr-hospitality.png" alt="P & R Hospitality">
       </a>
       <a href="travel.html">
-        <img src="images/logo-yes-we-care-travels-1.png" class="h-10" alt="Yes We Care Travels">
+        <img src="images/logo-yes-we-care-travels-1.png" alt="Yes We Care Travels">
       </a>
     </div>
-
-    <!-- MENU -->
-    <div class="flex items-center gap-4">
-      <a href="contact-travel.html" class="font-semibold">Contact</a>
-
-      <!-- Services Dropdown -->
-      <div class="relative group">
-        <button class="font-semibold text-xl">☰</button>
-        <div class="absolute right-0 hidden group-hover:block bg-white shadow rounded w-48 mt-2">
-          <a href="cab-services.html" class="block px-4 py-2 hover:bg-slate-100">Cab Services</a>
-          <a href="pilgrimage-services.html" class="block px-4 py-2 hover:bg-slate-100">Pilgrimage Tours</a>
-          <a href="holiday-packages.html" class="block px-4 py-2 hover:bg-slate-100">Holiday Packages</a>
-          <a href="hotel-booking.html" class="block px-4 py-2 bg-slate-100 font-semibold">Hotel Booking</a>
-        </div>
-      </div>
-    </div>
-
+    <nav>
+      <a href="travel.html">Travel</a>
+      <a href="cab-services.html">Cabs</a>
+      <a href="pilgrimage-services.html">Pilgrimage</a>
+      <a href="holiday-packages.html">Holidays</a>
+      <a href="contact-travel.html">Contact</a>
+    </nav>
   </div>
 </header>
 
 <!-- HERO -->
-<section class="hero-bg">
-  <div class="overlay py-24 px-4 text-center text-white">
-    <h1 class="text-3xl md:text-4xl font-bold mb-4">
-      Hotel Booking Assistance Across India
-    </h1>
-    <p class="max-w-3xl mx-auto text-slate-200 mb-6">
-      From budget stays to premium hotels, we help you book the right hotel
-      with confirmed availability and transparent pricing.
+<section class="hero">
+  <div class="hero-content">
+    <h1>Hotel Booking Assistance Across India</h1>
+    <p>
+      Verified availability • Budget to luxury hotels • Personal assistance
     </p>
-
-    <a href="forms/travel-form.html"
-       class="inline-block bg-yellow-400 text-black font-semibold px-8 py-3 rounded-lg">
-      Hotel Enquiry
-    </a>
+    <a href="forms/hotel-enquiry.html">Submit Hotel Enquiry</a>
   </div>
 </section>
 
-<!-- CONTENT -->
-<section class="max-w-7xl mx-auto px-4 py-14">
+<!-- FEATURES -->
+<section class="section">
+  <h2>Why Book Hotels With Us</h2>
 
-  <div class="grid md:grid-cols-3 gap-8">
-
-    <div class="bg-white p-6 rounded-xl shadow">
-      <h3 class="font-bold text-lg mb-2">Verified Availability</h3>
-      <p class="text-sm text-slate-600">
-        We confirm hotel availability directly with hotels or trusted partners
-        before finalising your booking.
-      </p>
+  <div class="features">
+    <div class="card">
+      <h3>Verified Availability</h3>
+      <p>We confirm room availability directly with hotels or trusted partners before finalising your booking.</p>
     </div>
 
-    <div class="bg-white p-6 rounded-xl shadow">
-      <h3 class="font-bold text-lg mb-2">All Categories Covered</h3>
-      <p class="text-sm text-slate-600">
-        Budget, deluxe, premium & luxury hotels available across major
-        destinations in India.
-      </p>
+    <div class="card">
+      <h3>All Categories Covered</h3>
+      <p>Budget, deluxe, premium & luxury hotels across major destinations in India.</p>
     </div>
 
-    <div class="bg-white p-6 rounded-xl shadow">
-      <h3 class="font-bold text-lg mb-2">Personal Assistance</h3>
-      <p class="text-sm text-slate-600">
-        No automated bookings. Our team personally assists you to ensure
-        a smooth and worry-free stay.
-      </p>
+    <div class="card">
+      <h3>Personal Assistance</h3>
+      <p>No automated bookings. Our team personally assists you for a smooth and worry-free stay.</p>
     </div>
 
+    <div class="card">
+      <h3>Pilgrimage & Tour Hotels</h3>
+      <p>Special focus on Vaishno Devi, Char Dham, Himachal, Kerala, Goa & holiday destinations.</p>
+    </div>
   </div>
-
 </section>
 
 <!-- CTA -->
-<section class="bg-slate-100 text-center py-12">
-  <h2 class="text-2xl font-bold mb-4">
-    Looking for the Right Hotel?
-  </h2>
-  <p class="text-slate-600 mb-6">
-    Share your travel details and we will suggest the best options.
-  </p>
-
-  <a href="forms/travel-form.html"
-     class="bg-indigo-700 text-white px-6 py-3 rounded-lg font-semibold">
-    Submit Hotel Enquiry
-  </a>
+<section class="cta">
+  <h2>Looking for the Right Hotel?</h2>
+  <p>Share your travel details and we will suggest the best options for you.</p>
+  <a href="forms/hotel-enquiry.html">Submit Hotel Enquiry</a>
 </section>
 
-<!-- WHATSAPP -->
-<a href="https://wa.me/919419287356"
-   class="fixed bottom-5 right-5 bg-green-600 text-white p-4 rounded-full shadow-lg text-xl">
-  💬
-</a>
-
-<!-- FOOTER -->
-<footer class="text-center text-sm text-slate-500 py-6">
-  © 2026 Yes We Care Travels · Operated by P & R Hospitality Management Services
+<footer>
+© 2026 Yes We Care Travels • Operated by P & R Hospitality Management Services
 </footer>
 
 </body>
