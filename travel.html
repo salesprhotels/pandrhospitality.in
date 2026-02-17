@@ -5,125 +5,160 @@
 <title>Travel Services | Yes We Care Travels</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+#chatbot { display:none; }
+</style>
 </head>
 
 <body class="bg-slate-50 text-slate-800">
 
 <!-- HEADER -->
 <header class="bg-white shadow">
-  <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row items-center justify-between">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
 
-    <!-- LOGOS -->
     <div class="flex items-center gap-6">
       <a href="index.html">
-        <img src="images/logo-pr-hospitality.png" class="h-10" alt="P & R Hospitality">
+        <img src="images/logo-pr-hospitality.png" class="h-10">
       </a>
       <a href="travel.html">
-        <img src="images/logo-yes-we-care-travels-1.png" class="h-10" alt="Yes We Care Travels">
+        <img src="images/logo-yes-we-care-travels-1.png" class="h-10">
       </a>
     </div>
 
-    <!-- NAV -->
-    <nav class="mt-3 md:mt-0 flex gap-6 font-semibold text-sm">
-      <a href="travel.html" class="text-indigo-700">Travel</a>
-      <a href="cab-services.html">Cabs</a>
-      <a href="pilgrimage.html">Pilgrimage</a>
-      <a href="holidays.html">Holidays</a>
+    <nav class="flex gap-6 font-semibold text-sm">
+      <a href="index.html">Home</a>
       <a href="contact-travel.html">Contact</a>
     </nav>
-
   </div>
 </header>
 
-<!-- HERO (NO SERVICES HERE – ONLY INTRO) -->
+<!-- HERO -->
 <section class="bg-indigo-700 text-white text-center py-16 px-4">
-  <h1 class="text-3xl md:text-4xl font-bold">Travel Services</h1>
-  <p class="mt-4 max-w-3xl mx-auto text-indigo-100 leading-relaxed">
-    Comfortable journeys, trusted planning and personalised travel solutions.
-    Whether it is pilgrimage, leisure holidays or intercity travel, we ensure
-    a smooth and worry-free experience from start to finish.
+  <h1 class="text-4xl font-bold">Travel Services</h1>
+  <p class="mt-4 max-w-3xl mx-auto text-indigo-100">
+    Comfortable journeys, trusted planning and personalised travel solutions
+    for pilgrimage, leisure and transport services.
   </p>
 </section>
 
-<!-- SERVICES SECTION -->
+<!-- SERVICES -->
 <section class="max-w-7xl mx-auto px-4 py-14">
   <h2 class="text-2xl font-bold text-center mb-12">Our Travel Services</h2>
 
-  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+  <div class="grid md:grid-cols-3 gap-8">
 
-    <!-- CAB SERVICES -->
-    <a href="cab-services.html" class="block bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-      <img src="images/travel-transport.jpg" class="h-44 w-full object-cover" alt="Cab Services">
+    <a href="cab-services.html" class="bg-white rounded-xl shadow overflow-hidden hover:shadow-lg">
+      <img src="images/travel-transport.jpg" class="h-40 w-full object-cover">
       <div class="p-5">
-        <h3 class="font-semibold text-lg">Cab Services</h3>
-        <p class="text-sm text-slate-600 mt-1">
-          Clean, safe and comfortable cabs for Jammu, Katra, Himachal and intercity travel.
-        </p>
+        <h3 class="font-semibold">Cab Services</h3>
+        <p class="text-sm text-slate-600">Clean and reliable cab services.</p>
       </div>
     </a>
 
-    <!-- PILGRIMAGE -->
-    <a href="pilgrimage.html" class="block bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-      <img src="images/travel-pilgrimage.jpg" class="h-44 w-full object-cover" alt="Pilgrimage Tours">
+    <a href="pilgrimage.html" class="bg-white rounded-xl shadow overflow-hidden hover:shadow-lg">
+      <img src="images/travel-pilgrimage.jpg" class="h-40 w-full object-cover">
       <div class="p-5">
-        <h3 class="font-semibold text-lg">Pilgrimage Tours</h3>
-        <p class="text-sm text-slate-600 mt-1">
-          Well-planned pilgrimage journeys to Vaishno Devi, Kedarnath, Jwala Ji and Uttarakhand.
-        </p>
+        <h3 class="font-semibold">Pilgrimage Tours</h3>
+        <p class="text-sm text-slate-600">Vaishno Devi, Kedarnath & more.</p>
       </div>
     </a>
 
-    <!-- HOLIDAY PACKAGES -->
-    <a href="holidays.html" class="block bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-      <img src="images/travel-group.jpg" class="h-44 w-full object-cover" alt="Holiday Packages">
+    <a href="holidays.html" class="bg-white rounded-xl shadow overflow-hidden hover:shadow-lg">
+      <img src="images/travel-group.jpg" class="h-40 w-full object-cover">
       <div class="p-5">
-        <h3 class="font-semibold text-lg">Holiday Packages</h3>
-        <p class="text-sm text-slate-600 mt-1">
-          Customised holiday packages for Goa, Kerala, Sikkim, North East and more.
-        </p>
+        <h3 class="font-semibold">Holiday Packages</h3>
+        <p class="text-sm text-slate-600">Goa, Kerala, Sikkim & NE.</p>
       </div>
     </a>
 
-    <!-- HOTEL BOOKINGS -->
     <div class="bg-white rounded-xl shadow overflow-hidden">
-      <img src="images/travel-hotel.jpg" class="h-44 w-full object-cover" alt="Hotel Bookings">
+      <img src="images/travel-hotel.jpg" class="h-40 w-full object-cover">
       <div class="p-5">
-        <h3 class="font-semibold text-lg">Hotel Bookings</h3>
-        <p class="text-sm text-slate-600 mt-1">
-          Reliable hotel bookings ranging from budget stays to premium properties.
-        </p>
+        <h3 class="font-semibold">Hotel Bookings</h3>
+        <p class="text-sm text-slate-600">Budget to luxury stays.</p>
       </div>
     </div>
 
-    <!-- AIR TICKETS -->
     <div class="bg-white rounded-xl shadow overflow-hidden">
-      <img src="images/travel-air.jpg" class="h-44 w-full object-cover" alt="Air Tickets">
+      <img src="images/travel-air.jpg" class="h-40 w-full object-cover">
       <div class="p-5">
-        <h3 class="font-semibold text-lg">Air Tickets</h3>
-        <p class="text-sm text-slate-600 mt-1">
-          Domestic air ticket bookings with competitive fares and support.
-        </p>
+        <h3 class="font-semibold">Air Tickets</h3>
+        <p class="text-sm text-slate-600">Domestic flight bookings.</p>
       </div>
     </div>
 
-    <!-- BUS TICKETS -->
     <div class="bg-white rounded-xl shadow overflow-hidden">
-      <img src="images/travel-bus.jpg" class="h-44 w-full object-cover" alt="Bus Tickets">
+      <img src="images/travel-bus.jpg" class="h-40 w-full object-cover">
       <div class="p-5">
-        <h3 class="font-semibold text-lg">Bus Tickets</h3>
-        <p class="text-sm text-slate-600 mt-1">
-          Online and Volvo bus ticket services for major routes and destinations.
-        </p>
+        <h3 class="font-semibold">Bus Tickets</h3>
+        <p class="text-sm text-slate-600">Volvo & online bus tickets.</p>
       </div>
     </div>
 
   </div>
 </section>
 
+<!-- ENQUIRY FORM -->
+<section class="bg-slate-100 py-14">
+  <div class="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow">
+    <h3 class="text-xl font-bold mb-6 text-center">Travel Enquiry</h3>
+
+    <form onsubmit="submitForm(event)" class="grid gap-4">
+      <input required placeholder="Name" class="border p-3 rounded">
+      <input required placeholder="Mobile Number" class="border p-3 rounded">
+      <select class="border p-3 rounded">
+        <option>Cab</option>
+        <option>Pilgrimage</option>
+        <option>Holiday</option>
+      </select>
+      <textarea placeholder="Message" class="border p-3 rounded"></textarea>
+      <button class="bg-indigo-700 text-white py-3 rounded font-semibold">
+        Submit Enquiry
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- CHATBOT BUTTON -->
+<button onclick="toggleChat()" class="fixed bottom-6 right-6 bg-indigo-700 text-white px-4 py-3 rounded-full shadow-lg">
+  Chat
+</button>
+
+<!-- CHATBOT BOX -->
+<div id="chatbot" class="fixed bottom-20 right-6 w-72 bg-white shadow-xl rounded-xl p-4">
+  <p class="font-semibold mb-2">Hi 👋 How can we help?</p>
+  <button onclick="reply('Cab')" class="block w-full text-left border p-2 mb-2">Cab Services</button>
+  <button onclick="reply('Pilgrimage')" class="block w-full text-left border p-2 mb-2">Pilgrimage</button>
+  <button onclick="reply('Holiday')" class="block w-full text-left border p-2">Holiday</button>
+  <p id="chatReply" class="text-sm text-slate-600 mt-3"></p>
+</div>
+
 <!-- FOOTER -->
-<footer class="text-center text-sm text-slate-500 py-6">
+<footer class="text-center py-6 text-sm text-slate-500 bg-white">
+  <div class="flex justify-center gap-6 mb-3">
+    <a href="https://www.instagram.com/yeswecaretravels/"><img src="images/instagram-icon.png" class="h-6"></a>
+    <a href="https://www.facebook.com/ywctravels/"><img src="images/facebook-icon.png" class="h-6"></a>
+  </div>
   © 2026 Yes We Care Travels · Operated by P & R Hospitality Management Services
 </footer>
+
+<script>
+function toggleChat(){
+  document.getElementById("chatbot").style.display =
+  document.getElementById("chatbot").style.display === "none" ? "block" : "none";
+}
+
+function reply(type){
+  document.getElementById("chatReply").innerText =
+  "Thanks! Please share your name & mobile number for " + type + " enquiry.";
+}
+
+function submitForm(e){
+  e.preventDefault();
+  alert("Thank you! Our team will contact you shortly.");
+}
+</script>
 
 </body>
 </html>
