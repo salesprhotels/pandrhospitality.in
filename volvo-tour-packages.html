@@ -18,44 +18,74 @@ body{
   background:#f4f6fb;
   color:#222;
 }
-
+/* HEADER */
 header{
   background:#fff;
   border-bottom:1px solid #ddd;
   position:sticky;
   top:0;
-  z-index:9999;   /* 🔥 VERY IMPORTANT */
+  z-index:9999;
 }
 
 .header-wrap{
   max-width:1200px;
   margin:auto;
-  padding:10px 16px;
+  padding:8px 14px;
   display:flex;
   justify-content:space-between;
   align-items:center;
 }
 
+/* LOGOS */
+.logos{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.logos img{
+  height:36px;        /* 🔥 desktop & mobile balanced */
+  max-height:36px;
+  width:auto;
+}
+
+/* NAV */
+.nav{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  font-weight:600;
+  font-size:15px;     /* 🔥 text readable */
+}
+
+.nav a{
+  text-decoration:none;
+  color:#222;
+}
+
+/* SERVICES DROPDOWN */
 .menu{
   position:relative;
   cursor:pointer;
+  user-select:none;
 }
 
 .dropdown{
   display:none;
   position:absolute;
-  top:100%;              /* 🔥 header के नीचे */
+  top:100%;
   right:0;
   background:#fff;
   border:1px solid #ccc;
   box-shadow:0 6px 18px rgba(0,0,0,.15);
   min-width:220px;
-  z-index:99999;         /* 🔥 hero से ऊपर */
+  z-index:99999;
 }
 
 .dropdown a{
   display:block;
   padding:10px 14px;
+  font-size:14px;
   text-decoration:none;
   color:#222;
 }
@@ -68,12 +98,21 @@ header{
   display:block;
 }
 
-/* MOBILE FIX */
-@media(max-width:700px){
+/* 📱 MOBILE FIX */
+@media(max-width:768px){
+
+  .header-wrap{
+    padding:8px 10px;
+  }
+
+  .logos img{
+    height:30px;      /* 🔥 mobile logo size fix */
+    max-height:30px;
+  }
+
   .nav{
-    width:100%;
-    justify-content:flex-end;
-    margin-top:8px;
+    font-size:14px;
+    gap:12px;
   }
 }
 
