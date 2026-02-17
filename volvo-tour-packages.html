@@ -2,147 +2,145 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Bus & Volvo Services | Yes We Care Travels</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Volvo Bus & Online Bus Booking | Yes We Care Travels</title>
 
-<meta name="description" content="Book Volvo bus tickets and online bus tickets across India. Jammu, Delhi, Katra, Manali, Shimla, Himachal & pan-India bus booking available with trusted operators.">
+<title>Volvo Bus & Online Bus Booking | Yes We Care Travels</title>
 
-<meta name="keywords" content="Volvo bus booking, online bus tickets India, Jammu to Delhi bus, Delhi to Manali Volvo, Katra bus booking, Himachal bus service">
-
+<meta name="description" content="Book Volvo bus tickets and online bus tickets across India. Jammu, Delhi, Katra, Manali, Shimla & pan-India bus booking available.">
+<meta name="keywords" content="Volvo bus booking, online bus tickets India, Jammu to Delhi bus, Delhi to Manali Volvo">
 <meta name="robots" content="index, follow">
 
-<!-- Open Graph -->
-<meta property="og:title" content="Volvo & Bus Booking | Yes We Care Travels">
-<meta property="og:description" content="Pan-India Volvo bus and online bus ticket booking with reliable operators.">
-<meta property="og:type" content="website">
-
-<!-- Tailwind -->
-<script src="https://cdn.tailwindcss.com"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-/* HERO BACKGROUND */
-.bus-hero {
-  background-image: linear-gradient(
-      rgba(67,56,202,0.75),
-      rgba(67,56,202,0.75)
-    ),
-    url("images/bus-volvo-bg.png");
-  background-size: cover;
-  background-position: center;
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,Helvetica,sans-serif;background:#f4f6fb;color:#222}
+
+/* HEADER */
+header{background:#fff;border-bottom:1px solid #ddd}
+.header-wrap{
+  max-width:1200px;margin:auto;padding:10px 16px;
+  display:flex;justify-content:space-between;align-items:center
 }
+.logos img{height:40px;margin-right:8px}
+.nav a{text-decoration:none;font-weight:600;color:#222;margin-left:20px}
+
+/* HERO */
+.hero{
+  background:url('images/volvo-bus.jpg') center/cover no-repeat;
+  color:#fff;text-align:center;padding:90px 20px
+}
+.hero h1{font-size:36px;margin-bottom:10px}
+.hero p{font-size:18px;max-width:800px;margin:auto}
+.hero a{
+  display:inline-block;margin-top:22px;
+  background:#f5b400;color:#000;
+  padding:12px 26px;border-radius:6px;
+  font-weight:bold;text-decoration:none
+}
+
+/* SECTION */
+.section{max-width:1100px;margin:auto;padding:50px 20px}
+.section h2{text-align:center;margin-bottom:25px;color:#0b2a4a}
+.text{max-width:900px;margin:auto;font-size:16px;line-height:1.6}
+
+/* CARDS */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:20px;margin-top:30px
+}
+.card{
+  background:#fff;padding:20px;border-radius:8px;
+  box-shadow:0 4px 14px rgba(0,0,0,.08);
+  text-align:center
+}
+.card h3{color:#4b3fd6;margin-bottom:8px}
+
+/* CTA */
+.cta{text-align:center;background:#eef1ff;padding:40px 20px}
+.cta a{
+  background:#4b3fd6;color:#fff;
+  padding:12px 26px;border-radius:6px;
+  text-decoration:none;font-weight:bold
+}
+
+/* WHATSAPP */
+.whatsapp{
+  position:fixed;bottom:20px;right:20px;
+  background:#25D366;color:#fff;
+  padding:12px 18px;border-radius:30px;
+  font-weight:bold;text-decoration:none
+}
+
+/* FOOTER */
+footer{text-align:center;padding:20px;font-size:14px;color:#666;background:#fff}
 </style>
 </head>
 
-<body class="bg-slate-50 text-slate-800">
+<body>
 
-<!-- HEADER -->
-<header class="bg-white shadow">
-  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-
-    <!-- LOGOS -->
-    <div class="flex items-center gap-4">
-      <a href="index.html">
-        <img src="images/logo-pr-hospitality.png" class="h-10" alt="P&R Hospitality">
-      </a>
-      <a href="travel.html">
-        <img src="images/logo-yes-we-care-travels-1.png" class="h-10" alt="Yes We Care Travels">
-      </a>
+<header>
+  <div class="header-wrap">
+    <div class="logos">
+      <a href="index.html"><img src="images/logo-pr-hospitality.png"></a>
+      <a href="travel.html"><img src="images/logo-yes-we-care-travels-1.png"></a>
     </div>
-
-    <!-- MENU -->
-    <nav class="hidden md:flex gap-6 font-semibold">
+    <div class="nav">
       <a href="travel.html">Travel</a>
-      <a href="cab-services.html">Cabs</a>
-      <a href="bus-services.html" class="text-indigo-700">Bus</a>
       <a href="contact-travel.html">Contact</a>
-    </nav>
-<a href="contact-travel.html">Contact</a>
+    </div>
   </div>
 </header>
 
-<!-- HERO -->
-<section class="bus-hero text-white text-center py-20 px-4">
-  <h1 class="text-4xl font-bold mb-4">Pan-India Bus & Volvo Services</h1>
-  <p class="max-w-3xl mx-auto text-indigo-100 text-lg">
-    Book government & private buses across India.  
-    Volvo luxury coaches, sleeper & semi-sleeper buses with trusted operator portals.
+<section class="hero">
+  <h1>Volvo & Online Bus Booking</h1>
+  <p>
+    Comfortable, safe and reliable Volvo and bus travel across India with trusted operators.
   </p>
-
-  <a href="forms/travel-form.html"
-     class="inline-block mt-8 bg-yellow-400 text-black px-8 py-4 rounded-lg font-bold hover:bg-yellow-500">
-    Bus Enquiry
-  </a>
+  <a href="forms/travel-form.html">Book Bus / Volvo</a>
 </section>
 
-<!-- SERVICES -->
-<section class="max-w-7xl mx-auto px-4 py-14">
-  <h2 class="text-3xl font-bold text-center mb-10">Our Bus Booking Services</h2>
+<section class="section">
+  <h2>Pan-India Bus Booking Services</h2>
+  <p class="text">
+    We provide pan-India online bus booking including Volvo and luxury buses.
+    Major routes include Jammu–Delhi, Delhi–Jammu, Katra–Delhi, Delhi–Katra,
+    Delhi–Manali, Delhi–Shimla, Jammu–Katra and many more destinations.
+  </p>
 
-  <div class="grid md:grid-cols-3 gap-6">
-
-    <div class="bg-white rounded-xl shadow p-6">
-      <h3 class="font-bold text-lg mb-2">🚌 Pan-India Bus Booking</h3>
-      <p class="text-sm text-slate-600">
-        Book buses for Jammu–Delhi, Delhi–Manali, Delhi–Shimla, Katra–Delhi and many more routes.
-      </p>
+  <div class="grid">
+    <div class="card">
+      <h3>Volvo / Luxury Buses</h3>
+      <p>Premium comfort for long distance journeys.</p>
     </div>
-
-    <div class="bg-white rounded-xl shadow p-6">
-      <h3 class="font-bold text-lg mb-2">🚍 Volvo Luxury Coaches</h3>
-      <p class="text-sm text-slate-600">
-        Comfortable Volvo buses for hill stations like Manali, Shimla, Katra & pilgrimage routes.
-      </p>
+    <div class="card">
+      <h3>AC & Sleeper Buses</h3>
+      <p>Comfortable overnight travel options.</p>
     </div>
-
-    <div class="bg-white rounded-xl shadow p-6">
-      <h3 class="font-bold text-lg mb-2">🎟 Agent Portal Booking</h3>
-      <p class="text-sm text-slate-600">
-        SeatSeller & authorised portals for real-time seat selection and confirmed tickets.
-      </p>
+    <div class="card">
+      <h3>Seater & Semi-Sleeper</h3>
+      <p>Affordable seating options for all routes.</p>
     </div>
-
-    <div class="bg-white rounded-xl shadow p-6">
-      <h3 class="font-bold text-lg mb-2">🗺 Bus + Local Sightseeing</h3>
-      <p class="text-sm text-slate-600">
-        Reach destination by bus and get local cab sightseeing packages from us.
-      </p>
+    <div class="card">
+      <h3>Agent Portal Booking</h3>
+      <p>Seat Seller & authorised agent bookings.</p>
     </div>
-
-    <div class="bg-white rounded-xl shadow p-6">
-      <h3 class="font-bold text-lg mb-2">🙏 Pilgrimage Bus Travel</h3>
-      <p class="text-sm text-slate-600">
-        Bus services for Vaishno Devi, Katra, Haridwar, Rishikesh & Char Dham routes.
-      </p>
-    </div>
-
-    <div class="bg-white rounded-xl shadow p-6">
-      <h3 class="font-bold text-lg mb-2">📞 Assistance & Support</h3>
-      <p class="text-sm text-slate-600">
-        Support before & after booking, seat guidance and route planning help.
-      </p>
-    </div>
-
   </div>
 </section>
 
-<!-- WHATSAPP CTA -->
-<section class="bg-indigo-700 text-white text-center py-12">
-  <h3 class="text-2xl font-bold mb-4">Need Help With Bus Booking?</h3>
-  <p class="text-indigo-200 mb-6">
-    Talk to our travel team for seat availability, Volvo options & packages.
+<section class="cta">
+  <p style="margin-bottom:15px">
+    Travelling by bus? Combine your journey with local cabs and hotel bookings.
   </p>
-
-  <a href="https://wa.me/919419287356"
-     target="_blank"
-     class="inline-block bg-green-500 px-8 py-3 rounded-lg font-bold hover:bg-green-600">
-    WhatsApp Us
-  </a>
+  <a href="forms/travel-form.html">Bus / Volvo Enquiry</a>
 </section>
 
-<!-- FOOTER -->
-<footer class="bg-white text-center text-sm text-slate-500 py-6">
-  © 2026 Yes We Care Travels • Operated by P & R Hospitality Management Services
+<a class="whatsapp" href="https://wa.me/919419287356" target="_blank">
+  WhatsApp
+</a>
+
+<footer>
+  © 2026 Yes We Care Travels · Operated by P & R Hospitality Management Services
 </footer>
 
 </body>
