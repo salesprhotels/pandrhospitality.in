@@ -2,126 +2,231 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Cab Services | Yes We Care Travels</title>
+<title>Travel Services | Yes We Care Travels</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,Helvetica,sans-serif;background:#f4f6fb;color:#222}
+
+/* HEADER */
+header{background:#fff;border-bottom:1px solid #ddd}
+.header-wrap{
+  max-width:1200px;margin:auto;
+  padding:10px 16px;
+  display:flex;align-items:center;justify-content:space-between
+}
+.logos img{height:42px;margin-right:10px}
+.nav{display:flex;align-items:center;gap:20px;font-weight:600}
+.menu{position:relative;cursor:pointer}
+.dropdown{
+  display:none;position:absolute;top:30px;right:0;
+  background:#fff;border:1px solid #ccc;
+  box-shadow:0 4px 12px rgba(0,0,0,.1)
+}
+.dropdown a{
+  display:block;padding:10px 16px;
+  text-decoration:none;color:#222;white-space:nowrap
+}
+.dropdown a:hover{background:#f4f6fb}
+.menu:hover .dropdown{display:block}
+
+/* HERO */
+.hero{
+  background:#4b3fd6;color:#fff;text-align:center;
+  padding:60px 20px
+}
+.hero h1{font-size:34px;margin-bottom:10px}
+.hero p{max-width:800px;margin:auto;font-size:18px}
+.hero a{
+  display:inline-block;margin-top:20px;
+  background:#f5b400;color:#000;
+  padding:12px 26px;border-radius:6px;
+  text-decoration:none;font-weight:bold
+}
+
+/* SERVICES */
+.section{max-width:1200px;margin:auto;padding:50px 20px}
+.section h2{text-align:center;margin-bottom:30px}
+.grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px
+}
+.card{
+  background:#fff;border-radius:8px;
+  box-shadow:0 4px 14px rgba(0,0,0,.08);
+  overflow:hidden;text-decoration:none;color:#222
+}
+.card img{width:100%;height:170px;object-fit:cover}
+.card div{padding:16px}
+.card h3{margin-bottom:6px;color:#4b3fd6}
+
+/* ENQUIRY CTA */
+.cta{
+  background:#eef1ff;text-align:center;
+  padding:40px 20px
+}
+.cta a{
+  background:#4b3fd6;color:#fff;
+  padding:12px 24px;border-radius:6px;
+  text-decoration:none;font-weight:bold
+}
+
+/* CHATBOT */
+#chatbot{display:none;position:fixed;bottom:90px;right:20px;
+  background:#fff;width:260px;
+  box-shadow:0 6px 20px rgba(0,0,0,.2);
+  border-radius:10px;padding:12px
+}
+.chat-btn{
+  position:fixed;bottom:20px;right:20px;
+  background:#4b3fd6;color:#fff;
+  padding:14px;border-radius:50%;
+  cursor:pointer;font-weight:bold
+}
+
+/* FOOTER */
+footer{text-align:center;padding:20px;font-size:14px;color:#666}
+footer img{height:22px;margin:0 8px}
+</style>
 </head>
 
-<body class="bg-slate-50 text-slate-800">
+<body>
 
-<!-- HEADER (SAME AS TRAVEL PAGE) -->
-<header class="bg-white shadow">
-  <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row items-center justify-between">
-
-    <!-- LOGOS -->
-    <div class="flex items-center gap-6">
-      <!-- Main Company -->
-      <a href="index.html">
-        <img src="images/logo-pr-hospitality.png" class="h-10" alt="P & R Hospitality">
-      </a>
-
-      <!-- Travel Brand -->
-      <a href="travel.html">
-        <img src="images/logo-yes-we-care-travels-1.png" class="h-10" alt="Yes We Care Travels">
-      </a>
+<!-- HEADER -->
+<header>
+  <div class="header-wrap">
+    <div class="logos">
+      <a href="index.html"><img src="images/logo-pr-hospitality.png"></a>
+      <a href="travel.html"><img src="images/logo-yes-we-care-travels-1.png"></a>
     </div>
 
-    <!-- NAV -->
-    <nav class="mt-3 md:mt-0 flex gap-5 font-semibold text-sm">
-      <a href="travel.html">Travel</a>
-      <a href="cab-services.html" class="text-indigo-700">Cabs</a>
-      <a href="pilgrimage-services.html">Pilgrimage</a>
-      <a href="holiday-packages.html">Holidays</a>
+    <div class="nav">
+      <div class="menu">☰ Services
+        <div class="dropdown">
+          <a href="cab-services.html">Cab Services</a>
+          <a href="pilgrimage.html">Pilgrimage Tours</a>
+          <a href="holidays.html">Holiday Packages</a>
+          <a href="hotels.html">Hotel Bookings</a>
+          <a href="#">Volvo Tours</a>
+          <a href="#">Bus Tickets</a>
+          <a href="#">Air Tickets</a>
+        </div>
+      </div>
       <a href="contact-travel.html">Contact</a>
-    </nav>
-
+    </div>
   </div>
 </header>
 
 <!-- HERO -->
-<section class="relative h-[80vh] flex items-center justify-center text-center text-white">
+<section class="hero">
+  <h1>Travel Services</h1>
+  <p>
+    Comfortable, reliable and affordable travel solutions for
+    pilgrimage, holidays, transport and hotel bookings.
+  </p>
 
-  <!-- BACKGROUND IMAGE -->
-  <div class="absolute inset-0 bg-[url('images/file_000000007d3871fd90ad2277c6000ca0.png')] bg-cover bg-center"></div>
-
-  <!-- OVERLAY -->
-  <div class="absolute inset-0 bg-black/60"></div>
-
-  <!-- CONTENT -->
-  <div class="relative z-10 max-w-3xl px-4">
-    <h1 class="text-3xl md:text-4xl font-bold mb-4">
-      Travel Without Worry
-    </h1>
-
-    <p class="text-lg text-slate-200 mb-8">
-      Clean, comfortable and reliable cab services for pilgrimage,
-      hill stations and intercity journeys across North India.
-    </p>
-
-    <a href="contact-travel.html"
-       class="inline-block bg-yellow-400 text-black font-semibold px-8 py-3 rounded-lg hover:bg-yellow-500">
-      Contact Travel Team
-    </a>
-  </div>
+  <a href="forms/travel-form.html">Travel Enquiry</a>
 </section>
 
 <!-- SERVICES -->
-<section class="max-w-7xl mx-auto px-4 py-14">
-  <h2 class="text-2xl font-bold text-center mb-10">Cab Services We Provide</h2>
+<section class="section">
+  <h2>Our Services</h2>
 
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+  <div class="grid">
+    <a class="card" href="cab-services.html">
+      <img src="images/travel-cab.jpg">
+      <div>
+        <h3>Cab Services</h3>
+        <p>Local & outstation cabs with professional drivers.</p>
+      </div>
+    </a>
 
-    <div class="bg-white rounded-xl shadow p-6 text-center">
-      <h3 class="font-semibold mb-2">Pilgrimage Cabs</h3>
-      <p>Jammu – Katra, Vaishno Devi & temple travel.</p>
+    <a class="card" href="pilgrimage.html">
+      <img src="images/travel-pilgrimage.jpg">
+      <div>
+        <h3>Pilgrimage Tours</h3>
+        <p>Vaishno Devi, Kedarnath, Jwala Ji & more.</p>
+      </div>
+    </a>
+
+    <a class="card" href="holidays.html">
+      <img src="images/travel-holiday.jpg">
+      <div>
+        <h3>Holiday Packages</h3>
+        <p>Goa, Kerala, Himachal, North East.</p>
+      </div>
+    </a>
+
+    <div class="card">
+      <img src="images/travel-hotel.jpg">
+      <div>
+        <h3>Hotel Bookings</h3>
+        <p>Budget to luxury stays across India.</p>
+      </div>
     </div>
 
-    <div class="bg-white rounded-xl shadow p-6 text-center">
-      <h3 class="font-semibold mb-2">Hill Station Travel</h3>
-      <p>Himachal Pradesh, Uttarakhand & scenic routes.</p>
+    <div class="card">
+      <img src="images/travel-bus.jpg">
+      <div>
+        <h3>Bus Tickets</h3>
+        <p>Volvo & online bus ticket booking.</p>
+      </div>
     </div>
 
-    <div class="bg-white rounded-xl shadow p-6 text-center">
-      <h3 class="font-semibold mb-2">Intercity Cabs</h3>
-      <p>Safe, punctual and comfortable long-distance travel.</p>
+    <div class="card">
+      <img src="images/travel-air.jpg">
+      <div>
+        <h3>Air Tickets</h3>
+        <p>Domestic flight bookings at best fares.</p>
+      </div>
     </div>
-
   </div>
 </section>
 
-<!-- TRUST -->
-<section class="bg-slate-100 py-12 px-4">
-  <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 text-center text-sm">
-
-    <div class="bg-white rounded-xl shadow p-5">✔ Clean & Maintained Cabs</div>
-    <div class="bg-white rounded-xl shadow p-5">✔ Professional Drivers</div>
-    <div class="bg-white rounded-xl shadow p-5">✔ On-Time Pickup & Drop</div>
-    <div class="bg-white rounded-xl shadow p-5">✔ 24×7 Support</div>
-
-  </div>
+<!-- ENQUIRY CTA -->
+<section class="cta">
+  <p style="margin-bottom:16px">
+    For any travel-related services, click on enquiry below.
+  </p>
+  <a href="forms/travel-form.html">Submit Enquiry</a>
 </section>
 
-<!-- FOOTER (SAME AS TRAVEL PAGE) -->
-<footer class="bg-white border-t py-8">
-  <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
+<!-- CHATBOT -->
+<div id="chatbot">
+  <p><strong>Hi 👋</strong><br>How can we help you?</p>
+  <p style="margin-top:8px;font-size:14px">
+    • Cab Services<br>
+    • Pilgrimage Tours<br>
+    • Holiday Packages<br>
+    • Hotel Booking
+  </p>
+  <p style="margin-top:10px;font-size:13px">
+    Please click on enquiry to contact our team.
+  </p>
+</div>
 
-    <p class="text-sm text-slate-500">
-      © 2026 Yes We Care Travels<br>
-      Operated by P & R Hospitality Management Services
-    </p>
+<div class="chat-btn" onclick="toggleChat()">💬</div>
 
-    <!-- SOCIAL -->
-    <div class="flex gap-4 mt-4 md:mt-0">
-      <a href="https://www.instagram.com/yeswecaretravels/?hl=en" target="_blank">
-        <img src="images/icon-instagram.png" class="h-7 hover:scale-110 transition" alt="Instagram">
-      </a>
-      <a href="https://www.facebook.com/ywctravels/" target="_blank">
-        <img src="images/icon-facebook.png" class="h-7 hover:scale-110 transition" alt="Facebook">
-      </a>
-    </div>
-
+<!-- FOOTER -->
+<footer>
+  <div style="margin-bottom:10px">
+    <a href="https://www.instagram.com/yeswecaretravels/">
+      <img src="images/instagram-icon.png">
+    </a>
+    <a href="https://www.facebook.com/ywctravels/">
+      <img src="images/facebook-icon.png">
+    </a>
   </div>
+  © 2026 Yes We Care Travels · Operated by P & R Hospitality Management Services
 </footer>
+
+<script>
+function toggleChat(){
+  const c=document.getElementById("chatbot");
+  c.style.display=c.style.display==="block"?"none":"block";
+}
+</script>
 
 </body>
 </html>
