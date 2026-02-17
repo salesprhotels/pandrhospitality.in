@@ -31,15 +31,16 @@
     <!-- DESKTOP NAV -->
     <nav class="hidden md:flex items-center gap-6 text-sm font-semibold text-slate-700">
 
-      <!-- SERVICES DROPDOWN -->
-      <div class="relative group cursor-pointer">
-        <span class="flex items-center gap-1">
+      <!-- SERVICES DROPDOWN (ONLY ON DESKTOP) -->
+      <div class="relative group">
+        <button class="flex items-center gap-1 hover:text-indigo-700">
           ☰ Services
-        </span>
+        </button>
 
-        <div class="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border
-                    opacity-0 invisible group-hover:opacity-100 group-hover:visible
-                    transition-all duration-200 z-50">
+        <div
+          class="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border
+                 opacity-0 invisible group-hover:opacity-100 group-hover:visible
+                 transition-all duration-200 z-50">
 
           <a href="travel.html" class="block px-4 py-2 hover:bg-slate-100">Travel Services</a>
           <a href="cab-services.html" class="block px-4 py-2 hover:bg-slate-100">Cab Services</a>
@@ -54,10 +55,11 @@
       <a href="contact-travel.html" class="hover:text-indigo-700">Contact</a>
     </nav>
 
-    <!-- MOBILE MENU -->
+    <!-- MOBILE MENU (ONLY ONE MENU ICON) -->
     <details class="md:hidden relative">
       <summary class="cursor-pointer text-lg font-semibold">☰</summary>
       <div class="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border p-3 space-y-2 text-sm z-50">
+
         <a href="travel.html" class="block">Travel Services</a>
         <a href="cab-services.html" class="block">Cab Services</a>
         <a href="pilgrimage-services.html" class="block">Pilgrimage Services</a>
@@ -65,23 +67,9 @@
         <a href="hotel-booking.html" class="block">Hotel Booking</a>
         <a href="#" class="block">Bus Tickets</a>
         <a href="#" class="block">Air Tickets</a>
+
         <hr>
         <a href="contact-travel.html" class="block font-semibold">Contact</a>
-      </div>
-    </details>
-
-  </div>
-</header>
-      
-    <!-- MOBILE MENU -->
-    <details class="md:hidden">
-      <summary class="cursor-pointer font-semibold">☰ Services</summary>
-      <div class="mt-2 bg-white rounded shadow p-3 space-y-2 text-sm">
-        <a href="travel.html" class="block">Travel</a>
-        <a href="cab-services.html" class="block">Cabs</a>
-        <a href="pilgrimage-services.html" class="block">Pilgrimage</a>
-        <a href="holidays.html" class="block">Holidays</a>
-        <a href="contact-travel.html" class="block">Contact</a>
       </div>
     </details>
 
