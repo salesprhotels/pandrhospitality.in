@@ -5,240 +5,141 @@
 <title>Pilgrimage Services | Yes We Care Travels</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{
-  font-family:'Inter',sans-serif;
-  background:#f4f6fb;
-  color:#1e293b;
+/* Hero background */
+.hero-bg {
+  background-image: url("images/pilgrimage-jammu-composite.png");
+  background-size: cover;
+  background-position: center;
 }
-
-/* HEADER */
-header{
-  background:#fff;
-  border-bottom:1px solid #e5e7eb;
-}
-.header-wrap{
-  max-width:1200px;
-  margin:auto;
-  padding:12px 20px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  flex-wrap:wrap;
-}
-.logos{
-  display:flex;
-  gap:14px;
-  align-items:center;
-}
-.logos img{height:44px}
-nav a{
-  margin-left:18px;
-  text-decoration:none;
-  font-weight:600;
-  color:#334155;
-}
-nav a.active{color:#4f46e5}
-
-/* HERO */
-.hero{
-  background:#4f46e5;
-  color:#fff;
-  text-align:center;
-  padding:70px 20px;
-}
-.hero h1{
-  font-size:34px;
-  margin-bottom:10px;
-}
-.hero p{
-  max-width:800px;
-  margin:auto;
-  opacity:.95;
-}
-.hero a{
-  display:inline-block;
-  margin-top:22px;
-  padding:14px 32px;
-  background:#facc15;
-  color:#000;
-  font-weight:700;
-  border-radius:8px;
-  text-decoration:none;
-}
-
-/* SECTION */
-.section{
-  max-width:1200px;
-  margin:auto;
-  padding:60px 20px;
-}
-.section h2{
-  text-align:center;
-  margin-bottom:36px;
-}
-
-/* GRID */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:26px;
-}
-.card{
-  background:#fff;
-  border-radius:10px;
-  box-shadow:0 6px 18px rgba(0,0,0,.08);
-  overflow:hidden;
-  transition:.3s;
-}
-.card:hover{transform:translateY(-5px)}
-.card img{
-  width:100%;
-  height:190px;
-  object-fit:cover;
-}
-.card .content{
-  padding:18px;
-}
-.card h3{
-  color:#4f46e5;
-  margin-bottom:6px;
-}
-.card p{
-  font-size:14px;
-  line-height:1.6;
-}
-
-/* CTA */
-.cta{
-  background:#eef2ff;
-  text-align:center;
-  padding:50px 20px;
-}
-.cta a{
-  display:inline-block;
-  padding:14px 34px;
-  background:#4f46e5;
-  color:#fff;
-  font-weight:700;
-  border-radius:8px;
-  text-decoration:none;
-}
-
-/* FOOTER */
-footer{
-  background:#fff;
-  border-top:1px solid #e5e7eb;
-  text-align:center;
-  padding:18px;
-  font-size:14px;
-  color:#64748b;
-}
-
-/* MOBILE */
-@media(max-width:640px){
-  .hero h1{font-size:28px}
+.hero-overlay {
+  background: rgba(79,70,229,0.75);
 }
 </style>
 </head>
 
-<body>
+<body class="bg-slate-50 text-slate-800">
 
 <!-- HEADER -->
-<header>
-  <div class="header-wrap">
-    <div class="logos">
+<header class="bg-white shadow sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+
+    <!-- LOGOS -->
+    <div class="flex items-center gap-4">
       <a href="index.html">
-        <img src="images/logo-pr-hospitality.png" alt="P & R Hospitality">
+        <img src="images/logo-pr-hospitality.png" class="h-10" alt="P&R Hospitality">
       </a>
       <a href="travel.html">
-        <img src="images/logo-yes-we-care-travels-1.png" alt="Yes We Care Travels">
+        <img src="images/logo-yes-we-care-travels-1.png" class="h-10" alt="Yes We Care Travels">
       </a>
     </div>
-    <nav>
-      <a href="travel.html">Travel</a>
-      <a href="cab-services.html">Cabs</a>
-      <a href="pilgrimage-services.html" class="active">Pilgrimage</a>
-      <a href="holiday-packages.html">Holidays</a>
-      <a href="contact-travel.html">Contact</a>
-    </nav>
+
+    <!-- MENU -->
+    <div class="flex items-center gap-5">
+      <a href="contact-travel.html" class="font-semibold text-indigo-700">Contact</a>
+
+      <!-- Hamburger -->
+      <details class="relative">
+        <summary class="list-none cursor-pointer text-xl">&#9776;</summary>
+        <div class="absolute right-0 mt-2 bg-white shadow rounded w-48 text-sm">
+          <a href="cab-services.html" class="block px-4 py-2 hover:bg-slate-100">Cab Services</a>
+          <a href="pilgrimage-services.html" class="block px-4 py-2 hover:bg-slate-100">Pilgrimage Tours</a>
+          <a href="holiday-packages.html" class="block px-4 py-2 hover:bg-slate-100">Holiday Packages</a>
+          <a href="travel.html" class="block px-4 py-2 hover:bg-slate-100">Travel Home</a>
+        </div>
+      </details>
+    </div>
+
   </div>
 </header>
 
 <!-- HERO -->
-<section class="hero">
-  <h1>Pilgrimage Travel Services</h1>
-  <p>
-    Safe, comfortable and spiritually fulfilling journeys to major pilgrimage destinations across Jammu & Kashmir,
-    Himachal Pradesh and Uttarakhand.
-  </p>
-  <a href="forms/travel-form.html">Pilgrimage Enquiry</a>
-</section>
+<section class="hero-bg">
+  <div class="hero-overlay text-white text-center py-20 px-4">
+    <h1 class="text-4xl font-bold mb-4">Pilgrimage Tours & Yatra Services</h1>
+    <p class="max-w-3xl mx-auto text-lg text-indigo-100">
+      Sacred journeys made comfortable. We offer reliable pilgrimage travel
+      across Jammu, Himachal Pradesh and Uttarakhand with trusted planning,
+      clean transport and complete assistance.
+    </p>
 
-<!-- JAMMU & KASHMIR -->
-<section class="section">
-  <h2>Jammu & Kashmir Pilgrimage</h2>
-  <div class="grid">
-    <a href="forms/travel-form.html" class="card">
-      <img src="images/pilgrimage-jammu.jpg" alt="Jammu Pilgrimage">
-      <div class="content">
-        <h3>Vaishno Devi & Jammu Temples</h3>
-        <p>
-          Vaishno Devi (Jammu–Katra), Raghunath Mandir, Sudh Mahadev and other sacred sites
-          with dedicated pilgrimage taxi services.
-        </p>
-      </div>
+    <a href="forms/travel-form.html"
+       class="inline-block mt-8 bg-yellow-400 text-black font-bold px-8 py-3 rounded-lg">
+      Pilgrimage Enquiry
     </a>
   </div>
 </section>
 
-<!-- HIMACHAL -->
-<section class="section">
-  <h2>Himachal Pradesh Pilgrimage</h2>
-  <div class="grid">
-    <a href="forms/travel-form.html" class="card">
-      <img src="images/pilgrimage-himachal.jpg" alt="Himachal Pilgrimage">
-      <div class="content">
-        <h3>Shakti Peeth Yatra</h3>
-        <p>
-          Jwala Ji, Chintpurni, Baglamukhi and Naina Devi Mata with experienced local drivers
-          and comfortable travel arrangements.
+<!-- SERVICES -->
+<section class="max-w-7xl mx-auto px-4 py-14">
+
+  <h2 class="text-3xl font-bold text-center mb-10">Our Pilgrimage Services</h2>
+
+  <div class="grid md:grid-cols-3 gap-8">
+
+    <!-- Jammu -->
+    <div class="bg-white rounded-xl shadow overflow-hidden">
+      <img src="images/pilgrimage-jammu-composite.png" class="h-52 w-full object-cover">
+      <div class="p-5">
+        <h3 class="text-xl font-semibold mb-2">Jammu Pilgrimage Tours</h3>
+        <p class="text-sm text-slate-600">
+          Vaishno Devi Darbar, Raghunath Ji Mandir, Ranbireshwar Mandir,
+          Shiv Khori & surrounding sacred sites with smooth cab & stay support.
         </p>
       </div>
-    </a>
-  </div>
-</section>
+    </div>
 
-<!-- UTTARAKHAND -->
-<section class="section">
-  <h2>Uttarakhand Pilgrimage</h2>
-  <div class="grid">
-    <a href="forms/travel-form.html" class="card">
-      <img src="images/pilgrimage-uttarakhand.jpg" alt="Uttarakhand Pilgrimage">
-      <div class="content">
-        <h3>Char Dham & Holy Cities</h3>
-        <p>
+    <!-- Himachal -->
+    <div class="bg-white rounded-xl shadow overflow-hidden">
+      <img src="images/shaktipeeth-himachal-composite.png" class="h-52 w-full object-cover">
+      <div class="p-5">
+        <h3 class="text-xl font-semibold mb-2">Himachal Shaktipeeths</h3>
+        <p class="text-sm text-slate-600">
+          Jwala Ji, Chintpurni, Baglamukhi, Naina Devi & other Shaktipeeth tours
+          with safe hill travel and planned darshan routes.
+        </p>
+      </div>
+    </div>
+
+    <!-- Uttarakhand -->
+    <div class="bg-white rounded-xl shadow overflow-hidden">
+      <img src="images/char-dham-uttarakhand-composite.png" class="h-52 w-full object-cover">
+      <div class="p-5">
+        <h3 class="text-xl font-semibold mb-2">Uttarakhand Yatra</h3>
+        <p class="text-sm text-slate-600">
           Haridwar, Rishikesh, Kedarnath, Badrinath and Char Dham routes
-          with safe hill driving and reliable support.
+          with experienced drivers and complete pilgrimage assistance.
         </p>
       </div>
-    </a>
+    </div>
+
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta">
-  <h2>Planning a Pilgrimage Journey?</h2>
-  <a href="forms/travel-form.html">Send Pilgrimage Enquiry</a>
+<!-- WHY US -->
+<section class="bg-slate-100 py-12 text-center px-4">
+  <h3 class="text-2xl font-bold mb-4">Why Choose Our Pilgrimage Services?</h3>
+  <p class="max-w-3xl mx-auto text-slate-600">
+    ✔ Clean & verified cabs<br>
+    ✔ Experienced hill & pilgrimage drivers<br>
+    ✔ Trusted planning & transparent pricing<br>
+    ✔ Family-friendly & senior-friendly journeys
+  </p>
 </section>
 
-<footer>
-© 2026 P & R Hospitality Management Services | Pilgrimage Travel by Yes We Care Travels
+<!-- WHATSAPP -->
+<div class="fixed bottom-6 right-6">
+  <a href="https://wa.me/919419287356" target="_blank"
+     class="bg-green-600 text-white px-4 py-3 rounded-full shadow-lg font-semibold">
+    WhatsApp Us
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer class="text-center text-sm text-slate-500 py-6 bg-white border-t">
+  © 2026 Yes We Care Travels · Operated by P & R Hospitality Management Services
 </footer>
 
 </body>
