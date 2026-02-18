@@ -1,23 +1,18 @@
-<!DOCTYPE html>
-<html>
-<body>
-
-<button onclick="send()">Send Test</button>
-
-<script>
-function send() {
-  fetch("https://script.google.com/macros/s/AKfycbwt56dOKepPbt7LtEgLrG_UgRWuvFltOrB0TDTXDJcGfz2vNx1Ft6hZR5Xjzrsxe76G/exec", {
-    method: "POST",
-    body: new URLSearchParams({
-      name: "Krish",
-      email: "test@test.com"
-    })
+fetch("YOUR_NEW_SCRIPT_URL", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    language: "EN",
+    name: "Test User",
+    email: "test@test.com",
+    mobile: "911234567890",
+    country: "India",
+    package: "Amazon Expedition",
+    month: "March",
+    budget: "200000",
+    message: "Testing"
   })
-  .then(res => res.text())
-  .then(txt => alert(txt))
-  .catch(err => alert("Error"));
-}
-</script>
-
-</body>
-</html>
+})
+.then(r => r.text())
+.then(console.log)
+.catch(console.error);
