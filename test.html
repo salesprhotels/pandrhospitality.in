@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<button onclick="send()">Send Test</button>
+
+<script>
+function send() {
+  fetch("https://script.google.com/macros/s/AKfycbwt56dOKepPbt7LtEgLrG_UgRWuvFltOrB0TDTXDJcGfz2vNx1Ft6hZR5Xjzrsxe76G/exec", {
+    method: "POST",
+    body: new URLSearchParams({
+      name: "Krish",
+      email: "test@test.com"
+    })
+  })
+  .then(res => res.text())
+  .then(txt => alert(txt))
+  .catch(err => alert("Error"));
+}
+</script>
+
+</body>
+</html>
