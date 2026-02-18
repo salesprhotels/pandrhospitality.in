@@ -30,10 +30,10 @@ header{
 .header-wrap{
   max-width:1200px;
   margin:auto;
-  padding:8px 14px;
+  padding:10px 16px;
   display:flex;
-  justify-content:space-between;
   align-items:center;
+  justify-content:space-between;
 }
 
 /* LOGOS */
@@ -42,38 +42,30 @@ header{
   align-items:center;
   gap:8px;
 }
-
 .logos img{
-  height:36px;        /* 🔥 desktop & mobile balanced */
-  max-height:36px;
-  width:auto;
+  height:38px;
 }
 
 /* NAV */
 .nav{
   display:flex;
   align-items:center;
-  gap:16px;
+  gap:18px;
   font-weight:600;
-  font-size:15px;     /* 🔥 text readable */
 }
 
-.nav a{
-  text-decoration:none;
-  color:#222;
-}
-
-/* SERVICES DROPDOWN */
+/* SERVICES */
 .menu{
   position:relative;
   cursor:pointer;
   user-select:none;
 }
 
+/* DROPDOWN */
 .dropdown{
   display:none;
   position:absolute;
-  top:100%;
+  top:110%;
   right:0;
   background:#fff;
   border:1px solid #ccc;
@@ -81,39 +73,37 @@ header{
   min-width:220px;
   z-index:99999;
 }
-
 .dropdown a{
   display:block;
   padding:10px 14px;
-  font-size:14px;
   text-decoration:none;
   color:#222;
+  font-size:14px;
 }
-
 .dropdown a:hover{
   background:#f4f6fb;
 }
-
 .dropdown.show{
   display:block;
 }
 
-/* 📱 MOBILE FIX */
-@media(max-width:768px){
+/* CONTACT */
+.contact-link{
+  text-decoration:none;
+  color:#222;
+}
 
-  .header-wrap{
-    padding:8px 10px;
-  }
+/* MOBILE FIX */
+@media(max-width:700px){
 
   .logos img{
-    height:30px;      /* 🔥 mobile logo size fix */
-    max-height:30px;
+    height:32px;   /* 🔥 logo controlled */
   }
 
   .nav{
-    font-size:14px;
-    gap:12px;
+    gap:14px;
   }
+
 }
 
 /* HERO */
@@ -228,9 +218,10 @@ footer{
 
 <body>
 
-<!-- HEADER -->
 <header>
   <div class="header-wrap">
+
+    <!-- LOGOS -->
     <div class="logos">
       <a href="index.html">
         <img src="images/logo-pr-hospitality.png" alt="P&R Hospitality">
@@ -240,7 +231,10 @@ footer{
       </a>
     </div>
 
+    <!-- NAV -->
     <div class="nav">
+
+      <!-- SERVICES -->
       <div class="menu" onclick="toggleServices()">
         ☰ Services
         <div class="dropdown" id="servicesMenu">
@@ -252,7 +246,10 @@ footer{
           <a href="air-tickets.html">Air Tickets</a>
         </div>
       </div>
-      <a href="contact-travel.html">Contact</a>
+
+      <!-- CONTACT -->
+      <a class="contact-link" href="contact-travel.html">Contact</a>
+
     </div>
   </div>
 </header>
