@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<title>Global Expeditions & Adventure Tours | Trusted Travel Partners</title>
+
+<meta name="description" content="Explore Peru, Amazon expeditions, cultural tours and global adventures with trusted local partners. Enquire now for custom travel packages.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f4f7f5;
+  color:#1f2933;
+}
+
+/* THEME */
+:root{
+  --green:#0f3d2e;
+  --gold:#c9a24d;
+}
+
+/* HERO */
+.hero{
+  background:linear-gradient(rgba(15,61,46,.85),rgba(15,61,46,.85)),
+             url("images/global-hero.jpg") center/cover no-repeat;
+  color:#fff;
+  text-align:center;
+  padding:110px 20px;
+}
+.hero h1{
+  font-size:42px;
+  margin-bottom:12px;
+}
+.hero p{
+  max-width:900px;
+  margin:auto;
+  font-size:18px;
+}
+.hero .btn{
+  margin-top:26px;
+  display:inline-block;
+  background:var(--gold);
+  color:#000;
+  padding:14px 30px;
+  border-radius:30px;
+  font-weight:bold;
+  text-decoration:none;
+}
+
+/* SECTION */
+.section{
+  max-width:1150px;
+  margin:auto;
+  padding:60px 20px;
+}
+.section h2{
+  text-align:center;
+  margin-bottom:30px;
+  color:var(--green);
+}
+
+/* CARDS */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:24px;
+}
+.card{
+  background:#fff;
+  padding:26px;
+  border-radius:12px;
+  box-shadow:0 8px 24px rgba(0,0,0,.08);
+}
+.card h3{
+  color:var(--green);
+  margin-bottom:8px;
+}
+
+/* FORM */
+.form-box{
+  background:#fff;
+  padding:30px;
+  border-radius:16px;
+  box-shadow:0 10px 30px rgba(0,0,0,.1);
+}
+.form-box input,
+.form-box select,
+.form-box textarea{
+  width:100%;
+  padding:12px;
+  margin-bottom:14px;
+  border-radius:6px;
+  border:1px solid #ccc;
+}
+.form-box button{
+  width:100%;
+  background:var(--green);
+  color:#fff;
+  padding:14px;
+  border:none;
+  border-radius:30px;
+  font-weight:bold;
+  cursor:pointer;
+}
+.form-box button:hover{
+  background:var(--gold);
+  color:#000;
+}
+
+/* LANGUAGE */
+.lang-toggle{
+  text-align:right;
+  margin-bottom:10px;
+}
+.lang-toggle button{
+  border:none;
+  background:#e5e7eb;
+  padding:6px 12px;
+  margin-left:6px;
+  cursor:pointer;
+  border-radius:6px;
+}
+
+/* WHATSAPP */
+.whatsapp{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25D366;
+  color:#fff;
+  padding:14px 20px;
+  border-radius:30px;
+  font-weight:bold;
+  text-decoration:none;
+}
+
+/* FOOTER */
+footer{
+  background:#0f3d2e;
+  color:#d1d5db;
+  text-align:center;
+  padding:24px;
+  font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <h1 id="t1">Global Expeditions & Adventure Tours</h1>
+  <p id="t2">
+    Discover Peru, Amazon expeditions, cultural journeys and custom global adventures
+    through trusted local partners.
+  </p>
+  <a href="#lead" class="btn" id="t3">Plan Your Journey</a>
+</section>
+
+<!-- TRUST -->
+<section class="section">
+  <h2 id="t4">Travel With Confidence</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Local Expertise</h3>
+      <p>We work with verified local operators and licensed tour providers.</p>
+    </div>
+    <div class="card">
+      <h3>Global Travellers</h3>
+      <p>Packages designed for travellers from India, Europe, Americas & worldwide.</p>
+    </div>
+    <div class="card">
+      <h3>Custom Experiences</h3>
+      <p>Flexible itineraries beyond seasonal tourism.</p>
+    </div>
+  </div>
+</section>
+
+<!-- LEAD FORM -->
+<section class="section" id="lead">
+  <h2 id="t5">Request Detailed Itinerary & Pricing</h2>
+
+  <div class="form-box">
+
+    <div class="lang-toggle">
+      <button onclick="setLang('en')">English</button>
+      <button onclick="setLang('es')">Español</button>
+    </div>
+
+    <form method="POST"
+      action="YOUR_GOOGLE_APPS_SCRIPT_URL">
+
+      <input type="hidden" name="language" id="lang" value="EN">
+      <input type="hidden" name="source" value="Global Landing Page">
+
+      <input type="text" name="name" placeholder="Full Name" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="text" name="mobile" placeholder="Mobile (with country code)" required>
+      <input type="text" name="country" placeholder="Country">
+
+      <select name="package">
+        <option>Amazon Expedition</option>
+        <option>Peru Cultural Tour</option>
+        <option>Adventure & Trekking</option>
+        <option>Custom Package</option>
+      </select>
+
+      <select name="people">
+        <option>1–2 People</option>
+        <option>3–5 People</option>
+        <option>6+ Group</option>
+      </select>
+
+      <textarea name="message" placeholder="Tell us your travel idea"></textarea>
+
+      <button type="submit" onclick="markWhatsapp()">Submit Enquiry</button>
+    </form>
+
+  </div>
+</section>
+
+<!-- WHATSAPP -->
+<a class="whatsapp"
+   href="https://wa.me/51965232699"
+   target="_blank"
+   onclick="markWhatsapp()">
+   WhatsApp Operator
+</a>
+
+<!-- FOOTER -->
+<footer>
+  We act as a travel facilitator and marketing partner. All services are provided by licensed local operators.
+</footer>
+
+<script>
+function setLang(l){
+  document.getElementById("lang").value = l.toUpperCase();
+  if(l==="es"){
+    document.getElementById("t1").innerText="Expediciones Globales y Aventuras";
+    document.getElementById("t2").innerText="Descubra Perú, la Amazonía y experiencias culturales con operadores locales confiables.";
+    document.getElementById("t3").innerText="Planifica tu viaje";
+    document.getElementById("t4").innerText="Viaja con confianza";
+    document.getElementById("t5").innerText="Solicitar itinerario y precios";
+  }else{
+    location.reload();
+  }
+}
+
+function markWhatsapp(){
+  // handled in Apps Script (YES)
+}
+</script>
+
+</body>
+</html>
