@@ -1,154 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Global Travel Enquiry</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Global Travel Enquiry | Yes We Care Travels</title>
 
-<style>
-body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:#f4f6fb;
-  color:#222;
-}
-.container{
-  max-width:720px;
-  margin:40px auto;
-  background:#fff;
-  padding:30px;
-  border-radius:8px;
-  box-shadow:0 6px 18px rgba(0,0,0,.1);
-}
-h1{text-align:center;margin-bottom:20px}
-label{display:block;margin-top:14px;font-weight:600}
-input,select,textarea{
-  width:100%;
-  padding:10px;
-  margin-top:6px;
-  border:1px solid #ccc;
-  border-radius:4px;
-}
-button{
-  margin-top:22px;
-  width:100%;
-  background:#2563eb;
-  color:#fff;
-  padding:14px;
-  border:none;
-  border-radius:6px;
-  font-size:16px;
-  cursor:pointer;
-}
-.note{
-  font-size:13px;
-  margin-top:18px;
-  color:#555;
-}
-</style>
+  <!-- SEO -->
+  <meta name="description" content="Global Travel Enquiry for international expeditions and experiences. Operated by Yes We Care Travels India with verified global partners.">
+  <meta name="keywords" content="Global Travel Enquiry, International Expeditions, Amazon Expedition, Peru Travel, Yes We Care Travels">
+  <meta name="robots" content="index, follow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: radial-gradient(circle at top, #0b1c2d, #050a14);
+      color:#fff;
+    }
+
+    .container{
+      max-width:820px;
+      margin:40px auto;
+      padding:30px;
+    }
+
+    .header{
+      text-align:center;
+      margin-bottom:25px;
+    }
+
+    .header h1{
+      color:#f5c400;
+      margin-bottom:8px;
+    }
+
+    .header p{
+      font-size:14px;
+      color:#cfd8e3;
+    }
+
+    .notice{
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.1);
+      padding:12px;
+      border-radius:8px;
+      font-size:13px;
+      margin-bottom:20px;
+      color:#d1d9e6;
+    }
+
+    label{
+      display:block;
+      margin-top:14px;
+      font-size:13px;
+      color:#dfe6ef;
+    }
+
+    input, select, textarea{
+      width:100%;
+      padding:12px;
+      margin-top:6px;
+      background:#050a14;
+      border:1px solid #1c2a3a;
+      border-radius:8px;
+      color:#fff;
+      font-size:14px;
+    }
+
+    textarea{resize:vertical;}
+
+    .row{
+      display:flex;
+      gap:12px;
+    }
+    .row > div{flex:1;}
+
+    .btn{
+      margin-top:22px;
+      width:100%;
+      padding:14px;
+      background:#f5c400;
+      color:#000;
+      font-weight:bold;
+      border:none;
+      border-radius:10px;
+      font-size:16px;
+      cursor:pointer;
+    }
+
+    .btn:hover{opacity:0.9;}
+
+    .footer{
+      text-align:center;
+      font-size:12px;
+      margin-top:25px;
+      color:#aab6c5;
+    }
+
+    @media(max-width:600px){
+      .row{flex-direction:column;}
+    }
+  </style>
 </head>
 
 <body>
 
 <div class="container">
-  <h1>Global Travel Enquiry</h1>
 
-  <!-- 🔴 DO NOT put action or method -->
-  <form id="enquiryForm">
+  <!-- HEADER -->
+  <div class="header">
+    <h1>🌍 Global Travel Enquiry</h1>
+    <p>International Expeditions & Experiences Worldwide</p>
+  </div>
 
-    <input type="hidden" name="SourcePage" value="Global Expeditions Landing">
-    <input type="hidden" name="WhatsAppRedirected" value="NO">
+  <!-- DISCLAIMER -->
+  <div class="notice">
+    This enquiry page is operated by <b>Yes We Care Travels (India)</b> in association with verified international destination partners.
+    We act only as a travel facilitator and promoter. All services are delivered by the respective local operators.
+  </div>
 
-    <label>Language</label>
-    <select name="Language" required>
+  <!-- FORM -->
+  <form id="globalEnquiryForm">
+
+    <label>Language / Idioma</label>
+    <select name="language">
       <option value="EN">English</option>
-      <option value="ES">Spanish</option>
+      <option value="ES">Español</option>
     </select>
 
     <label>Full Name</label>
-    <input type="text" name="FullName" required>
+    <input type="text" name="full_name" required>
 
     <label>Email</label>
-    <input type="email" name="Email" required>
+    <input type="email" name="email">
 
     <label>Mobile (with country code)</label>
-    <input type="text" name="Mobile" placeholder="919XXXXXXXXX" required>
+    <input type="text" name="mobile" required>
 
     <label>Country</label>
-    <input type="text" name="Country" required>
+    <input type="text" name="country">
 
     <label>Interested Package</label>
-    <input type="text" name="InterestedPackage" placeholder="Amazon Expedition">
+    <select name="package">
+      <option>Amazon Expedition</option>
+      <option>Peru Cultural Tour</option>
+      <option>Amazon Wildlife Experience</option>
+    </select>
 
-    <label>Travel Month</label>
-    <input type="text" name="TravelMonth">
+    <div class="row">
+      <div>
+        <label>Travel Month</label>
+        <input type="text" name="travel_month">
+      </div>
+      <div>
+        <label>Budget Range</label>
+        <input type="text" name="budget">
+      </div>
+    </div>
 
-    <label>Travel Start Date</label>
-    <input type="date" name="StartDate">
+    <div class="row">
+      <div>
+        <label>Adults</label>
+        <input type="number" name="adults" value="1">
+      </div>
+      <div>
+        <label>Children</label>
+        <input type="number" name="children" value="0">
+      </div>
+    </div>
 
-    <label>Travel End Date</label>
-    <input type="date" name="EndDate">
+    <label>Message / Requirements</label>
+    <textarea name="message" rows="4"></textarea>
 
-    <label>Adults</label>
-    <input type="number" name="Adults" min="0">
-
-    <label>Children</label>
-    <input type="number" name="Children" min="0">
-
-    <label>Budget Range</label>
-    <input type="text" name="Budget">
-
-    <label>Message</label>
-    <textarea name="Message" rows="4"></textarea>
-
-    <button type="submit">Submit Enquiry</button>
+    <button type="submit" class="btn">Submit Enquiry</button>
   </form>
 
-  <div class="note">
-    This enquiry is shared with our international expedition partners.
-    Final bookings and payments are handled directly by the operator.
+  <div class="footer">
+    Partner: Amazon Andes Expeditions · Amazon Queen Lodge<br>
+    © Yes We Care Travels India
   </div>
+
 </div>
 
+<!-- JS (NO THEME CHANGE, ONLY LOGIC) -->
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbyaGcZCleMq5Bf-pp7DoKcHHhycScmjspUeZuTgyfMUjZr0QS4WA2xOW-ZOvn1MM6nK/exec";
-const partnerWhatsApp = "51965232699"; // Peru partner
+const SCRIPT_URL = "PASTE_YOUR_APPS_SCRIPT_WEBAPP_URL_HERE";
+const WHATSAPP_PARTNER = "https://wa.me/51965232699";
 
-document.getElementById("enquiryForm").addEventListener("submit", function(e){
+document.getElementById("globalEnquiryForm").addEventListener("submit", function(e){
   e.preventDefault();
 
-  const form = e.target;
-  const formData = new FormData(form);
+  const formData = new FormData(this);
+  const data = {};
+  formData.forEach((v,k)=>data[k]=v);
 
-  fetch(scriptURL, {
-    method: "POST",
-    body: formData
+  fetch(SCRIPT_URL,{
+    method:"POST",
+    body:JSON.stringify(data)
   })
-  .then(res => res.text())
-  .then(() => {
-
-    // ✅ Mark redirected
-    formData.set("WhatsAppRedirected","YES");
-
-    const name = formData.get("FullName");
-    const packageName = formData.get("InterestedPackage");
-    const country = formData.get("Country");
-
-    const message =
-      `New Global Travel Enquiry\n\n` +
-      `Name: ${name}\n` +
-      `Country: ${country}\n` +
-      `Package: ${packageName}`;
-
-    const waURL = `https://wa.me/${partnerWhatsApp}?text=${encodeURIComponent(message)}`;
-
-    alert("Your enquiry has been submitted successfully.");
-
-    window.open(waURL, "_blank");
-    form.reset();
+  .then(res=>res.json())
+  .then(resp=>{
+    if(resp.status==="success"){
+      window.open(WHATSAPP_PARTNER,"_blank");
+      alert("Enquiry submitted successfully");
+      this.reset();
+    }else{
+      alert("Submission failed. Try again.");
+    }
   })
-  .catch(err => {
-    alert("Error submitting form. Please try again.");
-    console.error(err);
+  .catch(()=>{
+    alert("Technical error. Please try again later.");
   });
 });
 </script>
