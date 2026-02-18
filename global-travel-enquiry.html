@@ -6,93 +6,120 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+:root{
+  --bg1:#0f2a44;
+  --bg2:#1e4d7b;
+  --card:#ffffff;
+  --text:#0f172a;
+  --muted:#475569;
+  --accent:#f5b400;
+}
+
 *{box-sizing:border-box;margin:0;padding:0}
+
 body{
   font-family:Arial,Helvetica,sans-serif;
-  background:radial-gradient(circle at top,#1e3a5f 0%,#0f1f33 45%,#0b1624 100%);
-  color:#fff;
+  background:linear-gradient(135deg,var(--bg1),var(--bg2));
+  color:var(--text);
 }
+
 .container{
   max-width:820px;
-  margin:30px auto;
-  padding:20px;
+  margin:40px auto;
+  background:var(--card);
+  border-radius:14px;
+  padding:28px;
+  box-shadow:0 20px 50px rgba(0,0,0,.25);
 }
+
 .header{
   text-align:center;
-  margin-bottom:20px;
+  margin-bottom:18px;
 }
 .header h1{
-  color:#facc15;
+  font-size:28px;
   margin-bottom:6px;
 }
 .header p{
-  color:#d1d5db;
+  color:var(--muted);
   font-size:14px;
 }
-.disclaimer{
-  background:rgba(255,255,255,.08);
-  border:1px solid rgba(255,255,255,.15);
-  border-radius:12px;
+
+.partner{
+  background:#f1f5f9;
   padding:14px;
-  font-size:13px;
-  margin:20px 0;
-  color:#e5e7eb;
-}
-.form-box{
-  background:rgba(255,255,255,.06);
-  backdrop-filter:blur(14px);
-  border-radius:16px;
-  padding:22px;
-  box-shadow:0 20px 40px rgba(0,0,0,.35);
-}
-label{
-  font-size:14px;
-  margin:14px 0 6px;
-  display:block;
-}
-input,select,textarea{
-  width:100%;
-  padding:12px;
   border-radius:10px;
-  border:none;
-  background:rgba(255,255,255,.92);
-  color:#0b1624;
+  font-size:13px;
+  color:#334155;
+  margin-bottom:20px;
 }
-textarea{resize:vertical;min-height:90px}
-.row{
+
+.lang-switch{
+  display:flex;
+  gap:10px;
+  margin-bottom:18px;
+}
+.lang-switch button{
+  flex:1;
+  padding:10px;
+  border-radius:8px;
+  border:1px solid #cbd5e1;
+  background:#fff;
+  cursor:pointer;
+  font-weight:bold;
+}
+.lang-switch button.active{
+  background:var(--bg2);
+  color:#fff;
+  border-color:var(--bg2);
+}
+
+.form-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:14px;
 }
-@media(max-width:600px){
-  .row{grid-template-columns:1fr}
-}
-button{
-  margin-top:20px;
-  width:100%;
-  padding:14px;
-  font-size:16px;
-  font-weight:bold;
-  background:#facc15;
-  color:#000;
-  border:none;
-  border-radius:12px;
-  cursor:pointer;
-}
-.lang-switch{
+.form-group{
   display:flex;
-  gap:10px;
-  margin-bottom:20px;
+  flex-direction:column;
 }
-.lang-switch button{
-  flex:1;
-  background:#334155;
-  color:#fff;
+.form-group.full{
+  grid-column:1/-1;
+}
+
+label{
+  font-size:13px;
+  margin-bottom:4px;
+}
+input,select,textarea{
+  padding:11px;
+  border-radius:8px;
+  border:1px solid #cbd5e1;
   font-size:14px;
 }
-.lang-switch button.active{
-  background:#facc15;
-  color:#000;
+textarea{resize:vertical;min-height:80px}
+
+.submit{
+  margin-top:20px;
+  background:var(--accent);
+  border:none;
+  padding:14px;
+  width:100%;
+  font-size:16px;
+  font-weight:bold;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+.footer-note{
+  margin-top:16px;
+  font-size:12px;
+  color:#475569;
+  text-align:center;
+}
+
+@media(max-width:640px){
+  .form-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -106,133 +133,174 @@ button{
     <p id="subtitle">International Expeditions & Experiences Worldwide</p>
   </div>
 
-  <div class="disclaimer" id="disclaimer">
-    This enquiry page is operated by <b>Yes We Care Travels (India)</b> in association with verified international partners.
-    We act only as a travel promoter and facilitator.
+  <div class="partner" id="partnerText">
+    This enquiry page is operated by <b>Yes We Care Travels (India)</b> in association with
+    <b>Amazon Andes Expeditions</b> & <b>Amazon Queen Lodge (Peru)</b>.
+    We act only as a travel promoter and facilitator. All services are delivered by the
+    respective local operators.
   </div>
 
-  <div class="form-box">
+  <div class="lang-switch">
+    <button onclick="setLang('en')" id="btnEn" class="active">English</button>
+    <button onclick="setLang('es')" id="btnEs">Español</button>
+  </div>
 
-    <div class="lang-switch">
-      <button type="button" onclick="setLang('en')" id="btn-en" class="active">English</button>
-      <button type="button" onclick="setLang('es')" id="btn-es">Español</button>
+  <form id="enquiryForm">
+
+    <div class="form-grid">
+
+      <div class="form-group full">
+        <label id="l_name">Full Name</label>
+        <input name="name" required>
+      </div>
+
+      <div class="form-group">
+        <label id="l_email">Email</label>
+        <input type="email" name="email" required>
+      </div>
+
+      <div class="form-group">
+        <label id="l_mobile">Mobile (with country code)</label>
+        <input name="mobile" required>
+      </div>
+
+      <div class="form-group">
+        <label id="l_country">Country</label>
+        <input name="country">
+      </div>
+
+      <div class="form-group">
+        <label id="l_package">Interested Package</label>
+        <select name="package">
+          <option>Amazon Expedition</option>
+          <option>Amazon Rainforest</option>
+          <option>Peru Cultural Tour</option>
+          <option>Custom Expedition</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label id="l_month">Travel Month</label>
+        <input name="month">
+      </div>
+
+      <div class="form-group">
+        <label id="l_start">Travel Start Date</label>
+        <input type="date" name="start">
+      </div>
+
+      <div class="form-group">
+        <label id="l_end">Travel End Date</label>
+        <input type="date" name="end">
+      </div>
+
+      <div class="form-group">
+        <label id="l_adults">Adults</label>
+        <input type="number" name="adults" value="1">
+      </div>
+
+      <div class="form-group">
+        <label id="l_children">Children</label>
+        <input type="number" name="children" value="0">
+      </div>
+
+      <div class="form-group full">
+        <label id="l_budget">Budget Range (USD)</label>
+        <input name="budget">
+      </div>
+
+      <div class="form-group full">
+        <label id="l_message">Message / Requirements</label>
+        <textarea name="message"></textarea>
+      </div>
+
     </div>
 
-    <form id="enquiryForm">
+    <button class="submit" id="submitBtn">Submit Enquiry</button>
 
-      <input type="hidden" name="language" id="language" value="EN">
-      <input type="hidden" name="sourcePage" value="Global Travel Enquiry">
-      <input type="hidden" name="whatsappRedirected" id="waFlag" value="NO">
+  </form>
 
-      <label id="l_name">Full Name</label>
-      <input name="name" id="f_name" placeholder="Enter your full name" required>
-
-      <label id="l_email">Email</label>
-      <input name="email" id="f_email" placeholder="Enter your email" required>
-
-      <label id="l_mobile">Mobile (with country code)</label>
-      <input name="mobile" id="f_mobile" placeholder="+91XXXXXXXXXX" required>
-
-      <label id="l_country">Country</label>
-      <input name="country" id="f_country" placeholder="Your country">
-
-      <label id="l_package">Interested Package</label>
-      <select name="package">
-        <option>Amazon Expedition</option>
-        <option>Peru Cultural Tour</option>
-        <option>Custom International Trip</option>
-      </select>
-
-      <div class="row">
-        <div>
-          <label id="l_month">Travel Month</label>
-          <input name="travelMonth" placeholder="March 2026">
-        </div>
-        <div>
-          <label id="l_budget">Budget Range</label>
-          <input name="budget" placeholder="USD 3000 - 5000">
-        </div>
-      </div>
-
-      <div class="row">
-        <div>
-          <label id="l_adults">Adults</label>
-          <input name="adults" type="number" value="1">
-        </div>
-        <div>
-          <label id="l_children">Children</label>
-          <input name="children" type="number" value="0">
-        </div>
-      </div>
-
-      <label id="l_message">Message / Requirements</label>
-      <textarea name="message" placeholder="Tell us your requirements"></textarea>
-
-      <button type="submit" id="submitBtn">Submit Enquiry</button>
-
-    </form>
+  <div class="footer-note" id="footerNote">
+    Leads are securely forwarded to our international partner for response.
   </div>
+
 </div>
 
 <script>
-const text = {
+const t = {
   en:{
     title:"🌍 Global Travel Enquiry",
     subtitle:"International Expeditions & Experiences Worldwide",
-    disclaimer:"This enquiry page is operated by Yes We Care Travels (India) in association with verified international partners. We act only as a travel promoter and facilitator.",
-    l_name:"Full Name",
-    l_email:"Email",
-    l_mobile:"Mobile (with country code)",
-    l_country:"Country",
-    l_package:"Interested Package",
-    l_month:"Travel Month",
-    l_budget:"Budget Range",
-    l_adults:"Adults",
-    l_children:"Children",
-    l_message:"Message / Requirements",
-    submit:"Submit Enquiry"
+    name:"Full Name",
+    email:"Email",
+    mobile:"Mobile (with country code)",
+    country:"Country",
+    package:"Interested Package",
+    month:"Travel Month",
+    start:"Travel Start Date",
+    end:"Travel End Date",
+    adults:"Adults",
+    children:"Children",
+    budget:"Budget Range (USD)",
+    message:"Message / Requirements",
+    submit:"Submit Enquiry",
+    footer:"Leads are securely forwarded to our international partner for response."
   },
   es:{
     title:"🌍 Consulta de Viaje Global",
     subtitle:"Expediciones y experiencias internacionales en todo el mundo",
-    disclaimer:"Esta página de consulta es operada por Yes We Care Travels (India) en asociación con socios internacionales verificados. Actuamos únicamente como promotores y facilitadores de viajes.",
-    l_name:"Nombre Completo",
-    l_email:"Correo Electrónico",
-    l_mobile:"Móvil (con código de país)",
-    l_country:"País",
-    l_package:"Paquete de Interés",
-    l_month:"Mes de Viaje",
-    l_budget:"Rango de Presupuesto",
-    l_adults:"Adultos",
-    l_children:"Niños",
-    l_message:"Mensaje / Requisitos",
-    submit:"Enviar Consulta"
+    name:"Nombre Completo",
+    email:"Correo Electrónico",
+    mobile:"Móvil (con código de país)",
+    country:"País",
+    package:"Paquete de Interés",
+    month:"Mes de Viaje",
+    start:"Fecha de Inicio",
+    end:"Fecha de Finalización",
+    adults:"Adultos",
+    children:"Niños",
+    budget:"Presupuesto (USD)",
+    message:"Mensaje / Requisitos",
+    submit:"Enviar Consulta",
+    footer:"Las consultas se envían de forma segura a nuestro socio internacional."
   }
 };
 
-function setLang(lang){
-  document.getElementById("language").value = lang.toUpperCase();
-  document.getElementById("btn-en").classList.remove("active");
-  document.getElementById("btn-es").classList.remove("active");
-  document.getElementById("btn-"+lang).classList.add("active");
+function setLang(l){
+  document.getElementById("btnEn").classList.toggle("active",l==="en");
+  document.getElementById("btnEs").classList.toggle("active",l==="es");
 
-  for(const k in text[lang]){
-    if(document.getElementById(k))
-      document.getElementById(k).innerText=text[lang][k];
-  }
-  document.getElementById("submitBtn").innerText=text[lang].submit;
+  document.getElementById("title").innerText=t[l].title;
+  document.getElementById("subtitle").innerText=t[l].subtitle;
+
+  l_name.innerText=t[l].name;
+  l_email.innerText=t[l].email;
+  l_mobile.innerText=t[l].mobile;
+  l_country.innerText=t[l].country;
+  l_package.innerText=t[l].package;
+  l_month.innerText=t[l].month;
+  l_start.innerText=t[l].start;
+  l_end.innerText=t[l].end;
+  l_adults.innerText=t[l].adults;
+  l_children.innerText=t[l].children;
+  l_budget.innerText=t[l].budget;
+  l_message.innerText=t[l].message;
+  submitBtn.innerText=t[l].submit;
+  footerNote.innerText=t[l].footer;
+
+  document.getElementById("enquiryForm").dataset.lang=l;
 }
 
-document.getElementById("enquiryForm").addEventListener("submit",function(e){
+setLang("en");
+
+document.getElementById("enquiryForm").addEventListener("submit",e=>{
   e.preventDefault();
-  fetch("YOUR_APPS_SCRIPT_URL_HERE",{
+
+  fetch("YOUR_GOOGLE_APPS_SCRIPT_WEBAPP_URL",{
     method:"POST",
-    body:new FormData(this)
+    body:new FormData(e.target)
   }).then(()=>{
-    document.getElementById("waFlag").value="YES";
-    window.open("https://wa.me/51965232699","_blank");
-    alert("Thank you! Our team will contact you shortly.");
-    this.reset();
+    window.location.href="https://wa.me/51965232699";
   });
 });
 </script>
