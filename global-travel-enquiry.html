@@ -6,120 +6,46 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-:root{
-  --bg1:#0f2a44;
-  --bg2:#1e4d7b;
-  --card:#ffffff;
-  --text:#0f172a;
-  --muted:#475569;
-  --accent:#f5b400;
-}
-
-*{box-sizing:border-box;margin:0;padding:0}
-
 body{
   font-family:Arial,Helvetica,sans-serif;
-  background:linear-gradient(135deg,var(--bg1),var(--bg2));
-  color:var(--text);
+  background:#f5f7fb;
+  color:#1f2937;
 }
-
 .container{
-  max-width:820px;
-  margin:40px auto;
-  background:var(--card);
-  border-radius:14px;
-  padding:28px;
-  box-shadow:0 20px 50px rgba(0,0,0,.25);
-}
-
-.header{
-  text-align:center;
-  margin-bottom:18px;
-}
-.header h1{
-  font-size:28px;
-  margin-bottom:6px;
-}
-.header p{
-  color:var(--muted);
-  font-size:14px;
-}
-
-.partner{
-  background:#f1f5f9;
-  padding:14px;
-  border-radius:10px;
-  font-size:13px;
-  color:#334155;
-  margin-bottom:20px;
-}
-
-.lang-switch{
-  display:flex;
-  gap:10px;
-  margin-bottom:18px;
-}
-.lang-switch button{
-  flex:1;
-  padding:10px;
-  border-radius:8px;
-  border:1px solid #cbd5e1;
+  max-width:700px;
+  margin:50px auto;
   background:#fff;
-  cursor:pointer;
-  font-weight:bold;
-}
-.lang-switch button.active{
-  background:var(--bg2);
-  color:#fff;
-  border-color:var(--bg2);
-}
-
-.form-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
-}
-.form-group{
-  display:flex;
-  flex-direction:column;
-}
-.form-group.full{
-  grid-column:1/-1;
-}
-
-label{
-  font-size:13px;
-  margin-bottom:4px;
-}
-input,select,textarea{
-  padding:11px;
-  border-radius:8px;
-  border:1px solid #cbd5e1;
-  font-size:14px;
-}
-textarea{resize:vertical;min-height:80px}
-
-.submit{
-  margin-top:20px;
-  background:var(--accent);
-  border:none;
-  padding:14px;
-  width:100%;
-  font-size:16px;
-  font-weight:bold;
+  padding:30px;
   border-radius:10px;
+  box-shadow:0 6px 20px rgba(0,0,0,.1);
+}
+h1{text-align:center;margin-bottom:10px}
+p{text-align:center;color:#555;margin-bottom:25px}
+label{font-weight:600;margin-top:12px;display:block}
+input,select,textarea{
+  width:100%;
+  padding:10px;
+  margin-top:6px;
+  border:1px solid #ccc;
+  border-radius:6px;
+}
+button{
+  margin-top:20px;
+  width:100%;
+  padding:14px;
+  background:#2563eb;
+  color:#fff;
+  border:none;
+  border-radius:6px;
+  font-size:16px;
   cursor:pointer;
 }
-
-.footer-note{
-  margin-top:16px;
-  font-size:12px;
-  color:#475569;
+button:disabled{background:#94a3b8}
+.note{
+  font-size:13px;
+  color:#555;
+  margin-top:18px;
   text-align:center;
-}
-
-@media(max-width:640px){
-  .form-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -127,180 +53,96 @@ textarea{resize:vertical;min-height:80px}
 <body>
 
 <div class="container">
-
-  <div class="header">
-    <h1 id="title">🌍 Global Travel Enquiry</h1>
-    <p id="subtitle">International Expeditions & Experiences Worldwide</p>
-  </div>
-
-  <div class="partner" id="partnerText">
-    This enquiry page is operated by <b>Yes We Care Travels (India)</b> in association with
-    <b>Amazon Andes Expeditions</b> & <b>Amazon Queen Lodge (Peru)</b>.
-    We act only as a travel promoter and facilitator. All services are delivered by the
-    respective local operators.
-  </div>
-
-  <div class="lang-switch">
-    <button onclick="setLang('en')" id="btnEn" class="active">English</button>
-    <button onclick="setLang('es')" id="btnEs">Español</button>
-  </div>
+  <h1>Global Travel Enquiry</h1>
+  <p>International expeditions & adventure travel promotion</p>
 
   <form id="enquiryForm">
+    <label>Full Name</label>
+    <input type="text" name="name" required>
 
-    <div class="form-grid">
+    <label>Email</label>
+    <input type="email" name="email" required>
 
-      <div class="form-group full">
-        <label id="l_name">Full Name</label>
-        <input name="name" required>
-      </div>
+    <label>Mobile (with country code)</label>
+    <input type="tel" name="mobile" required>
 
-      <div class="form-group">
-        <label id="l_email">Email</label>
-        <input type="email" name="email" required>
-      </div>
+    <label>Country</label>
+    <input type="text" name="country" required>
 
-      <div class="form-group">
-        <label id="l_mobile">Mobile (with country code)</label>
-        <input name="mobile" required>
-      </div>
+    <label>Interested Package</label>
+    <select name="package" required>
+      <option value="">Select</option>
+      <option>Amazon Expedition – Peru</option>
+      <option>Rainforest & Wildlife Tour</option>
+      <option>Cultural & Nature Journey</option>
+      <option>Custom Expedition</option>
+    </select>
 
-      <div class="form-group">
-        <label id="l_country">Country</label>
-        <input name="country">
-      </div>
+    <label>Travel Month</label>
+    <input type="month" name="travel_month">
 
-      <div class="form-group">
-        <label id="l_package">Interested Package</label>
-        <select name="package">
-          <option>Amazon Expedition</option>
-          <option>Amazon Rainforest</option>
-          <option>Peru Cultural Tour</option>
-          <option>Custom Expedition</option>
-        </select>
-      </div>
+    <label>Adults</label>
+    <input type="number" name="adults" min="1">
 
-      <div class="form-group">
-        <label id="l_month">Travel Month</label>
-        <input name="month">
-      </div>
+    <label>Children</label>
+    <input type="number" name="children" min="0">
 
-      <div class="form-group">
-        <label id="l_start">Travel Start Date</label>
-        <input type="date" name="start">
-      </div>
+    <label>Budget Range (USD)</label>
+    <input type="text" name="budget">
 
-      <div class="form-group">
-        <label id="l_end">Travel End Date</label>
-        <input type="date" name="end">
-      </div>
+    <label>Message</label>
+    <textarea name="message" rows="4"></textarea>
 
-      <div class="form-group">
-        <label id="l_adults">Adults</label>
-        <input type="number" name="adults" value="1">
-      </div>
-
-      <div class="form-group">
-        <label id="l_children">Children</label>
-        <input type="number" name="children" value="0">
-      </div>
-
-      <div class="form-group full">
-        <label id="l_budget">Budget Range (USD)</label>
-        <input name="budget">
-      </div>
-
-      <div class="form-group full">
-        <label id="l_message">Message / Requirements</label>
-        <textarea name="message"></textarea>
-      </div>
-
-    </div>
-
-    <button class="submit" id="submitBtn">Submit Enquiry</button>
-
+    <button type="submit" id="submitBtn">Submit Enquiry</button>
   </form>
 
-  <div class="footer-note" id="footerNote">
-    Leads are securely forwarded to our international partner for response.
+  <div class="note">
+    * We act only as a promotion partner. Final services are handled directly by expedition operators.
   </div>
-
 </div>
 
 <script>
-const t = {
-  en:{
-    title:"🌍 Global Travel Enquiry",
-    subtitle:"International Expeditions & Experiences Worldwide",
-    name:"Full Name",
-    email:"Email",
-    mobile:"Mobile (with country code)",
-    country:"Country",
-    package:"Interested Package",
-    month:"Travel Month",
-    start:"Travel Start Date",
-    end:"Travel End Date",
-    adults:"Adults",
-    children:"Children",
-    budget:"Budget Range (USD)",
-    message:"Message / Requirements",
-    submit:"Submit Enquiry",
-    footer:"Leads are securely forwarded to our international partner for response."
-  },
-  es:{
-    title:"🌍 Consulta de Viaje Global",
-    subtitle:"Expediciones y experiencias internacionales en todo el mundo",
-    name:"Nombre Completo",
-    email:"Correo Electrónico",
-    mobile:"Móvil (con código de país)",
-    country:"País",
-    package:"Paquete de Interés",
-    month:"Mes de Viaje",
-    start:"Fecha de Inicio",
-    end:"Fecha de Finalización",
-    adults:"Adultos",
-    children:"Niños",
-    budget:"Presupuesto (USD)",
-    message:"Mensaje / Requisitos",
-    submit:"Enviar Consulta",
-    footer:"Las consultas se envían de forma segura a nuestro socio internacional."
-  }
-};
+const scriptURL = "https://script.google.com/macros/s/AKfycbyaGcZCleMq5Bf-pp7DoKcHHhycScmjspUeZuTgyfMUjZr0QS4WA2xOW-ZOvn1MM6nK/exec";
+const partnerWhatsApp = "51965232699"; // Peru partner
 
-function setLang(l){
-  document.getElementById("btnEn").classList.toggle("active",l==="en");
-  document.getElementById("btnEs").classList.toggle("active",l==="es");
-
-  document.getElementById("title").innerText=t[l].title;
-  document.getElementById("subtitle").innerText=t[l].subtitle;
-
-  l_name.innerText=t[l].name;
-  l_email.innerText=t[l].email;
-  l_mobile.innerText=t[l].mobile;
-  l_country.innerText=t[l].country;
-  l_package.innerText=t[l].package;
-  l_month.innerText=t[l].month;
-  l_start.innerText=t[l].start;
-  l_end.innerText=t[l].end;
-  l_adults.innerText=t[l].adults;
-  l_children.innerText=t[l].children;
-  l_budget.innerText=t[l].budget;
-  l_message.innerText=t[l].message;
-  submitBtn.innerText=t[l].submit;
-  footerNote.innerText=t[l].footer;
-
-  document.getElementById("enquiryForm").dataset.lang=l;
-}
-
-setLang("en");
-
-document.getElementById("enquiryForm").addEventListener("submit",e=>{
+document.getElementById("enquiryForm").addEventListener("submit", function(e){
   e.preventDefault();
 
-  fetch("YOUR_GOOGLE_APPS_SCRIPT_WEBAPP_URL",{
+  const btn = document.getElementById("submitBtn");
+  btn.disabled = true;
+  btn.innerText = "Submitting...";
+
+  const formData = new FormData(this);
+  formData.append("source_page","Global Expeditions Landing");
+  formData.append("whatsapp_redirected","YES");
+
+  fetch(scriptURL,{
     method:"POST",
-    body:new FormData(e.target)
-  }).then(()=>{
-    window.location.href="https://wa.me/51965232699";
+    body:formData
+  })
+  .then(res => res.json())
+  .then(data => {
+    if(data.status === "success"){
+      const msg =
+        "New Global Travel Enquiry%0A" +
+        "Name: " + formData.get("name") + "%0A" +
+        "Country: " + formData.get("country") + "%0A" +
+        "Package: " + formData.get("package") + "%0A" +
+        "Email: " + formData.get("email") + "%0A" +
+        "Mobile: " + formData.get("mobile");
+
+      window.location.href =
+        "https://wa.me/" + partnerWhatsApp + "?text=" + msg;
+    }else{
+      alert("Something went wrong. Please try again.");
+      btn.disabled = false;
+      btn.innerText = "Submit Enquiry";
+    }
+  })
+  .catch(()=>{
+    alert("Network error. Try later.");
+    btn.disabled = false;
+    btn.innerText = "Submit Enquiry";
   });
 });
 </script>
