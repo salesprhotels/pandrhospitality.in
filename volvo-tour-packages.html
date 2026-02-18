@@ -8,7 +8,6 @@
 <meta name="description" content="Book Volvo bus tickets and online bus tickets across India. Jammu, Delhi, Katra, Manali, Shimla & pan-India bus booking available.">
 <meta name="keywords" content="Volvo bus booking, online bus tickets India, Jammu to Delhi bus, Delhi to Manali Volvo">
 <meta name="robots" content="index, follow">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -18,13 +17,14 @@ body{
   background:#f4f6fb;
   color:#222;
 }
-/* HEADER */
+
+/* ================= HEADER ================= */
 header{
   background:#fff;
   border-bottom:1px solid #ddd;
   position:sticky;
   top:0;
-  z-index:9999;
+  z-index:10000;
 }
 
 .header-wrap{
@@ -40,21 +40,21 @@ header{
 .logos{
   display:flex;
   align-items:center;
-  gap:8px;
+  gap:10px;
 }
 .logos img{
-  height:38px;
+  height:36px;
 }
 
 /* NAV */
 .nav{
   display:flex;
   align-items:center;
-  gap:18px;
+  gap:20px;
   font-weight:600;
 }
 
-/* SERVICES */
+/* SERVICES BUTTON */
 .menu{
   position:relative;
   cursor:pointer;
@@ -65,7 +65,7 @@ header{
 .dropdown{
   display:none;
   position:absolute;
-  top:110%;
+  top:100%;
   right:0;
   background:#fff;
   border:1px solid #ccc;
@@ -83,9 +83,7 @@ header{
 .dropdown a:hover{
   background:#f4f6fb;
 }
-.dropdown.show{
-  display:block;
-}
+.dropdown.show{display:block}
 
 /* CONTACT */
 .contact-link{
@@ -93,25 +91,7 @@ header{
   color:#222;
 }
 
-/* MOBILE FIX */
-@media(max-width:700px){
-
-  .header-wrap{
-    flex-wrap:wrap;
-  }
-
-  .nav{
-    width:100%;
-    justify-content:flex-end;
-    margin-top:6px;
-  }
-
-  .contact-link{
-    display:inline-block;
-  }
-}
-
-/* HERO */
+/* ================= HERO ================= */
 .hero{
   background:url('images/bus-volvo-bg.png') center/cover no-repeat;
   color:#fff;
@@ -138,7 +118,7 @@ header{
   text-decoration:none;
 }
 
-/* SECTION */
+/* ================= CONTENT ================= */
 .section{
   max-width:1100px;
   margin:auto;
@@ -212,10 +192,19 @@ footer{
   background:#fff;
 }
 
-/* MOBILE */
+/* ================= MOBILE ================= */
 @media(max-width:700px){
-  .nav a:not(.menu){
-    display:none;
+
+  .header-wrap{
+    flex-wrap:nowrap;
+  }
+
+  .logos img{
+    height:30px;
+  }
+
+  .nav{
+    gap:16px;
   }
 }
 </style>
@@ -223,70 +212,45 @@ footer{
 
 <body>
 
-<header class="bg-white border-b shadow-sm sticky top-0 z-50">
-  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+<!-- ================= HEADER ================= -->
+<header>
+  <div class="header-wrap">
 
-    <!-- LOGOS -->
-    <div class="flex items-center gap-4">
+    <div class="logos">
       <a href="index.html">
-        <img src="images/logo-pr-hospitality.png" alt="P&R Hospitality" style="height:38px">
+        <img src="images/logo-pr-hospitality.png" alt="P&R Hospitality">
       </a>
       <a href="travel.html">
-        <img src="images/logo-yes-we-care-travels-1.png" alt="Yes We Care Travels" style="height:38px">
+        <img src="images/logo-yes-we-care-travels-1.png" alt="Yes We Care Travels">
       </a>
     </div>
 
-    <!-- DESKTOP NAV -->
-    <nav class="hidden md:flex items-center gap-6 font-semibold">
-
-      <div class="relative group cursor-pointer">
+    <div class="nav">
+      <div class="menu" onclick="toggleServices()">
         ☰ Services
-        <div class="absolute right-0 mt-2 w-56 bg-white border shadow-lg rounded
-                    opacity-0 invisible group-hover:opacity-100 group-hover:visible
-                    transition-all z-50">
-
-          <a href="cab-services.html" class="block px-4 py-2 hover:bg-slate-100">Cab Services</a>
-          <a href="pilgrimage-services.html" class="block px-4 py-2 hover:bg-slate-100">Pilgrimage Tours</a>
-          <a href="holiday-packages.html" class="block px-4 py-2 hover:bg-slate-100">Holiday Packages</a>
-          <a href="hotel-booking.html" class="block px-4 py-2 hover:bg-slate-100">Hotel Booking</a>
-          <a href="volvo-tour-packages.html" class="block px-4 py-2 hover:bg-slate-100">Bus / Volvo</a>
-          <a href="air-tickets.html" class="block px-4 py-2 hover:bg-slate-100">Air Tickets</a>
+        <div class="dropdown" id="servicesMenu">
+          <a href="cab-services.html">Cab Services</a>
+          <a href="pilgrimage-services.html">Pilgrimage Tours</a>
+          <a href="holiday-packages.html">Holiday Packages</a>
+          <a href="hotel-booking.html">Hotel Booking</a>
+          <a href="volvo-tour-packages.html">Bus / Volvo Tickets</a>
+          <a href="air-tickets.html">Air Tickets</a>
         </div>
       </div>
-
-      <a href="contact-travel.html">Contact</a>
-    </nav>
-
-    <!-- MOBILE MENU -->
-    <details class="md:hidden relative">
-      <summary class="cursor-pointer text-lg font-semibold">☰</summary>
-
-      <div class="absolute right-0 mt-2 w-56 bg-white border shadow-lg rounded p-3 space-y-2 z-50">
-        <a href="cab-services.html" class="block">Cab Services</a>
-        <a href="pilgrimage-services.html" class="block">Pilgrimage Tours</a>
-        <a href="holiday-packages.html" class="block">Holiday Packages</a>
-        <a href="hotel-booking.html" class="block">Hotel Booking</a>
-        <a href="volvo-tour-packages.html" class="block">Bus / Volvo</a>
-        <a href="air-tickets.html" class="block">Air Tickets</a>
-
-        <hr>
-        <a href="contact-travel.html" class="block font-semibold">Contact</a>
-      </div>
-    </details>
+      <a class="contact-link" href="contact-travel.html">Contact</a>
+    </div>
 
   </div>
 </header>
 
-<!-- HERO -->
+<!-- ================= HERO ================= -->
 <section class="hero">
   <h1>Volvo & Online Bus Booking</h1>
-  <p>
-    Comfortable, safe and reliable Volvo and bus travel across India with trusted operators.
-  </p>
+  <p>Comfortable, safe and reliable Volvo and bus travel across India with trusted operators.</p>
   <a href="forms/travel-form.html">Book Bus / Volvo</a>
 </section>
 
-<!-- CONTENT -->
+<!-- ================= CONTENT ================= -->
 <section class="section">
   <h2>Pan-India Bus Booking Services</h2>
   <p class="text">
@@ -315,7 +279,6 @@ footer{
   </div>
 </section>
 
-<!-- CTA -->
 <section class="cta">
   <p style="margin-bottom:15px">
     Travelling by bus? Combine your journey with local cabs and hotel bookings.
@@ -323,9 +286,7 @@ footer{
   <a href="forms/travel-form.html">Bus / Volvo Enquiry</a>
 </section>
 
-<a class="whatsapp" href="https://wa.me/919419287356" target="_blank">
-  WhatsApp
-</a>
+<a class="whatsapp" href="https://wa.me/919419287356" target="_blank">WhatsApp</a>
 
 <footer>
   © 2026 Yes We Care Travels · Operated by P & R Hospitality Management Services
