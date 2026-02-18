@@ -2,86 +2,145 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Global Travel Inquiry</title>
+<title>Global Travel Enquiry | Yes We Care Travels</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body{font-family:Arial;background:#f4f6fb}
-.form-box{
-  max-width:420px;margin:40px auto;background:#fff;
-  padding:20px;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,.15)
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#0f172a;
+  color:#fff;
 }
-input,select,textarea,button{
-  width:100%;padding:10px;margin-top:10px
+.container{
+  max-width:700px;
+  margin:40px auto;
+  background:#020617;
+  padding:30px;
+  border-radius:12px;
+}
+h1{text-align:center;margin-bottom:20px}
+label{font-size:14px;margin-top:12px;display:block}
+input,select,textarea{
+  width:100%;
+  padding:10px;
+  margin-top:6px;
+  border-radius:6px;
+  border:none;
 }
 button{
-  background:#4b3fd6;color:#fff;border:none;
-  font-weight:bold;border-radius:5px
+  margin-top:20px;
+  width:100%;
+  padding:14px;
+  background:#22c55e;
+  color:#000;
+  font-weight:bold;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+}
+.lang-switch{
+  text-align:right;
+  margin-bottom:10px;
+}
+.lang-switch button{
+  background:#334155;
+  color:#fff;
+  padding:6px 10px;
+  margin-left:5px;
+  border:none;
+  cursor:pointer;
 }
 </style>
 </head>
 
 <body>
 
-<div class="form-box">
-  <h2>Global Travel Inquiry</h2>
+<div class="container">
+  <div class="lang-switch">
+    <button onclick="setLang('EN')">English</button>
+    <button onclick="setLang('ES')">Español</button>
+  </div>
 
-  <select id="language">
-    <option value="EN">English</option>
-    <option value="ES">Español</option>
-  </select>
+  <h1 id="title">Global Travel Enquiry</h1>
 
-  <input id="name" placeholder="Full Name">
-  <input id="email" placeholder="Email">
-  <input id="mobile" placeholder="Mobile (with country code)">
-  <input id="country" placeholder="Country">
+  <form id="enquiryForm">
 
-  <select id="package">
-    <option value="Amazon Expedition">Amazon Expedition</option>
-    <option value="Peru Cultural Tour">Peru Cultural Tour</option>
-    <option value="Custom Package">Custom Package</option>
-  </select>
+    <input type="hidden" name="language" id="language" value="EN">
+    <input type="hidden" name="sourcePage" value="global-travel-enquiry">
+    <input type="hidden" name="whatsappRedirected" id="whatsappRedirected" value="NO">
 
-  <input id="month" placeholder="Travel Month">
-  <input id="people" placeholder="Number of People">
-  <input id="budget" placeholder="Budget Range">
+    <label>Full Name</label>
+    <input name="fullName" required>
 
-  <textarea id="message" placeholder="Message"></textarea>
+    <label>Email</label>
+    <input type="email" name="email">
 
-  <button onclick="submitForm()">Submit Inquiry</button>
-  <p id="msg"></p>
+    <label>Mobile (with country code)</label>
+    <input name="mobile" required>
+
+    <label>Country</label>
+    <input name="country">
+
+    <label>Interested Package</label>
+    <select name="package">
+      <option>Amazon Expedition</option>
+      <option>Peru Tour</option>
+      <option>Custom Travel</option>
+    </select>
+
+    <label>Travel Month</label>
+    <input name="travelMonth">
+
+    <label>Travel Start Date</label>
+    <input type="date" name="startDate">
+
+    <label>Travel End Date</label>
+    <input type="date" name="endDate">
+
+    <label>Adults</label>
+    <input type="number" name="adults" value="1">
+
+    <label>Children</label>
+    <input type="number" name="children" value="0">
+
+    <label>Budget Range</label>
+    <input name="budget">
+
+    <label>Message</label>
+    <textarea name="message"></textarea>
+
+    <button type="submit">Submit & Continue</button>
+  </form>
 </div>
 
 <script>
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyaGcZCleMq5Bf-pp7DoKcHHhycScmjspUeZuTgyfMUjZr0QS4WA2xOW-ZOvn1MM6nK/exec";
+const WHATSAPP_NUMBER = "51965232699";
 
-function submitForm(){
-  document.getElementById("msg").innerText = "Submitting...";
+document.getElementById("enquiryForm").addEventListener("submit", function(e){
+  e.preventDefault();
 
-  fetch(SCRIPT_URL,{
-    method:"POST",
-    body:JSON.stringify({
-      language: document.getElementById("language").value,
-      fullName: document.getElementById("name").value,
-      email: document.getElementById("email").value,
-      mobile: document.getElementById("mobile").value,
-      country: document.getElementById("country").value,
-      package: document.getElementById("package").value,
-      travelMonth: document.getElementById("month").value,
-      people: document.getElementById("people").value,
-      budget: document.getElementById("budget").value,
-      message: document.getElementById("message").value,
-      source: "Global Landing Page",
-      whatsapp: "NO"
-    })
+  const formData = new FormData(this);
+  document.getElementById("whatsappRedirected").value = "YES";
+
+  fetch(SCRIPT_URL, {
+    method: "POST",
+    body: formData
   })
-  .then(res=>res.json())
-  .then(()=>{
-    document.getElementById("msg").innerText="✅ Inquiry Submitted";
+  .then(()=> {
+    const name = formData.get("fullName");
+    const pkg = formData.get("package");
+    const msg = `Hello, my name is ${name}. I am interested in ${pkg}.`;
+    window.location.href =
+      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
   })
-  .catch(()=>{
-    document.getElementById("msg").innerText="❌ Error, try again";
-  });
+  .catch(()=>alert("Error. Please try again."));
+});
+
+function setLang(lang){
+  document.getElementById("language").value = lang;
+  document.getElementById("title").innerText =
+    lang==="ES" ? "Consulta de Viaje Global" : "Global Travel Enquiry";
 }
 </script>
 
