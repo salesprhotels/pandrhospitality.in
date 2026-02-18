@@ -2,169 +2,86 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Global Travel Enquiry | Yes We Care Travels</title>
+<title>Global Travel Inquiry</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:#f4f6fb;
-  margin:0;
-  padding:0;
+body{font-family:Arial;background:#f4f6fb}
+.form-box{
+  max-width:420px;margin:40px auto;background:#fff;
+  padding:20px;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,.15)
 }
-.container{
-  max-width:520px;
-  margin:40px auto;
-  background:#fff;
-  padding:30px;
-  border-radius:10px;
-  box-shadow:0 6px 20px rgba(0,0,0,.1);
-}
-h1{
-  text-align:center;
-  margin-bottom:20px;
-}
-label{
-  font-size:14px;
-  font-weight:600;
-  display:block;
-  margin-top:14px;
-}
-input, select, textarea{
-  width:100%;
-  padding:10px;
-  margin-top:6px;
-  border:1px solid #ccc;
-  border-radius:6px;
-  font-size:14px;
-}
-textarea{
-  resize:vertical;
+input,select,textarea,button{
+  width:100%;padding:10px;margin-top:10px
 }
 button{
-  width:100%;
-  margin-top:20px;
-  padding:12px;
-  background:#4b3fd6;
-  color:#fff;
-  border:none;
-  border-radius:6px;
-  font-size:16px;
-  font-weight:bold;
-  cursor:pointer;
-}
-.lang-switch{
-  text-align:right;
-  margin-bottom:10px;
-}
-.lang-switch button{
-  width:auto;
-  padding:6px 10px;
-  font-size:12px;
-  margin-left:6px;
-  background:#eee;
-  color:#000;
+  background:#4b3fd6;color:#fff;border:none;
+  font-weight:bold;border-radius:5px
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="form-box">
+  <h2>Global Travel Inquiry</h2>
 
-  <div class="lang-switch">
-    <button onclick="setLang('en')">English</button>
-    <button onclick="setLang('es')">Español</button>
-  </div>
+  <select id="language">
+    <option value="EN">English</option>
+    <option value="ES">Español</option>
+  </select>
 
-  <h1 id="title">Travel Enquiry</h1>
+  <input id="name" placeholder="Full Name">
+  <input id="email" placeholder="Email">
+  <input id="mobile" placeholder="Mobile (with country code)">
+  <input id="country" placeholder="Country">
 
-  <form id="leadForm">
+  <select id="package">
+    <option value="Amazon Expedition">Amazon Expedition</option>
+    <option value="Peru Cultural Tour">Peru Cultural Tour</option>
+    <option value="Custom Package">Custom Package</option>
+  </select>
 
-    <label id="lblName">Full Name</label>
-    <input type="text" name="name" required>
+  <input id="month" placeholder="Travel Month">
+  <input id="people" placeholder="Number of People">
+  <input id="budget" placeholder="Budget Range">
 
-    <label>Email</label>
-    <input type="email" name="email">
+  <textarea id="message" placeholder="Message"></textarea>
 
-    <label id="lblPhone">Mobile / WhatsApp (with country code)</label>
-    <input type="text" name="phone" required>
-
-    <label id="lblCountry">Country</label>
-    <input type="text" name="country">
-
-    <label id="lblPackage">Interested Package / Destination</label>
-    <input type="text" name="package">
-
-    <label id="lblMonth">Travel Month</label>
-    <input type="month" name="travel_month">
-
-    <label id="lblAdults">Number of Adults</label>
-    <input type="number" name="adults" min="1">
-
-    <label id="lblChildren">Number of Children</label>
-    <input type="number" name="children" min="0">
-
-    <label id="lblBudget">Budget Range</label>
-    <select name="budget">
-      <option value="">Select</option>
-      <option>$500 – $1000</option>
-      <option>$1000 – $2500</option>
-      <option>$2500 – $5000</option>
-      <option>$5000+</option>
-    </select>
-
-    <label id="lblMsg">Message / Requirements</label>
-    <textarea name="message" rows="3"></textarea>
-
-    <input type="hidden" name="language" id="language" value="EN">
-    <input type="hidden" name="source_page" value="Global Landing Page">
-    <input type="hidden" name="whatsapp_redirected" value="YES">
-
-    <button type="submit" id="submitBtn">Submit Enquiry</button>
-
-  </form>
-
+  <button onclick="submitForm()">Submit Inquiry</button>
+  <p id="msg"></p>
 </div>
 
 <script>
-const SCRIPT_URL = "PASTE_YOUR_APPS_SCRIPT_WEBAPP_URL_HERE";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyaGcZCleMq5Bf-pp7DoKcHHhycScmjspUeZuTgyfMUjZr0QS4WA2xOW-ZOvn1MM6nK/exec";
 
-document.getElementById("leadForm").addEventListener("submit", function(e){
-  e.preventDefault();
-  const formData = new FormData(this);
+function submitForm(){
+  document.getElementById("msg").innerText = "Submitting...";
 
-  fetch(SCRIPT_URL, {
-    method: "POST",
-    body: formData
+  fetch(SCRIPT_URL,{
+    method:"POST",
+    body:JSON.stringify({
+      language: document.getElementById("language").value,
+      fullName: document.getElementById("name").value,
+      email: document.getElementById("email").value,
+      mobile: document.getElementById("mobile").value,
+      country: document.getElementById("country").value,
+      package: document.getElementById("package").value,
+      travelMonth: document.getElementById("month").value,
+      people: document.getElementById("people").value,
+      budget: document.getElementById("budget").value,
+      message: document.getElementById("message").value,
+      source: "Global Landing Page",
+      whatsapp: "NO"
+    })
   })
-  .then(res => res.text())
-  .then(() => {
-    window.location.href = "https://wa.me/51965232699";
+  .then(res=>res.json())
+  .then(()=>{
+    document.getElementById("msg").innerText="✅ Inquiry Submitted";
   })
-  .catch(() => {
-    alert("Something went wrong. Please try again.");
+  .catch(()=>{
+    document.getElementById("msg").innerText="❌ Error, try again";
   });
-});
-
-function setLang(lang){
-  if(lang === "es"){
-    document.getElementById("language").value = "ES";
-    title.innerText = "Consulta de Viaje";
-    lblName.innerText = "Nombre Completo";
-    lblPhone.innerText = "Móvil / WhatsApp (con código)";
-    lblCountry.innerText = "País";
-    lblPackage.innerText = "Destino / Paquete";
-    lblMonth.innerText = "Mes de Viaje";
-    lblAdults.innerText = "Adultos";
-    lblChildren.innerText = "Niños";
-    lblBudget.innerText = "Rango de Presupuesto";
-    lblMsg.innerText = "Mensaje / Requisitos";
-    submitBtn.innerText = "Enviar Consulta";
-  } else {
-    document.getElementById("language").value = "EN";
-    location.reload();
-  }
 }
 </script>
 
