@@ -223,39 +223,57 @@ footer{
 
 <body>
 
-<header>
-  <div class="header-wrap">
+<header class="bg-white border-b shadow-sm sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
 
     <!-- LOGOS -->
-    <div class="logos">
+    <div class="flex items-center gap-4">
       <a href="index.html">
-        <img src="images/logo-pr-hospitality.png" alt="P&R Hospitality">
+        <img src="images/logo-pr-hospitality.png" alt="P&R Hospitality" style="height:38px">
       </a>
       <a href="travel.html">
-        <img src="images/logo-yes-we-care-travels-1.png" alt="Yes We Care Travels">
+        <img src="images/logo-yes-we-care-travels-1.png" alt="Yes We Care Travels" style="height:38px">
       </a>
     </div>
 
-    <!-- NAV -->
-    <div class="nav">
+    <!-- DESKTOP NAV -->
+    <nav class="hidden md:flex items-center gap-6 font-semibold">
 
-      <!-- SERVICES -->
-      <div class="menu" onclick="toggleServices()">
+      <div class="relative group cursor-pointer">
         ☰ Services
-        <div class="dropdown" id="servicesMenu">
-          <a href="cab-services.html">Cab Services</a>
-          <a href="pilgrimage-services.html">Pilgrimage Tours</a>
-          <a href="holiday-packages.html">Holiday Packages</a>
-          <a href="hotel-booking.html">Hotel Booking</a>
-          <a href="volvo-tour-packages.html">Bus / Volvo Tickets</a>
-          <a href="air-tickets.html">Air Tickets</a>
+        <div class="absolute right-0 mt-2 w-56 bg-white border shadow-lg rounded
+                    opacity-0 invisible group-hover:opacity-100 group-hover:visible
+                    transition-all z-50">
+
+          <a href="cab-services.html" class="block px-4 py-2 hover:bg-slate-100">Cab Services</a>
+          <a href="pilgrimage-services.html" class="block px-4 py-2 hover:bg-slate-100">Pilgrimage Tours</a>
+          <a href="holiday-packages.html" class="block px-4 py-2 hover:bg-slate-100">Holiday Packages</a>
+          <a href="hotel-booking.html" class="block px-4 py-2 hover:bg-slate-100">Hotel Booking</a>
+          <a href="volvo-tour-packages.html" class="block px-4 py-2 hover:bg-slate-100">Bus / Volvo</a>
+          <a href="air-tickets.html" class="block px-4 py-2 hover:bg-slate-100">Air Tickets</a>
         </div>
       </div>
 
-      <!-- CONTACT -->
-      <a class="contact-link" href="contact-travel.html">Contact</a>
+      <a href="contact-travel.html">Contact</a>
+    </nav>
 
-    </div>
+    <!-- MOBILE MENU -->
+    <details class="md:hidden relative">
+      <summary class="cursor-pointer text-lg font-semibold">☰</summary>
+
+      <div class="absolute right-0 mt-2 w-56 bg-white border shadow-lg rounded p-3 space-y-2 z-50">
+        <a href="cab-services.html" class="block">Cab Services</a>
+        <a href="pilgrimage-services.html" class="block">Pilgrimage Tours</a>
+        <a href="holiday-packages.html" class="block">Holiday Packages</a>
+        <a href="hotel-booking.html" class="block">Hotel Booking</a>
+        <a href="volvo-tour-packages.html" class="block">Bus / Volvo</a>
+        <a href="air-tickets.html" class="block">Air Tickets</a>
+
+        <hr>
+        <a href="contact-travel.html" class="block font-semibold">Contact</a>
+      </div>
+    </details>
+
   </div>
 </header>
 
