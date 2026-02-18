@@ -3,255 +3,295 @@
 <head>
 <meta charset="UTF-8">
 
-<title>Global Expeditions & Adventure Tours | Trusted Travel Partners</title>
+<title>Global Travel Enquiry | Yes We Care Travels</title>
 
-<meta name="description" content="Explore Peru, Amazon expeditions, cultural tours and global adventures with trusted local partners. Enquire now for custom travel packages.">
+<meta name="description" content="Global travel enquiries for Amazon expeditions, international tours and custom travel experiences. Enquiry facilitated by Yes We Care Travels, India.">
+<meta name="keywords" content="global travel enquiry, amazon expedition, peru travel, international tours">
+<meta name="robots" content="index, follow">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{
   font-family:Arial,Helvetica,sans-serif;
-  background:#f4f7f5;
-  color:#1f2933;
+  background:linear-gradient(135deg,#f8fafc,#eef2ff);
+  color:#1e293b;
 }
 
-/* THEME */
-:root{
-  --green:#0f3d2e;
-  --gold:#c9a24d;
+/* CONTAINER */
+.wrapper{
+  max-width:980px;
+  margin:40px auto;
+  background:#fff;
+  border-radius:14px;
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+  overflow:hidden;
 }
 
-/* HERO */
-.hero{
-  background:linear-gradient(rgba(15,61,46,.85),rgba(15,61,46,.85)),
-             url("images/global-hero.jpg") center/cover no-repeat;
+/* HEADER */
+.header{
+  padding:28px 20px;
+  background:#4f46e5;
   color:#fff;
   text-align:center;
-  padding:110px 20px;
 }
-.hero h1{
-  font-size:42px;
-  margin-bottom:12px;
-}
-.hero p{
-  max-width:900px;
-  margin:auto;
-  font-size:18px;
-}
-.hero .btn{
-  margin-top:26px;
-  display:inline-block;
-  background:var(--gold);
-  color:#000;
-  padding:14px 30px;
-  border-radius:30px;
-  font-weight:bold;
-  text-decoration:none;
-}
+.header h1{font-size:30px;margin-bottom:6px}
+.header p{font-size:15px;opacity:.95}
 
-/* SECTION */
-.section{
-  max-width:1150px;
-  margin:auto;
-  padding:60px 20px;
-}
-.section h2{
+/* LANGUAGE */
+.lang-switch{
   text-align:center;
-  margin-bottom:30px;
-  color:var(--green);
+  padding:14px;
 }
-
-/* CARDS */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:24px;
+.lang-switch button{
+  margin:0 6px;
+  padding:8px 16px;
+  border:none;
+  border-radius:20px;
+  cursor:pointer;
+  font-weight:600;
 }
-.card{
-  background:#fff;
-  padding:26px;
-  border-radius:12px;
-  box-shadow:0 8px 24px rgba(0,0,0,.08);
-}
-.card h3{
-  color:var(--green);
-  margin-bottom:8px;
+.lang-switch .active{
+  background:#4f46e5;
+  color:#fff;
 }
 
 /* FORM */
-.form-box{
-  background:#fff;
-  padding:30px;
-  border-radius:16px;
-  box-shadow:0 10px 30px rgba(0,0,0,.1);
-}
-.form-box input,
-.form-box select,
-.form-box textarea{
+.form-box{padding:30px}
+label{font-weight:600;font-size:14px}
+input,select,textarea{
   width:100%;
-  padding:12px;
-  margin-bottom:14px;
-  border-radius:6px;
-  border:1px solid #ccc;
+  margin-top:6px;
+  margin-bottom:16px;
+  padding:11px;
+  border-radius:8px;
+  border:1px solid #cbd5f5;
+  font-size:14px;
 }
-.form-box button{
+textarea{min-height:90px}
+
+.row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+/* BUTTON */
+.submit-btn{
   width:100%;
-  background:var(--green);
-  color:#fff;
   padding:14px;
-  border:none;
-  border-radius:30px;
-  font-weight:bold;
-  cursor:pointer;
-}
-.form-box button:hover{
-  background:var(--gold);
-  color:#000;
-}
-
-/* LANGUAGE */
-.lang-toggle{
-  text-align:right;
-  margin-bottom:10px;
-}
-.lang-toggle button{
-  border:none;
-  background:#e5e7eb;
-  padding:6px 12px;
-  margin-left:6px;
-  cursor:pointer;
-  border-radius:6px;
-}
-
-/* WHATSAPP */
-.whatsapp{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:#25D366;
+  background:#22c55e;
   color:#fff;
-  padding:14px 20px;
-  border-radius:30px;
+  border:none;
+  border-radius:10px;
+  font-size:16px;
   font-weight:bold;
-  text-decoration:none;
+  cursor:pointer;
+}
+
+/* PARTNER */
+.partner{
+  background:#f1f5f9;
+  padding:22px;
+  font-size:14px;
+  line-height:1.6;
+}
+.partner strong{color:#0f172a}
+.partner .note{
+  font-size:12px;
+  color:#475569;
+  margin-top:8px;
 }
 
 /* FOOTER */
-footer{
-  background:#0f3d2e;
-  color:#d1d5db;
+.footer{
   text-align:center;
-  padding:24px;
-  font-size:14px;
+  font-size:12px;
+  color:#64748b;
+  padding:18px;
+}
+
+/* MOBILE */
+@media(max-width:650px){
+  .row{grid-template-columns:1fr}
 }
 </style>
 </head>
 
 <body>
 
-<!-- HERO -->
-<section class="hero">
-  <h1 id="t1">Global Expeditions & Adventure Tours</h1>
-  <p id="t2">
-    Discover Peru, Amazon expeditions, cultural journeys and custom global adventures
-    through trusted local partners.
-  </p>
-  <a href="#lead" class="btn" id="t3">Plan Your Journey</a>
-</section>
+<div class="wrapper">
 
-<!-- TRUST -->
-<section class="section">
-  <h2 id="t4">Travel With Confidence</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Local Expertise</h3>
-      <p>We work with verified local operators and licensed tour providers.</p>
-    </div>
-    <div class="card">
-      <h3>Global Travellers</h3>
-      <p>Packages designed for travellers from India, Europe, Americas & worldwide.</p>
-    </div>
-    <div class="card">
-      <h3>Custom Experiences</h3>
-      <p>Flexible itineraries beyond seasonal tourism.</p>
-    </div>
+  <!-- HEADER -->
+  <div class="header">
+    <h1 id="titleText">Global Travel Enquiry</h1>
+    <p id="subtitleText">
+      International expeditions & customised global travel experiences
+    </p>
   </div>
-</section>
 
-<!-- LEAD FORM -->
-<section class="section" id="lead">
-  <h2 id="t5">Request Detailed Itinerary & Pricing</h2>
+  <!-- LANGUAGE SWITCH -->
+  <div class="lang-switch">
+    <button class="active" onclick="setLang('EN')">English</button>
+    <button onclick="setLang('ES')">Español</button>
+  </div>
 
+  <!-- FORM -->
   <div class="form-box">
+    <form id="globalForm">
 
-    <div class="lang-toggle">
-      <button onclick="setLang('en')">English</button>
-      <button onclick="setLang('es')">Español</button>
-    </div>
+      <input type="hidden" name="Language" id="langField" value="EN">
+      <input type="hidden" name="Source Page" value="Global Landing Page">
+      <input type="hidden" name="WhatsApp Redirected" id="waField" value="NO">
 
-    <form method="POST"
-      action="YOUR_GOOGLE_APPS_SCRIPT_URL">
+      <label id="nameLbl">Full Name</label>
+      <input type="text" name="Full Name" required>
 
-      <input type="hidden" name="language" id="lang" value="EN">
-      <input type="hidden" name="source" value="Global Landing Page">
+      <label id="emailLbl">Email</label>
+      <input type="email" name="Email">
 
-      <input type="text" name="name" placeholder="Full Name" required>
-      <input type="email" name="email" placeholder="Email" required>
-      <input type="text" name="mobile" placeholder="Mobile (with country code)" required>
-      <input type="text" name="country" placeholder="Country">
+      <label id="mobileLbl">Mobile (Country Code)</label>
+      <input type="text" name="Mobile (Country Code)" placeholder="+91 / +51">
 
-      <select name="package">
-        <option>Amazon Expedition</option>
-        <option>Peru Cultural Tour</option>
-        <option>Adventure & Trekking</option>
-        <option>Custom Package</option>
+      <label id="countryLbl">Country</label>
+      <input type="text" name="Country">
+
+      <label id="packageLbl">Interested Package</label>
+      <select name="Interested Package">
+        <option>Amazon Expedition – Peru</option>
+        <option>Amazon Rainforest Lodge</option>
+        <option>Custom International Tour</option>
       </select>
 
-      <select name="people">
-        <option>1–2 People</option>
-        <option>3–5 People</option>
-        <option>6+ Group</option>
-      </select>
+      <div class="row">
+        <div>
+          <label id="monthLbl">Travel Month</label>
+          <input type="text" name="Travel Month">
+        </div>
+        <div>
+          <label id="budgetLbl">Budget Range</label>
+          <input type="text" name="Budget Range">
+        </div>
+      </div>
 
-      <textarea name="message" placeholder="Tell us your travel idea"></textarea>
+      <div class="row">
+        <div>
+          <label id="adultLbl">Adults</label>
+          <input type="number" name="Adults" min="1">
+        </div>
+        <div>
+          <label id="childLbl">Children</label>
+          <input type="number" name="Children" min="0">
+        </div>
+      </div>
 
-      <button type="submit" onclick="markWhatsapp()">Submit Enquiry</button>
+      <label id="msgLbl">Message</label>
+      <textarea name="Message"></textarea>
+
+      <button type="submit" class="submit-btn" id="submitBtn">
+        Submit Enquiry
+      </button>
+
     </form>
-
   </div>
-</section>
 
-<!-- WHATSAPP -->
-<a class="whatsapp"
-   href="https://wa.me/51965232699"
-   target="_blank"
-   onclick="markWhatsapp()">
-   WhatsApp Operator
-</a>
+  <!-- PARTNER -->
+  <div class="partner">
+    <p>
+      Enquiries are facilitated by <strong>Yes We Care Travels (India)</strong>
+      in association with verified local expedition operators.
+    </p>
+    <p>
+      Destination Partner:
+      <strong>Amazon Andes Expeditions (Peru)</strong><br>
+      <strong>Amazon Queen Lodge – Amazon Rainforest, Peru</strong>
+    </p>
+    <p class="note">
+      Yes We Care Travels acts solely as a travel promoter and enquiry
+      facilitator. All on-ground services are provided by respective local
+      operators.
+    </p>
+  </div>
 
-<!-- FOOTER -->
-<footer>
-  We act as a travel facilitator and marketing partner. All services are provided by licensed local operators.
-</footer>
+  <!-- FOOTER -->
+  <div class="footer">
+    © 2026 Yes We Care Travels · India
+  </div>
+
+</div>
 
 <script>
-function setLang(l){
-  document.getElementById("lang").value = l.toUpperCase();
-  if(l==="es"){
-    document.getElementById("t1").innerText="Expediciones Globales y Aventuras";
-    document.getElementById("t2").innerText="Descubra Perú, la Amazonía y experiencias culturales con operadores locales confiables.";
-    document.getElementById("t3").innerText="Planifica tu viaje";
-    document.getElementById("t4").innerText="Viaja con confianza";
-    document.getElementById("t5").innerText="Solicitar itinerario y precios";
-  }else{
-    location.reload();
+const translations = {
+  EN:{
+    title:"Global Travel Enquiry",
+    sub:"International expeditions & customised global travel experiences",
+    name:"Full Name",
+    email:"Email",
+    mobile:"Mobile (Country Code)",
+    country:"Country",
+    pack:"Interested Package",
+    month:"Travel Month",
+    budget:"Budget Range",
+    adult:"Adults",
+    child:"Children",
+    msg:"Message",
+    submit:"Submit Enquiry"
+  },
+  ES:{
+    title:"Consulta Global de Viajes",
+    sub:"Expediciones internacionales y experiencias de viaje personalizadas",
+    name:"Nombre Completo",
+    email:"Correo Electrónico",
+    mobile:"Móvil (Código País)",
+    country:"País",
+    pack:"Paquete de Interés",
+    month:"Mes de Viaje",
+    budget:"Rango de Presupuesto",
+    adult:"Adultos",
+    child:"Niños",
+    msg:"Mensaje",
+    submit:"Enviar Consulta"
   }
+};
+
+function setLang(l){
+  document.getElementById("langField").value=l;
+  const t=translations[l];
+  titleText.innerText=t.title;
+  subtitleText.innerText=t.sub;
+  nameLbl.innerText=t.name;
+  emailLbl.innerText=t.email;
+  mobileLbl.innerText=t.mobile;
+  countryLbl.innerText=t.country;
+  packageLbl.innerText=t.pack;
+  monthLbl.innerText=t.month;
+  budgetLbl.innerText=t.budget;
+  adultLbl.innerText=t.adult;
+  childLbl.innerText=t.child;
+  msgLbl.innerText=t.msg;
+  submitBtn.innerText=t.submit;
+
+  document.querySelectorAll(".lang-switch button").forEach(b=>b.classList.remove("active"));
+  event.target.classList.add("active");
 }
 
-function markWhatsapp(){
-  // handled in Apps Script (YES)
-}
+/* FORM SUBMIT */
+document.getElementById("globalForm").addEventListener("submit",function(e){
+  e.preventDefault();
+
+  const fd=new FormData(this);
+
+  fetch("YOUR_APPS_SCRIPT_URL_HERE",{
+    method:"POST",
+    body:fd
+  }).then(()=>{
+    document.getElementById("waField").value="YES";
+    window.location.href="https://wa.me/51965232699";
+  }).catch(()=>{
+    alert("Submission failed. Please try again.");
+  });
+});
 </script>
 
 </body>
