@@ -2,23 +2,20 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+
+<!-- PRIMARY SEO -->
+<title>Cab Services in Jammu, Katra, Himachal | Yes We Care Travels</title>
+<meta name="description" content="Book reliable cab services in Jammu, Katra, Vaishno Devi, Himachal & Uttarakhand. Local, outstation, airport transfers & pilgrimage taxi services with verified drivers.">
+<meta name="keywords" content="cab services Jammu, Katra taxi, Vaishno Devi cab booking, Himachal taxi service, airport taxi Jammu, pilgrimage taxi India">
+<meta name="robots" content="index, follow">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Cab Services in Jammu, Katra, Vaishno Devi & Himachal | Yes We Care Travels</title>
-
-<meta name="description" content="Book reliable cab services in Jammu, Katra, Vaishno Devi, Himachal & across India. Local taxi, airport transfer, pilgrimage cabs & outstation taxi services with verified drivers.">
-
-<meta name="keywords" content="cab services Jammu, Katra taxi, Vaishno Devi cab, airport taxi Jammu, Himachal taxi service, pilgrimage taxi India, outstation cab booking">
-
-<meta name="robots" content="index, follow">
+<!-- OPEN GRAPH -->
+<meta property="og:title" content="Cab Services | Yes We Care Travels">
+<meta property="og:description" content="Safe, reliable and affordable cab services for pilgrimage, holidays & intercity travel across India.">
+<meta property="og:type" content="website">
 
 <link rel="canonical" href="https://pandrhospitality.in/cab-services.html">
-
-<!-- Open Graph -->
-<meta property="og:title" content="Cab Services | Yes We Care Travels">
-<meta property="og:description" content="Professional cab services for pilgrimage, airport transfers & outstation travel across North India.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://pandrhospitality.in/cab-services.html">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -27,194 +24,212 @@ body{font-family:Arial,Helvetica,sans-serif;background:#f4f6fb;color:#222}
 /* HEADER */
 header{background:#fff;border-bottom:1px solid #ddd}
 .header-wrap{
-max-width:1200px;margin:auto;padding:12px 20px;
-display:flex;justify-content:space-between;align-items:center
+  max-width:1200px;margin:auto;padding:10px 16px;
+  display:flex;justify-content:space-between;align-items:center
 }
-.logos img{height:42px;margin-right:10px}
-.nav a{margin-left:20px;text-decoration:none;font-weight:600;color:#222}
+.logos img{height:40px;margin-right:8px}
+.nav{display:flex;align-items:center;gap:20px;font-weight:600}
+.menu{position:relative;cursor:pointer}
+.dropdown{
+  display:none;
+  position:absolute;
+  top:28px;right:0;
+  background:#fff;
+  border:1px solid #ccc;
+  box-shadow:0 4px 12px rgba(0,0,0,.1);
+  z-index:100;
+}
+.dropdown a{
+  display:block;padding:10px 16px;
+  text-decoration:none;color:#222;
+}
+.dropdown a:hover{background:#f4f6fb}
+.menu:hover .dropdown{display:block}
+.nav a{text-decoration:none;color:#222}
 
 /* HERO */
 .hero{
-background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
-url('images/travel-transport.jpg') center/cover no-repeat;
-color:#fff;text-align:center;padding:80px 20px
+  background:
+    linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+    url('images/travel-transport.jpg') center/cover no-repeat;
+  color:#fff;text-align:center;padding:80px 20px
 }
-.hero h1{font-size:36px;margin-bottom:15px}
-.hero p{max-width:900px;margin:auto;font-size:18px;line-height:1.6}
+.hero h1{font-size:38px;margin-bottom:12px}
+.hero p{max-width:900px;margin:auto;font-size:18px}
 .hero a{
-display:inline-block;margin-top:25px;
-background:#f5b400;color:#000;
-padding:14px 28px;border-radius:6px;
-font-weight:bold;text-decoration:none
+  display:inline-block;margin-top:24px;
+  background:#f5b400;color:#000;
+  padding:12px 28px;border-radius:6px;
+  text-decoration:none;font-weight:bold
 }
 
 /* SECTION */
 .section{max-width:1200px;margin:auto;padding:60px 20px}
-.section h2{text-align:center;margin-bottom:20px;color:#0b2a4a}
-.section p.desc{text-align:center;max-width:850px;margin:0 auto 35px;color:#555}
+.section h2{text-align:center;margin-bottom:10px;color:#0b2a4a}
+.section .desc{
+  text-align:center;max-width:850px;margin:0 auto 40px;
+  font-size:16px;color:#555
+}
 
 /* GRID */
 .grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px
 }
 .card{
-background:#fff;border-radius:8px;
-box-shadow:0 4px 14px rgba(0,0,0,.08);
-overflow:hidden;transition:.3s
+  background:#fff;border-radius:8px;
+  box-shadow:0 4px 14px rgba(0,0,0,.08);
+  overflow:hidden;transition:.3s
 }
 .card:hover{transform:translateY(-5px)}
-.card img{width:100%;height:180px;object-fit:cover}
-.card div{padding:18px}
-.card h3{color:#4b3fd6;margin-bottom:8px}
-.card p{font-size:14px;color:#555}
+.card img{
+  width:100%;height:180px;object-fit:cover
+}
+.card div{padding:16px}
+.card h3{color:#4b3fd6;margin-bottom:6px}
 
 /* WHY */
-.why{background:#eef1ff;padding:50px 20px}
+.why{
+  background:#eef1ff;padding:50px 20px
+}
 .why ul{
-max-width:900px;margin:auto;
-display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:15px;list-style:none
+  max-width:900px;margin:auto;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:14px;list-style:none
 }
 .why li{
-background:#fff;padding:15px;border-radius:6px;
-box-shadow:0 2px 8px rgba(0,0,0,.05)
+  background:#fff;padding:14px;
+  border-radius:6px;
+  box-shadow:0 2px 8px rgba(0,0,0,.05)
 }
 
 /* CTA */
 .cta{text-align:center;padding:50px 20px}
 .cta a{
-background:#4b3fd6;color:#fff;
-padding:14px 28px;border-radius:6px;
-font-weight:bold;text-decoration:none
+  background:#4b3fd6;color:#fff;
+  padding:12px 26px;border-radius:6px;
+  text-decoration:none;font-weight:bold
 }
 
 /* WHATSAPP */
 .whatsapp{
-position:fixed;bottom:20px;right:20px;
-background:#25D366;color:#fff;
-padding:12px 18px;border-radius:30px;
-font-weight:bold;text-decoration:none
+  position:fixed;bottom:20px;right:20px;
+  background:#25D366;color:#fff;
+  padding:12px 18px;border-radius:30px;
+  text-decoration:none;font-weight:bold
 }
 
 /* FOOTER */
-footer{text-align:center;padding:25px;background:#fff;font-size:14px;color:#666}
-
-@media(max-width:600px){
-.hero h1{font-size:28px}
+footer{
+  background:#fff;text-align:center;
+  padding:20px;font-size:14px;color:#666
 }
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
 <header>
-<div class="header-wrap">
-<div class="logos">
-<a href="index.html">
-<img src="images/logo-pr-hospitality.png" alt="P & R Hospitality">
-</a>
-<a href="index.html">
-<img src="images/logo-yes-we-care-travels-1.png" alt="Yes We Care Travels">
-</a>
-</div>
+  <div class="header-wrap">
+    <div class="logos">
+      <a href="index.html">
+        <img src="images/logo-pr-hospitality.png" alt="P & R Hospitality">
+      </a>
+      <a href="travel.html">
+        <img src="images/logo-yes-we-care-travels-1.png" alt="Yes We Care Travels">
+      </a>
+    </div>
 
-<div class="nav">
-<a href="index.html">Home</a>
-<a href="holiday-packages.html">Holidays</a>
-<a href="contact-travel.html">Contact</a>
-</div>
-</div>
+    <div class="nav">
+      <div class="menu">☰ Services
+        <div class="dropdown">
+          <a href="travel.html">Travel Home</a>
+          <a href="cab-services.html">Cab Services</a>
+          <a href="pilgrimage-services.html">Pilgrimage Services</a>
+          <a href="holiday-packages.html">Holiday Packages</a>
+          <a href="hotel-booking.html">Hotel Booking</a>
+          <a href="volvo-tour-packages.html">Bus / Volvo</a>
+          <a href="air-tickets.html">Air Tickets</a>
+        </div>
+      </div>
+      <a href="contact-travel.html">Contact</a>
+    </div>
+  </div>
 </header>
 
-<!-- HERO -->
 <section class="hero">
-<h1>Reliable Cab Services</h1>
-<p>
-Professional taxi services for pilgrimage, hill stations, airport transfers
-and outstation travel across Jammu, Katra, Himachal & North India.
-</p>
-<a href="travel-form.html">Cab Enquiry</a>
+  <h1>Reliable Cab Services Across North India</h1>
+  <p>
+    Safe, comfortable and professional taxi services for pilgrimage, hill stations,
+    airport transfers and intercity journeys.
+  </p>
+  <a href="forms/travel-form.html">Book Cab Now</a>
 </section>
 
-<!-- SERVICES -->
 <section class="section">
-<h2>Our Cab Services</h2>
-<p class="desc">
-We provide clean vehicles, verified drivers and transparent pricing
-for comfortable and safe journeys.
-</p>
+  <h2>Our Cab Services</h2>
+  <p class="desc">
+    We provide verified taxi services in Jammu, Katra, Himachal Pradesh, Uttarakhand
+    and major pilgrimage destinations.
+  </p>
 
-<div class="grid">
+  <div class="grid">
+    <div class="card">
+      <img src="images/jammu-katra.png">
+      <div>
+        <h3>Jammu ⇄ Katra</h3>
+        <p>Vaishno Devi pilgrimage taxi services.</p>
+      </div>
+    </div>
 
-<div class="card">
-<img src="images/jammu-katra.png" alt="Jammu Katra Taxi Service">
-<div>
-<h3>Jammu ⇄ Katra</h3>
-<p>Convenient taxi service for Vaishno Devi pilgrims.</p>
-</div>
-</div>
+    <div class="card">
+      <img src="images/himachal-cab.png">
+      <div>
+        <h3>Himachal Tours</h3>
+        <p>Manali, Dharamshala & Dalhousie cab services.</p>
+      </div>
+    </div>
 
-<div class="card">
-<img src="images/himachal-cab.png" alt="Himachal Taxi Service">
-<div>
-<h3>Himachal Tours</h3>
-<p>Manali, Dharamshala, Dalhousie & hill station travel.</p>
-</div>
-</div>
+    <div class="card">
+      <img src="images/pilgrimage-cab.png">
+      <div>
+        <h3>Pilgrimage Routes</h3>
+        <p>Kedarnath, Jwala Ji & Uttarakhand routes.</p>
+      </div>
+    </div>
 
-<div class="card">
-<img src="images/pilgrimage-cab.png" alt="Pilgrimage Taxi">
-<div>
-<h3>Pilgrimage Routes</h3>
-<p>Kedarnath, Jwala Ji, Vaishno Devi & Uttarakhand routes.</p>
-</div>
-</div>
-
-<div class="card">
-<img src="images/airport-cab.png" alt="Airport Taxi Service">
-<div>
-<h3>Airport Transfers</h3>
-<p>On-time airport & railway station pickups.</p>
-</div>
-</div>
-
-<div class="card">
-<img src="images/outstation.png" alt="Outstation Taxi">
-<div>
-<h3>Outstation Taxi</h3>
-<p>Intercity travel across North India.</p>
-</div>
-</div>
-
-</div>
+    <div class="card">
+      <img src="images/airport-cab.png">
+      <div>
+        <h3>Airport Transfers</h3>
+        <p>On-time pickup & drop services.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- WHY -->
 <section class="why">
-<ul>
-<li>✔ Verified Drivers</li>
-<li>✔ Clean & Sanitized Vehicles</li>
-<li>✔ Transparent Pricing</li>
-<li>✔ 24×7 Support</li>
-<li>✔ On-Time Pickup</li>
-<li>✔ Safe & Comfortable Journey</li>
-</ul>
+  <ul>
+    <li>✔ Clean & Sanitized Vehicles</li>
+    <li>✔ Verified Drivers</li>
+    <li>✔ Transparent Pricing</li>
+    <li>✔ 24×7 Support</li>
+    <li>✔ Safe & Comfortable Journey</li>
+    <li>✔ On-Time Pickup</li>
+  </ul>
 </section>
 
-<!-- CTA -->
 <section class="cta">
-<a href="contact-travel.html">Book Your Cab Now</a>
+  <a href="forms/travel-form.html">Submit Cab Enquiry</a>
 </section>
 
 <a class="whatsapp" href="https://wa.me/919419287356" target="_blank">
-WhatsApp
+  WhatsApp
 </a>
 
 <footer>
-© 2026 Yes We Care Travels · Operated by P & R Hospitality Management Services
+  © 2026 Yes We Care Travels · Operated by P & R Hospitality Management Services
 </footer>
 
 </body>
