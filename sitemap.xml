@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <!-- MAIN WEBSITE -->
@@ -7,26 +8,20 @@
     <priority>1.0</priority>
   </url>
 
-  <!-- TRAVEL MAIN -->
+  <!-- TRAVEL DIVISION -->
   <url>
     <loc>https://pandrhospitality.in/travel.html</loc>
     <priority>0.9</priority>
   </url>
 
-  <!-- TRAVEL SERVICES -->
   <url>
     <loc>https://pandrhospitality.in/cab-services.html</loc>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://pandrhospitality.in/air-tickets.html</loc>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://pandrhospitality.in/pilgrimage-services.html</loc>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
   </url>
 
   <url>
@@ -45,29 +40,25 @@
   </url>
 
   <url>
-    <loc>https://pandrhospitality.in/contact-travel.html</loc>
-    <priority>0.6</priority>
+    <loc>https://pandrhospitality.in/air-tickets.html</loc>
+    <priority>0.8</priority>
   </url>
 
-  <!-- PMS SECTION -->
+  <url>
+    <loc>https://pandrhospitality.in/contact-travel.html</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- PMS SOFTWARE -->
   <url>
     <loc>https://pandrhospitality.in/pms.html</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- HOSPITALITY CONSULTANCY -->
+  <url>
+    <loc>https://pandrhospitality.in/hospitality-consultancy.html</loc>
     <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://pandrhospitality.in/pms-features.html</loc>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://pandrhospitality.in/pms-pricing.html</loc>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://pandrhospitality.in/contact-pms.html</loc>
-    <priority>0.6</priority>
   </url>
 
 </urlset>
