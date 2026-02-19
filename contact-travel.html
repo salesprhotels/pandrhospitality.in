@@ -2,23 +2,47 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Contact Yes We Care Travels | Cab, Holiday, Pilgrimage Enquiries</title>
+<!-- PRIMARY SEO -->
+<title>Contact Travel Team | Yes We Care Travels | Jammu Travel Services</title>
 
-<meta name="description" content="Contact Yes We Care Travels for cab services, pilgrimage tours, holiday packages, hotel booking, bus and air tickets. Jammu based travel assistance with WhatsApp support.">
+<meta name="description" content="Contact Yes We Care Travels for cab services, pilgrimage tours, hotel booking, Volvo bus and air ticket booking. Office in Jammu, Jammu & Kashmir.">
 
-<meta name="keywords" content="contact travel agency Jammu, Yes We Care Travels contact, cab booking Jammu contact, pilgrimage tour enquiry, holiday package enquiry India">
+<meta name="keywords" content="contact Yes We Care Travels, Jammu travel agency contact, cab booking Jammu, Vaishno Devi taxi contact, flight booking contact India">
 
 <meta name="robots" content="index, follow">
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- CANONICAL -->
 <link rel="canonical" href="https://pandrhospitality.in/contact-travel.html">
 
-<!-- Open Graph -->
+<!-- OPEN GRAPH -->
 <meta property="og:title" content="Contact Yes We Care Travels">
-<meta property="og:description" content="Get in touch for cab booking, pilgrimage tours, holidays, bus & air tickets.">
+<meta property="og:description" content="Cab, Pilgrimage, Hotel, Bus & Air Ticket booking assistance across India.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://pandrhospitality.in/contact-travel.html">
+<meta property="og:image" content="https://pandrhospitality.in/images/logo-yes-we-care-travels-1.png">
+
+<!-- STRUCTURED DATA -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TravelAgency",
+  "name": "Yes We Care Travels",
+  "url": "https://pandrhospitality.in/",
+  "telephone": "+919419287356",
+  "email": "yeswecaretravels@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "163, Mohalla Parotan, Raipur Domana",
+    "addressLocality": "Jammu",
+    "addressRegion": "Jammu & Kashmir",
+    "postalCode": "181123",
+    "addressCountry": "India"
+  }
+}
+</script>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -27,59 +51,95 @@ body{font-family:Arial,Helvetica,sans-serif;background:#f4f6fb;color:#222}
 /* HEADER */
 header{background:#fff;border-bottom:1px solid #ddd}
 .header-wrap{
-max-width:1200px;margin:auto;padding:12px 20px;
-display:flex;justify-content:space-between;align-items:center
+  max-width:1200px;margin:auto;padding:10px 16px;
+  display:flex;justify-content:space-between;align-items:center
 }
-.logos img{height:42px;margin-right:10px}
-.nav a{margin-left:20px;text-decoration:none;font-weight:600;color:#222}
+.logos img{height:40px;margin-right:8px}
+.nav{display:flex;align-items:center;gap:20px;font-weight:600}
+.nav a{text-decoration:none;color:#222}
+
+/* DROPDOWN */
+.menu{position:relative;cursor:pointer}
+.dropdown{
+  display:none;
+  position:absolute;
+  top:28px;
+  right:0;
+  background:#fff;
+  border:1px solid #ccc;
+  box-shadow:0 4px 12px rgba(0,0,0,.1);
+  min-width:200px;
+  z-index:99;
+}
+.dropdown a{
+  display:block;
+  padding:10px 14px;
+  text-decoration:none;
+  color:#222;
+  font-size:14px;
+}
+.dropdown a:hover{background:#f4f6fb}
+.menu:hover .dropdown{display:block}
 
 /* HERO */
 .hero{
-background:#4b3fd6;
-color:#fff;text-align:center;padding:60px 20px
+  background:#4b3fd6;
+  color:#fff;
+  text-align:center;
+  padding:70px 20px;
 }
 .hero h1{font-size:34px;margin-bottom:10px}
-.hero p{max-width:800px;margin:auto;font-size:16px}
+.hero p{font-size:16px;max-width:700px;margin:auto}
 
-/* MAIN SECTION */
+/* SECTION */
 .section{
-max-width:1100px;margin:auto;padding:60px 20px;
-display:grid;grid-template-columns:1fr 1fr;gap:40px
+  max-width:1100px;
+  margin:auto;
+  padding:60px 20px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:30px;
 }
 
 /* CARD */
 .card{
-background:#fff;padding:30px;border-radius:8px;
-box-shadow:0 4px 14px rgba(0,0,0,.08)
+  background:#fff;
+  padding:25px;
+  border-radius:8px;
+  box-shadow:0 4px 14px rgba(0,0,0,.08);
 }
-.card h2{margin-bottom:20px;color:#4b3fd6}
-
-.card p{margin-bottom:15px;line-height:1.6}
-
-.card a{color:#4b3fd6;text-decoration:none;font-weight:600}
-.card a:hover{text-decoration:underline}
+.card h2{margin-bottom:15px;color:#4b3fd6}
+.card p{margin-bottom:10px;font-size:14px;line-height:1.6}
 
 /* BUTTONS */
 .btn{
-display:block;text-align:center;
-padding:14px;border-radius:6px;
-font-weight:bold;text-decoration:none;margin-top:15px
+  display:block;
+  text-align:center;
+  margin-top:15px;
+  padding:12px;
+  border-radius:6px;
+  font-weight:bold;
+  text-decoration:none;
 }
 .whatsapp-btn{background:#25D366;color:#fff}
 .email-btn{background:#4b3fd6;color:#fff}
 
 /* MAP */
-iframe{
-width:100%;height:300px;border:0;border-radius:8px
-}
+iframe{width:100%;height:280px;border:0;border-radius:8px}
 
 /* FOOTER */
-footer{text-align:center;padding:25px;background:#fff;font-size:14px;color:#666;margin-top:40px}
+footer{
+  text-align:center;
+  padding:20px;
+  font-size:14px;
+  color:#666;
+  background:#fff;
+  margin-top:40px;
+}
 
 /* MOBILE */
 @media(max-width:800px){
-.section{grid-template-columns:1fr}
-.hero h1{font-size:26px}
+  .section{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -88,95 +148,85 @@ footer{text-align:center;padding:25px;background:#fff;font-size:14px;color:#666;
 
 <!-- HEADER -->
 <header>
-<div class="header-wrap">
-<div class="logos">
-<a href="index.html">
-<img src="images/logo-pr-hospitality.png" alt="P & R Hospitality">
-</a>
-<a href="index.html">
-<img src="images/logo-yes-we-care-travels-1.png" alt="Yes We Care Travels">
-</a>
-</div>
+  <div class="header-wrap">
+    <div class="logos">
+      <a href="index.html">
+        <img src="images/logo-pr-hospitality.png" alt="P&R Hospitality">
+      </a>
+      <a href="travel.html">
+        <img src="images/logo-yes-we-care-travels-1.png" alt="Yes We Care Travels">
+      </a>
+    </div>
 
-<div class="nav">
-<a href="index.html">Home</a>
-<a href="cab-services.html">Cab</a>
-<a href="holiday-packages.html">Holidays</a>
-<a href="contact-travel.html">Contact</a>
-</div>
-</div>
+    <div class="nav">
+      <div class="menu">☰ Services
+        <div class="dropdown">
+          <a href="travel.html">Travel Home</a>
+          <a href="cab-services.html">Cab Services</a>
+          <a href="pilgrimage-services.html">Pilgrimage Services</a>
+          <a href="holiday-packages.html">Holiday Packages</a>
+          <a href="hotel-booking.html">Hotel Booking</a>
+          <a href="volvo-tour-packages.html">Bus / Volvo</a>
+          <a href="air-tickets.html">Air Tickets</a>
+        </div>
+      </div>
+      <a href="contact-travel.html">Contact</a>
+    </div>
+  </div>
 </header>
 
 <!-- HERO -->
 <section class="hero">
-<h1>Contact Yes We Care Travels</h1>
-<p>
-Cab Services • Pilgrimage Tours • Holiday Packages • Hotel Booking • Bus & Air Tickets
-</p>
+  <h1>Contact Yes We Care Travels</h1>
+  <p>
+    For Cab Services, Pilgrimage Tours, Hotel Booking, Volvo & Air Tickets – Get in Touch Today.
+  </p>
 </section>
 
-<!-- MAIN -->
+<!-- CONTENT -->
 <section class="section">
 
-<!-- CONTACT DETAILS -->
-<div class="card">
-<h2>Get In Touch</h2>
+  <!-- CONTACT DETAILS -->
+  <div class="card">
+    <h2>Office Details</h2>
 
-<p><strong>Yes We Care Travels</strong><br>
-Operated by P & R Hospitality Management Services</p>
+    <p><strong>Yes We Care Travels</strong><br>
+    Operated by P & R Hospitality Management Services</p>
 
-<p>
-163, Mohalla Parotan<br>
-Raipur Domana, Jammu – 181123<br>
-Jammu & Kashmir, India
-</p>
+    <p><strong>Address:</strong><br>
+    163, Mohalla Parotan<br>
+    Raipur Domana, Tehsil Jammu North<br>
+    District Jammu – 181123<br>
+    Jammu & Kashmir, India</p>
 
-<p>
-<strong>Phone / WhatsApp:</strong><br>
-<a href="tel:+919419287356">+91 94192 87356</a>
-</p>
+    <p><strong>Phone / WhatsApp:</strong><br>
+    <a href="tel:+919419287356">+91 94192 87356</a></p>
 
-<p>
-  <strong style="display:block; margin-bottom:4px;">
-    Email:
-  </strong>
-  <a href="mailto:yeswecaretravels@gmail.com" 
-     style="color:#4f46e5; text-decoration:none; font-weight:600;">
-     yeswecaretravels@gmail.com
-  </a>
-</p>
+    <p><strong>Email:</strong><br>
+    <a href="mailto:yeswecaretravels@gmail.com">yeswecaretravels@gmail.com</a></p>
 
-<p>
-<strong>Business Hours:</strong><br>
-Mon – Sat: 10:00 AM – 7:00 PM<br>
-Sunday: On Call
-</p>
+    <a href="https://wa.me/919419287356" target="_blank" class="btn whatsapp-btn">
+      WhatsApp Travel Team
+    </a>
 
-<a class="btn whatsapp-btn" href="https://wa.me/919419287356" target="_blank">
-Chat on WhatsApp
-</a>
+    <a href="mailto:yeswecaretravels@gmail.com" class="btn email-btn">
+      Email Travel Team
+    </a>
+  </div>
 
-<a class="btn email-btn" href="mailto:yeswecaretravels@gmail.com">
-Send Email
-</a>
-
-</div>
-
-<!-- MAP -->
-<div class="card">
-<h2>Our Location</h2>
-
-<iframe
-src="https://www.google.com/maps?q=163+Mohalla+Parotan+Raipur+Domana+Jammu+181123&output=embed"
-loading="lazy">
-</iframe>
-
-</div>
+  <!-- MAP -->
+  <div class="card">
+    <h2>Find Us on Map</h2>
+    <iframe
+      src="https://www.google.com/maps?q=163+Mohalla+Parotan+Raipur+Domana+Jammu+181123&output=embed"
+      loading="lazy">
+    </iframe>
+  </div>
 
 </section>
 
 <footer>
-© 2026 Yes We Care Travels · Operated by P & R Hospitality Management Services
+  © 2026 Yes We Care Travels · Operated by P & R Hospitality Management Services
 </footer>
 
 </body>
