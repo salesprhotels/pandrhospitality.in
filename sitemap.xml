@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- MAIN -->
+  <url>
+    <loc>https://pandrhospitality.in/</loc>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- DOMESTIC TRAVEL -->
+  <url>
+    <loc>https://pandrhospitality.in/cab-services.html</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://pandrhospitality.in/pilgrimage-services.html</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://pandrhospitality.in/holiday-packages.html</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pandrhospitality.in/hotel-booking.html</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pandrhospitality.in/volvo-tour-packages.html</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pandrhospitality.in/air-tickets.html</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- GLOBAL EXPEDITIONS -->
+  <url>
+    <loc>https://pandrhospitality.in/global-expeditions.html</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://pandrhospitality.in/global-travel-enquiry.html</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- CONTACT -->
+  <url>
+    <loc>https://pandrhospitality.in/contact-travel.html</loc>
+    <priority>0.6</priority>
+  </url>
+
+</urlset>
