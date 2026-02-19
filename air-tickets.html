@@ -2,23 +2,39 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Domestic & International Air Ticket Booking | Yes We Care Travels</title>
+<!-- PRIMARY SEO -->
+<title>Domestic & International Air Ticket Booking India | Yes We Care Travels</title>
 
-<meta name="description" content="Book domestic and international air tickets with Yes We Care Travels. Best fares, airline support, flexible dates and professional booking assistance from Jammu based travel experts.">
+<meta name="description" content="Book domestic and international air tickets with Yes We Care Travels. Best available fares, airline assistance, flexible travel dates and professional booking support across India.">
 
-<meta name="keywords" content="air ticket booking India, international flight booking, domestic flights India, cheap air tickets Jammu, airline booking assistance, flight tickets Jammu">
+<meta name="keywords" content="air ticket booking India, international flight booking, domestic flights India, cheap air tickets, airline booking assistance, flight booking Jammu">
 
 <meta name="robots" content="index, follow">
 
-<link rel="canonical" href="https://pandrhospitality.in/travel/air-tickets.html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Open Graph -->
-<meta property="og:title" content="Domestic & International Air Ticket Booking">
-<meta property="og:description" content="Affordable domestic and international air ticket booking with professional support.">
+<!-- CANONICAL -->
+<link rel="canonical" href="https://pandrhospitality.in/air-tickets.html">
+
+<!-- OPEN GRAPH -->
+<meta property="og:title" content="Domestic & International Air Ticket Booking | Yes We Care Travels">
+<meta property="og:description" content="Professional airline booking assistance with best fares and flexible travel options.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://pandrhospitality.in/travel/air-tickets.html">
+<meta property="og:url" content="https://pandrhospitality.in/air-tickets.html">
+<meta property="og:image" content="https://pandrhospitality.in/images/air-bg (1).png">
+
+<!-- BASIC STRUCTURED DATA -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TravelAgency",
+  "name": "Yes We Care Travels",
+  "url": "https://pandrhospitality.in/",
+  "telephone": "+919419287356",
+  "email": "yeswecaretravels@gmail.com"
+}
+</script>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -27,188 +43,202 @@ body{font-family:Arial,Helvetica,sans-serif;background:#f4f6fb;color:#222}
 /* HEADER */
 header{background:#fff;border-bottom:1px solid #ddd}
 .header-wrap{
-max-width:1200px;margin:auto;padding:12px 20px;
-display:flex;justify-content:space-between;align-items:center
+  max-width:1200px;margin:auto;padding:10px 16px;
+  display:flex;justify-content:space-between;align-items:center
 }
-.logos img{height:42px;margin-right:10px}
-.nav{
-display:flex;align-items:center;gap:20px;font-weight:600
-}
+.logos img{height:40px;margin-right:8px}
+.nav{display:flex;align-items:center;gap:20px;font-weight:600}
 .nav a{text-decoration:none;color:#222}
+
+/* SERVICES DROPDOWN */
+.menu{position:relative;cursor:pointer}
+.dropdown{
+  display:none;
+  position:absolute;
+  top:28px;
+  right:0;
+  background:#fff;
+  border:1px solid #ccc;
+  box-shadow:0 4px 12px rgba(0,0,0,.1);
+  min-width:200px;
+  z-index:99;
+}
+.dropdown a{
+  display:block;
+  padding:10px 14px;
+  text-decoration:none;
+  color:#222;
+  font-size:14px;
+}
+.dropdown a:hover{background:#f4f6fb}
+.menu:hover .dropdown{display:block}
 
 /* HERO */
 .hero{
-background:
-linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
-url("../images/air-bg (1).png") center/cover no-repeat;
-color:#fff;text-align:center;padding:90px 20px
+  background:
+  linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+  url('images/air-bg (1).png') center/cover no-repeat;
+  color:#fff;text-align:center;padding:90px 20px
 }
 .hero h1{font-size:36px;margin-bottom:12px}
-.hero p{max-width:900px;margin:auto;font-size:18px;line-height:1.6}
+.hero p{font-size:18px;max-width:900px;margin:auto;line-height:1.6}
 .hero a{
-display:inline-block;margin-top:25px;
-background:#f5b400;color:#000;
-padding:14px 28px;border-radius:6px;
-font-weight:bold;text-decoration:none
+  display:inline-block;margin-top:22px;
+  background:#f5b400;color:#000;
+  padding:12px 26px;border-radius:6px;
+  font-weight:bold;text-decoration:none
 }
 
 /* SECTION */
 .section{max-width:1100px;margin:auto;padding:60px 20px}
-.section h2{text-align:center;margin-bottom:25px;color:#0b2a4a}
-.text{max-width:900px;margin:auto;font-size:16px;line-height:1.7}
+.section h2{text-align:center;margin-bottom:20px;color:#0b2a4a}
+.text{max-width:900px;margin:auto;font-size:16px;line-height:1.7;text-align:center}
 
 /* GRID */
 .grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-gap:20px;margin-top:35px
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:20px;margin-top:30px
 }
 .card{
-background:#fff;padding:25px;border-radius:8px;
-box-shadow:0 4px 14px rgba(0,0,0,.08);
-text-align:center
+  background:#fff;padding:22px;border-radius:8px;
+  box-shadow:0 4px 14px rgba(0,0,0,.08);
+  text-align:center
 }
-.card h3{color:#4b3fd6;margin-bottom:10px}
+.card h3{color:#4b3fd6;margin-bottom:8px}
+
+/* TRUST */
+.trust{
+  background:#eef1ff;
+  padding:50px 20px;
+  text-align:center;
+}
+.trust ul{
+  max-width:800px;margin:auto;
+  list-style:none;display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:15px
+}
+.trust li{
+  background:#fff;padding:14px;
+  border-radius:6px;
+  font-size:14px;
+}
 
 /* CTA */
-.cta{
-text-align:center;background:#eef1ff;
-padding:50px 20px
-}
+.cta{text-align:center;background:#eef1ff;padding:40px 20px}
 .cta a{
-background:#4b3fd6;color:#fff;
-padding:14px 28px;border-radius:6px;
-text-decoration:none;font-weight:bold
+  background:#4b3fd6;color:#fff;
+  padding:12px 26px;border-radius:6px;
+  text-decoration:none;font-weight:bold
 }
 
 /* WHATSAPP */
 .whatsapp{
-position:fixed;bottom:20px;right:20px;
-background:#25D366;color:#fff;
-padding:12px 18px;border-radius:30px;
-font-weight:bold;text-decoration:none
+  position:fixed;bottom:20px;right:20px;
+  background:#25D366;color:#fff;
+  padding:12px 18px;border-radius:30px;
+  font-weight:bold;text-decoration:none
 }
 
 /* FOOTER */
-footer{
-text-align:center;padding:25px;
-font-size:14px;color:#666;background:#fff
-}
-
-/* MOBILE */
-@media(max-width:768px){
-.hero h1{font-size:26px}
-.hero p{font-size:16px}
-}
+footer{text-align:center;padding:20px;font-size:14px;color:#666;background:#fff}
 </style>
-
-<!-- STRUCTURED DATA -->
-<script type="application/ld+json">
-{
- "@context": "https://schema.org",
- "@type": "TravelAgency",
- "name": "Yes We Care Travels",
- "url": "https://pandrhospitality.in/travel/air-tickets.html",
- "telephone": "+91 9419287356",
- "address": {
-   "@type": "PostalAddress",
-   "addressLocality": "Jammu",
-   "addressRegion": "Jammu & Kashmir",
-   "addressCountry": "India"
- }
-}
-</script>
-
 </head>
 
 <body>
 
 <!-- HEADER -->
 <header>
-<div class="header-wrap">
-<div class="logos">
-<a href="../index.html">
-<img src="../images/logo-pr-hospitality.png" alt="P & R Hospitality">
-</a>
-<a href="index.html">
-<img src="../images/logo-yes-we-care-travels-1.png" alt="Yes We Care Travels">
-</a>
-</div>
+  <div class="header-wrap">
+    <div class="logos">
+      <a href="index.html">
+        <img src="images/logo-pr-hospitality.png" alt="P&R Hospitality">
+      </a>
+      <a href="travel.html">
+        <img src="images/logo-yes-we-care-travels-1.png" alt="Yes We Care Travels">
+      </a>
+    </div>
 
-<div class="nav">
-<a href="index.html">Travel Home</a>
-<a href="cab-services.html">Cab</a>
-<a href="holiday-packages.html">Holidays</a>
-<a href="contact-travel.html">Contact</a>
-</div>
-</div>
+    <div class="nav">
+      <div class="menu">☰ Services
+        <div class="dropdown">
+          <a href="travel.html">Travel Home</a>
+          <a href="cab-services.html">Cab Services</a>
+          <a href="pilgrimage-services.html">Pilgrimage Services</a>
+          <a href="holiday-packages.html">Holiday Packages</a>
+          <a href="hotel-booking.html">Hotel Booking</a>
+          <a href="volvo-tour-packages.html">Bus / Volvo</a>
+          <a href="air-tickets.html">Air Tickets</a>
+        </div>
+      </div>
+      <a href="contact-travel.html">Contact</a>
+    </div>
+  </div>
 </header>
 
 <!-- HERO -->
 <section class="hero">
-<h1>Domestic & International Air Ticket Booking</h1>
-<p>
-Book reliable and affordable flight tickets with expert assistance.  
-Domestic and international routes handled professionally with fare comparison and airline coordination.
-</p>
-<a href="../forms/travel-form.html">Air Ticket Enquiry</a>
+  <h1>Domestic & International Air Ticket Booking</h1>
+  <p>
+    Book reliable and affordable domestic and international air tickets with professional assistance,
+    flexible travel dates and trusted airline support.
+  </p>
+  <a href="forms/travel-form.html">Air Ticket Enquiry</a>
 </section>
 
-<!-- SERVICES -->
+<!-- WHAT WE OFFER -->
 <section class="section">
-<h2>Our Air Ticket Services</h2>
+  <h2>Air Ticket Booking Services</h2>
+  <p class="text">
+    We provide complete airline booking assistance including fare comparison,
+    flexible travel options and professional guidance for both domestic and international flights.
+  </p>
 
-<p class="text">
-We provide complete flight ticket booking assistance including domestic and international travel. 
-Our team helps you choose cost-effective travel dates, suitable airlines and convenient timings.
-</p>
-
-<div class="grid">
-<div class="card">
-<h3>Domestic Flights</h3>
-<p>All major Indian airlines with competitive fares and support.</p>
-</div>
-
-<div class="card">
-<h3>International Flights</h3>
-<p>Global destinations with booking coordination and travel guidance.</p>
-</div>
-
-<div class="card">
-<h3>Flexible Travel Dates</h3>
-<p>Fare comparison and best date suggestions to reduce cost.</p>
-</div>
-
-<div class="card">
-<h3>Airline Support</h3>
-<p>IndiGo, Air India, Vistara, Akasa & international carriers.</p>
-</div>
-</div>
+  <div class="grid">
+    <div class="card">
+      <h3>Domestic Flights</h3>
+      <p>All major Indian airlines with competitive fares.</p>
+    </div>
+    <div class="card">
+      <h3>International Flights</h3>
+      <p>Global destinations with proper fare guidance.</p>
+    </div>
+    <div class="card">
+      <h3>Flexible Travel Dates</h3>
+      <p>Cost-effective date combinations assistance.</p>
+    </div>
+    <div class="card">
+      <h3>Airline Support</h3>
+      <p>IndiGo, Air India, Vistara, Akasa & international carriers.</p>
+    </div>
+  </div>
 </section>
 
-<!-- DESTINATIONS -->
-<section class="section">
-<h2>Destinations Covered</h2>
-<p class="text">
-Domestic routes include Delhi, Mumbai, Bangalore, Chennai, Hyderabad, Jammu, Srinagar, Goa, Kochi and more.  
-International flight bookings available for selected global destinations.
-</p>
+<!-- TRUST -->
+<section class="trust">
+  <ul>
+    <li>✔ Verified booking assistance</li>
+    <li>✔ Transparent fare guidance</li>
+    <li>✔ Professional travel support</li>
+    <li>✔ No hidden service charges</li>
+  </ul>
 </section>
 
 <!-- CTA -->
 <section class="cta">
-<p style="margin-bottom:20px">
-Need help booking a flight ticket?
-</p>
-<a href="../forms/travel-form.html">Submit Air Ticket Enquiry</a>
+  <p style="margin-bottom:15px">
+    Need assistance with flight booking?
+  </p>
+  <a href="forms/travel-form.html">Submit Air Ticket Enquiry</a>
 </section>
 
 <a class="whatsapp" href="https://wa.me/919419287356" target="_blank">
-WhatsApp
+  WhatsApp
 </a>
 
 <footer>
-© 2026 Yes We Care Travels · Operated by P & R Hospitality Management Services
+  © 2026 Yes We Care Travels · Operated by P & R Hospitality Management Services
 </footer>
 
 </body>
