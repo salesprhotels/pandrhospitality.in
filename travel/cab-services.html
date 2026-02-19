@@ -2,16 +2,52 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Cab Services in Jammu, Katra & Himachal | Yes We Care Travels</title>
+<!-- PRIMARY SEO -->
+<title>Cab Services in Jammu, Katra & Himachal | Airport & Outstation Taxi | Yes We Care Travels</title>
 
-<meta name="description" content="Book reliable cab services in Jammu, Katra, Vaishno Devi, Himachal & across India. Local, outstation, airport taxi & pilgrimage cab services with verified drivers.">
+<meta name="description" content="Book reliable cab services in Jammu, Katra, Vaishno Devi, Himachal & across India. Local, airport, pilgrimage and outstation taxi services with verified drivers and 24x7 support.">
 
-<meta name="keywords" content="cab services Jammu, Katra taxi, Vaishno Devi cab, airport taxi Jammu, outstation cab Himachal, local taxi service, pilgrimage taxi India">
+<meta name="keywords" content="cab services Jammu, Katra taxi, Vaishno Devi cab, airport taxi Jammu, outstation taxi Himachal, pilgrimage cab India">
 
 <meta name="robots" content="index, follow">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://pandrhospitality.in/travel/cab-services">
+
+<!-- OPEN GRAPH -->
+<meta property="og:title" content="Reliable Cab Services | Yes We Care Travels">
+<meta property="og:description" content="Professional taxi services for pilgrimage, airport transfer and outstation travel across Jammu & Himachal.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pandrhospitality.in/travel/cab-services">
+<meta property="og:image" content="https://pandrhospitality.in/images/travel-transport.jpg">
+
+<!-- TWITTER CARD -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cab Services in Jammu & Himachal">
+<meta name="twitter:description" content="Safe, clean and verified taxi services for pilgrimage & hill stations.">
+<meta name="twitter:image" content="https://pandrhospitality.in/images/travel-transport.jpg">
+
+<!-- STRUCTURED DATA -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Cab Services",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Yes We Care Travels",
+    "url": "https://pandrhospitality.in",
+    "telephone": "+919419287356",
+    "areaServed": "India"
+  },
+  "areaServed": {
+    "@type": "Place",
+    "name": "Jammu, Katra, Himachal Pradesh"
+  },
+  "serviceType": "Taxi & Cab Services"
+}
+</script>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -19,6 +55,7 @@ body{
   font-family:Arial,Helvetica,sans-serif;
   background:#f4f6fb;
   color:#222;
+  line-height:1.6;
 }
 
 /* HEADER */
@@ -38,31 +75,13 @@ header{
   height:40px;
   margin-right:10px;
 }
-.nav{
-  display:flex;
-  align-items:center;
-  gap:20px;
-  font-weight:600;
-}
-.menu{position:relative;cursor:pointer}
-.dropdown{
-  display:none;
-  position:absolute;
-  top:28px;
-  right:0;
-  background:#fff;
-  border:1px solid #ccc;
-  box-shadow:0 4px 12px rgba(0,0,0,.1);
-  z-index:99;
-}
-.dropdown a{
-  display:block;
-  padding:10px 16px;
+.nav a{
+  margin-left:20px;
   text-decoration:none;
+  font-weight:600;
   color:#222;
 }
-.dropdown a:hover{background:#f4f6fb}
-.menu:hover .dropdown{display:block}
+.nav a:hover{color:#4b3fd6}
 
 /* HERO */
 .hero{
@@ -71,47 +90,40 @@ header{
     url('../images/travel-transport.jpg') center/cover no-repeat;
   color:#fff;
   text-align:center;
-  padding:70px 20px;
+  padding:80px 20px;
 }
-.hero h1{font-size:36px;margin-bottom:12px}
-.hero p{
-  max-width:900px;
-  margin:auto;
-  font-size:18px;
-  line-height:1.6;
-}
+.hero h1{font-size:38px;margin-bottom:12px}
+.hero p{max-width:850px;margin:auto;font-size:18px}
 .hero a{
   display:inline-block;
-  margin-top:24px;
+  margin-top:25px;
   background:#f5b400;
   color:#000;
   padding:12px 28px;
   border-radius:6px;
-  text-decoration:none;
   font-weight:bold;
+  text-decoration:none;
 }
 
 /* SECTION */
 .section{
   max-width:1200px;
   margin:auto;
-  padding:50px 20px;
+  padding:60px 20px;
 }
 .section h2{
   text-align:center;
-  margin-bottom:12px;
+  margin-bottom:15px;
   color:#0b2a4a;
 }
-.section .desc{
-  text-align:center;
-  max-width:850px;
+.section p{
+  max-width:900px;
   margin:0 auto 30px;
+  text-align:center;
   color:#555;
-  font-size:16px;
-  line-height:1.6;
 }
 
-/* CARDS */
+/* GRID */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
@@ -122,13 +134,6 @@ header{
   border-radius:8px;
   box-shadow:0 4px 14px rgba(0,0,0,.08);
   overflow:hidden;
-  text-decoration:none;
-  color:#222;
-  transition:.25s;
-}
-.card:hover{
-  transform:translateY(-5px);
-  box-shadow:0 8px 24px rgba(0,0,0,.12);
 }
 .card img{
   width:100%;
@@ -137,35 +142,13 @@ header{
 }
 .card div{padding:16px}
 .card h3{color:#4b3fd6;margin-bottom:6px}
-.card p{font-size:14px;color:#555}
-
-/* WHY */
-.why{
-  background:#eef1ff;
-  padding:40px 20px;
-}
-.why ul{
-  max-width:900px;
-  margin:auto;
-  list-style:none;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:14px;
-}
-.why li{
-  background:#fff;
-  padding:14px;
-  border-radius:6px;
-  box-shadow:0 2px 8px rgba(0,0,0,.05);
-  font-size:14px;
-}
 
 /* CTA */
 .cta{
+  background:#eef1ff;
   text-align:center;
   padding:40px 20px;
 }
-.cta p{margin-bottom:16px;font-size:16px}
 .cta a{
   background:#4b3fd6;
   color:#fff;
@@ -177,16 +160,11 @@ header{
 
 /* FOOTER */
 footer{
-  background:#fff;
   text-align:center;
   padding:20px;
   font-size:14px;
+  background:#fff;
   color:#666;
-}
-footer img{height:22px;margin:0 8px}
-
-@media(max-width:600px){
-  .hero h1{font-size:28px}
 }
 </style>
 </head>
@@ -197,37 +175,66 @@ footer img{height:22px;margin:0 8px}
   <div class="header-wrap">
     <div class="logos">
       <a href="../index.html">
-        <img src="../images/logo-pr-hospitality.png" alt="P&R Hospitality">
+        <img src="../images/logo-pr-hospitality.png" alt="P & R Hospitality">
       </a>
-      <a href="index.html">
+      <a href="../travel/index.html">
         <img src="../images/logo-yes-we-care-travels-1.png" alt="Yes We Care Travels">
       </a>
     </div>
-
     <div class="nav">
-      <div class="menu">☰ Services
-        <div class="dropdown">
-          <a href="index.html">Travel Services</a>
-          <a href="cab-services.html">Cab Services</a>
-          <a href="pilgrimage-services.html">Pilgrimage Services</a>
-          <a href="holiday-packages.html">Holiday Packages</a>
-          <a href="hotel-booking.html">Hotel Booking</a>
-          <a href="volvo-tour-packages.html">Bus Tickets</a>
-          <a href="air-tickets.html">Air Tickets</a>
-        </div>
-      </div>
+      <a href="../travel/index.html">Travel</a>
       <a href="../contact-travel.html">Contact</a>
     </div>
   </div>
 </header>
 
 <section class="hero">
-  <h1>Reliable Cab Services</h1>
+  <h1>Reliable Cab Services in Jammu & Himachal</h1>
   <p>
-    Travel without worry. Whether it’s pilgrimage, hill stations or intercity journeys,
-    our clean cabs, verified drivers and 24×7 support ensure a safe and comfortable ride.
+    Safe, comfortable and professional taxi services for pilgrimage, airport transfers and hill station travel.
   </p>
   <a href="../forms/travel-form.html">Cab Enquiry</a>
+</section>
+
+<section class="section">
+  <h2>Our Cab Services</h2>
+  <p>
+    We provide local and outstation taxi services for Jammu, Katra, Vaishno Devi,
+    Himachal hill stations and major pilgrimage routes.
+  </p>
+
+  <div class="grid">
+
+    <div class="card">
+      <img src="../images/jammu-katra.png" alt="Jammu Katra Taxi">
+      <div>
+        <h3>Jammu ⇄ Katra</h3>
+        <p>Comfortable taxis for Vaishno Devi pilgrimage.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="../images/himachal-cab.png" alt="Himachal Taxi">
+      <div>
+        <h3>Himachal Tours</h3>
+        <p>Manali, Dharamshala & hill station cab services.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="../images/airport-cab.png" alt="Airport Taxi">
+      <div>
+        <h3>Airport Transfer</h3>
+        <p>On-time airport and railway station pickup & drop.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="cta">
+  <p>Need a cab? Submit your enquiry now.</p>
+  <a href="../forms/travel-form.html">Submit Enquiry</a>
 </section>
 
 <footer>
