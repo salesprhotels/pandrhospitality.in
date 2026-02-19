@@ -35,9 +35,8 @@ header{
   align-items:center;
   gap:10px;
 }
-.logos img{
-  height:42px;
-}
+.logos img{height:42px;}
+
 .nav{
   display:flex;
   align-items:center;
@@ -60,7 +59,6 @@ header{
   padding:10px 16px;
   text-decoration:none;
   color:#222;
-  white-space:nowrap;
 }
 .dropdown a:hover{background:#f4f6fb}
 .menu:hover .dropdown{display:block}
@@ -73,11 +71,7 @@ header{
   padding:60px 20px;
 }
 .hero h1{font-size:34px;margin-bottom:10px}
-.hero p{
-  max-width:900px;
-  margin:auto;
-  font-size:18px;
-}
+.hero p{max-width:900px;margin:auto;font-size:18px}
 .hero a{
   display:inline-block;
   margin-top:22px;
@@ -95,11 +89,7 @@ header{
   margin:auto;
   padding:50px 20px;
 }
-.section h2{
-  text-align:center;
-  margin-bottom:30px;
-  color:#0b2a4a;
-}
+.section h2{text-align:center;margin-bottom:30px;color:#0b2a4a}
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
@@ -124,10 +114,7 @@ header{
   object-fit:cover;
 }
 .card div{padding:16px}
-.card h3{
-  color:#4b3fd6;
-  margin-bottom:6px;
-}
+.card h3{color:#4b3fd6;margin-bottom:6px}
 
 /* CTA */
 .cta{
@@ -142,6 +129,46 @@ header{
   border-radius:6px;
   text-decoration:none;
   font-weight:bold;
+}
+
+/* CHATBOT */
+.chat-btn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#4b3fd6;
+  color:#fff;
+  padding:14px;
+  border-radius:50%;
+  cursor:pointer;
+  font-weight:bold;
+  z-index:999;
+}
+#chatbot{
+  display:none;
+  position:fixed;
+  bottom:90px;
+  right:20px;
+  width:260px;
+  background:#fff;
+  box-shadow:0 6px 20px rgba(0,0,0,.2);
+  border-radius:10px;
+  padding:12px;
+  z-index:999;
+}
+
+/* WHATSAPP */
+.whatsapp{
+  position:fixed;
+  bottom:20px;
+  left:20px;
+  background:#25D366;
+  color:#fff;
+  padding:12px 18px;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:bold;
+  z-index:999;
 }
 
 /* FOOTER */
@@ -190,10 +217,7 @@ footer img{
 
 <section class="hero">
   <h1>Travel Services</h1>
-  <p>
-    Comfortable, reliable and affordable travel solutions for pilgrimage,
-    holidays, cab services, hotel bookings and ticketing across India.
-  </p>
+  <p>Comfortable, reliable and affordable travel solutions across India.</p>
   <a href="forms/travel-form.html">Travel Enquiry</a>
 </section>
 
@@ -201,7 +225,6 @@ footer img{
   <h2>Our Travel Services</h2>
 
   <div class="grid">
-
     <a class="card" href="cab-services.html">
       <img src="../images/travel-transport.jpg">
       <div>
@@ -214,7 +237,7 @@ footer img{
       <img src="../images/travel-pilgrimage.jpg">
       <div>
         <h3>Pilgrimage Tours</h3>
-        <p>Vaishno Devi, Char Dham, Shaktipeeth & more.</p>
+        <p>Vaishno Devi, Char Dham & Shaktipeeth tours.</p>
       </div>
     </a>
 
@@ -222,7 +245,7 @@ footer img{
       <img src="../images/travel-domestic.jpg">
       <div>
         <h3>Holiday Packages</h3>
-        <p>Goa, Kerala, Himachal, North East & honeymoon tours.</p>
+        <p>Domestic & honeymoon tours.</p>
       </div>
     </a>
 
@@ -238,7 +261,7 @@ footer img{
       <img src="../images/travel-bus.jpg">
       <div>
         <h3>Bus / Volvo Tickets</h3>
-        <p>Pan-India online bus & Volvo bookings.</p>
+        <p>Pan-India online bus bookings.</p>
       </div>
     </a>
 
@@ -246,19 +269,36 @@ footer img{
       <img src="../images/travel-air.jpg">
       <div>
         <h3>Air Tickets</h3>
-        <p>Domestic & International flight booking.</p>
+        <p>Domestic & International flights.</p>
       </div>
     </a>
-
   </div>
 </section>
 
 <section class="cta">
-  <p style="margin-bottom:16px">
-    For any travel-related service, please submit an enquiry.
-  </p>
+  <p style="margin-bottom:16px">For any travel service, please submit an enquiry.</p>
   <a href="forms/travel-form.html">Submit Enquiry</a>
 </section>
+
+<!-- CHATBOT -->
+<div id="chatbot">
+  <strong>Hi 👋</strong>
+  <p style="font-size:14px;margin-top:6px">
+    How can we help you?
+  </p>
+  <p style="font-size:13px;margin-top:10px">
+    • Cab Services<br>
+    • Pilgrimage Tours<br>
+    • Holiday Packages<br>
+    • Hotel Booking
+  </p>
+</div>
+<div class="chat-btn" onclick="toggleChat()">💬</div>
+
+<!-- WHATSAPP -->
+<a class="whatsapp" href="https://wa.me/919419287356" target="_blank">
+  WhatsApp
+</a>
 
 <footer>
   <div style="margin-bottom:10px">
@@ -271,6 +311,13 @@ footer img{
   </div>
   © 2026 Yes We Care Travels · Operated by P & R Hospitality Management Services
 </footer>
+
+<script>
+function toggleChat(){
+  const box=document.getElementById("chatbot");
+  box.style.display=box.style.display==="block"?"none":"block";
+}
+</script>
 
 </body>
 </html>
