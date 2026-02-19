@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Allow important assets
+Allow: /images/
+Allow: /css/
+Allow: /js/
+
+# Block unnecessary system files
+Disallow: /cgi-bin/
+Disallow: /*.php$
+Disallow: /*.sql$
+Disallow: /*.bak$
+Disallow: /*.tmp$
+
+# Sitemap Location
+Sitemap: https://pandrhospitality.in/sitemap.xml
