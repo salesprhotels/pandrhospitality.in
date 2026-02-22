@@ -11,27 +11,36 @@
 <meta name="keywords" content="Vaishno Devi Yatra package, Katra tour, Jammu to Katra cab, Shiv Khori tour, Nau Devi Darshan">
 
 <meta name="robots" content="index, follow">
-
 <link rel="canonical" href="https://pandrhospitality.in/vaishno-devi-yatra.html">
 
 <style>
-body{
-  font-family:Arial,Helvetica,sans-serif;
-  margin:0;
-  background:#f4f6fb;
-  color:#222
-}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,Helvetica,sans-serif;background:#f4f6fb;color:#222}
 
+/* HEADER */
+header{background:#fff;border-bottom:1px solid #ddd}
+.header-wrap{
+  max-width:1200px;
+  margin:auto;
+  padding:12px 16px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.logos img{height:42px;margin-right:8px}
+.nav{display:flex;gap:20px;font-weight:600}
+.nav a{text-decoration:none;color:#222}
+.nav a:hover{color:#4b3fd6}
+
+/* HERO */
 .hero{
   background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
   url('images/pilgrimage-jammu-composite.png') center/cover no-repeat;
   color:#fff;
   text-align:center;
-  padding:100px 20px
+  padding:100px 20px;
 }
-
 .hero h1{font-size:36px;margin-bottom:12px}
-
 .hero a{
   display:inline-block;
   margin-top:20px;
@@ -40,44 +49,40 @@ body{
   padding:12px 24px;
   border-radius:6px;
   text-decoration:none;
-  font-weight:bold
+  font-weight:bold;
 }
 
+/* SECTION */
 .section{
   max-width:1100px;
   margin:auto;
-  padding:60px 20px
+  padding:60px 20px;
 }
-
 .section h2{
   text-align:center;
   margin-bottom:30px;
-  color:#0b2a4a
+  color:#0b2a4a;
 }
-
 .box{
   background:#fff;
   padding:20px;
   margin-bottom:20px;
   border-radius:8px;
-  box-shadow:0 4px 12px rgba(0,0,0,.08)
+  box-shadow:0 4px 12px rgba(0,0,0,.08);
 }
 
-.cta{
-  text-align:center;
-  padding:40px 20px
-}
-
+/* CTA */
+.cta{text-align:center;padding:40px 20px}
 .cta a{
   background:#4b3fd6;
   color:#fff;
   padding:12px 28px;
   border-radius:6px;
   text-decoration:none;
-  font-weight:bold
+  font-weight:bold;
 }
 
-/* Professional WhatsApp Button (No Number Visible) */
+/* WhatsApp */
 .whatsapp{
   position:fixed;
   bottom:20px;
@@ -89,31 +94,49 @@ body{
   text-decoration:none;
   font-weight:bold;
   box-shadow:0 4px 12px rgba(0,0,0,.2);
-  transition:0.3s;
 }
 
-.whatsapp:hover{
-  transform:scale(1.05);
-}
-
+/* FOOTER */
 footer{
   text-align:center;
   padding:20px;
   background:#fff;
   font-size:14px;
-  color:#666
+  color:#666;
 }
 </style>
 </head>
 
 <body>
 
+<!-- HEADER -->
+<header>
+  <div class="header-wrap">
+    <div class="logos">
+      <a href="index.html">
+        <img src="images/logo-pr-hospitality.png" alt="P & R Hospitality">
+      </a>
+      <a href="index.html">
+        <img src="images/logo-yes-we-care-travels-1.png" alt="Yes We Care Travels">
+      </a>
+    </div>
+
+    <div class="nav">
+      <a href="pilgrimage-services.html">Pilgrimage</a>
+      <a href="cab-services.html">Cab Services</a>
+      <a href="contact-travel.html">Contact</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
 <section class="hero">
 <h1>Vaishno Devi Yatra Package</h1>
 <p>Comfortable travel from Jammu to Katra with flexible stay and sightseeing options.</p>
 <a href="forms/travel-form.html">Request Itinerary</a>
 </section>
 
+<!-- CONTENT -->
 <section class="section">
 <h2>Flexible Package Options</h2>
 
@@ -159,7 +182,6 @@ footer{
 <a href="forms/travel-form.html">Submit Pilgrimage Enquiry</a>
 </section>
 
-<!-- Clean WhatsApp Button -->
 <a class="whatsapp" href="https://wa.me/919419287356" target="_blank">
 💬 Chat on WhatsApp
 </a>
