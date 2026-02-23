@@ -1,137 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>PMS Enquiry | P & R Hospitality</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f4f6fb;
-      color: #333;
-    }
+<title>PMS Enquiry | Property Management System | P & R Hospitality</title>
 
-    /* HEADER */
-    .site-header {
-      background: #0b2a4a;
-      color: #fff;
-    }
-    .header-wrap {
-      max-width: 1100px;
-      margin: auto;
-      padding: 12px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-    .logo img { height: 40px; }
-    .nav {
-      text-align: center;
-      padding-bottom: 8px;
-    }
-    .nav a {
-      color: #fff;
-      margin: 0 10px;
-      text-decoration: none;
-      font-weight: 600;
-    }
+<meta name="description" content="Submit PMS enquiry for hotel, resort or homestay. Get demo for Property Management System by P & R Hospitality Management Services.">
+<meta name="robots" content="noindex, follow">
 
-    /* FORM BOX */
-    .container {
-      max-width: 600px;
-      margin: 30px auto;
-      background: #fff;
-      padding: 25px;
-      border-radius: 8px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-    }
+<link rel="canonical" href="https://pandrhospitality.in/forms/pms-form.html">
 
-    h1 {
-      text-align: center;
-      color: #0b2a4a;
-      margin-bottom: 20px;
-    }
+<!-- Google Tag -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-836426031"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'AW-836426031');
+</script>
 
-    label {
-      display: block;
-      margin-top: 14px;
-      font-weight: 600;
-    }
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  background:#f4f6fb;
+  color:#333;
+}
 
-    input, select, textarea {
-      width: 100%;
-      padding: 10px;
-      margin-top: 6px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 15px;
-    }
+/* HEADER */
+.site-header{
+  background:#0b2a4a;
+  color:#fff;
+}
+.header-wrap{
+  max-width:1100px;
+  margin:auto;
+  padding:12px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+}
+.logo img{height:40px}
+.nav{
+  text-align:center;
+  padding-bottom:8px;
+}
+.nav a{
+  color:#fff;
+  margin:0 10px;
+  text-decoration:none;
+  font-weight:600;
+}
 
-    textarea {
-      min-height: 90px;
-      resize: vertical;
-    }
+/* FORM */
+.container{
+  max-width:600px;
+  margin:30px auto;
+  background:#fff;
+  padding:25px;
+  border-radius:8px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.08);
+}
+h1{
+  text-align:center;
+  color:#0b2a4a;
+  margin-bottom:20px;
+}
+label{
+  display:block;
+  margin-top:14px;
+  font-weight:600;
+}
+input,select,textarea{
+  width:100%;
+  padding:10px;
+  margin-top:6px;
+  border:1px solid #ccc;
+  border-radius:5px;
+  font-size:15px;
+}
+textarea{min-height:90px}
 
-    .row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
+.row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
 
-    button {
-      width: 100%;
-      margin-top: 22px;
-      padding: 12px;
-      background: #d18b2c;
-      border: none;
-      border-radius: 6px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      color: #fff;
-    }
+button{
+  width:100%;
+  margin-top:22px;
+  padding:12px;
+  background:#d18b2c;
+  border:none;
+  border-radius:6px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+  color:#fff;
+}
+button:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+}
 
-    button:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
+.back-links{
+  text-align:center;
+  margin-top:18px;
+}
+.back-links a{
+  color:#0b2a4a;
+  text-decoration:none;
+  font-weight:600;
+  margin:0 8px;
+}
 
-    .back-links {
-      text-align: center;
-      margin-top: 18px;
-    }
+footer{
+  text-align:center;
+  font-size:13px;
+  color:#777;
+  margin:20px 0;
+}
 
-    .back-links a {
-      color: #0b2a4a;
-      text-decoration: none;
-      font-weight: 600;
-      margin: 0 8px;
-    }
-
-    footer {
-      text-align: center;
-      font-size: 13px;
-      color: #777;
-      margin: 20px 0;
-    }
-
-    @media (max-width: 600px) {
-      .row { grid-template-columns: 1fr; }
-    }
-  </style>
+@media(max-width:600px){
+  .row{grid-template-columns:1fr}
+}
+</style>
 </head>
 
 <body>
 
-<!-- HEADER -->
 <header class="site-header">
   <div class="header-wrap">
     <div class="logo">
-      <img src="../images/logo-pr-hospitality.png" alt="P & R Hospitality">
+      <a href="../index.html">
+        <img src="../images/logo-pr-hospitality.png" alt="P & R Hospitality">
+      </a>
     </div>
     <div class="logo">
       <img src="../images/logo-pms.png" alt="PMS Services">
@@ -142,27 +149,25 @@
     <a href="../index.html">Home</a>
     <a href="../pms.html">PMS Services</a>
     <a href="../travel.html">Travel Services</a>
-    <a href="../contact.html">Contact</a>
   </div>
 </header>
 
-<!-- FORM -->
 <div class="container">
   <h1>PMS Enquiry Form</h1>
 
   <form id="pmsForm">
 
     <label>Full Name *</label>
-    <input type="text" id="name" name="name" required>
+    <input type="text" name="name" required>
 
     <label>Mobile Number *</label>
-    <input type="tel" id="mobile" name="mobile" required>
+    <input type="tel" name="mobile" pattern="[0-9]{10}" required>
 
     <label>Email Address</label>
-    <input type="email" id="email" name="email">
+    <input type="email" name="email">
 
     <label>Property Type</label>
-    <select id="propertyType" name="propertyType">
+    <select name="propertyType">
       <option value="">Select Property Type</option>
       <option>Hotel</option>
       <option>Homestay</option>
@@ -172,10 +177,10 @@
     </select>
 
     <label>Number of Rooms</label>
-    <input type="number" id="rooms" name="rooms" min="1">
+    <input type="number" name="rooms" min="1">
 
     <label>Required Service</label>
-    <select id="service" name="service">
+    <select name="service">
       <option value="">Select Service</option>
       <option>PMS Setup</option>
       <option>Hospitality Management</option>
@@ -185,53 +190,49 @@
     </select>
 
     <label>Message / Requirements</label>
-    <textarea id="message" name="message"></textarea>
+    <textarea name="message"></textarea>
 
     <button type="submit" id="submitBtn">Submit PMS Enquiry</button>
   </form>
 
   <div class="back-links">
-    <a href="../pms.html">← Back to PMS Services</a> |
+    <a href="../pms.html">← Back to PMS</a> |
     <a href="../index.html">← Back to Website</a>
   </div>
 </div>
 
 <footer>
-  © 2026 P & R Hospitality Management Services
+© 2026 P & R Hospitality Management Services
 </footer>
 
-<!-- SCRIPT -->
 <script>
-document.getElementById("pmsForm").addEventListener("submit", function(e) {
+document.getElementById("pmsForm").addEventListener("submit", function(e){
   e.preventDefault();
 
   const btn = document.getElementById("submitBtn");
   btn.disabled = true;
   btn.innerText = "Submitting...";
 
-  const formData = new FormData(document.getElementById("pmsForm"));
+  const formData = new FormData(this);
 
   fetch("https://script.google.com/macros/s/AKfycbzYDveKcaeXGh0BHlZGg8ERNbxTctXattUDv0Udsjx6sBD4iB5W0dc5TtNAVE2-4x9fjA/exec", {
-    method: "POST",
-    body: formData
+    method:"POST",
+    body:formData
   })
-  .then(res => res.json())
-  .then(resp => {
-    if (resp.status === "success") {
-      document.getElementById("pmsForm").reset();
-      // ✅ Redirect to Thank You page
+  .then(response => response.json())
+  .then(data=>{
+    if(data.status === "success"){
       window.location.href = "../thank-you-pms.html";
     } else {
       alert("Submission failed. Please try again.");
+      btn.disabled = false;
+      btn.innerText = "Submit PMS Enquiry";
     }
-    btn.disabled = false;
-    btn.innerText = "Submit PMS Enquiry";
   })
-  .catch(err => {
+  .catch(error=>{
     alert("Connection error. Please try again.");
     btn.disabled = false;
     btn.innerText = "Submit PMS Enquiry";
-    console.error(err);
   });
 });
 </script>
