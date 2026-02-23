@@ -16,11 +16,16 @@
 
 <!-- Google Ads Conversion Event -->
 <script>
-  gtag('event', 'conversion', {
-      'send_to': 'AW-836426031/XXXXXXXXXXX'
+  window.addEventListener('load', function () {
+    if (typeof gtag === "function") {
+      gtag('event', 'conversion', {
+        'send_to': 'AW-836426031/PUT_YOUR_LABEL_HERE'
+      });
+    }
   });
 </script>
 
+<!-- Tailwind -->
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -34,35 +39,38 @@
 
   <div class="w-full max-w-xl bg-white rounded-xl shadow-lg p-8 text-center">
 
-    <div class="w-16 h-16 mx-auto mb-4 bg-green-100 text-green-600 rounded-full flex items-center justify-center">
+    <div class="w-16 h-16 mx-auto mb-4 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-2xl font-bold">
       ✓
     </div>
 
     <h1 class="text-2xl font-bold mb-2">Thank You!</h1>
+
     <p class="text-slate-600 mb-6">
       Your travel enquiry has been received.  
-      Our team from <strong>Yes, We Care Travels</strong> will contact you soon.
+      Our team from <strong>Yes We Care Travels</strong> will contact you shortly.
     </p>
 
     <div class="flex flex-col gap-3">
+
       <a href="index.html"
-         class="bg-indigo-700 text-white py-3 rounded-lg font-semibold hover:bg-indigo-800">
+         class="bg-indigo-700 text-white py-3 rounded-lg font-semibold hover:bg-indigo-800 transition">
         Back to Website
       </a>
 
       <a href="https://wa.me/919419287356"
-         class="border border-green-600 text-green-700 py-3 rounded-lg font-semibold hover:bg-green-50">
+         class="border border-green-600 text-green-700 py-3 rounded-lg font-semibold hover:bg-green-50 transition">
         WhatsApp Us
       </a>
 
       <a href="mailto:yeswecaretravels@gmail.com"
-         class="border border-slate-300 text-slate-700 py-3 rounded-lg font-semibold hover:bg-slate-50">
+         class="border border-slate-300 text-slate-700 py-3 rounded-lg font-semibold hover:bg-slate-50 transition">
         Email Travel Team
       </a>
+
     </div>
 
     <p class="text-xs text-slate-400 mt-6">
-      Yes, We Care Travels<br>
+      Yes We Care Travels<br>
       by P & R Hospitality Management Services
     </p>
 
