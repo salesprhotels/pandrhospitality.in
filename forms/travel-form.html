@@ -131,11 +131,6 @@ fromDate.addEventListener("change", function(){
 form.addEventListener("submit", function(e){
   e.preventDefault();
 
-  if(form.message.value.trim().length < 10){
-    alert("Please enter proper travel details (minimum 10 characters).");
-    return;
-  }
-
   btn.disabled = true;
   btn.innerText = "Submitting...";
 
@@ -147,4 +142,40 @@ form.addEventListener("submit", function(e){
       formData.append("recaptchaToken", token);
 
       fetch("https://script.google.com/macros/s/AKfycbxmWvcT7JgC9-P4_OK-MmN77GpgWT4wlh-IikkIRYbktZxGJmgvOKfB3M3obyPhEtO85A/exec", {
-        method: "POST
+        method: "POST",
+        body: formData
+      })
+      .then(res => res.json())
+      .then(data => {
+
+        if(data.status === "success"){
+          window.location.href = "../thank-you-travel.html";
+        }
+        else if(data.status === "duplicate"){
+          alert("You already submitted recently. Please wait 2 minutes.");
+        }
+        else if(data.status === "spam"){
+          alert("Spam detected. Please try again.");
+        }
+        else{
+          alert("Error:\n" + JSON.stringify(data));
+        }
+
+        btn.disabled = false;
+        btn.innerText = "Submit Travel Enquiry";
+
+      })
+      .catch(err => {
+        alert("Connection error:\n" + err);
+        btn.disabled = false;
+        btn.innerText = "Submit Travel Enquiry";
+      });
+
+    });
+  });
+
+});
+</script>
+
+</body>
+</html>
