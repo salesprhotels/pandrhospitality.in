@@ -10,7 +10,7 @@
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://pandrhospitality.in/forms/travel-form.html">
 
-<!-- Google Ads Base Tag -->
+<!-- Google Ads -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-836426031"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
@@ -24,16 +24,15 @@ gtag('config', 'AW-836426031');
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial, Helvetica, sans-serif;background:#f4f6fb;color:#333}
+body{font-family:Arial;background:#f4f6fb;color:#333}
 .container{max-width:600px;margin:40px auto;background:#fff;padding:25px;border-radius:8px;box-shadow:0 4px 15px rgba(0,0,0,0.08)}
 h1{text-align:center;color:#4b3fd6;margin-bottom:20px}
 label{font-weight:600;display:block;margin-top:14px}
-input, select, textarea{width:100%;padding:10px;margin-top:6px;border:1px solid #ccc;border-radius:5px;font-size:15px}
+input,select,textarea{width:100%;padding:10px;margin-top:6px;border:1px solid #ccc;border-radius:5px}
 textarea{min-height:90px}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 button{width:100%;margin-top:20px;padding:12px;background:#f5b400;border:none;border-radius:6px;font-size:16px;font-weight:bold;cursor:pointer}
 button:disabled{opacity:0.6;cursor:not-allowed}
-.wait-msg{text-align:center;font-size:14px;margin-top:10px;color:#555}
 footer{text-align:center;font-size:13px;color:#777;margin:20px 0}
 @media(max-width:600px){.row{grid-template-columns:1fr}}
 </style>
@@ -50,7 +49,7 @@ footer{text-align:center;font-size:13px;color:#777;margin:20px 0}
 <input type="text" name="name" required>
 
 <label>Mobile Number *</label>
-<input type="tel" name="mobile" required pattern="[0-9]{10}">
+<input type="tel" name="mobile" pattern="[0-9]{10}" required>
 
 <label>Email *</label>
 <input type="email" name="email" required>
@@ -101,11 +100,10 @@ footer{text-align:center;font-size:13px;color:#777;margin:20px 0}
 <option>Above ₹1,00,000</option>
 </select>
 
-<label>Message / Travel Details *</label>
+<label>Message *</label>
 <textarea name="message" required></textarea>
 
 <button type="submit" id="submitBtn">Submit Travel Enquiry</button>
-<div class="wait-msg">Please wait for a few seconds after clicking submit.</div>
 
 </form>
 </div>
@@ -115,6 +113,8 @@ footer{text-align:center;font-size:13px;color:#777;margin:20px 0}
 </footer>
 
 <script>
+const form = document.getElementById("travelForm");
+const btn = document.getElementById("submitBtn");
 const fromDate = document.getElementById("fromDate");
 const toDate = document.getElementById("toDate");
 
@@ -128,65 +128,23 @@ fromDate.addEventListener("change", function(){
   }
 });
 
-let isSubmitting = false;
-
-document.getElementById("travelForm").addEventListener("submit", function(e){
+form.addEventListener("submit", function(e){
   e.preventDefault();
-  if(isSubmitting) return;
-
-  const form = this;
-  const btn = document.getElementById("submitBtn");
 
   if(form.message.value.trim().length < 10){
     alert("Please enter proper travel details (minimum 10 characters).");
     return;
   }
 
-  isSubmitting = true;
   btn.disabled = true;
   btn.innerText = "Submitting...";
 
-  grecaptcha.ready(function() {
-    grecaptcha.execute('6LfZ5HUsAAAAAEJ7DJKe4QTqAomuEUJzs4fc53lU', {action: 'submit'}).then(function(token) {
+  grecaptcha.ready(function(){
+    grecaptcha.execute('6LfZ5HUsAAAAAEJ7DJKe4QTqAomuEUJzs4fc53lU', {action:'submit'})
+    .then(function(token){
 
       const formData = new FormData(form);
       formData.append("recaptchaToken", token);
 
       fetch("https://script.google.com/macros/s/AKfycbxmWvcT7JgC9-P4_OK-MmN77GpgWT4wlh-IikkIRYbktZxGJmgvOKfB3M3obyPhEtO85A/exec", {
-        method: "POST",
-        body: formData
-      })
-      .then(resp => {
-
-  if(resp.status === "success"){
-    window.location.href = "../thank-you-travel.html";
-  }
-  else if(resp.status === "duplicate"){
-    alert("You already submitted recently. Please wait 2 minutes.");
-  }
-  else if(resp.status === "spam"){
-    alert("Spam detected. Please try again.");
-  }
-  else{
-    alert("Submission failed.\n\n" + JSON.stringify(resp));
-  }
-
-  btn.disabled = false;
-  btn.innerText = "Submit Travel Enquiry";
-  isSubmitting = false;
-
-})
-      .catch(() => {
-        alert("Connection error. Please try again.");
-        btn.disabled = false;
-        btn.innerText = "Submit Travel Enquiry";
-        isSubmitting = false;
-      });
-
-    });
-  });
-});
-</script>
-
-</body>
-</html>
+        method: "POST
