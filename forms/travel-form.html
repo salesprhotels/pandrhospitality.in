@@ -156,27 +156,26 @@ document.getElementById("travelForm").addEventListener("submit", function(e){
         method: "POST",
         body: formData
       })
-      .then(res => res.json())
       .then(resp => {
 
-        if(resp.status === "success"){
-          window.location.href = "../thank-you-travel.html";
-        }
-        else if(resp.status === "duplicate"){
-          alert("You already submitted recently. Please wait 2 minutes.");
-        }
-        else if(resp.status === "spam"){
-          alert("Spam detected. Please try again.");
-        }
-        else{
-          alert("Submission failed.");
-        }
+  if(resp.status === "success"){
+    window.location.href = "../thank-you-travel.html";
+  }
+  else if(resp.status === "duplicate"){
+    alert("You already submitted recently. Please wait 2 minutes.");
+  }
+  else if(resp.status === "spam"){
+    alert("Spam detected. Please try again.");
+  }
+  else{
+    alert("Submission failed.\n\n" + JSON.stringify(resp));
+  }
 
-        btn.disabled = false;
-        btn.innerText = "Submit Travel Enquiry";
-        isSubmitting = false;
+  btn.disabled = false;
+  btn.innerText = "Submit Travel Enquiry";
+  isSubmitting = false;
 
-      })
+})
       .catch(() => {
         alert("Connection error. Please try again.");
         btn.disabled = false;
