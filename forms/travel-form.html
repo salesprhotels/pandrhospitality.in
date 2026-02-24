@@ -143,26 +143,76 @@ footer{text-align:center;font-size:13px;color:#777;margin:20px 0}
 </footer>
 
 <script>
-document.getElementById("travelForm").addEventListener("submit", function(e) {
-  e.preventDefault();
+document.addEventListener("DOMContentLoaded", function () {
 
-  const formData = new FormData(this);
+  const form = document.getElementById("travelForm");
+  const submitBtn = form.querySelector("button[type='submit']");
+  let isSubmitting = false;
 
-  fetch("https://script.google.com/macros/s/AKfycbxmWvcT7JgC9-P4_OK-MmN77GpgWT4wlh-IikkIRYbktZxGJmgvOKfB3M3obyPhEtO85A/exec", {
-    method: "POST",
-    body: formData
-  })
-  .then(res => res.json())
-  .then(resp => {
-    if (resp.status === "success") {
-      window.location.href = "../thank-you-travel.html";
-    } else {
-      alert("Submission failed. Please try again.");
-    }
-  })
-  .catch(() => {
-    alert("Connection error. Please try again.");
+  // Create wait message box
+  const messageBox = document.createElement("div");
+  messageBox.style.marginTop = "15px";
+  messageBox.style.padding = "12px";
+  messageBox.style.background = "#eef2ff";
+  messageBox.style.borderRadius = "8px";
+  messageBox.style.fontSize = "14px";
+  messageBox.style.display = "none";
+
+  messageBox.innerHTML = `
+    <strong>Please wait for a few seconds after clicking the submit button.</strong><br>
+    Do not refresh or click again.
+  `;
+
+  form.appendChild(messageBox);
+
+  form.addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    // Prevent double submission
+    if (isSubmitting) return;
+    isSubmitting = true;
+
+    // Disable button
+    submitBtn.disabled = true;
+    submitBtn.innerText = "Submitting...";
+    submitBtn.style.opacity = "0.7";
+    submitBtn.style.cursor = "not-allowed";
+
+    // Show wait message
+    messageBox.style.display = "block";
+
+    const formData = new FormData(form);
+
+    fetch("https://script.google.com/macros/s/AKfycbxmWvcT7JgC9-P4_OK-MmN77GpgWT4wlh-IikkIRYbktZxGJmgvOKfB3M3obyPhEtO85A/exec", {
+      method: "POST",
+      body: formData
+    })
+    .then(res => res.json())
+    .then(resp => {
+      if (resp.status === "success") {
+        window.location.href = "../thank-you-travel.html";
+      } else {
+        alert("Submission failed. Please try again.");
+        resetForm();
+      }
+    })
+    .catch(() => {
+      alert("Connection error. Please try again.");
+      resetForm();
+    });
+
   });
+
+  function resetForm() {
+    isSubmitting = false;
+    submitBtn.disabled = false;
+    submitBtn.innerText = "Submit Travel Enquiry";
+    submitBtn.style.opacity = "1";
+    submitBtn.style.cursor = "pointer";
+    messageBox.style.display = "none";
+  }
+
 });
 </script>
 
