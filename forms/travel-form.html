@@ -178,4 +178,232 @@ form.addEventListener("submit", function(e){
 </script>
 
 </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Travel Enquiry Form | Yes We Care Travels</title>
+
+<meta name="description" content="Submit your travel enquiry for cab services, pilgrimage tours, holiday packages and hotel booking across India.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://pandrhospitality.in/forms/travel-form.html">
+
+<!-- Google Ads -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-836426031"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'AW-836426031');
+</script>
+
+<!-- reCAPTCHA v3 (CORRECT SCRIPT) -->
+<script src="https://www.google.com/recaptcha/api.js?render=6LfZ5HUsAAAAAEJ7DJKe4QTqAomuEUJzs4fc53lU"></script>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:Arial, Helvetica, sans-serif;
+  background:linear-gradient(135deg,#4b3fd6,#6c63ff);
+  color:#333;
+}
+.header{
+  background:#fff;
+  padding:15px;
+  text-align:center;
+}
+.header img{
+  height:55px;
+}
+.container{
+  max-width:700px;
+  margin:40px auto;
+  background:#ffffff;
+  padding:30px;
+  border-radius:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+h1{
+  text-align:center;
+  margin-bottom:25px;
+  color:#4b3fd6;
+}
+label{
+  font-weight:600;
+  display:block;
+  margin-top:15px;
+}
+input,select,textarea{
+  width:100%;
+  padding:12px;
+  margin-top:6px;
+  border:1px solid #ddd;
+  border-radius:6px;
+  font-size:15px;
+}
+textarea{min-height:100px}
+.row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+button{
+  width:100%;
+  margin-top:25px;
+  padding:14px;
+  background:#f5b400;
+  border:none;
+  border-radius:8px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.3s;
+}
+button:hover{
+  background:#e0a800;
+}
+button:disabled{
+  opacity:0.6;
+  cursor:not-allowed;
+}
+footer{
+  text-align:center;
+  color:#fff;
+  margin:30px 0;
+  font-size:14px;
+}
+@media(max-width:600px){
+  .row{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <img src="../images/logo-yes-we-care-travels-1.png" alt="Yes We Care Travels">
+</div>
+
+<div class="container">
+<h1>Travel Enquiry Form</h1>
+
+<form id="travelForm">
+
+<label>Full Name *</label>
+<input type="text" name="name" required>
+
+<label>Mobile Number *</label>
+<input type="tel" name="mobile" pattern="[0-9]{10}" required>
+
+<label>Email *</label>
+<input type="email" name="email" required>
+
+<label>Travel Type *</label>
+<select name="travel_type" required>
+<option value="">Select Travel Type</option>
+<option>Domestic Tour</option>
+<option>Pilgrimage Tour</option>
+<option>Hotel Booking</option>
+<option>Taxi / Transport</option>
+<option>Group / Corporate Travel</option>
+<option>Air Tickets</option>
+<option>Bus Tickets</option>
+</select>
+
+<label>Destination *</label>
+<input type="text" name="destination" required>
+
+<div class="row">
+<div>
+<label>From Date *</label>
+<input type="date" name="journey_date" required>
+</div>
+<div>
+<label>To Date *</label>
+<input type="date" name="return_date" required>
+</div>
+</div>
+
+<div class="row">
+<div>
+<label>Adults *</label>
+<input type="number" min="1" value="1" name="adults" required>
+</div>
+<div>
+<label>Children</label>
+<input type="number" min="0" value="0" name="children">
+</div>
+</div>
+
+<label>Budget Range *</label>
+<select name="budget" required>
+<option value="">Select Budget</option>
+<option>Below ₹20,000</option>
+<option>₹20,000 – ₹50,000</option>
+<option>₹50,000 – ₹1,00,000</option>
+<option>Above ₹1,00,000</option>
+</select>
+
+<label>Message *</label>
+<textarea name="message" required></textarea>
+
+<button type="submit" id="submitBtn">Submit Travel Enquiry</button>
+
+</form>
+</div>
+
+<footer>
+© 2026 Yes We Care Travels  
+<br>
+Operated & Managed by PMS Hospitality Management Services
+</footer>
+
+<script>
+const form = document.getElementById("travelForm");
+const btn = document.getElementById("submitBtn");
+
+form.addEventListener("submit", function(e){
+  e.preventDefault();
+
+  btn.disabled = true;
+  btn.innerText = "Submitting...";
+
+  grecaptcha.ready(function(){
+    grecaptcha.execute('6LfZ5HUsAAAAAEJ7DJKe4QTqAomuEUJzs4fc53lU', {action:'submit'})
+    .then(function(token){
+
+      const formData = new FormData(form);
+      formData.append("recaptchaToken", token);
+
+      fetch("https://script.googleusercontent.com/macros/echo?user_content_key=AY5xjrSNYlGT0YZYUX9LVKO_r0K7Iyz91Heu8EqUDCUJyF_pVBmtPYAnT8s1ac1Jj0irK0zqvNtR5VJ47plRiUpKMHrIpvX6npSx7fs5q4szHTj8-H2gH2x9XdpEY89xQqL25lsiPtu0pqt4EPClawMPgWFYK_byzkTW4bHzX7cfnMZ0ppbZ_dxCh5OtDOBE71Aer_5GZikSmxUpFmEPChFci0Ly00GnjirtrSEJEwmlWoHAhhX8qfP-Nug6RI16-xxVcNqMoENSSzV7JCOQmDglsudrL3vBrPSoLdVojxbM&lib=M4nDbL_8AhFuL8c6QgUgMTrESC2OzpIH9", {
+        method: "POST",
+        body: formData
+      })
+      .then(res => res.json())
+      .then(data => {
+
+        if(data.status === "success"){
+          window.location.href = "../thank-you-travel.html";
+        } else {
+          alert("Error: " + JSON.stringify(data));
+        }
+
+        btn.disabled = false;
+        btn.innerText = "Submit Travel Enquiry";
+
+      })
+      .catch(err => {
+        alert("Connection error: " + err);
+        btn.disabled = false;
+        btn.innerText = "Submit Travel Enquiry";
+      });
+
+    });
+  });
+});
+</script>
+
+</body>
 </html>
