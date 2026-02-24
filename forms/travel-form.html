@@ -1,170 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Travel Enquiry Form | Yes We Care Travels</title>
-
-<meta name="description" content="Submit your travel enquiry for cab services, pilgrimage tours, holiday packages and hotel booking across India.">
-<meta name="robots" content="index, follow">
-
-<!-- Google Ads -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-836426031"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'AW-836426031');
-</script>
-
-<!-- reCAPTCHA v3 -->
-<script src="https://www.google.com/recaptcha/api.js?render=6LfZ5HUsAAAAAEJ7DJKe4QTqAomuEUJzs4fc53lU"></script>
-
+<title>Travel Enquiry</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{
-  font-family:Arial, Helvetica, sans-serif;
-  background:linear-gradient(135deg,#4b3fd6,#6c63ff);
-  color:#333;
-}
-.header{
-  background:#ffffff;
-  padding:15px;
-  text-align:center;
-}
-.header img{
-  height:60px;
-}
-.container{
-  max-width:750px;
-  margin:40px auto;
-  background:#ffffff;
-  padding:30px;
-  border-radius:12px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.2);
-}
-h1{
-  text-align:center;
-  margin-bottom:25px;
-  color:#4b3fd6;
-}
-label{
-  font-weight:600;
-  display:block;
-  margin-top:15px;
-}
-input,select,textarea{
-  width:100%;
-  padding:12px;
-  margin-top:6px;
-  border:1px solid #ddd;
-  border-radius:6px;
-  font-size:15px;
-}
-textarea{min-height:100px}
-.row{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:15px;
-}
-button{
-  width:100%;
-  margin-top:25px;
-  padding:14px;
-  background:#f5b400;
-  border:none;
-  border-radius:8px;
-  font-size:16px;
-  font-weight:bold;
-  cursor:pointer;
-  transition:0.3s;
-}
-button:hover{background:#e0a800}
-button:disabled{opacity:0.6;cursor:not-allowed}
-footer{
-  text-align:center;
-  color:#ffffff;
-  margin:30px 0;
-  font-size:14px;
-}
-@media(max-width:600px){
-  .row{grid-template-columns:1fr}
-}
+body{font-family:Arial;background:#4b3fd6;color:#fff;text-align:center;padding:40px}
+.container{background:#fff;color:#333;max-width:600px;margin:auto;padding:30px;border-radius:10px}
+input,select,textarea{width:100%;padding:10px;margin:8px 0}
+button{padding:12px;width:100%;background:#f5b400;border:none;font-weight:bold}
+footer{margin-top:30px;color:#fff}
 </style>
 </head>
-
 <body>
 
-<div class="header">
-  <img src="../images/logo-yes-we-care-travels-1.png" alt="Yes We Care Travels">
-</div>
-
 <div class="container">
-<h1>Travel Enquiry Form</h1>
+<h2>Travel Enquiry Form</h2>
 
 <form id="travelForm">
+<input name="name" placeholder="Full Name" required>
+<input name="mobile" placeholder="Mobile" required>
+<input name="email" placeholder="Email" required>
 
-<label>Full Name *</label>
-<input type="text" name="name" required>
-
-<label>Mobile Number *</label>
-<input type="tel" name="mobile" pattern="[0-9]{10}" required>
-
-<label>Email *</label>
-<input type="email" name="email" required>
-
-<label>Travel Type *</label>
 <select name="travel_type" required>
 <option value="">Select Travel Type</option>
 <option>Domestic Tour</option>
 <option>Pilgrimage Tour</option>
 <option>Hotel Booking</option>
-<option>Taxi / Transport</option>
-<option>Group / Corporate Travel</option>
-<option>Air Tickets</option>
-<option>Bus Tickets</option>
 </select>
 
-<label>Destination *</label>
-<input type="text" name="destination" required>
-
-<div class="row">
-<div>
-<label>From Date *</label>
+<input name="destination" placeholder="Destination" required>
 <input type="date" name="journey_date" required>
-</div>
-<div>
-<label>To Date *</label>
 <input type="date" name="return_date" required>
-</div>
-</div>
+<input type="number" name="adults" value="1" required>
+<input type="number" name="children" value="0">
+<input name="budget" placeholder="Budget" required>
+<textarea name="message" placeholder="Message" required></textarea>
 
-<div class="row">
-<div>
-<label>Adults *</label>
-<input type="number" min="1" value="1" name="adults" required>
-</div>
-<div>
-<label>Children</label>
-<input type="number" min="0" value="0" name="children">
-</div>
-</div>
-
-<label>Budget Range *</label>
-<select name="budget" required>
-<option value="">Select Budget</option>
-<option>Below ₹20,000</option>
-<option>₹20,000 – ₹50,000</option>
-<option>₹50,000 – ₹1,00,000</option>
-<option>Above ₹1,00,000</option>
-</select>
-
-<label>Message *</label>
-<textarea name="message" required></textarea>
-
-<button type="submit" id="submitBtn">Submit Travel Enquiry</button>
-
+<button type="submit">Submit</button>
 </form>
 </div>
 
@@ -174,51 +46,28 @@ Operated & Managed by PMS Hospitality Management Services
 </footer>
 
 <script>
-const form = document.getElementById("travelForm");
-const btn = document.getElementById("submitBtn");
-
-form.addEventListener("submit", function(e){
+document.getElementById("travelForm").addEventListener("submit", function(e){
   e.preventDefault();
 
-  btn.disabled = true;
-  btn.innerText = "Submitting...";
+  const formData = new FormData(this);
 
-  grecaptcha.ready(function(){
-    grecaptcha.execute('6LfZ5HUsAAAAAEJ7DJKe4QTqAomuEUJzs4fc53lU', {action:'submit'})
-    .then(function(token){
-
-      const formData = new FormData(form);
-      formData.append("recaptchaToken", token);
-
-      fetch("https://script.google.com/macros/s/AKfycbyhR3yVhsrMQWldIg3Qvz0dt8Boawv6bjWFqaitAfyXmHAyXxQ7EdgJ6e1ODys2KmVaWA/exec", {
-        method: "POST",
-        body: formData
-      })
-      .then(res => res.json())
-      .then(data => {
-
-        if(data.status === "success"){
-          window.location.href = "../thank-you-travel.html";
-        }
-        else if(data.status === "spam"){
-          alert("Spam detected. Please try again.");
-        }
-        else{
-          alert("Error: " + JSON.stringify(data));
-        }
-
-        btn.disabled = false;
-        btn.innerText = "Submit Travel Enquiry";
-
-      })
-      .catch(err => {
-        alert("Connection error: " + err);
-        btn.disabled = false;
-        btn.innerText = "Submit Travel Enquiry";
-      });
-
-    });
+  fetch("PASTE_YOUR_EXEC_URL_HERE", {
+    method: "POST",
+    body: formData
+  })
+  .then(res => res.json())
+  .then(data => {
+    if(data.status === "success"){
+      alert("Form submitted successfully!");
+      this.reset();
+    } else {
+      alert("Error: " + JSON.stringify(data));
+    }
+  })
+  .catch(err => {
+    alert("Connection Error: " + err);
   });
+
 });
 </script>
 
