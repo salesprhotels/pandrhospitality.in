@@ -8,7 +8,6 @@
 
 <meta name="description" content="Submit your travel enquiry for cab services, pilgrimage tours and hotel booking across India.">
 <meta name="robots" content="index, follow">
-
 <link rel="canonical" href="https://pandrhospitality.in/forms/travel-form.html">
 
 <!-- Google Ads Base Tag -->
@@ -21,7 +20,7 @@ gtag('config', 'AW-836426031');
 </script>
 
 <!-- reCAPTCHA v3 -->
-<script src="https://www.google.com/recaptcha/api.js?render=YOUR_SITE_KEY"></script>
+<script src="https://www.google.com/recaptcha/api.js?render=6LfZ5HUsAAAAAEJ7DJKe4QTqAomuEUJzs4fc53lU"></script>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -157,6 +156,11 @@ document.getElementById("travelForm").addEventListener("submit", function(e){
   const form = this;
   const btn = document.getElementById("submitBtn");
 
+  if(form.message.value.trim().length < 10){
+    alert("Please enter proper travel details (minimum 10 characters).");
+    return;
+  }
+
   isSubmitting = true;
   btn.disabled = true;
   btn.innerText = "Submitting...";
@@ -173,14 +177,24 @@ document.getElementById("travelForm").addEventListener("submit", function(e){
       })
       .then(res => res.json())
       .then(resp => {
+
         if(resp.status === "success"){
           window.location.href = "../thank-you-travel.html";
-        } else {
-          alert("Submission failed.");
-          btn.disabled = false;
-          btn.innerText = "Submit Travel Enquiry";
-          isSubmitting = false;
         }
+        else if(resp.status === "duplicate"){
+          alert("You already submitted recently. Please wait 2 minutes.");
+        }
+        else if(resp.status === "spam"){
+          alert("Spam detected. Please try again.");
+        }
+        else{
+          alert("Submission failed.");
+        }
+
+        btn.disabled = false;
+        btn.innerText = "Submit Travel Enquiry";
+        isSubmitting = false;
+
       })
       .catch(() => {
         alert("Connection error.");
