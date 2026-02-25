@@ -5,9 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Travel Enquiry | Yes We Care Travels</title>
 
-<meta name="description" content="Submit your travel enquiry for tours, hotel booking, pilgrimage and transport services.">
-
-<!-- RECAPTCHA -->
 <script src="https://www.google.com/recaptcha/api.js?render=6LfZ5HUsAAAAAEJ7DJKe4QTqAomuEUJzs4fc53lU"></script>
 
 <style>
@@ -23,9 +20,8 @@ body{
   background:#fff;
   padding:12px 0;
   text-align:center;
-  box-shadow:0 2px 8px rgba(0,0,0,0.08);
 }
-.header img{max-height:55px;width:auto}
+.header img{max-height:55px}
 .container{
   max-width:720px;
   width:95%;
@@ -79,7 +75,7 @@ footer{margin-top:auto;text-align:center;color:#fff;padding:25px 10px;font-size:
 <label>Full Name *</label>
 <input type="text" name="name" required>
 
-<label>Mobile Number *</label>
+<label>Mobile *</label>
 <input type="tel" name="mobile" pattern="[0-9]{10}" required>
 
 <label>Email *</label>
@@ -103,11 +99,11 @@ footer{margin-top:auto;text-align:center;color:#fff;padding:25px 10px;font-size:
 <div class="row">
 <div>
 <label>From Date *</label>
-<input type="date" name="journey_date" required>
+<input type="date" id="fromDate" name="journey_date" required>
 </div>
 <div>
 <label>To Date *</label>
-<input type="date" name="return_date" required>
+<input type="date" id="toDate" name="return_date" required>
 </div>
 </div>
 
@@ -123,7 +119,13 @@ footer{margin-top:auto;text-align:center;color:#fff;padding:25px 10px;font-size:
 </div>
 
 <label>Budget *</label>
-<input type="text" name="budget" required>
+<select name="budget" required>
+<option value="">Select Budget</option>
+<option>Below ₹20,000</option>
+<option>₹20,000 – ₹50,000</option>
+<option>₹50,000 – ₹1,00,000</option>
+<option>Above ₹1,00,000</option>
+</select>
 
 <label>Message *</label>
 <textarea name="message" required></textarea>
@@ -141,55 +143,66 @@ Operated & Managed by PMS Hospitality Management Services
 
 <script>
 
-document.getElementById("travelForm").addEventListener("submit", function(e){
-  e.preventDefault();
+// Date blocking
+const fromDate=document.getElementById("fromDate");
+const toDate=document.getElementById("toDate");
+const today=new Date().toISOString().split("T")[0];
+fromDate.min=today;
+toDate.min=today;
 
-  const btn = document.getElementById("submitBtn");
-  const msg = document.getElementById("formMessage");
+fromDate.addEventListener("change",function(){
+ let d=new Date(this.value);
+ d.setDate(d.getDate()+1);
+ let next=d.toISOString().split("T")[0];
+ toDate.value=next;
+ toDate.min=next;
+});
 
-  btn.disabled = true;
-  btn.innerText = "Submitting...";
-  msg.innerText = "Verifying... Please wait.";
+// Submit
+document.getElementById("travelForm").addEventListener("submit",function(e){
+ e.preventDefault();
+ const btn=document.getElementById("submitBtn");
+ const msg=document.getElementById("formMessage");
 
-  grecaptcha.ready(function() {
-    grecaptcha.execute('6LfZ5HUsAAAAAEJ7DJKe4QTqAomuEUJzs4fc53lU', {action: 'submit'}).then(function(token) {
+ btn.disabled=true;
+ btn.innerText="Submitting...";
+ msg.innerText="Verifying... Please wait.";
 
-      const formData = new FormData(document.getElementById("travelForm"));
-      formData.append("recaptchaToken", token);
+ grecaptcha.ready(function(){
+  grecaptcha.execute('6LfZ5HUsAAAAAEJ7DJKe4QTqAomuEUJzs4fc53lU',{action:'submit'})
+  .then(function(token){
 
-      fetch("https://script.google.com/macros/s/AKfycbyhR3yVhsrMQWldIg3Qvz0dt8Boawv6bjWFqaitAfyXmHAyXxQ7EdgJ6e1ODys2KmVaWA/exec", {
-        method: "POST",
-        body: formData
-      })
-      .then(res => res.json())
-      .then(data => {
+   const formData=new FormData(document.getElementById("travelForm"));
+   formData.append("recaptchaToken",token);
 
-        if(data.status === "success"){
-          msg.style.color="green";
-          msg.innerText="Enquiry submitted successfully!";
-          setTimeout(()=>{window.location.href="/thank-you-travel.html"},1500);
-        }
-        else if(data.status === "duplicate"){
-          msg.style.color="red";
-          msg.innerText="You already submitted recently. Please wait 2 minutes.";
-        }
-        else if(data.status === "spam"){
-          msg.style.color="red";
-          msg.innerText="Spam detected. Please try again.";
-        }
-        else{
-          msg.style.color="red";
-          msg.innerText="Submission failed.";
-        }
-
-        btn.disabled=false;
-        btn.innerText="Submit Travel Enquiry";
-
-      });
-
-    });
+   fetch("https://script.google.com/macros/s/AKfycbyhR3yVhsrMQWldIg3Qvz0dt8Boawv6bjWFqaitAfyXmHAyXxQ7EdgJ6e1ODys2KmVaWA/exec",{
+    method:"POST",
+    body:formData
+   })
+   .then(res=>res.json())
+   .then(data=>{
+    if(data.status==="success"){
+     msg.style.color="green";
+     msg.innerText="Enquiry submitted successfully!";
+     setTimeout(()=>{window.location.href="/thank-you-travel.html"},1500);
+    }
+    else if(data.status==="duplicate"){
+     msg.style.color="red";
+     msg.innerText="You already submitted recently. Please wait 2 minutes.";
+    }
+    else if(data.status==="spam"){
+     msg.style.color="red";
+     msg.innerText="Spam detected.";
+    }
+    else{
+     msg.style.color="red";
+     msg.innerText="Submission failed.";
+    }
+    btn.disabled=false;
+    btn.innerText="Submit Travel Enquiry";
+   });
   });
-
+ });
 });
 </script>
 
