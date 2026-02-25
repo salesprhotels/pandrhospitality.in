@@ -200,14 +200,16 @@ document.getElementById("travelForm").addEventListener("submit", function(e){
   })
   .then(res => res.json())
   .then(data => {
+
     if(data.status === "success"){
-      alert("Form submitted successfully!");
-      document.getElementById("travelForm").reset();
-    } else {
+      window.location.href = "../thank-you-travel.html";
+    } 
+    else {
       alert("Error: " + JSON.stringify(data));
+      btn.disabled = false;
+      btn.innerText = "Submit Travel Enquiry";
     }
-    btn.disabled = false;
-    btn.innerText = "Submit Travel Enquiry";
+
   })
   .catch(err => {
     alert("Connection Error: " + err);
