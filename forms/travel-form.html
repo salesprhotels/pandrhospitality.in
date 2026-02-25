@@ -185,6 +185,33 @@ Operated & Managed by PMS Hospitality Management Services
 </footer>
 
 <script>
+
+// ================= DATE CONTROL =================
+
+const fromDate = document.querySelector('input[name="journey_date"]');
+const toDate = document.querySelector('input[name="return_date"]');
+
+const today = new Date().toISOString().split("T")[0];
+fromDate.setAttribute("min", today);
+toDate.setAttribute("min", today);
+
+fromDate.addEventListener("change", function(){
+
+  if(this.value){
+
+    const selectedDate = new Date(this.value);
+    selectedDate.setDate(selectedDate.getDate() + 1);
+
+    const nextDay = selectedDate.toISOString().split("T")[0];
+
+    toDate.value = nextDay;
+    toDate.setAttribute("min", nextDay);
+  }
+
+});
+
+// ================= FORM SUBMIT =================
+
 document.getElementById("travelForm").addEventListener("submit", function(e){
   e.preventDefault();
 
@@ -218,6 +245,7 @@ document.getElementById("travelForm").addEventListener("submit", function(e){
   });
 
 });
+
 </script>
 
 </body>
