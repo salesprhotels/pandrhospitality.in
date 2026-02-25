@@ -32,14 +32,9 @@ body{
   width:auto;
   display:block;
   margin:auto;
-  transition:0.3s ease;
 }
 
-.header img:hover{
-  transform:scale(1.05);
-}
-
-/* FORM CONTAINER */
+/* FORM */
 .container{
   max-width:720px;
   width:95%;
@@ -56,7 +51,6 @@ h1{
   color:#4b3fd6;
 }
 
-/* FORM ELEMENTS */
 label{
   font-weight:600;
   display:block;
@@ -90,15 +84,10 @@ button{
   font-size:16px;
   font-weight:bold;
   cursor:pointer;
-  transition:0.3s;
-}
-
-button:hover{
-  background:#e0a800;
 }
 
 button:disabled{
-  opacity:0.6;
+  opacity:.6;
   cursor:not-allowed;
 }
 
@@ -109,7 +98,6 @@ button:disabled{
   color:#666;
 }
 
-/* FOOTER */
 footer{
   margin-top:auto;
   text-align:center;
@@ -126,14 +114,12 @@ footer{
 
 <body>
 
-<!-- HEADER -->
 <div class="header">
   <a href="/travel.html">
     <img src="/images/logo-yes-we-care-travels-1.png" alt="Yes We Care Travels">
   </a>
 </div>
 
-<!-- FORM -->
 <div class="container">
 <h1>Travel Enquiry Form</h1>
 
@@ -206,7 +192,6 @@ Please wait a few seconds after clicking submit.
 </form>
 </div>
 
-<!-- FOOTER -->
 <footer>
 © 2026 Yes We Care Travels<br>
 Operated & Managed by PMS Hospitality Management Services
@@ -214,7 +199,7 @@ Operated & Managed by PMS Hospitality Management Services
 
 <script>
 
-/* DATE CONTROL */
+/* DATE LOCK */
 const fromDate = document.getElementById("fromDate");
 const toDate = document.getElementById("toDate");
 const formMessage = document.getElementById("formMessage");
@@ -225,56 +210,56 @@ toDate.min = today;
 
 fromDate.addEventListener("change", function(){
   if(this.value){
-    let nextDay = new Date(this.value);
-    nextDay.setDate(nextDay.getDate()+1);
-    let formatted = nextDay.toISOString().split('T')[0];
+    const next = new Date(this.value);
+    next.setDate(next.getDate()+1);
+    const formatted = next.toISOString().split("T")[0];
     toDate.value = formatted;
     toDate.min = formatted;
   }
 });
 
 /* FORM SUBMIT */
-document.getElementById("travelForm").addEventListener("submit", function(e){
+document.getElementById("travelForm").addEventListener("submit", async function(e){
   e.preventDefault();
 
   const btn = document.getElementById("submitBtn");
-
   btn.disabled = true;
   btn.innerText = "Submitting... Please wait";
   formMessage.style.color = "#4b3fd6";
-  formMessage.innerText = "Submitting your enquiry. Please wait...";
+  formMessage.innerText = "Submitting your enquiry...";
 
-  const formData = new FormData(this);
+  try {
+    const response = await fetch("https://script.google.com/macros/s/AKfycbyhR3yVhsrMQWldIg3Qvz0dt8Boawv6bjWFqaitAfyXmHAyXxQ7EdgJ6e1ODys2KmVaWA/exec", {
+      method: "POST",
+      body: new FormData(this)
+    });
 
-  fetch("https://script.google.com/macros/s/AKfycbyhR3yVhsrMQWldIg3Qvz0dt8Boawv6bjWFqaitAfyXmHAyXxQ7EdgJ6e1ODys2KmVaWA/exec", {
-    method: "POST",
-    body: formData
-  })
-  .then(res => res.json())
-  .then(data => {
+    const data = await response.json();
 
     if(data.status === "success"){
       formMessage.style.color = "green";
       formMessage.innerText = "Enquiry submitted successfully! Redirecting...";
-      setTimeout(() => {
-        window.location.href = "/thank-you-travel.html";
-      }, 1500);
-    } else {
+      setTimeout(()=>{ window.location.href="/thank-you-travel.html"; },1500);
+    }
+    else if(data.status === "duplicate"){
       formMessage.style.color = "red";
-      formMessage.innerText = "Submission failed. Please try again.";
+      formMessage.innerText = "You have already submitted recently. Please wait 2 minutes.";
       btn.disabled = false;
       btn.innerText = "Submit Travel Enquiry";
     }
+    else{
+      throw new Error("Submission failed");
+    }
 
-  })
-  .catch(() => {
+  } catch(err){
     formMessage.style.color = "red";
     formMessage.innerText = "Connection error. Please try again.";
     btn.disabled = false;
     btn.innerText = "Submit Travel Enquiry";
-  });
+  }
 
 });
+
 </script>
 
 </body>
