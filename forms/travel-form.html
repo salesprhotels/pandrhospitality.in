@@ -152,12 +152,12 @@ document.getElementById("travelForm").addEventListener("submit", function(e){
   msg.innerText = "Verifying... Please wait.";
 
   grecaptcha.ready(function() {
-    grecaptcha.execute('YOUR_SITE_KEY', {action: 'submit'}).then(function(token) {
+    grecaptcha.execute('6LfZ5HUsAAAAAEJ7DJKe4QTqAomuEUJzs4fc53lU', {action: 'submit'}).then(function(token) {
 
       const formData = new FormData(document.getElementById("travelForm"));
       formData.append("recaptchaToken", token);
 
-      fetch("YOUR_EXEC_URL", {
+      fetch("https://script.google.com/macros/s/AKfycbyhR3yVhsrMQWldIg3Qvz0dt8Boawv6bjWFqaitAfyXmHAyXxQ7EdgJ6e1ODys2KmVaWA/exec", {
         method: "POST",
         body: formData
       })
