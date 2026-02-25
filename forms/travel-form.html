@@ -175,7 +175,10 @@ footer{
 <textarea name="message" required></textarea>
 
 <button type="submit" id="submitBtn">Submit Travel Enquiry</button>
-
+  
+<div id="formMessage" style="text-align:center;margin-top:15px;font-size:14px;color:#666;">
+Please wait a few seconds after clicking submit.
+</div>
 </form>
 </div>
 
@@ -190,6 +193,7 @@ Operated & Managed by PMS Hospitality Management Services
 
 const fromDate = document.querySelector('input[name="journey_date"]');
 const toDate = document.querySelector('input[name="return_date"]');
+const formMessage = document.getElementById("formMessage");
 
 const today = new Date().toISOString().split("T")[0];
 fromDate.setAttribute("min", today);
@@ -198,10 +202,8 @@ toDate.setAttribute("min", today);
 fromDate.addEventListener("change", function(){
 
   if(this.value){
-
     const selectedDate = new Date(this.value);
     selectedDate.setDate(selectedDate.getDate() + 1);
-
     const nextDay = selectedDate.toISOString().split("T")[0];
 
     toDate.value = nextDay;
@@ -216,8 +218,12 @@ document.getElementById("travelForm").addEventListener("submit", function(e){
   e.preventDefault();
 
   const btn = document.getElementById("submitBtn");
+
   btn.disabled = true;
-  btn.innerText = "Submitting...";
+  btn.innerText = "Submitting... Please wait";
+
+  formMessage.style.color = "#4b3fd6";
+  formMessage.innerText = "Submitting your enquiry. Please wait a few seconds...";
 
   const formData = new FormData(this);
 
@@ -229,23 +235,28 @@ document.getElementById("travelForm").addEventListener("submit", function(e){
   .then(data => {
 
     if(data.status === "success"){
-      window.location.href = "../thank-you-travel.html";
+      formMessage.style.color = "green";
+      formMessage.innerText = "Enquiry submitted successfully! Redirecting...";
+      setTimeout(() => {
+        window.location.href = "../thank-you-travel.html";
+      }, 1500);
     } 
     else {
-      alert("Error: " + JSON.stringify(data));
+      formMessage.style.color = "red";
+      formMessage.innerText = "Submission failed. Please try again.";
       btn.disabled = false;
       btn.innerText = "Submit Travel Enquiry";
     }
 
   })
   .catch(err => {
-    alert("Connection Error: " + err);
+    formMessage.style.color = "red";
+    formMessage.innerText = "Connection error. Please try again.";
     btn.disabled = false;
     btn.innerText = "Submit Travel Enquiry";
   });
 
 });
-
 </script>
 
 </body>
