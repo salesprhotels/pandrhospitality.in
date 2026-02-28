@@ -6,7 +6,7 @@ body {
 }
 
 .sidebar {
-  width:220px;
+  width:230px;
   background:#1e293b;
   color:white;
   padding:20px;
@@ -18,8 +18,8 @@ body {
   margin:10px 0;
   padding:10px;
   background:#334155;
-  color:white;
   border:none;
+  color:white;
 }
 
 .main {
@@ -27,11 +27,9 @@ body {
   padding:30px;
 }
 
-.section.hidden {
-  display:none;
-}
+.section.hidden { display:none; }
 
-input {
+input, select {
   display:block;
   margin:10px 0;
   padding:8px;
