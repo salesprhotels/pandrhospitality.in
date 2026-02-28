@@ -1,4 +1,4 @@
-const API_URL = "YOUR_APPS_SCRIPT_EXEC_URL";
+const API_URL = "https://script.google.com/macros/s/AKfycbwo78mV92MKxcGMSB52NziL7bmn0AsEplVo2rhj92O3UGk7EKl9B8OlJt9ZqbmXEE7JiQ/exec";
 
 function showSection(id){
   document.querySelectorAll('.section').forEach(sec => sec.classList.add('hidden'));
