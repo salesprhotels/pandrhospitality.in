@@ -2,59 +2,36 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Construction Dashboard</title>
+<title>Dashboard</title>
 <link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
 <div class="sidebar">
   <h2>Dashboard</h2>
-  <ul>
-    <li onclick="showSection('home')">Home</li>
-    <li onclick="showSection('payment')">Payments</li>
-    <li onclick="showSection('material')">Materials</li>
-  </ul>
+  <button onclick="showSection('dashboard')">Overview</button>
+  <button onclick="showSection('payment')">Payments</button>
 </div>
 
 <div class="main">
 
-  <div id="home" class="section">
-    <h1>Project Overview</h1>
-    <div class="cards">
-      <div class="card"><h3>Total Payments</h3><p id="totalPayments">0</p></div>
-      <div class="card"><h3>Total Materials</h3><p id="totalMaterials">0</p></div>
-      <div class="card"><h3>Difference</h3><p id="difference">0</p></div>
-    </div>
+  <div id="dashboard" class="section">
+    <h1>Project Summary</h1>
+    <canvas id="paymentChart"></canvas>
   </div>
 
   <div id="payment" class="section hidden">
     <h1>Add Payment</h1>
+
     <input type="date" id="paymentDate">
     <input placeholder="Paid By" id="paidBy">
-    <input placeholder="Vendor Type" id="vendorType">
     <input placeholder="Vendor Name" id="vendorName">
-    <input placeholder="Category" id="category">
     <input type="number" placeholder="Amount" id="amount">
 
-    <select id="paymentMode">
-      <option value="Cash">Cash</option>
-      <option value="UPI">UPI</option>
-      <option value="Bank">Bank</option>
-      <option value="Cheque">Cheque</option>
-    </select>
+    <input type="file" id="billFile">
 
-    <button onclick="submitPayment()">Submit Payment</button>
-  </div>
-
-  <div id="material" class="section hidden">
-    <h1>Add Material</h1>
-    <input type="date" id="purchaseDate">
-    <input placeholder="Vendor Name" id="mVendor">
-    <input placeholder="Material Name" id="materialName">
-    <input type="number" placeholder="Quantity" id="quantity">
-    <input placeholder="Unit" id="unit">
-    <input type="number" placeholder="Rate" id="rate">
-    <button onclick="submitMaterial()">Submit Material</button>
+    <button onclick="submitPayment()">Submit</button>
   </div>
 
 </div>
