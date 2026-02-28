@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>PandR Dashboard</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <style>
 body{
   margin:0;
@@ -18,9 +19,7 @@ body{
   height:100vh;
   padding:20px;
 }
-.sidebar h2{
-  margin-top:0;
-}
+.sidebar h2{margin-top:0;}
 .sidebar button{
   width:100%;
   padding:10px;
@@ -31,13 +30,13 @@ body{
   color:white;
   cursor:pointer;
 }
-.sidebar button:hover{
-  background:#334155;
-}
+.sidebar button:hover{background:#334155;}
 .main{
   flex:1;
   padding:30px;
 }
+.section{display:none;}
+.section.active{display:block;}
 .card{
   background:white;
   padding:20px;
@@ -45,17 +44,44 @@ body{
   margin-bottom:20px;
   box-shadow:0 5px 15px rgba(0,0,0,0.05);
 }
+input,select{
+  padding:8px;
+  margin:5px 0;
+  width:250px;
+}
+button.submit{
+  background:#1e3a8a;
+  color:white;
+  padding:8px 15px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+}
+table{
+  border-collapse:collapse;
+  width:100%;
+}
+table th, table td{
+  border:1px solid #ddd;
+  padding:8px;
+}
 </style>
 </head>
+
 <body>
 
 <div class="sidebar">
   <h2>PandR Admin</h2>
-  <button onclick="loadOverview()">Overview</button>
+  <button onclick="showSection('overview')">Overview</button>
+  <button onclick="showSection('payments')">Payments</button>
+  <button onclick="showSection('ledger')">Ledger</button>
   <button onclick="logout()">Logout</button>
 </div>
 
 <div class="main">
+
+<!-- OVERVIEW -->
+<div id="overview" class="section active">
   <div class="card">
     <h3>Total Project Expense</h3>
     <div id="totalExpense">Loading...</div>
@@ -71,6 +97,38 @@ body{
   </div>
 </div>
 
+<!-- PAYMENTS -->
+<div id="payments" class="section">
+  <div class="card">
+    <h3>Add Payment</h3>
+
+    <select id="type">
+      <option value="Expense">Expense</option>
+      <option value="Settlement">Settlement</option>
+    </select>
+
+    <input type="date" id="date">
+    <input placeholder="Paid By" id="paidBy">
+    <input placeholder="Settlement For (if settlement)" id="settlementFor">
+    <input placeholder="Vendor" id="vendor">
+    <input type="number" placeholder="Amount" id="amount">
+    <input placeholder="Mode" id="mode">
+    <input placeholder="Remarks" id="remarks">
+
+    <button class="submit" onclick="addPayment()">Submit</button>
+  </div>
+</div>
+
+<!-- LEDGER -->
+<div id="ledger" class="section">
+  <div class="card">
+    <h3>Ledger</h3>
+    <div id="ledgerTable"></div>
+  </div>
+</div>
+
+</div>
+
 <script>
 
 const API = "https://script.google.com/macros/s/AKfycbwo78mV92MKxcGMSB52NziL7bmn0AsEplVo2rhj92O3UGk7EKl9B8OlJt9ZqbmXEE7JiQ/exec";
@@ -84,13 +142,16 @@ function logout(){
   window.location.href="login.html";
 }
 
+function showSection(id){
+  document.querySelectorAll('.section').forEach(sec=>sec.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
 function loadOverview(){
 
   fetch(API,{
     method:"POST",
-    body:JSON.stringify({
-      action:"getDashboard"
-    })
+    body:JSON.stringify({action:"getDashboard"})
   })
   .then(res=>res.json())
   .then(data=>{
@@ -99,7 +160,6 @@ function loadOverview(){
     document.getElementById("papaExpense").innerText = "₹ " + data.papaFinalExpense;
 
     const ctx = document.getElementById('ledgerChart').getContext('2d');
-
     const labels = Object.keys(data.ledger);
     const values = Object.values(data.ledger);
 
@@ -115,6 +175,46 @@ function loadOverview(){
       }
     });
 
+    renderLedger(data.ledger);
+  });
+}
+
+function renderLedger(ledger){
+  let html="<table><tr><th>Person</th><th>Balance</th></tr>";
+
+  for(let person in ledger){
+    html += `<tr><td>${person}</td><td>${ledger[person]}</td></tr>`;
+  }
+
+  html += "</table>";
+  document.getElementById("ledgerTable").innerHTML = html;
+}
+
+function addPayment(){
+
+  if(!date.value || !paidBy.value || !amount.value){
+    alert("Fill required fields");
+    return;
+  }
+
+  fetch(API,{
+    method:"POST",
+    body:JSON.stringify({
+      action:"addPayment",
+      date:date.value,
+      type:type.value,
+      paidBy:paidBy.value,
+      settlementFor:settlementFor.value,
+      vendor:vendor.value,
+      amount:amount.value,
+      mode:mode.value,
+      remarks:remarks.value
+    })
+  })
+  .then(res=>res.json())
+  .then(data=>{
+    alert("Entry Added");
+    loadOverview();
   });
 }
 
