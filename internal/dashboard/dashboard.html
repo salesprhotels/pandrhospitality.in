@@ -9,69 +9,22 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <style>
-body{
-  margin:0;
-  font-family:'Segoe UI',sans-serif;
-  background:#eef2f7;
-  display:flex;
-}
-.sidebar{
-  width:260px;
-  background:linear-gradient(180deg,#0f172a,#1e293b);
-  color:white;
-  height:100vh;
-  padding:20px;
-}
+body{margin:0;font-family:'Segoe UI';background:#eef2f7;display:flex;}
+.sidebar{width:260px;background:#0f172a;color:white;height:100vh;padding:20px;}
 .sidebar h2{margin-bottom:20px;}
-.sidebar button{
-  width:100%;
-  padding:12px;
-  margin-bottom:10px;
-  border:none;
-  border-radius:8px;
-  background:#334155;
-  color:white;
-  cursor:pointer;
-}
+.sidebar button{width:100%;padding:12px;margin-bottom:10px;border:none;border-radius:8px;background:#334155;color:white;cursor:pointer;}
 .sidebar button:hover{background:#475569;}
-.main{
-  flex:1;
-  padding:40px;
-  overflow:auto;
-}
+.main{flex:1;padding:30px;overflow:auto;}
 .section{display:none;}
 .section.active{display:block;}
-.card{
-  background:white;
-  padding:25px;
-  border-radius:12px;
-  margin-bottom:25px;
-  box-shadow:0 6px 20px rgba(0,0,0,0.05);
-}
-input,select{
-  padding:10px;
-  margin:6px;
-  border-radius:6px;
-  border:1px solid #d1d5db;
-  width:240px;
-}
-button.submit{
-  background:#2563eb;
-  color:white;
-  padding:10px 18px;
-  border:none;
-  border-radius:6px;
-  margin-top:10px;
-}
-table{
-  border-collapse:collapse;
-  width:100%;
-  margin-top:15px;
-}
-table th,table td{
-  border:1px solid #ddd;
-  padding:8px;
-}
+.card{background:white;padding:20px;border-radius:12px;margin-bottom:20px;box-shadow:0 6px 20px rgba(0,0,0,0.05);}
+input,select{padding:8px;margin:6px;border-radius:6px;border:1px solid #d1d5db;width:220px;}
+button.submit{background:#2563eb;color:white;padding:8px 15px;border:none;border-radius:6px;}
+table{border-collapse:collapse;width:100%;margin-top:10px;}
+table th,table td{border:1px solid #ddd;padding:8px;text-align:left;}
+.action-btn{padding:4px 8px;margin-right:5px;border:none;border-radius:4px;cursor:pointer;}
+.edit{background:#f59e0b;color:white;}
+.cancel{background:#dc2626;color:white;}
 </style>
 </head>
 
@@ -85,29 +38,19 @@ table th,table td{
 <button onclick="show('materials')">Materials</button>
 <button onclick="show('ledger')">Ledger</button>
 <button onclick="show('reports')">Reports</button>
+<button onclick="show('manage')">Manage Entries</button>
 </div>
 
 <div class="main">
 
 <!-- OVERVIEW -->
 <div id="overview" class="section active">
-<div class="card">
-<h3>Total Expense</h3>
-<div id="totalExpense"></div>
+<div class="card"><h3>Total Expense</h3><div id="totalExpense"></div></div>
+<div class="card"><canvas id="monthlyChart"></canvas></div>
+<div class="card"><canvas id="vendorChart"></canvas></div>
 </div>
 
-<div class="card">
-<h3>Monthly Expense Trend</h3>
-<canvas id="monthlyChart"></canvas>
-</div>
-
-<div class="card">
-<h3>Vendor Wise Expense</h3>
-<canvas id="vendorChart"></canvas>
-</div>
-</div>
-
-<!-- VENDOR PAYMENT -->
+<!-- VENDOR -->
 <div id="vendor" class="section">
 <div class="card">
 <h3>Add Vendor Payment</h3>
@@ -116,19 +59,14 @@ table th,table td{
 <input placeholder="Category" id="vcategory">
 <input placeholder="Paid By" id="vpaidBy">
 <input type="number" placeholder="Amount" id="vamount">
-
 <select id="vmode" onchange="toggleMode('v')">
-<option value="">Mode</option>
-<option>Cash</option>
-<option>UPI</option>
-<option>Bank Transfer</option>
-<option>Cheque</option>
+<option>Cash</option><option>UPI</option>
+<option>Bank Transfer</option><option>Cheque</option>
 </select>
-
 <input placeholder="Transaction ID" id="vtransaction" style="display:none;">
 <input placeholder="Cheque No" id="vcheque" style="display:none;">
 <input placeholder="Bank Name" id="vbank" style="display:none;">
-
+<input type="file" id="vbill">
 <input placeholder="Remarks" id="vremarks">
 <button class="submit" onclick="addVendor()">Submit</button>
 </div>
@@ -142,19 +80,13 @@ table th,table td{
 <input placeholder="Paid To" id="spaidTo">
 <input placeholder="Paid By" id="spaidBy">
 <input type="number" placeholder="Amount" id="samount">
-
 <select id="smode" onchange="toggleMode('s')">
-<option value="">Mode</option>
-<option>Cash</option>
-<option>UPI</option>
-<option>Bank Transfer</option>
-<option>Cheque</option>
+<option>Cash</option><option>UPI</option>
+<option>Bank Transfer</option><option>Cheque</option>
 </select>
-
 <input placeholder="Transaction ID" id="stransaction" style="display:none;">
 <input placeholder="Cheque No" id="scheque" style="display:none;">
 <input placeholder="Bank Name" id="sbank" style="display:none;">
-
 <input placeholder="Remarks" id="sremarks">
 <button class="submit" onclick="addSettlement()">Submit</button>
 </div>
@@ -196,6 +128,14 @@ table th,table td{
 </div>
 </div>
 
+<!-- MANAGE -->
+<div id="manage" class="section">
+<div class="card">
+<h3>Manage Vendor Payments</h3>
+<div id="manageTable"></div>
+</div>
+</div>
+
 </div>
 
 <script>
@@ -207,64 +147,62 @@ document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
 document.getElementById(id).classList.add('active');
 }
 
-function toggleMode(prefix){
-document.getElementById(prefix+"transaction").style.display="none";
-document.getElementById(prefix+"cheque").style.display="none";
-document.getElementById(prefix+"bank").style.display="none";
-
-const mode=document.getElementById(prefix+"mode").value;
-
-if(mode==="UPI"||mode==="Bank Transfer")
-document.getElementById(prefix+"transaction").style.display="block";
-
-if(mode==="Cheque"){
-document.getElementById(prefix+"cheque").style.display="block";
-document.getElementById(prefix+"bank").style.display="block";
-}
+function toggleMode(p){
+document.getElementById(p+"transaction").style.display="none";
+document.getElementById(p+"cheque").style.display="none";
+document.getElementById(p+"bank").style.display="none";
+const m=document.getElementById(p+"mode").value;
+if(m==="UPI"||m==="Bank Transfer") document.getElementById(p+"transaction").style.display="block";
+if(m==="Cheque"){document.getElementById(p+"cheque").style.display="block";document.getElementById(p+"bank").style.display="block";}
 }
 
 function loadDashboard(){
 fetch(API,{method:"POST",body:JSON.stringify({action:"getDashboard"})})
 .then(r=>r.json())
-.then(d=>{
-totalExpense.innerText="₹ "+d.totalExpense;
-});
+.then(d=>{totalExpense.innerText="₹ "+d.totalExpense;});
 
 fetch(API,{method:"POST",body:JSON.stringify({action:"getAdvancedDashboard"})})
 .then(r=>r.json())
 .then(d=>{
-
-new Chart(monthlyChart,{
-type:"line",
-data:{labels:Object.keys(d.monthly),
-datasets:[{label:"Monthly Expense",data:Object.values(d.monthly)}]}
-});
-
-new Chart(vendorChart,{
-type:"bar",
-data:{labels:Object.keys(d.vendorWise),
-datasets:[{label:"Vendor Expense",data:Object.values(d.vendorWise)}]}
-});
-
+new Chart(monthlyChart,{type:"line",data:{labels:Object.keys(d.monthly),datasets:[{label:"Monthly",data:Object.values(d.monthly)}]}});
+new Chart(vendorChart,{type:"bar",data:{labels:Object.keys(d.vendorWise),datasets:[{label:"Vendor",data:Object.values(d.vendorWise)}]}});
 });
 
 renderLedger();
+loadManage();
 }
 
 function renderLedger(){
 fetch(API,{method:"POST",body:JSON.stringify({action:"getLedger"})})
 .then(r=>r.json())
-.then(data=>{
+.then(d=>{
 let html="<table><tr><th>Person</th><th>Balance</th></tr>";
-for(let p in data){
-html+=`<tr><td>${p}</td><td>${data[p]}</td></tr>`;
-}
-html+="</table>";
-ledgerTable.innerHTML=html;
+for(let p in d){html+=`<tr><td>${p}</td><td>${d[p]}</td></tr>`;}
+html+="</table>";ledgerTable.innerHTML=html;
 });
 }
 
 function addVendor(){
+const file=document.getElementById("vbill").files[0];
+if(file){
+const reader=new FileReader();
+reader.onload=function(){
+fetch(API,{method:"POST",body:JSON.stringify({
+action:"uploadBill",
+fileData:reader.result.split(',')[1],
+fileName:file.name,
+fileType:file.type
+})})
+.then(r=>r.json())
+.then(f=>{
+saveVendor(f.url);
+});
+};
+reader.readAsDataURL(file);
+}else saveVendor("");
+}
+
+function saveVendor(billUrl){
 fetch(API,{method:"POST",body:JSON.stringify({
 action:"addVendorPayment",
 date:vdate.value,
@@ -276,7 +214,7 @@ mode:vmode.value,
 transactionId:vtransaction.value,
 chequeNo:vcheque.value,
 bankName:vbank.value,
-remarks:vremarks.value
+remarks:vremarks.value+" | Bill:"+billUrl
 })}).then(()=>loadDashboard());
 }
 
@@ -309,7 +247,6 @@ remarks:mremarks.value
 }
 
 let currentReportData=[];
-
 function loadReport(){
 fetch(API,{method:"POST",body:JSON.stringify({
 action:"getReportData",
@@ -317,19 +254,11 @@ startDate:rstart.value,
 endDate:rend.value
 })})
 .then(r=>r.json())
-.then(data=>{
-currentReportData=data;
+.then(d=>{
+currentReportData=d;
 let html="<table><tr><th>ID</th><th>Date</th><th>Vendor</th><th>Amount</th></tr>";
-data.forEach(row=>{
-html+=`<tr>
-<td>${row[0]}</td>
-<td>${new Date(row[1]).toLocaleDateString()}</td>
-<td>${row[2]}</td>
-<td>${row[5]}</td>
-</tr>`;
-});
-html+="</table>";
-reportTable.innerHTML=html;
+d.forEach(row=>{html+=`<tr><td>${row[0]}</td><td>${new Date(row[1]).toLocaleDateString()}</td><td>${row[2]}</td><td>${row[5]}</td></tr>`;});
+html+="</table>";reportTable.innerHTML=html;
 });
 }
 
@@ -342,13 +271,35 @@ XLSX.writeFile(wb,"Report.xlsx");
 
 function exportPDF(){
 const {jsPDF}=window.jspdf;
-const doc=new jsPDF();
-let y=10;
-currentReportData.forEach(row=>{
-doc.text(`${row[0]} | ${row[2]} | ${row[5]}`,10,y);
-y+=8;
-});
+const doc=new jsPDF();let y=10;
+currentReportData.forEach(r=>{doc.text(`${r[0]} | ${r[2]} | ${r[5]}`,10,y);y+=8;});
 doc.save("Report.pdf");
+}
+
+function loadManage(){
+fetch(API,{method:"POST",body:JSON.stringify({action:"getReportData",startDate:"2000-01-01",endDate:"2100-01-01"})})
+.then(r=>r.json())
+.then(d=>{
+let html="<table><tr><th>ID</th><th>Vendor</th><th>Amount</th><th>Action</th></tr>";
+d.forEach(row=>{
+html+=`<tr>
+<td>${row[0]}</td>
+<td>${row[2]}</td>
+<td>${row[5]}</td>
+<td>
+<button class='action-btn cancel' onclick="cancelEntry('${row[0]}')">Cancel</button>
+</td>
+</tr>`;
+});
+html+="</table>";manageTable.innerHTML=html;
+});
+}
+
+function cancelEntry(id){
+fetch(API,{method:"POST",body:JSON.stringify({
+action:"cancelVendorPayment",
+entryId:id
+})}).then(()=>loadDashboard());
 }
 
 loadDashboard();
