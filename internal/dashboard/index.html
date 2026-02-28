@@ -1,13 +1,64 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Dashboard</title>
-  <script>
-    window.location.href = "https://script.google.com/macros/s/AKfycbwo78mV92MKxcGMSB52NziL7bmn0AsEplVo2rhj92O3UGk7EKl9B8OlJt9ZqbmXEE7JiQ/exec";
-  </script>
+<meta charset="UTF-8">
+<title>Construction Dashboard</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  Redirecting to Dashboard...
+
+<div class="sidebar">
+  <h2>Dashboard</h2>
+  <ul>
+    <li onclick="showSection('home')">Home</li>
+    <li onclick="showSection('payment')">Payments</li>
+    <li onclick="showSection('material')">Materials</li>
+  </ul>
+</div>
+
+<div class="main">
+
+  <div id="home" class="section">
+    <h1>Project Overview</h1>
+    <div class="cards">
+      <div class="card"><h3>Total Payments</h3><p id="totalPayments">0</p></div>
+      <div class="card"><h3>Total Materials</h3><p id="totalMaterials">0</p></div>
+      <div class="card"><h3>Difference</h3><p id="difference">0</p></div>
+    </div>
+  </div>
+
+  <div id="payment" class="section hidden">
+    <h1>Add Payment</h1>
+    <input type="date" id="paymentDate">
+    <input placeholder="Paid By" id="paidBy">
+    <input placeholder="Vendor Type" id="vendorType">
+    <input placeholder="Vendor Name" id="vendorName">
+    <input placeholder="Category" id="category">
+    <input type="number" placeholder="Amount" id="amount">
+
+    <select id="paymentMode">
+      <option value="Cash">Cash</option>
+      <option value="UPI">UPI</option>
+      <option value="Bank">Bank</option>
+      <option value="Cheque">Cheque</option>
+    </select>
+
+    <button onclick="submitPayment()">Submit Payment</button>
+  </div>
+
+  <div id="material" class="section hidden">
+    <h1>Add Material</h1>
+    <input type="date" id="purchaseDate">
+    <input placeholder="Vendor Name" id="mVendor">
+    <input placeholder="Material Name" id="materialName">
+    <input type="number" placeholder="Quantity" id="quantity">
+    <input placeholder="Unit" id="unit">
+    <input type="number" placeholder="Rate" id="rate">
+    <button onclick="submitMaterial()">Submit Material</button>
+  </div>
+
+</div>
+
+<script src="app.js"></script>
 </body>
 </html>
