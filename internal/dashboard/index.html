@@ -10,15 +10,16 @@
 
 <div class="sidebar">
   <h2>Dashboard</h2>
-  <button onclick="showSection('dashboard')">Overview</button>
-  <button onclick="showSection('payment')">Payments</button>
+  <button onclick="show('dashboard')">Overview</button>
+  <button onclick="show('payment')">Payments</button>
+  <button onclick="show('material')">Materials</button>
 </div>
 
 <div class="main">
 
   <div id="dashboard" class="section">
-    <h1>Project Summary</h1>
-    <canvas id="paymentChart"></canvas>
+    <h1>Project Overview</h1>
+    <canvas id="chart"></canvas>
   </div>
 
   <div id="payment" class="section hidden">
@@ -26,12 +27,46 @@
 
     <input type="date" id="paymentDate">
     <input placeholder="Paid By" id="paidBy">
+    <input placeholder="Vendor Type" id="vendorType">
     <input placeholder="Vendor Name" id="vendorName">
+    <input placeholder="Category" id="category">
     <input type="number" placeholder="Amount" id="amount">
 
+    <select id="paymentMode" onchange="toggleMode()">
+      <option value="">Payment Mode</option>
+      <option value="Cash">Cash</option>
+      <option value="UPI">UPI</option>
+      <option value="Bank">Bank</option>
+      <option value="Cheque">Cheque</option>
+    </select>
+
+    <div id="transactionBox" class="hidden">
+      <input placeholder="Transaction ID" id="transactionId">
+    </div>
+
+    <div id="chequeBox" class="hidden">
+      <input placeholder="Cheque No" id="chequeNo">
+      <input placeholder="Bank Name" id="bankName">
+    </div>
+
     <input type="file" id="billFile">
+    <input placeholder="Remarks" id="remarks">
 
     <button onclick="submitPayment()">Submit</button>
+  </div>
+
+  <div id="material" class="section hidden">
+    <h1>Add Material</h1>
+
+    <input type="date" id="purchaseDate">
+    <input placeholder="Vendor Name" id="mVendor">
+    <input placeholder="Material Name" id="materialName">
+    <input type="number" placeholder="Quantity" id="quantity">
+    <input placeholder="Unit" id="unit">
+    <input type="number" placeholder="Rate" id="rate">
+    <input placeholder="Remarks" id="mRemarks">
+
+    <button onclick="submitMaterial()">Submit</button>
   </div>
 
 </div>
