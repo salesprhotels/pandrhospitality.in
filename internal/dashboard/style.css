@@ -2,48 +2,38 @@ body {
   margin:0;
   font-family:Arial;
   display:flex;
+  background:#f4f6f9;
 }
 
 .sidebar {
   width:220px;
-  background:#111827;
+  background:#1e293b;
   color:white;
-  height:100vh;
   padding:20px;
+  height:100vh;
 }
 
-.sidebar ul {
-  list-style:none;
-  padding:0;
-}
-
-.sidebar li {
+.sidebar button {
+  width:100%;
+  margin:10px 0;
   padding:10px;
-  cursor:pointer;
-}
-
-.sidebar li:hover {
-  background:#1f2937;
+  background:#334155;
+  color:white;
+  border:none;
 }
 
 .main {
   flex:1;
   padding:30px;
-  background:#f3f4f6;
 }
 
 .section.hidden {
   display:none;
 }
 
-.cards {
-  display:flex;
-  gap:20px;
-}
-
-.card {
-  background:white;
-  padding:20px;
-  border-radius:10px;
-  width:200px;
+input {
+  display:block;
+  margin:10px 0;
+  padding:8px;
+  width:300px;
 }
