@@ -9,23 +9,118 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <style>
-body{margin:0;font-family:'Segoe UI',sans-serif;background:#eef2f7;}
-#loginScreen{display:flex;align-items:center;justify-content:center;height:100vh;background:#0f172a;}
-#loginScreen div{background:white;padding:30px;border-radius:10px;width:300px;}
+body{
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:#f4f6fb;
+}
+
+#loginScreen{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:100vh;
+  background:linear-gradient(135deg,#0f172a,#1e3a8a);
+}
+
+#loginScreen div{
+  background:white;
+  padding:35px;
+  border-radius:12px;
+  width:320px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
 #app{display:none;}
-.sidebar{width:260px;background:#0f172a;color:white;height:100vh;padding:20px;float:left;}
-.sidebar button{width:100%;padding:10px;margin:6px 0;border:none;border-radius:6px;background:#334155;color:white;cursor:pointer;}
-.sidebar button:hover{background:#475569;}
-.main{margin-left:280px;padding:30px;}
+
+.sidebar{
+  width:260px;
+  background:#0f172a;
+  color:white;
+  height:100vh;
+  padding:25px;
+  float:left;
+}
+
+.sidebar h3{
+  color:#facc15;
+  margin-bottom:25px;
+}
+
+.sidebar button{
+  width:100%;
+  padding:12px;
+  margin:8px 0;
+  border:none;
+  border-radius:8px;
+  background:#1e293b;
+  color:white;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.sidebar button:hover{
+  background:#facc15;
+  color:#0f172a;
+  font-weight:600;
+}
+
+.main{
+  margin-left:280px;
+  padding:35px;
+}
+
 .section{display:none;}
 .section.active{display:block;}
-.card{background:white;padding:20px;border-radius:10px;margin-bottom:20px;box-shadow:0 6px 20px rgba(0,0,0,0.05);}
-input,select{padding:6px;margin:5px;border-radius:6px;border:1px solid #ccc;}
-button.primary{background:#2563eb;color:white;padding:8px 14px;border:none;border-radius:6px;}
-table{border-collapse:collapse;width:100%;margin-top:10px;}
-table th,table td{border:1px solid #ddd;padding:8px;text-align:left;}
-.action{padding:4px 8px;border:none;border-radius:4px;color:white;cursor:pointer;}
-.cancel{background:#dc2626;}
+
+.card{
+  background:white;
+  padding:25px;
+  border-radius:14px;
+  margin-bottom:25px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.05);
+}
+
+input,select{
+  padding:8px 10px;
+  margin:6px;
+  border-radius:8px;
+  border:1px solid #d1d5db;
+}
+
+button.primary{
+  background:#0f172a;
+  color:white;
+  padding:10px 16px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+button.primary:hover{
+  background:#facc15;
+  color:#0f172a;
+}
+
+table{
+  border-collapse:collapse;
+  width:100%;
+  margin-top:15px;
+}
+
+table th{
+  background:#0f172a;
+  color:white;
+  padding:10px;
+}
+
+table td{
+  padding:8px;
+  border-bottom:1px solid #eee;
+}
+
+.balance-positive{color:#16a34a;font-weight:600;}
+.balance-negative{color:#dc2626;font-weight:600;}
 </style>
 </head>
 
@@ -55,14 +150,12 @@ table th,table td{border:1px solid #ddd;padding:8px;text-align:left;}
 
 <div class="main">
 
-<!-- OVERVIEW -->
 <div id="overview" class="section active">
 <div class="card"><h3>Total Expense</h3><div id="totalExpense"></div></div>
 <div class="card"><canvas id="monthlyChart"></canvas></div>
 <div class="card"><canvas id="vendorChart"></canvas></div>
 </div>
 
-<!-- VENDOR -->
 <div id="vendor" class="section">
 <div class="card">
 <h3>Add Vendor Payment</h3>
@@ -72,7 +165,10 @@ table th,table td{border:1px solid #ddd;padding:8px;text-align:left;}
 <input placeholder="Paid By" id="vpaidBy">
 <input type="number" placeholder="Amount" id="vamount">
 <select id="vmode">
-<option>Cash</option><option>UPI</option><option>Bank Transfer</option><option>Cheque</option>
+<option>Cash</option>
+<option>UPI</option>
+<option>Bank Transfer</option>
+<option>Cheque</option>
 </select>
 <input placeholder="Transaction ID" id="vtransaction">
 <input placeholder="Cheque No" id="vcheque">
@@ -82,7 +178,6 @@ table th,table td{border:1px solid #ddd;padding:8px;text-align:left;}
 </div>
 </div>
 
-<!-- SETTLEMENT -->
 <div id="settlement" class="section">
 <div class="card">
 <h3>Add Settlement</h3>
@@ -94,7 +189,6 @@ table th,table td{border:1px solid #ddd;padding:8px;text-align:left;}
 </div>
 </div>
 
-<!-- MATERIALS -->
 <div id="materials" class="section">
 <div class="card">
 <h3>Add Material</h3>
@@ -107,7 +201,6 @@ table th,table td{border:1px solid #ddd;padding:8px;text-align:left;}
 </div>
 </div>
 
-<!-- LEDGER -->
 <div id="ledger" class="section">
 <div class="card">
 <h3>Ledger</h3>
@@ -115,7 +208,6 @@ table th,table td{border:1px solid #ddd;padding:8px;text-align:left;}
 </div>
 </div>
 
-<!-- REPORT -->
 <div id="reports" class="section">
 <div class="card">
 <h3>Reports</h3>
@@ -128,7 +220,6 @@ table th,table td{border:1px solid #ddd;padding:8px;text-align:left;}
 </div>
 </div>
 
-<!-- MANAGE -->
 <div id="manage" class="section">
 <div class="card">
 <h3>Manage Vendor Payments</h3>
@@ -199,7 +290,10 @@ api({action:"addMaterial",date:mdate.value,vendor:mvendor.value,material:mmateri
 function renderLedger(){
 api({action:"getLedger"}).then(d=>{
 let html="<table><tr><th>Person</th><th>Balance</th></tr>";
-for(let p in d){html+=`<tr><td>${p}</td><td>${d[p]}</td></tr>`;}
+for(let p in d){
+let cls=d[p]>=0?"balance-positive":"balance-negative";
+html+=`<tr><td>${p}</td><td class="${cls}">₹ ${d[p]}</td></tr>`;
+}
 html+="</table>";
 ledgerTable.innerHTML=html;
 });
@@ -210,7 +304,7 @@ api({action:"getReportData",startDate:rstart.value,endDate:rend.value})
 .then(d=>{
 currentReportData=d;
 let html="<table><tr><th>ID</th><th>Date</th><th>Vendor</th><th>Amount</th></tr>";
-d.forEach(row=>{html+=`<tr><td>${row[0]}</td><td>${new Date(row[1]).toLocaleDateString()}</td><td>${row[2]}</td><td>${row[5]}</td></tr>`;});
+d.forEach(r=>{html+=`<tr><td>${r[0]}</td><td>${new Date(r[1]).toLocaleDateString()}</td><td>${r[2]}</td><td>${r[5]}</td></tr>`;});
 html+="</table>";
 reportTable.innerHTML=html;
 });
@@ -236,7 +330,7 @@ api({action:"getReportData",startDate:"2000-01-01",endDate:"2100-01-01"})
 .then(d=>{
 let html="<table><tr><th>ID</th><th>Vendor</th><th>Amount</th><th>Action</th></tr>";
 d.forEach(r=>{
-html+=`<tr><td>${r[0]}</td><td>${r[2]}</td><td>${r[5]}</td><td><button class='action cancel' onclick="cancelEntry('${r[0]}')">Cancel</button></td></tr>`;
+html+=`<tr><td>${r[0]}</td><td>${r[2]}</td><td>${r[5]}</td><td><button class="primary" onclick="cancelEntry('${r[0]}')">Cancel</button></td></tr>`;
 });
 html+="</table>";
 manageTable.innerHTML=html;
@@ -246,7 +340,6 @@ manageTable.innerHTML=html;
 function cancelEntry(id){
 api({action:"cancelVendorPayment",entryId:id}).then(()=>loadDashboard());
 }
-
 </script>
 
 </body>
