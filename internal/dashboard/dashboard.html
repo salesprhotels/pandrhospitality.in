@@ -2,8 +2,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>PandR Admin Panel</title>
+<title>PandR Internal Dashboard</title>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <style>
 body{margin:0;font-family:Segoe UI;background:#f4f6f9;display:flex;}
@@ -15,9 +18,9 @@ body{margin:0;font-family:Segoe UI;background:#f4f6f9;display:flex;}
 .section{display:none;}
 .section.active{display:block;}
 .card{background:white;padding:20px;border-radius:8px;margin-bottom:20px;box-shadow:0 4px 12px rgba(0,0,0,0.05);}
-input,select{padding:8px;margin:6px;width:260px;}
-button.submit{background:#1e3a8a;color:white;padding:8px 15px;border:none;border-radius:6px;}
-table{border-collapse:collapse;width:100%;}
+input,select{padding:8px;margin:6px;width:240px;}
+button.submit{background:#1e3a8a;color:white;padding:8px 15px;border:none;border-radius:6px;margin-top:10px;}
+table{border-collapse:collapse;width:100%;margin-top:15px;}
 table th,table td{border:1px solid #ddd;padding:8px;text-align:left;}
 </style>
 </head>
@@ -31,6 +34,7 @@ table th,table td{border:1px solid #ddd;padding:8px;text-align:left;}
 <button onclick="show('settlement')">Internal Settlement</button>
 <button onclick="show('materials')">Materials</button>
 <button onclick="show('ledger')">Ledger</button>
+<button onclick="show('reports')">Reports</button>
 </div>
 
 <div class="main">
@@ -39,7 +43,7 @@ table th,table td{border:1px solid #ddd;padding:8px;text-align:left;}
 <div id="overview" class="section active">
 <div class="card">
 <h3>Total Project Expense</h3>
-<div id="totalExpense"></div>
+<div id="totalExpense">Loading...</div>
 </div>
 
 <div class="card">
@@ -73,7 +77,6 @@ table th,table td{border:1px solid #ddd;padding:8px;text-align:left;}
 <input placeholder="Remarks" id="vremarks">
 
 <button class="submit" onclick="addVendorPayment()">Submit</button>
-
 </div>
 </div>
 
@@ -83,7 +86,7 @@ table th,table td{border:1px solid #ddd;padding:8px;text-align:left;}
 <h3>Internal Settlement</h3>
 
 <input type="date" id="sdate">
-<input placeholder="Paid To (Who gets money)" id="spaidTo">
+<input placeholder="Paid To" id="spaidTo">
 <input placeholder="Paid By" id="spaidBy">
 <input type="number" placeholder="Amount" id="samount">
 
@@ -102,7 +105,6 @@ table th,table td{border:1px solid #ddd;padding:8px;text-align:left;}
 <input placeholder="Remarks" id="sremarks">
 
 <button class="submit" onclick="addSettlement()">Submit</button>
-
 </div>
 </div>
 
@@ -120,7 +122,6 @@ table th,table td{border:1px solid #ddd;padding:8px;text-align:left;}
 <input placeholder="Remarks" id="mremarks">
 
 <button class="submit" onclick="addMaterial()">Submit</button>
-
 </div>
 </div>
 
@@ -129,6 +130,24 @@ table th,table td{border:1px solid #ddd;padding:8px;text-align:left;}
 <div class="card">
 <h3>Ledger</h3>
 <div id="ledgerTable"></div>
+</div>
+</div>
+
+<!-- REPORTS -->
+<div id="reports" class="section">
+<div class="card">
+<h3>Reports</h3>
+
+<input type="date" id="rstart">
+<input type="date" id="rend">
+<input placeholder="Vendor (optional)" id="rvendor">
+<input placeholder="Person (optional)" id="rperson">
+
+<button class="submit" onclick="loadReport()">Generate</button>
+<button class="submit" onclick="exportExcel()">Export Excel</button>
+<button class="submit" onclick="exportPDF()">Export PDF</button>
+
+<div id="reportTable"></div>
 </div>
 </div>
 
@@ -147,10 +166,8 @@ function vendorModeChange(){
 vtransaction.style.display="none";
 vcheque.style.display="none";
 vbank.style.display="none";
-
 if(vmode.value==="UPI"||vmode.value==="Bank Transfer")
 vtransaction.style.display="block";
-
 if(vmode.value==="Cheque"){
 vcheque.style.display="block";
 vbank.style.display="block";
@@ -161,10 +178,8 @@ function settlementModeChange(){
 stransaction.style.display="none";
 scheque.style.display="none";
 sbank.style.display="none";
-
 if(smode.value==="UPI"||smode.value==="Bank Transfer")
 stransaction.style.display="block";
-
 if(smode.value==="Cheque"){
 scheque.style.display="block";
 sbank.style.display="block";
@@ -238,6 +253,52 @@ rate:mrate.value,
 remarks:mremarks.value
 })})
 .then(()=>alert("Material Added"));
+}
+
+let currentReportData=[];
+
+function loadReport(){
+fetch(API,{method:"POST",body:JSON.stringify({
+action:"getReportData",
+startDate:rstart.value,
+endDate:rend.value,
+vendor:rvendor.value,
+person:rperson.value
+})})
+.then(r=>r.json())
+.then(data=>{
+currentReportData=data;
+let html="<table><tr><th>ID</th><th>Date</th><th>Vendor</th><th>Paid By</th><th>Amount</th></tr>";
+data.forEach(row=>{
+html+=`<tr>
+<td>${row[0]}</td>
+<td>${new Date(row[1]).toLocaleDateString()}</td>
+<td>${row[2]}</td>
+<td>${row[4]}</td>
+<td>${row[5]}</td>
+</tr>`;
+});
+html+="</table>";
+reportTable.innerHTML=html;
+});
+}
+
+function exportExcel(){
+const ws=XLSX.utils.aoa_to_sheet(currentReportData);
+const wb=XLSX.utils.book_new();
+XLSX.utils.book_append_sheet(wb,ws,"Report");
+XLSX.writeFile(wb,"Report.xlsx");
+}
+
+function exportPDF(){
+const {jsPDF}=window.jspdf;
+const doc=new jsPDF();
+let y=10;
+currentReportData.forEach(row=>{
+doc.text(`${row[0]} | ${row[2]} | ${row[4]} | ${row[5]}`,10,y);
+y+=8;
+});
+doc.save("Report.pdf");
 }
 
 loadDashboard();
