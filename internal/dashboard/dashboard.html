@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>PandR Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+body{
+  margin:0;
+  font-family:Segoe UI;
+  display:flex;
+  background:#f1f5f9;
+}
+.sidebar{
+  width:250px;
+  background:#0f172a;
+  color:white;
+  height:100vh;
+  padding:20px;
+}
+.sidebar h2{
+  margin-top:0;
+}
+.sidebar button{
+  width:100%;
+  padding:10px;
+  margin:8px 0;
+  border:none;
+  border-radius:6px;
+  background:#1e293b;
+  color:white;
+  cursor:pointer;
+}
+.sidebar button:hover{
+  background:#334155;
+}
+.main{
+  flex:1;
+  padding:30px;
+}
+.card{
+  background:white;
+  padding:20px;
+  border-radius:8px;
+  margin-bottom:20px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.05);
+}
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+  <h2>PandR Admin</h2>
+  <button onclick="loadOverview()">Overview</button>
+  <button onclick="logout()">Logout</button>
+</div>
+
+<div class="main">
+  <div class="card">
+    <h3>Total Project Expense</h3>
+    <div id="totalExpense">Loading...</div>
+  </div>
+
+  <div class="card">
+    <h3>Papa Final Expense</h3>
+    <div id="papaExpense">Loading...</div>
+  </div>
+
+  <div class="card">
+    <canvas id="ledgerChart"></canvas>
+  </div>
+</div>
+
+<script>
+
+const API = "https://script.google.com/macros/s/AKfycbwo78mV92MKxcGMSB52NziL7bmn0AsEplVo2rhj92O3UGk7EKl9B8OlJt9ZqbmXEE7JiQ/exec";
+
+if(localStorage.getItem("auth") !== "true"){
+  window.location.href="login.html";
+}
+
+function logout(){
+  localStorage.removeItem("auth");
+  window.location.href="login.html";
+}
+
+function loadOverview(){
+
+  fetch(API,{
+    method:"POST",
+    body:JSON.stringify({
+      action:"getDashboard"
+    })
+  })
+  .then(res=>res.json())
+  .then(data=>{
+
+    document.getElementById("totalExpense").innerText = "₹ " + data.totalExpense;
+    document.getElementById("papaExpense").innerText = "₹ " + data.papaFinalExpense;
+
+    const ctx = document.getElementById('ledgerChart').getContext('2d');
+
+    const labels = Object.keys(data.ledger);
+    const values = Object.values(data.ledger);
+
+    new Chart(ctx,{
+      type:'bar',
+      data:{
+        labels:labels,
+        datasets:[{
+          label:'Balance',
+          data:values,
+          backgroundColor:'#1e3a8a'
+        }]
+      }
+    });
+
+  });
+}
+
+loadOverview();
+
+</script>
+
+</body>
+</html>
