@@ -2,36 +2,86 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>PandR Internal Dashboard</title>
+<title>PandR Internal ERP</title>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <style>
-body{margin:0;font-family:Segoe UI;background:#f4f6f9;display:flex;}
-.sidebar{width:260px;background:#0f172a;color:white;height:100vh;padding:20px;}
-.sidebar h2{margin-top:0;}
-.sidebar button{width:100%;padding:10px;margin:8px 0;border:none;border-radius:6px;background:#1e293b;color:white;cursor:pointer;}
-.sidebar button:hover{background:#334155;}
-.main{flex:1;padding:30px;}
+body{
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:#eef2f7;
+  display:flex;
+}
+.sidebar{
+  width:260px;
+  background:linear-gradient(180deg,#0f172a,#1e293b);
+  color:white;
+  height:100vh;
+  padding:20px;
+}
+.sidebar h2{margin-bottom:20px;}
+.sidebar button{
+  width:100%;
+  padding:12px;
+  margin-bottom:10px;
+  border:none;
+  border-radius:8px;
+  background:#334155;
+  color:white;
+  cursor:pointer;
+}
+.sidebar button:hover{background:#475569;}
+.main{
+  flex:1;
+  padding:40px;
+  overflow:auto;
+}
 .section{display:none;}
 .section.active{display:block;}
-.card{background:white;padding:20px;border-radius:8px;margin-bottom:20px;box-shadow:0 4px 12px rgba(0,0,0,0.05);}
-input,select{padding:8px;margin:6px;width:240px;}
-button.submit{background:#1e3a8a;color:white;padding:8px 15px;border:none;border-radius:6px;margin-top:10px;}
-table{border-collapse:collapse;width:100%;margin-top:15px;}
-table th,table td{border:1px solid #ddd;padding:8px;text-align:left;}
+.card{
+  background:white;
+  padding:25px;
+  border-radius:12px;
+  margin-bottom:25px;
+  box-shadow:0 6px 20px rgba(0,0,0,0.05);
+}
+input,select{
+  padding:10px;
+  margin:6px;
+  border-radius:6px;
+  border:1px solid #d1d5db;
+  width:240px;
+}
+button.submit{
+  background:#2563eb;
+  color:white;
+  padding:10px 18px;
+  border:none;
+  border-radius:6px;
+  margin-top:10px;
+}
+table{
+  border-collapse:collapse;
+  width:100%;
+  margin-top:15px;
+}
+table th,table td{
+  border:1px solid #ddd;
+  padding:8px;
+}
 </style>
 </head>
 
 <body>
 
 <div class="sidebar">
-<h2>PandR Internal</h2>
+<h2>PandR ERP</h2>
 <button onclick="show('overview')">Overview</button>
 <button onclick="show('vendor')">Vendor Payment</button>
-<button onclick="show('settlement')">Internal Settlement</button>
+<button onclick="show('settlement')">Settlement</button>
 <button onclick="show('materials')">Materials</button>
 <button onclick="show('ledger')">Ledger</button>
 <button onclick="show('reports')">Reports</button>
@@ -42,12 +92,18 @@ table th,table td{border:1px solid #ddd;padding:8px;text-align:left;}
 <!-- OVERVIEW -->
 <div id="overview" class="section active">
 <div class="card">
-<h3>Total Project Expense</h3>
-<div id="totalExpense">Loading...</div>
+<h3>Total Expense</h3>
+<div id="totalExpense"></div>
 </div>
 
 <div class="card">
-<canvas id="chart"></canvas>
+<h3>Monthly Expense Trend</h3>
+<canvas id="monthlyChart"></canvas>
+</div>
+
+<div class="card">
+<h3>Vendor Wise Expense</h3>
+<canvas id="vendorChart"></canvas>
 </div>
 </div>
 
@@ -55,14 +111,13 @@ table th,table td{border:1px solid #ddd;padding:8px;text-align:left;}
 <div id="vendor" class="section">
 <div class="card">
 <h3>Add Vendor Payment</h3>
-
 <input type="date" id="vdate">
-<input placeholder="Vendor Name" id="vvendor">
+<input placeholder="Vendor" id="vvendor">
 <input placeholder="Category" id="vcategory">
 <input placeholder="Paid By" id="vpaidBy">
 <input type="number" placeholder="Amount" id="vamount">
 
-<select id="vmode" onchange="vendorModeChange()">
+<select id="vmode" onchange="toggleMode('v')">
 <option value="">Mode</option>
 <option>Cash</option>
 <option>UPI</option>
@@ -75,8 +130,7 @@ table th,table td{border:1px solid #ddd;padding:8px;text-align:left;}
 <input placeholder="Bank Name" id="vbank" style="display:none;">
 
 <input placeholder="Remarks" id="vremarks">
-
-<button class="submit" onclick="addVendorPayment()">Submit</button>
+<button class="submit" onclick="addVendor()">Submit</button>
 </div>
 </div>
 
@@ -84,13 +138,12 @@ table th,table td{border:1px solid #ddd;padding:8px;text-align:left;}
 <div id="settlement" class="section">
 <div class="card">
 <h3>Internal Settlement</h3>
-
 <input type="date" id="sdate">
 <input placeholder="Paid To" id="spaidTo">
 <input placeholder="Paid By" id="spaidBy">
 <input type="number" placeholder="Amount" id="samount">
 
-<select id="smode" onchange="settlementModeChange()">
+<select id="smode" onchange="toggleMode('s')">
 <option value="">Mode</option>
 <option>Cash</option>
 <option>UPI</option>
@@ -103,7 +156,6 @@ table th,table td{border:1px solid #ddd;padding:8px;text-align:left;}
 <input placeholder="Bank Name" id="sbank" style="display:none;">
 
 <input placeholder="Remarks" id="sremarks">
-
 <button class="submit" onclick="addSettlement()">Submit</button>
 </div>
 </div>
@@ -112,15 +164,13 @@ table th,table td{border:1px solid #ddd;padding:8px;text-align:left;}
 <div id="materials" class="section">
 <div class="card">
 <h3>Add Material</h3>
-
 <input type="date" id="mdate">
 <input placeholder="Vendor" id="mvendor">
-<input placeholder="Material Name" id="mmaterial">
+<input placeholder="Material" id="mmaterial">
 <input type="number" placeholder="Quantity" id="mqty">
 <input placeholder="Unit" id="munit">
 <input type="number" placeholder="Rate" id="mrate">
 <input placeholder="Remarks" id="mremarks">
-
 <button class="submit" onclick="addMaterial()">Submit</button>
 </div>
 </div>
@@ -137,16 +187,11 @@ table th,table td{border:1px solid #ddd;padding:8px;text-align:left;}
 <div id="reports" class="section">
 <div class="card">
 <h3>Reports</h3>
-
 <input type="date" id="rstart">
 <input type="date" id="rend">
-<input placeholder="Vendor (optional)" id="rvendor">
-<input placeholder="Person (optional)" id="rperson">
-
 <button class="submit" onclick="loadReport()">Generate</button>
-<button class="submit" onclick="exportExcel()">Export Excel</button>
-<button class="submit" onclick="exportPDF()">Export PDF</button>
-
+<button class="submit" onclick="exportExcel()">Excel</button>
+<button class="submit" onclick="exportPDF()">PDF</button>
 <div id="reportTable"></div>
 </div>
 </div>
@@ -162,27 +207,19 @@ document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
 document.getElementById(id).classList.add('active');
 }
 
-function vendorModeChange(){
-vtransaction.style.display="none";
-vcheque.style.display="none";
-vbank.style.display="none";
-if(vmode.value==="UPI"||vmode.value==="Bank Transfer")
-vtransaction.style.display="block";
-if(vmode.value==="Cheque"){
-vcheque.style.display="block";
-vbank.style.display="block";
-}
-}
+function toggleMode(prefix){
+document.getElementById(prefix+"transaction").style.display="none";
+document.getElementById(prefix+"cheque").style.display="none";
+document.getElementById(prefix+"bank").style.display="none";
 
-function settlementModeChange(){
-stransaction.style.display="none";
-scheque.style.display="none";
-sbank.style.display="none";
-if(smode.value==="UPI"||smode.value==="Bank Transfer")
-stransaction.style.display="block";
-if(smode.value==="Cheque"){
-scheque.style.display="block";
-sbank.style.display="block";
+const mode=document.getElementById(prefix+"mode").value;
+
+if(mode==="UPI"||mode==="Bank Transfer")
+document.getElementById(prefix+"transaction").style.display="block";
+
+if(mode==="Cheque"){
+document.getElementById(prefix+"cheque").style.display="block";
+document.getElementById(prefix+"bank").style.display="block";
 }
 }
 
@@ -191,8 +228,27 @@ fetch(API,{method:"POST",body:JSON.stringify({action:"getDashboard"})})
 .then(r=>r.json())
 .then(d=>{
 totalExpense.innerText="₹ "+d.totalExpense;
-renderLedger();
 });
+
+fetch(API,{method:"POST",body:JSON.stringify({action:"getAdvancedDashboard"})})
+.then(r=>r.json())
+.then(d=>{
+
+new Chart(monthlyChart,{
+type:"line",
+data:{labels:Object.keys(d.monthly),
+datasets:[{label:"Monthly Expense",data:Object.values(d.monthly)}]}
+});
+
+new Chart(vendorChart,{
+type:"bar",
+data:{labels:Object.keys(d.vendorWise),
+datasets:[{label:"Vendor Expense",data:Object.values(d.vendorWise)}]}
+});
+
+});
+
+renderLedger();
 }
 
 function renderLedger(){
@@ -208,7 +264,7 @@ ledgerTable.innerHTML=html;
 });
 }
 
-function addVendorPayment(){
+function addVendor(){
 fetch(API,{method:"POST",body:JSON.stringify({
 action:"addVendorPayment",
 date:vdate.value,
@@ -221,8 +277,7 @@ transactionId:vtransaction.value,
 chequeNo:vcheque.value,
 bankName:vbank.value,
 remarks:vremarks.value
-})})
-.then(()=>{alert("Vendor Payment Added");loadDashboard();});
+})}).then(()=>loadDashboard());
 }
 
 function addSettlement(){
@@ -237,8 +292,7 @@ transactionId:stransaction.value,
 chequeNo:scheque.value,
 bankName:sbank.value,
 remarks:sremarks.value
-})})
-.then(()=>{alert("Settlement Added");loadDashboard();});
+})}).then(()=>loadDashboard());
 }
 
 function addMaterial(){
@@ -251,8 +305,7 @@ quantity:mqty.value,
 unit:munit.value,
 rate:mrate.value,
 remarks:mremarks.value
-})})
-.then(()=>alert("Material Added"));
+})});
 }
 
 let currentReportData=[];
@@ -261,20 +314,17 @@ function loadReport(){
 fetch(API,{method:"POST",body:JSON.stringify({
 action:"getReportData",
 startDate:rstart.value,
-endDate:rend.value,
-vendor:rvendor.value,
-person:rperson.value
+endDate:rend.value
 })})
 .then(r=>r.json())
 .then(data=>{
 currentReportData=data;
-let html="<table><tr><th>ID</th><th>Date</th><th>Vendor</th><th>Paid By</th><th>Amount</th></tr>";
+let html="<table><tr><th>ID</th><th>Date</th><th>Vendor</th><th>Amount</th></tr>";
 data.forEach(row=>{
 html+=`<tr>
 <td>${row[0]}</td>
 <td>${new Date(row[1]).toLocaleDateString()}</td>
 <td>${row[2]}</td>
-<td>${row[4]}</td>
 <td>${row[5]}</td>
 </tr>`;
 });
@@ -295,7 +345,7 @@ const {jsPDF}=window.jspdf;
 const doc=new jsPDF();
 let y=10;
 currentReportData.forEach(row=>{
-doc.text(`${row[0]} | ${row[2]} | ${row[4]} | ${row[5]}`,10,y);
+doc.text(`${row[0]} | ${row[2]} | ${row[5]}`,10,y);
 y+=8;
 });
 doc.save("Report.pdf");
@@ -304,5 +354,6 @@ doc.save("Report.pdf");
 loadDashboard();
 
 </script>
+
 </body>
 </html>
