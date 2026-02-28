@@ -1,0 +1,49 @@
+body {
+  margin:0;
+  font-family:Arial;
+  display:flex;
+}
+
+.sidebar {
+  width:220px;
+  background:#111827;
+  color:white;
+  height:100vh;
+  padding:20px;
+}
+
+.sidebar ul {
+  list-style:none;
+  padding:0;
+}
+
+.sidebar li {
+  padding:10px;
+  cursor:pointer;
+}
+
+.sidebar li:hover {
+  background:#1f2937;
+}
+
+.main {
+  flex:1;
+  padding:30px;
+  background:#f3f4f6;
+}
+
+.section.hidden {
+  display:none;
+}
+
+.cards {
+  display:flex;
+  gap:20px;
+}
+
+.card {
+  background:white;
+  padding:20px;
+  border-radius:10px;
+  width:200px;
+}
