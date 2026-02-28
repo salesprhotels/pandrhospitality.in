@@ -1,48 +1,94 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbwo78mV92MKxcGMSB52NziL7bmn0AsEplVo2rhj92O3UGk7EKl9B8OlJt9ZqbmXEE7JiQ/exec";
+const API = "PASTE_YOUR_EXEC_URL";
 
-function showSection(id){
-  document.querySelectorAll('.section').forEach(sec => sec.classList.add('hidden'));
+function show(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.add('hidden'));
   document.getElementById(id).classList.remove('hidden');
+}
+
+function toggleMode(){
+  transactionBox.classList.add('hidden');
+  chequeBox.classList.add('hidden');
+
+  if(paymentMode.value === "UPI" || paymentMode.value === "Bank")
+    transactionBox.classList.remove('hidden');
+
+  if(paymentMode.value === "Cheque")
+    chequeBox.classList.remove('hidden');
 }
 
 async function submitPayment(){
 
-  const fileInput = document.getElementById("billFile");
-  let fileData = null;
-  let fileName = "";
-  let fileType = "";
-
-  if(fileInput.files.length > 0){
-    const file = fileInput.files[0];
-    fileName = file.name;
-    fileType = file.type;
-    fileData = await toBase64(file);
+  if(!paymentDate.value || !paidBy.value || !vendorName.value || !amount.value || !paymentMode.value){
+    alert("Fill required fields");
+    return;
   }
 
-  const payload = {
+  let base64=null, name="", type="";
+
+  if(billFile.files.length>0){
+    const file=billFile.files[0];
+    name=file.name;
+    type=file.type;
+    base64=(await toBase64(file)).split(",")[1];
+  }
+
+  const payload={
     action:"addPayment",
     paymentDate:paymentDate.value,
     paidBy:paidBy.value,
+    vendorType:vendorType.value,
     vendorName:vendorName.value,
+    category:category.value,
     amount:amount.value,
-    billFile:fileData ? fileData.split(",")[1] : null,
-    billName:fileName,
-    billType:fileType
+    paymentMode:paymentMode.value,
+    transactionId:transactionId.value,
+    chequeNo:chequeNo.value,
+    bankName:bankName.value,
+    billBase64:base64,
+    billName:name,
+    billType:type,
+    remarks:remarks.value
   };
 
-  fetch(API_URL,{
-    method:"POST",
-    body:JSON.stringify(payload)
-  })
-  .then(res=>res.text())
-  .then(alert);
+  fetch(API,{method:"POST",body:JSON.stringify(payload)})
+  .then(r=>r.json())
+  .then(res=>{
+    alert(res.status==="success"?"Payment Added":res.message);
+    document.querySelectorAll("#payment input").forEach(i=>i.value="");
+  });
+}
+
+async function submitMaterial(){
+
+  if(!purchaseDate.value || !mVendor.value || !materialName.value || !quantity.value || !rate.value){
+    alert("Fill required fields");
+    return;
+  }
+
+  const payload={
+    action:"addMaterial",
+    purchaseDate:purchaseDate.value,
+    vendorName:mVendor.value,
+    materialName:materialName.value,
+    quantity:quantity.value,
+    unit:unit.value,
+    rate:rate.value,
+    remarks:mRemarks.value
+  };
+
+  fetch(API,{method:"POST",body:JSON.stringify(payload)})
+  .then(r=>r.json())
+  .then(res=>{
+    alert(res.status==="success"?"Material Added":res.message);
+    document.querySelectorAll("#material input").forEach(i=>i.value="");
+  });
 }
 
 function toBase64(file){
-  return new Promise((resolve,reject)=>{
-    const reader = new FileReader();
+  return new Promise((res,rej)=>{
+    const reader=new FileReader();
     reader.readAsDataURL(file);
-    reader.onload=()=>resolve(reader.result);
-    reader.onerror=error=>reject(error);
+    reader.onload=()=>res(reader.result);
+    reader.onerror=err=>rej(err);
   });
 }
