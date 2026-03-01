@@ -50,7 +50,6 @@ table td{padding:8px;border-bottom:1px solid #eee;}
 <button onclick="show('overview')">Overview</button>
 <button onclick="show('vendor')">Vendor Payment</button>
 <button onclick="show('settlement')">Settlement</button>
-<button onclick="show('materials')">Materials</button>
 <button onclick="show('ledger')">Ledger</button>
 <button onclick="show('reports')">Reports</button>
 <button onclick="show('manage')">Manage</button>
@@ -58,6 +57,7 @@ table td{padding:8px;border-bottom:1px solid #eee;}
 
 <div class="main">
 
+<!-- OVERVIEW -->
 <div id="overview" class="section active">
 
 <div class="card">
@@ -66,7 +66,7 @@ table td{padding:8px;border-bottom:1px solid #eee;}
 </div>
 
 <div class="card">
-<h3>Total Settled Amount</h3>
+<h3>Total Settled</h3>
 <div id="totalSettled"></div>
 </div>
 
@@ -90,6 +90,7 @@ table td{padding:8px;border-bottom:1px solid #eee;}
 
 </div>
 
+<!-- VENDOR -->
 <div id="vendor" class="section">
 <div class="card">
 <h3>Add Vendor Payment</h3>
@@ -99,7 +100,10 @@ table td{padding:8px;border-bottom:1px solid #eee;}
 <input placeholder="Paid By" id="vpaidBy">
 <input type="number" placeholder="Amount" id="vamount">
 <select id="vmode">
-<option>Cash</option><option>UPI</option><option>Bank Transfer</option><option>Cheque</option>
+<option>Cash</option>
+<option>UPI</option>
+<option>Bank Transfer</option>
+<option>Cheque</option>
 </select>
 <input placeholder="Transaction ID" id="vtransaction">
 <input placeholder="Cheque No" id="vcheque">
@@ -109,6 +113,7 @@ table td{padding:8px;border-bottom:1px solid #eee;}
 </div>
 </div>
 
+<!-- SETTLEMENT -->
 <div id="settlement" class="section">
 <div class="card">
 <h3>Add Settlement</h3>
@@ -116,22 +121,21 @@ table td{padding:8px;border-bottom:1px solid #eee;}
 <input placeholder="Paid To" id="spaidTo">
 <input placeholder="Paid By" id="spaidBy">
 <input type="number" placeholder="Amount" id="samount">
+<select id="smode">
+<option>Cash</option>
+<option>UPI</option>
+<option>Bank Transfer</option>
+<option>Cheque</option>
+</select>
+<input placeholder="Transaction ID" id="stransaction">
+<input placeholder="Cheque No" id="scheque">
+<input placeholder="Bank Name" id="sbank">
+<input placeholder="Remarks" id="sremarks">
 <button class="primary" onclick="addSettlement()">Submit</button>
 </div>
 </div>
 
-<div id="materials" class="section">
-<div class="card">
-<h3>Add Material</h3>
-<input type="date" id="mdate">
-<input placeholder="Vendor" id="mvendor">
-<input placeholder="Material" id="mmaterial">
-<input type="number" placeholder="Quantity" id="mqty">
-<input type="number" placeholder="Rate" id="mrate">
-<button class="primary" onclick="addMaterial()">Submit</button>
-</div>
-</div>
-
+<!-- LEDGER -->
 <div id="ledger" class="section">
 <div class="card">
 <h3>Ledger</h3>
@@ -139,6 +143,7 @@ table td{padding:8px;border-bottom:1px solid #eee;}
 </div>
 </div>
 
+<!-- REPORT -->
 <div id="reports" class="section">
 <div class="card">
 <h3>Reports</h3>
@@ -151,6 +156,7 @@ table td{padding:8px;border-bottom:1px solid #eee;}
 </div>
 </div>
 
+<!-- MANAGE -->
 <div id="manage" class="section">
 <div class="card">
 <h3>Manage Vendor Payments</h3>
@@ -158,26 +164,6 @@ table td{padding:8px;border-bottom:1px solid #eee;}
 </div>
 </div>
 
-</div>
-</div>
-
-<!-- EDIT MODAL -->
-<div id="editModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);align-items:center;justify-content:center;">
-<div style="background:white;padding:25px;border-radius:10px;width:400px;">
-<h3>Edit Vendor Entry</h3>
-<input type="hidden" id="editId">
-<input type="date" id="editDate"><br>
-<input placeholder="Vendor" id="editVendor"><br>
-<input placeholder="Category" id="editCategory"><br>
-<input placeholder="Paid By" id="editPaidBy"><br>
-<input type="number" placeholder="Amount" id="editAmount"><br>
-<input placeholder="Mode" id="editMode"><br>
-<input placeholder="Transaction ID" id="editTransaction"><br>
-<input placeholder="Cheque No" id="editCheque"><br>
-<input placeholder="Bank Name" id="editBank"><br>
-<input placeholder="Remarks" id="editRemarks"><br><br>
-<button class="primary" onclick="saveEdit()">Save</button>
-<button onclick="closeEdit()">Cancel</button>
 </div>
 </div>
 
@@ -208,65 +194,38 @@ document.getElementById(id).classList.add('active');
 }
 
 function loadDashboard(){
-
 api({action:"getDashboard"}).then(d=>{
-
-totalExpense.innerText = "₹ " + d.totalExpense;
-totalSettled.innerText = "₹ " + d.totalSettled;
-papaExpense.innerText = "₹ " + d.papaExpense;
-othersOutstanding.innerText = "₹ " + d.othersOutstanding;
-
+totalExpense.innerText="₹ "+d.totalExpense;
+totalSettled.innerText="₹ "+d.totalSettled;
+papaExpense.innerText="₹ "+d.papaExpense;
+othersOutstanding.innerText="₹ "+d.othersOutstanding;
 });
-
-api({action:"getAdvancedDashboard"}).then(d=>{
-
-if(window.monthChart) window.monthChart.destroy();
-if(window.vendorChartObj) window.vendorChartObj.destroy();
-
-window.monthChart = new Chart(monthlyChart,{
-type:"line",
-data:{
-labels:Object.keys(d.monthly),
-datasets:[{
-label:"Monthly Expense",
-data:Object.values(d.monthly)
-}]
-}
-});
-
-window.vendorChartObj = new Chart(vendorChart,{
-type:"bar",
-data:{
-labels:Object.keys(d.vendorWise),
-datasets:[{
-label:"Vendor Expense",
-data:Object.values(d.vendorWise)
-}]
-}
-});
-
-});
-
 renderLedger();
-loadManage();
 }
 
-function addVendor(){
-if(!vdate.value||!vvendor.value||!vamount.value){alert("Fill required fields");return;}
-api({action:"addVendorPayment",date:vdate.value,vendor:vvendor.value,category:vcategory.value,paidBy:vpaidBy.value,amount:vamount.value,mode:vmode.value,transactionId:vtransaction.value,chequeNo:vcheque.value,bankName:vbank.value,remarks:vremarks.value})
-.then(res=>{if(res.status==="success"){alert("Submitted Successfully");vdate.value=vvendor.value=vcategory.value=vpaidBy.value=vamount.value=vtransaction.value=vcheque.value=vbank.value=vremarks.value="";loadDashboard();}});
-}
-
+/* ===== ADD SETTLEMENT FULL STRUCTURE ===== */
 function addSettlement(){
 if(!sdate.value||!spaidTo.value||!samount.value){alert("Fill required fields");return;}
-api({action:"addSettlement",date:sdate.value,paidTo:spaidTo.value,paidBy:spaidBy.value,amount:samount.value})
-.then(res=>{if(res.status==="success"){alert("Settlement Submitted");sdate.value=spaidTo.value=spaidBy.value=samount.value="";loadDashboard();}});
-}
 
-function addMaterial(){
-if(!mdate.value||!mmaterial.value||!mqty.value){alert("Fill required fields");return;}
-api({action:"addMaterial",date:mdate.value,vendor:mvendor.value,material:mmaterial.value,quantity:mqty.value,rate:mrate.value})
-.then(res=>{if(res.status==="success"){alert("Material Submitted");mdate.value=mvendor.value=mmaterial.value=mqty.value=mrate.value="";}});
+api({
+action:"addSettlement",
+date:sdate.value,
+paidTo:spaidTo.value,
+paidBy:spaidBy.value,
+amount:samount.value,
+mode:smode.value,
+transactionId:stransaction.value,
+chequeNo:scheque.value,
+bankName:sbank.value,
+remarks:sremarks.value
+})
+.then(res=>{
+if(res.status==="success"){
+alert("Settlement Submitted Successfully");
+sdate.value=spaidTo.value=spaidBy.value=samount.value=stransaction.value=scheque.value=sbank.value=sremarks.value="";
+loadDashboard();
+}
+});
 }
 
 function renderLedger(){
@@ -279,68 +238,6 @@ html+=`<tr><td>${p}</td><td class="${cls}">₹ ${d[p]}</td></tr>`;
 html+="</table>";
 ledgerTable.innerHTML=html;
 });
-}
-
-function loadReport(){
-api({action:"getReportData",startDate:rstart.value,endDate:rend.value})
-.then(d=>{
-currentReportData=d;
-let html="<table><tr><th>ID</th><th>Date</th><th>Vendor</th><th>Amount</th></tr>";
-d.forEach(r=>{html+=`<tr><td>${r[0]}</td><td>${new Date(r[1]).toLocaleDateString()}</td><td>${r[2]}</td><td>${r[5]}</td></tr>`;});
-html+="</table>";
-reportTable.innerHTML=html;
-});
-}
-
-function exportExcel(){const ws=XLSX.utils.aoa_to_sheet(currentReportData);const wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,"Report");XLSX.writeFile(wb,"Report.xlsx");}
-function exportPDF(){const {jsPDF}=window.jspdf;const doc=new jsPDF();let y=10;currentReportData.forEach(r=>{doc.text(`${r[0]} | ${r[2]} | ${r[5]}`,10,y);y+=8;});doc.save("Report.pdf");}
-
-function loadManage(){
-api({action:"getReportData",startDate:"2000-01-01",endDate:"2100-01-01"})
-.then(d=>{
-let html="<table><tr><th>ID</th><th>Vendor</th><th>Amount</th><th>Action</th></tr>";
-d.forEach(r=>{
-html+=`<tr>
-<td>${r[0]}</td>
-<td>${r[2]}</td>
-<td>${r[5]}</td>
-<td>
-<button class="primary" onclick='openEdit(${JSON.stringify(r)})'>Edit</button>
-<button class="primary" onclick="cancelEntry('${r[0]}')">Cancel</button>
-</td>
-</tr>`;
-});
-html+="</table>";
-manageTable.innerHTML=html;
-});
-}
-
-function openEdit(row){
-editModal.style.display="flex";
-editId.value=row[0];
-editDate.value=new Date(row[1]).toISOString().split('T')[0];
-editVendor.value=row[2];
-editCategory.value=row[3];
-editPaidBy.value=row[4];
-editAmount.value=row[5];
-editMode.value=row[6];
-editTransaction.value=row[7];
-editCheque.value=row[8];
-editBank.value=row[9];
-editRemarks.value=row[10];
-}
-
-function closeEdit(){editModal.style.display="none";}
-
-function saveEdit(){
-api({action:"editVendorPayment",entryId:editId.value,date:editDate.value,vendor:editVendor.value,category:editCategory.value,paidBy:editPaidBy.value,amount:editAmount.value,mode:editMode.value,transactionId:editTransaction.value,chequeNo:editCheque.value,bankName:editBank.value,remarks:editRemarks.value})
-.then(res=>{if(res.status==="success"){alert("Entry Updated");closeEdit();loadDashboard();}});
-}
-
-function cancelEntry(id){
-if(confirm("Cancel this entry?")){
-api({action:"cancelVendorPayment",entryId:id}).then(()=>loadDashboard());
-}
 }
 
 </script>
