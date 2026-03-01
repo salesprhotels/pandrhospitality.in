@@ -1,6 +1,6 @@
 /* ================= CONFIG ================= */
 
-const API = "PASTE_YOUR_DEPLOYED_WEBAPP_URL_HERE";
+const API = "https://script.google.com/macros/s/AKfycbwo78mV92MKxcGMSB52NziL7bmn0AsEplVo2rhj92O3UGk7EKl9B8OlJt9ZqbmXEE7JiQ/exec";
 let SESSION_PASSWORD = "";
 
 /* ================= API ================= */
