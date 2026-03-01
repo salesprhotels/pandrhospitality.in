@@ -164,15 +164,71 @@ papaExpense.innerText="₹ "+d.papaExpense;
 loadLedger();
 }
 
-function loadLedger(){
-api({action:"getLedger"}).then(d=>{
-let html="<table><tr><th>Person</th><th>Balance</th></tr>";
-for(let p in d){
-html+="<tr><td>"+p+"</td><td>"+d[p]+"</td></tr>";
-}
-html+="</table>";
-ledgerTable.innerHTML=html;
-});
+function loadReport(){
+
+  const from = prompt("Enter Start Date (YYYY-MM-DD)");
+  const to = prompt("Enter End Date (YYYY-MM-DD)");
+
+  const fromDate = new Date(from);
+  const toDate = new Date(to);
+
+  api({action:"getReport"}).then(data=>{
+
+    let materialHTML = "<h3>Material Report</h3><table><tr><th>Date</th><th>Item</th><th>Qty</th><th>Rate</th><th>Total</th><th>Paid By</th></tr>";
+    let vendorHTML = "<h3>Vendor Payment Report</h3><table><tr><th>Date</th><th>Vendor</th><th>Amount</th><th>Paid By</th></tr>";
+    let settlementHTML = "<h3>Settlement Report</h3><table><tr><th>Date</th><th>Paid To</th><th>Amount</th><th>Paid By</th></tr>";
+
+    // MATERIAL
+    data.material.forEach(r=>{
+      const d = new Date(r.date);
+      if(d >= fromDate && d <= toDate){
+        materialHTML += `<tr>
+          <td>${d.toLocaleDateString()}</td>
+          <td>${r.item}</td>
+          <td>${r.qty} ${r.unit}</td>
+          <td>${r.rate}</td>
+          <td>${r.total}</td>
+          <td>${r.paidBy}</td>
+        </tr>`;
+      }
+    });
+
+    materialHTML += "</table>";
+
+    // VENDOR
+    data.vendor.forEach(r=>{
+      const d = new Date(r.date);
+      if(d >= fromDate && d <= toDate){
+        vendorHTML += `<tr>
+          <td>${d.toLocaleDateString()}</td>
+          <td>${r.vendor}</td>
+          <td>${r.amount}</td>
+          <td>${r.paidBy}</td>
+        </tr>`;
+      }
+    });
+
+    vendorHTML += "</table>";
+
+    // SETTLEMENT
+    data.settlement.forEach(r=>{
+      const d = new Date(r.date);
+      if(d >= fromDate && d <= toDate){
+        settlementHTML += `<tr>
+          <td>${d.toLocaleDateString()}</td>
+          <td>${r.paidTo}</td>
+          <td>${r.amount}</td>
+          <td>${r.paidBy}</td>
+        </tr>`;
+      }
+    });
+
+    settlementHTML += "</table>";
+
+    reportTable.innerHTML = materialHTML + "<br><br>" + vendorHTML + "<br><br>" + settlementHTML;
+
+  });
+
 }
 
 function loadReport(){
