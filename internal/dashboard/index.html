@@ -3,322 +3,223 @@
 <head>
 <meta charset="UTF-8">
 <title>PandR Construction ERP</title>
-
-<style>
-body{margin:0;font-family:Segoe UI;background:#f4f6fb;}
-.login{height:100vh;display:flex;justify-content:center;align-items:center;background:#0f172a;}
-.login-box{background:white;padding:40px;border-radius:12px;width:320px;text-align:center;}
-.login-box input{width:100%;padding:10px;margin:10px 0;border-radius:8px;border:1px solid #ccc;}
-.login-box button{width:100%;padding:10px;background:#0f172a;color:white;border:none;border-radius:8px;cursor:pointer;}
-
-.sidebar{width:250px;background:#0f172a;color:white;height:100vh;position:fixed;padding:20px;display:none;}
-.sidebar h2{color:#facc15;}
-.sidebar button{width:100%;padding:10px;margin:6px 0;border:none;border-radius:8px;background:#1e293b;color:white;cursor:pointer;}
-.sidebar button:hover{background:#facc15;color:#0f172a;}
-
-.main{margin-left:270px;padding:30px;display:none;}
-.section{display:none;}
-.section.active{display:block;}
-
-.card{background:white;padding:20px;border-radius:12px;margin-bottom:20px;box-shadow:0 6px 20px rgba(0,0,0,0.05);}
-input,select{padding:8px;margin:4px;border-radius:8px;border:1px solid #ccc;}
-button.action{padding:6px 10px;border:none;border-radius:6px;cursor:pointer;}
-.edit{background:#facc15;}
-.cancel{background:#dc2626;color:white;}
-.green{color:#16a34a;font-weight:600;}
-.red{color:#dc2626;font-weight:600;}
-table{width:100%;border-collapse:collapse;margin-top:10px;}
-th{background:#0f172a;color:white;padding:6px;}
-td{padding:6px;border-bottom:1px solid #eee;font-size:13px;}
-tr.cancelled{background:#f3f4f6;color:#9ca3af;}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="login" id="loginScreen">
-<div class="login-box">
-<h2>PandR ERP Login</h2>
-<input type="password" id="pass" placeholder="Enter Password">
-<button onclick="login()">Login</button>
-<p id="loginError" style="color:red;"></p>
-</div>
+<!-- ================= LOGIN ================= -->
+
+<div class="login-screen" id="loginScreen">
+  <div class="login-box">
+    <h2>PandR ERP Login</h2>
+    <input type="password" id="loginPassword" placeholder="Enter Password">
+    <button onclick="login()">Login</button>
+    <p id="loginError" style="color:red;"></p>
+  </div>
 </div>
 
+<!-- ================= SIDEBAR ================= -->
+
 <div class="sidebar" id="sidebar">
-<h2>PandR ERP</h2>
-<button onclick="showSection('dashboard')">Dashboard</button>
-<button onclick="showSection('material')">Material</button>
-<button onclick="showSection('vendor')">Vendor</button>
-<button onclick="showSection('settlement')">Settlement</button>
-<button onclick="showSection('report')">Report</button>
-<button onclick="showSection('ledger')">Ledger</button>
+  <h2>PandR ERP</h2>
+  <button onclick="showSection('dashboard')">Dashboard</button>
+  <button onclick="showSection('material')">Material</button>
+  <button onclick="showSection('vendor')">Vendor</button>
+  <button onclick="showSection('settlement')">Settlement</button>
+  <button onclick="showSection('report')">Report</button>
+  <button onclick="showSection('ledger')">Ledger</button>
 </div>
+
+<!-- ================= MAIN ================= -->
 
 <div class="main" id="main">
 
+<!-- DASHBOARD -->
+
 <div id="dashboard" class="section active">
+
 <div class="card">
 <h3>Total Expense</h3>
-<div id="dExpense" class="green"></div>
-</div>
-<div class="card">
-<h3>Total Settled</h3>
-<div id="dSettled" class="green"></div>
-</div>
-<div class="card">
-<h3>Papa Ownership</h3>
-<div id="dPapa" class="red"></div>
-</div>
+<div id="totalExpense" class="green"></div>
 </div>
 
+<div class="card">
+<h3>Total Settled</h3>
+<div id="totalSettled" class="green"></div>
+</div>
+
+<div class="card">
+<h3>Papa Ownership</h3>
+<div id="papaExpense" class="red"></div>
+</div>
+
+<div class="card">
+<h3>Outstanding (Others)</h3>
+<div id="outstandingAmount" class="red"></div>
+</div>
+
+</div>
+
+<!-- MATERIAL -->
+
 <div id="material" class="section">
+
 <div class="card">
 <h3>Add Material</h3>
+
+<div class="form-row">
 <input type="date" id="mDate">
 <input id="mCategory" placeholder="Category">
 <input id="mItem" placeholder="Item">
 <input id="mSize" placeholder="Size">
 <input id="mVehicle" placeholder="Vehicle">
-<input type="number" id="mQty" placeholder="Qty" oninput="calcTotal()">
+<input type="number" id="mQty" placeholder="Qty" oninput="calculateMaterialTotal()">
 <input id="mUnit" placeholder="Unit">
-<input type="number" id="mRate" placeholder="Rate" oninput="calcTotal()">
+<input type="number" id="mRate" placeholder="Rate" oninput="calculateMaterialTotal()">
 <input id="mTotal" placeholder="Total" readonly>
 <input id="mVendor" placeholder="Vendor">
 <input id="mPaidBy" placeholder="Paid By">
-<select id="mMode" onchange="toggleFields('m')">
-<option>Cash</option><option>UPI</option><option>Bank Transfer</option><option>Cheque</option>
+
+<select id="mMode" onchange="handlePaymentMode('m')">
+<option>Cash</option>
+<option>UPI</option>
+<option>Bank Transfer</option>
+<option>Cheque</option>
 </select>
+
 <input id="mTransaction" placeholder="Transaction ID" style="display:none">
 <input id="mCheque" placeholder="Cheque No" style="display:none">
 <input id="mBank" placeholder="Bank Name" style="display:none">
 <input id="mRemarks" placeholder="Remarks">
-<button onclick="addMaterial()">Submit</button>
+
+<button class="btn-primary" onclick="addMaterial()">Submit</button>
+</div>
 </div>
 
 <div class="card">
 <h3>Material Records</h3>
 <div id="materialTable"></div>
 </div>
+
 </div>
 
+<!-- VENDOR -->
+
 <div id="vendor" class="section">
+
 <div class="card">
 <h3>Add Vendor Payment</h3>
+
+<div class="form-row">
 <input type="date" id="vDate">
 <input id="vVendor" placeholder="Vendor">
 <input id="vCategory" placeholder="Category">
 <input id="vPaidBy" placeholder="Paid By">
 <input type="number" id="vAmount" placeholder="Amount">
-<select id="vMode" onchange="toggleFields('v')">
-<option>Cash</option><option>UPI</option><option>Bank Transfer</option><option>Cheque</option>
+
+<select id="vMode" onchange="handlePaymentMode('v')">
+<option>Cash</option>
+<option>UPI</option>
+<option>Bank Transfer</option>
+<option>Cheque</option>
 </select>
+
 <input id="vTransaction" placeholder="Transaction ID" style="display:none">
 <input id="vCheque" placeholder="Cheque No" style="display:none">
 <input id="vBank" placeholder="Bank Name" style="display:none">
 <input id="vRemarks" placeholder="Remarks">
-<button onclick="addVendor()">Submit</button>
+
+<button class="btn-primary" onclick="addVendor()">Submit</button>
+</div>
 </div>
 
 <div class="card">
 <h3>Vendor Records</h3>
 <div id="vendorTable"></div>
 </div>
+
 </div>
 
+<!-- SETTLEMENT -->
+
 <div id="settlement" class="section">
+
 <div class="card">
 <h3>Add Settlement</h3>
+
+<div class="form-row">
 <input type="date" id="sDate">
 <input id="sPaidTo" placeholder="Paid To">
 <input id="sPaidBy" placeholder="Paid By">
 <input type="number" id="sAmount" placeholder="Amount">
-<select id="sMode" onchange="toggleFields('s')">
-<option>Cash</option><option>UPI</option><option>Bank Transfer</option><option>Cheque</option>
+
+<select id="sMode" onchange="handlePaymentMode('s')">
+<option>Cash</option>
+<option>UPI</option>
+<option>Bank Transfer</option>
+<option>Cheque</option>
 </select>
+
 <input id="sTransaction" placeholder="Transaction ID" style="display:none">
 <input id="sCheque" placeholder="Cheque No" style="display:none">
 <input id="sBank" placeholder="Bank Name" style="display:none">
 <input id="sRemarks" placeholder="Remarks">
-<button onclick="addSettlement()">Submit</button>
+
+<button class="btn-primary" onclick="addSettlement()">Submit</button>
+</div>
 </div>
 
 <div class="card">
 <h3>Settlement Records</h3>
 <div id="settlementTable"></div>
 </div>
+
 </div>
+
+<!-- REPORT -->
 
 <div id="report" class="section">
+
 <div class="card">
 <h3>Date Wise Report</h3>
+
 From <input type="date" id="rFrom">
 To <input type="date" id="rTo">
-<button onclick="loadReport()">Filter</button>
-<div id="reportData"></div>
-</div>
+<button class="btn-primary" onclick="loadReport()">Filter</button>
+<button class="btn-primary" onclick="exportExcel()">Export Excel</button>
+<button class="btn-primary" onclick="exportPDF()">Export PDF</button>
+
+<div id="reportTable"></div>
 </div>
 
+</div>
+
+<!-- LEDGER -->
+
 <div id="ledger" class="section">
+
 <div class="card">
 <h3>Ledger</h3>
 <div id="ledgerTable"></div>
 </div>
-</div>
 
 </div>
 
-<script>
+</div>
 
-const API="https://script.google.com/macros/s/AKfycbwo78mV92MKxcGMSB52NziL7bmn0AsEplVo2rhj92O3UGk7EKl9B8OlJt9ZqbmXEE7JiQ/exec";
-let PASSWORD="";
+<!-- ================= EDIT MODAL ================= -->
 
-function api(data){
-data.password=PASSWORD;
-return fetch(API,{method:"POST",body:JSON.stringify(data)}).then(r=>r.json());
-}
+<div class="modal" id="editModal">
+<div class="modal-content">
+<h3>Edit Entry</h3>
+<div id="editFormContainer"></div>
+<button class="btn-primary" onclick="saveEdit()">Save</button>
+<button class="btn-cancel" onclick="closeModal()">Cancel</button>
+</div>
+</div>
 
-function login(){
-PASSWORD=document.getElementById("pass").value;
-api({action:"verifyLogin"}).then(r=>{
-if(r.status==="success"){
-loginScreen.style.display="none";
-sidebar.style.display="block";
-main.style.display="block";
-loadDashboard();
-loadAllTables();
-}else{
-loginError.innerText="Wrong Password";
-}
-});
-}
-
-function showSection(id){
-document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
-document.getElementById(id).classList.add("active");
-}
-
-function calcTotal(){
-mTotal.value=(Number(mQty.value||0)*Number(mRate.value||0));
-}
-
-function toggleFields(p){
-document.getElementById(p+"Transaction").style.display="none";
-document.getElementById(p+"Cheque").style.display="none";
-document.getElementById(p+"Bank").style.display="none";
-let mode=document.getElementById(p+"Mode").value;
-if(mode==="UPI") document.getElementById(p+"Transaction").style.display="block";
-if(mode==="Bank Transfer"){document.getElementById(p+"Transaction").style.display="block";document.getElementById(p+"Bank").style.display="block";}
-if(mode==="Cheque"){document.getElementById(p+"Cheque").style.display="block";document.getElementById(p+"Bank").style.display="block";}
-}
-
-function addMaterial(){
-if(!mDate.value||!mItem.value||!mQty.value||!mRate.value){alert("Fill required fields");return;}
-api({action:"addMaterial",date:mDate.value,category:mCategory.value,item:mItem.value,size:mSize.value,vehicle:mVehicle.value,qty:mQty.value,unit:mUnit.value,rate:mRate.value,vendor:mVendor.value,paidBy:mPaidBy.value,mode:mMode.value,transactionId:mTransaction.value,chequeNo:mCheque.value,bankName:mBank.value,remarks:mRemarks.value})
-.then(()=>{clearForm("material");loadAllTables();loadDashboard();alert("Material Added");});
-}
-
-function addVendor(){
-if(!vDate.value||!vVendor.value||!vAmount.value){alert("Fill required fields");return;}
-api({action:"addVendor",date:vDate.value,vendor:vVendor.value,category:vCategory.value,paidBy:vPaidBy.value,amount:vAmount.value,mode:vMode.value,transactionId:vTransaction.value,chequeNo:vCheque.value,bankName:vBank.value,remarks:vRemarks.value})
-.then(()=>{clearForm("vendor");loadAllTables();loadDashboard();alert("Vendor Added");});
-}
-
-function addSettlement(){
-if(!sDate.value||!sPaidTo.value||!sAmount.value){alert("Fill required fields");return;}
-api({action:"addSettlement",date:sDate.value,paidTo:sPaidTo.value,paidBy:sPaidBy.value,amount:sAmount.value,mode:sMode.value,transactionId:sTransaction.value,chequeNo:sCheque.value,bankName:sBank.value,remarks:sRemarks.value})
-.then(()=>{clearForm("settlement");loadAllTables();loadDashboard();alert("Settlement Added");});
-}
-
-function clearForm(section){
-document.querySelectorAll("#"+section+" input").forEach(i=>i.value="");
-}
-
-function loadDashboard(){
-api({action:"getDashboard"}).then(d=>{
-dExpense.innerText="₹ "+d.totalExpense;
-dSettled.innerText="₹ "+d.totalSettled;
-dPapa.innerText="₹ "+d.papaExpense;
-});
-}
-
-function loadAllTables(){
-api({action:"getReport"}).then(data=>{
-renderMaterial(data.material);
-renderVendor(data.vendor);
-renderSettlement(data.settlement);
-});
-}
-
-function renderMaterial(data){
-let html="<table><tr><th>Date</th><th>Item</th><th>Total</th><th>Paid By</th><th>Action</th></tr>";
-data.forEach(r=>{
-html+=`<tr>
-<td>${new Date(r.date).toLocaleDateString()}</td>
-<td>${r.item}</td>
-<td>${r.total}</td>
-<td>${r.paidBy}</td>
-<td><button class="action cancel" onclick="cancel('cancelMaterial','${r.id}')">Cancel</button></td>
-</tr>`;
-});
-html+="</table>";
-materialTable.innerHTML=html;
-}
-
-function renderVendor(data){
-let html="<table><tr><th>Date</th><th>Vendor</th><th>Amount</th><th>Paid By</th><th>Action</th></tr>";
-data.forEach(r=>{
-html+=`<tr>
-<td>${new Date(r.date).toLocaleDateString()}</td>
-<td>${r.vendor}</td>
-<td>${r.amount}</td>
-<td>${r.paidBy}</td>
-<td><button class="action cancel" onclick="cancel('cancelVendor','${r.id}')">Cancel</button></td>
-</tr>`;
-});
-html+="</table>";
-vendorTable.innerHTML=html;
-}
-
-function renderSettlement(data){
-let html="<table><tr><th>Date</th><th>Paid To</th><th>Amount</th><th>Paid By</th><th>Action</th></tr>";
-data.forEach(r=>{
-html+=`<tr>
-<td>${new Date(r.date).toLocaleDateString()}</td>
-<td>${r.paidTo}</td>
-<td>${r.amount}</td>
-<td>${r.paidBy}</td>
-<td><button class="action cancel" onclick="cancel('cancelSettlement','${r.id}')">Cancel</button></td>
-</tr>`;
-});
-html+="</table>";
-settlementTable.innerHTML=html;
-}
-
-function cancel(action,id){
-if(!confirm("Are you sure?")) return;
-api({action:action,id:id}).then(()=>{loadAllTables();loadDashboard();});
-}
-
-function loadReport(){
-api({action:"getReport",from:rFrom.value,to:rTo.value}).then(data=>{
-reportData.innerHTML="<pre>"+JSON.stringify(data,null,2)+"</pre>";
-});
-}
-
-function loadLedger(){
-api({action:"getLedger"}).then(d=>{
-let html="<table><tr><th>Person</th><th>Balance</th></tr>";
-for(let p in d){
-let cls=d[p]>=0?"green":"red";
-html+=`<tr><td>${p}</td><td class="${cls}">${d[p]}</td></tr>`;
-}
-html+="</table>";
-ledgerTable.innerHTML=html;
-});
-}
-
-</script>
+<script src="app.js"></script>
 
 </body>
 </html>
