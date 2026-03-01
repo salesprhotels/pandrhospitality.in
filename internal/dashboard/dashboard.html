@@ -4,107 +4,28 @@
 <meta charset="UTF-8">
 <title>PandR Construction ERP</title>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <style>
-
-body{
-margin:0;
-font-family:'Segoe UI',sans-serif;
-background:#f4f6fb;
-}
-
-.sidebar{
-width:260px;
-background:#0f172a;
-color:white;
-height:100vh;
-padding:25px;
-position:fixed;
-}
-
-.sidebar h2{
-color:#facc15;
-}
-
-.sidebar button{
-width:100%;
-padding:12px;
-margin:8px 0;
-border:none;
-border-radius:8px;
-background:#1e293b;
-color:white;
-cursor:pointer;
-}
-
-.sidebar button:hover{
-background:#facc15;
-color:#0f172a;
-}
-
-.main{
-margin-left:280px;
-padding:30px;
-}
-
-.section{
-display:none;
-}
-
-.section.active{
-display:block;
-}
-
-.card{
-background:white;
-padding:20px;
-border-radius:12px;
-margin-bottom:20px;
-box-shadow:0 6px 20px rgba(0,0,0,0.05);
-}
-
-input,select{
-padding:8px;
-margin:6px;
-border-radius:8px;
-border:1px solid #ccc;
-}
-
-button.primary{
-background:#0f172a;
-color:white;
-padding:10px 16px;
-border:none;
-border-radius:8px;
-cursor:pointer;
-}
-
-button.primary:hover{
-background:#facc15;
-color:#0f172a;
-}
-
-table{
-border-collapse:collapse;
-width:100%;
-margin-top:15px;
-}
-
-table th{
-background:#0f172a;
-color:white;
-padding:10px;
-}
-
-table td{
-padding:8px;
-border-bottom:1px solid #eee;
-}
-
+body{margin:0;font-family:'Segoe UI',sans-serif;background:#f4f6fb;}
+.sidebar{width:260px;background:#0f172a;color:white;height:100vh;padding:25px;position:fixed;}
+.sidebar h2{color:#facc15;}
+.sidebar button{width:100%;padding:12px;margin:8px 0;border:none;border-radius:8px;background:#1e293b;color:white;cursor:pointer;}
+.sidebar button:hover{background:#facc15;color:#0f172a;}
+.main{margin-left:280px;padding:30px;}
+.section{display:none;}
+.section.active{display:block;}
+.card{background:white;padding:20px;border-radius:12px;margin-bottom:20px;box-shadow:0 6px 20px rgba(0,0,0,0.05);}
+input,select{padding:8px;margin:6px;border-radius:8px;border:1px solid #ccc;}
+button.primary{background:#0f172a;color:white;padding:8px 14px;border:none;border-radius:8px;cursor:pointer;}
+button.primary:hover{background:#facc15;color:#0f172a;}
+table{border-collapse:collapse;width:100%;margin-top:15px;}
+table th{background:#0f172a;color:white;padding:8px;}
+table td{padding:6px;border-bottom:1px solid #eee;}
 .green{color:#16a34a;font-weight:600;}
 .red{color:#dc2626;font-weight:600;}
-
+.grey{color:#999;}
 </style>
 </head>
 
@@ -112,268 +33,126 @@ border-bottom:1px solid #eee;
 
 <div class="sidebar">
 <h2>PandR ERP</h2>
-
-<button onclick="showSection('dashboard')">Dashboard</button>
-<button onclick="showSection('material')">Material Entry</button>
-<button onclick="showSection('vendor')">Vendor Payment</button>
-<button onclick="showSection('settlement')">Settlement</button>
-<button onclick="showSection('report')">Full Report</button>
-<button onclick="showSection('ledger')">Ledger</button>
-
+<button onclick="show('dashboard')">Dashboard</button>
+<button onclick="show('material')">Material</button>
+<button onclick="show('vendor')">Vendor</button>
+<button onclick="show('settlement')">Settlement</button>
+<button onclick="show('report')">Full Report</button>
+<button onclick="show('ledger')">Ledger</button>
 </div>
 
 <div class="main">
 
 <!-- DASHBOARD -->
 <div id="dashboard" class="section active">
-
-<div class="card">
-<h3>Total Project Cost</h3>
-<div id="totalExpense" class="green"></div>
+<div class="card"><h3>Total Project Cost</h3><div id="totalExpense" class="green"></div></div>
+<div class="card"><h3>Total Settled</h3><div id="totalSettled" class="green"></div></div>
+<div class="card"><h3>Papa Ownership</h3><div id="papaExpense" class="red"></div></div>
 </div>
 
-<div class="card">
-<h3>Total Settled</h3>
-<div id="totalSettled" class="green"></div>
-</div>
-
-<div class="card">
-<h3>Papa Final Ownership</h3>
-<div id="papaExpense" class="red"></div>
-</div>
-
-</div>
-
-<!-- MATERIAL ENTRY -->
+<!-- MATERIAL -->
 <div id="material" class="section">
-
 <div class="card">
-
 <h3>Add Material</h3>
-
 <input type="date" id="mDate">
-
-<select id="mCategory" onchange="loadItems()">
-<option value="">Select Category</option>
-<option>RCC</option>
-<option>Electrical</option>
-<option>Plumbing</option>
-<option>Finishing</option>
-<option>Furniture</option>
-</select>
-
-<select id="mItem"></select>
-
-<select id="mSize"></select>
-
-<select id="mVehicle">
-<option value="">Vehicle (Optional)</option>
-<option>Truck</option>
-<option>Dumper</option>
-<option>Trolley</option>
-<option>Pickup</option>
-</select>
-
-<input type="number" id="mQty" placeholder="Quantity" oninput="calculateTotal()">
-<input id="mUnit" placeholder="Unit (Bag/Kg/Ton/Trip)">
-<input type="number" id="mRate" placeholder="Rate" oninput="calculateTotal()">
-
+<input placeholder="Category" id="mCategory">
+<input placeholder="Item" id="mItem">
+<input placeholder="Size" id="mSize">
+<input placeholder="Vehicle" id="mVehicle">
+<input type="number" id="mQty" placeholder="Quantity" oninput="calcTotal()">
+<input id="mUnit" placeholder="Unit">
+<input type="number" id="mRate" placeholder="Rate" oninput="calcTotal()">
 <input id="mTotal" placeholder="Total" readonly>
-
 <input placeholder="Vendor" id="mVendor">
 <input placeholder="Paid By" id="mPaidBy">
-
-<select id="mMode">
-<option>Cash</option>
-<option>UPI</option>
-<option>Bank Transfer</option>
-<option>Cheque</option>
-</select>
-
-<input id="mRemarks" placeholder="Remarks">
-
+<select id="mMode"><option>Cash</option><option>UPI</option><option>Bank</option><option>Cheque</option></select>
+<input placeholder="Remarks" id="mRemarks">
 <button class="primary" onclick="addMaterial()">Submit</button>
-
 </div>
-
-<div class="card">
-<h3>Material Records</h3>
-<div id="materialTable"></div>
-</div>
-
 </div>
 
 <!-- VENDOR -->
 <div id="vendor" class="section">
-
 <div class="card">
 <h3>Add Vendor Payment</h3>
-
 <input type="date" id="vDate">
 <input placeholder="Vendor" id="vVendor">
 <input placeholder="Category" id="vCategory">
 <input placeholder="Paid By" id="vPaidBy">
-<input type="number" placeholder="Amount" id="vAmount">
-
-<select id="vMode">
-<option>Cash</option>
-<option>UPI</option>
-<option>Bank Transfer</option>
-<option>Cheque</option>
-</select>
-
-<input id="vRemarks" placeholder="Remarks">
-
+<input type="number" id="vAmount" placeholder="Amount">
+<select id="vMode"><option>Cash</option><option>UPI</option><option>Bank</option><option>Cheque</option></select>
+<input placeholder="Remarks" id="vRemarks">
 <button class="primary" onclick="addVendor()">Submit</button>
-
 </div>
-
 </div>
 
 <!-- SETTLEMENT -->
 <div id="settlement" class="section">
-
 <div class="card">
-
 <h3>Add Settlement</h3>
-
 <input type="date" id="sDate">
 <input placeholder="Paid To" id="sPaidTo">
 <input placeholder="Paid By" id="sPaidBy">
-<input type="number" placeholder="Amount" id="sAmount">
-
-<select id="sMode">
-<option>Cash</option>
-<option>UPI</option>
-<option>Bank Transfer</option>
-<option>Cheque</option>
-</select>
-
-<input id="sRemarks" placeholder="Remarks">
-
+<input type="number" id="sAmount" placeholder="Amount">
+<select id="sMode"><option>Cash</option><option>UPI</option><option>Bank</option><option>Cheque</option></select>
+<input placeholder="Remarks" id="sRemarks">
 <button class="primary" onclick="addSettlement()">Submit</button>
-
 </div>
-
 </div>
 
 <!-- REPORT -->
 <div id="report" class="section">
-
 <div class="card">
 <h3>Complete Report</h3>
 <button class="primary" onclick="loadReport()">Refresh</button>
+<button class="primary" onclick="exportExcel()">Export Excel</button>
+<button class="primary" onclick="exportPDF()">Export PDF</button>
 <div id="reportTable"></div>
 </div>
-
 </div>
 
 <!-- LEDGER -->
 <div id="ledger" class="section">
-
 <div class="card">
 <h3>Ledger</h3>
 <div id="ledgerTable"></div>
 </div>
-
 </div>
 
 </div>
 
 <script>
 
-const API="YOUR_DEPLOYED_APPS_SCRIPT_URL";
-let PASSWORD="PandR@123";
+const API="https://script.google.com/macros/s/AKfycbwo78mV92MKxcGMSB52NziL7bmn0AsEplVo2rhj92O3UGk7EKl9B8OlJt9ZqbmXEE7JiQ/exec";
+const PASSWORD="PandR@123";
 
-function showSection(id){
+function show(id){
 document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
 document.getElementById(id).classList.add('active');
 }
 
 function api(data){
 data.password=PASSWORD;
-return fetch(API,{
-method:"POST",
-body:JSON.stringify(data)
-}).then(r=>r.json());
+return fetch(API,{method:"POST",body:JSON.stringify(data)}).then(r=>r.json());
 }
 
-function calculateTotal(){
-let qty=Number(mQty.value||0);
-let rate=Number(mRate.value||0);
-mTotal.value=qty*rate;
-}
-
-function loadItems(){
-
-let items={
-"RCC":["Cement","Sand","Bajri","Stone","Bricks","TMT Bar","Binding Wire"],
-"Electrical":["Wire","MCB","Switch","Socket","DB"],
-"Plumbing":["PVC Pipe","CPVC Pipe","GI Pipe","Valve"],
-"Finishing":["Tiles","Marble","Granite","Paint"],
-"Furniture":["Plywood","Laminate","Handles","Hinges"]
-};
-
-mItem.innerHTML="";
-items[mCategory.value].forEach(i=>{
-let opt=document.createElement("option");
-opt.text=i;
-mItem.add(opt);
-});
+function calcTotal(){
+mTotal.value=(Number(mQty.value||0)*Number(mRate.value||0));
 }
 
 function addMaterial(){
-
-api({
-action:"addMaterial",
-date:mDate.value,
-category:mCategory.value,
-item:mItem.value,
-size:mSize.value,
-vehicle:mVehicle.value,
-quantity:mQty.value,
-unit:mUnit.value,
-rate:mRate.value,
-vendor:mVendor.value,
-paidBy:mPaidBy.value,
-mode:mMode.value,
-remarks:mRemarks.value
-}).then(()=>{
-alert("Material Added Successfully");
-loadDashboard();
-loadMaterialTable();
-});
+api({action:"addMaterial",date:mDate.value,category:mCategory.value,item:mItem.value,size:mSize.value,vehicle:mVehicle.value,qty:mQty.value,unit:mUnit.value,rate:mRate.value,vendor:mVendor.value,paidBy:mPaidBy.value,mode:mMode.value,remarks:mRemarks.value})
+.then(()=>{alert("Material Added");loadDashboard();});
 }
 
 function addVendor(){
-api({
-action:"addVendorPayment",
-date:vDate.value,
-vendor:vVendor.value,
-category:vCategory.value,
-paidBy:vPaidBy.value,
-amount:vAmount.value,
-mode:vMode.value,
-remarks:vRemarks.value
-}).then(()=>{
-alert("Vendor Payment Added");
-loadDashboard();
-});
+api({action:"addVendor",date:vDate.value,vendor:vVendor.value,category:vCategory.value,paidBy:vPaidBy.value,amount:vAmount.value,mode:vMode.value,remarks:vRemarks.value})
+.then(()=>{alert("Vendor Added");loadDashboard();});
 }
 
 function addSettlement(){
-api({
-action:"addSettlement",
-date:sDate.value,
-paidTo:sPaidTo.value,
-paidBy:sPaidBy.value,
-amount:sAmount.value,
-mode:sMode.value,
-remarks:sRemarks.value
-}).then(()=>{
-alert("Settlement Added");
-loadDashboard();
-});
+api({action:"addSettlement",date:sDate.value,paidTo:sPaidTo.value,paidBy:sPaidBy.value,amount:sAmount.value,mode:sMode.value,remarks:sRemarks.value})
+.then(()=>{alert("Settlement Added");loadDashboard();});
 }
 
 function loadDashboard(){
@@ -382,34 +161,7 @@ totalExpense.innerText="₹ "+d.totalExpense;
 totalSettled.innerText="₹ "+d.totalSettled;
 papaExpense.innerText="₹ "+d.papaExpense;
 });
-}
-
-function loadMaterialTable(){
-api({action:"getReportData"}).then(data=>{
-let html="<table>";
-data.forEach(r=>{
-if(r[0]==="Material"){
-html+="<tr>";
-r.forEach(c=>html+="<td>"+c+"</td>");
-html+="</tr>";
-}
-});
-html+="</table>";
-materialTable.innerHTML=html;
-});
-}
-
-function loadReport(){
-api({action:"getReportData"}).then(data=>{
-let html="<table>";
-data.forEach(r=>{
-html+="<tr>";
-r.forEach(c=>html+="<td>"+c+"</td>");
-html+="</tr>";
-});
-html+="</table>";
-reportTable.innerHTML=html;
-});
+loadLedger();
 }
 
 function loadLedger(){
@@ -423,9 +175,40 @@ ledgerTable.innerHTML=html;
 });
 }
 
+function loadReport(){
+api({action:"getReport"}).then(data=>{
+let html="<table><tr><th>Type</th><th>ID</th><th>Date</th><th>Paid By</th><th>Amount</th></tr>";
+data.forEach(r=>{
+html+="<tr><td>"+r.type+"</td><td>"+r.id+"</td><td>"+new Date(r.date).toLocaleDateString()+"</td><td>"+(r.paidBy||r.paidTo)+"</td><td>"+r.amount+"</td></tr>";
+});
+html+="</table>";
+reportTable.innerHTML=html;
+});
+}
+
+function exportExcel(){
+api({action:"getReport"}).then(data=>{
+const ws=XLSX.utils.json_to_sheet(data);
+const wb=XLSX.utils.book_new();
+XLSX.utils.book_append_sheet(wb,ws,"Report");
+XLSX.writeFile(wb,"Construction_Report.xlsx");
+});
+}
+
+function exportPDF(){
+api({action:"getReport"}).then(data=>{
+const {jsPDF}=window.jspdf;
+const doc=new jsPDF();
+let y=10;
+data.forEach(r=>{
+doc.text(`${r.type} | ${r.id} | ${r.amount}`,10,y);
+y+=8;
+});
+doc.save("Construction_Report.pdf");
+});
+}
+
 loadDashboard();
-loadMaterialTable();
-loadLedger();
 
 </script>
 
