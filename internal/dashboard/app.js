@@ -1,11 +1,9 @@
 /* ================= CONFIG ================= */
 
-const API = "https://script.google.com/macros/s/AKfycbwo78mV92MKxcGMSB52NziL7bmn0AsEplVo2rhj92O3UGk7EKl9B8OlJt9ZqbmXEE7JiQ/exec";
-
+const API = "PASTE_YOUR_DEPLOYED_WEBAPP_URL_HERE";
 let SESSION_PASSWORD = "";
-let CURRENT_EDIT = null;
 
-/* ================= API HELPER ================= */
+/* ================= API ================= */
 
 function api(data){
   data.password = SESSION_PASSWORD;
@@ -18,7 +16,7 @@ function api(data){
 /* ================= LOGIN ================= */
 
 function login(){
-  const pass = document.getElementById("loginPassword").value;
+  const pass = loginPassword.value;
   if(!pass){ alert("Enter password"); return; }
 
   SESSION_PASSWORD = pass;
@@ -36,22 +34,91 @@ function login(){
   });
 }
 
-/* ================= NAVIGATION ================= */
+/* ================= NAV ================= */
 
 function showSection(id){
   document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
-
   if(id==="ledger") loadLedger();
 }
 
-/* ================= MATERIAL ================= */
+/* ================= CONSTRUCTION MASTER ================= */
+
+const MATERIAL_MASTER = {
+  Structural: ["Cement","Sand","Bajri","Stone","Bricks","TMT Bar","Binding Wire"],
+  Electrical: ["Wire","Conduit Pipe","Switch","MCB","DB Board","Light","Fan"],
+  Plumbing: ["PVC Pipe","CPVC Pipe","GI Pipe","Tank","Tap","Basin"],
+  Finishing: ["Paint","Putty","Primer","Tiles","Marble","Granite"],
+  Furniture: ["Plywood","Laminate","Door","Window","Glass","Handle"],
+  Miscellaneous: ["Other"]
+};
+
+function loadMaterialItems(){
+  const category = mCategory.value;
+  mItem.innerHTML = `<option value="">Select Item</option>`;
+
+  if(MATERIAL_MASTER[category]){
+    MATERIAL_MASTER[category].forEach(item=>{
+      mItem.innerHTML += `<option>${item}</option>`;
+    });
+  }
+}
+
+/* ================= ITEM LOGIC ================= */
+
+function handleMaterialLogic(){
+
+  const item = mItem.value;
+
+  // reset
+  mSize.style.display="none";
+  mVehicle.style.display="none";
+  mUnit.value="";
+
+  if(item==="Cement"){
+    mUnit.value="Bags";
+  }
+
+  if(item==="Sand" || item==="Bajri" || item==="Stone"){
+    mUnit.value="Load";
+    mVehicle.style.display="block";
+  }
+
+  if(item==="Bricks"){
+    mUnit.value="Nos";
+  }
+
+  if(item==="TMT Bar"){
+    mUnit.value="Kg";
+    mSize.style.display="block";
+  }
+
+  if(item==="Binding Wire"){
+    mUnit.value="Kg";
+  }
+
+  if(item==="Paint"){
+    mUnit.value="Litre";
+  }
+
+  if(item==="Tiles" || item==="Marble" || item==="Granite"){
+    mUnit.value="Sqft";
+  }
+
+  if(item==="Wire"){
+    mUnit.value="Meter";
+  }
+}
+
+/* ================= TOTAL ================= */
 
 function calculateMaterialTotal(){
   const qty = Number(mQty.value||0);
   const rate = Number(mRate.value||0);
   mTotal.value = qty * rate;
 }
+
+/* ================= PAYMENT MODE ================= */
 
 function handlePaymentMode(prefix){
 
@@ -76,9 +143,11 @@ function handlePaymentMode(prefix){
   }
 }
 
+/* ================= ADD MATERIAL ================= */
+
 function addMaterial(){
 
-  if(!mDate.value || !mItem.value || !mQty.value || !mRate.value){
+  if(!mDate.value || !mCategory.value || !mItem.value || !mQty.value || !mRate.value){
     alert("Fill required fields");
     return;
   }
@@ -101,77 +170,20 @@ function addMaterial(){
     bankName:mBank.value,
     remarks:mRemarks.value
   }).then(()=>{
-    clearForm("material");
-    loadAllTables();
-    loadDashboard();
     alert("Material Added");
-  });
-}
-
-/* ================= VENDOR ================= */
-
-function addVendor(){
-
-  if(!vDate.value || !vVendor.value || !vAmount.value){
-    alert("Fill required fields");
-    return;
-  }
-
-  api({
-    action:"addVendor",
-    date:vDate.value,
-    vendor:vVendor.value,
-    category:vCategory.value,
-    paidBy:vPaidBy.value,
-    amount:vAmount.value,
-    mode:vMode.value,
-    transactionId:vTransaction.value,
-    chequeNo:vCheque.value,
-    bankName:vBank.value,
-    remarks:vRemarks.value
-  }).then(()=>{
-    clearForm("vendor");
+    clearMaterialForm();
     loadAllTables();
     loadDashboard();
-    alert("Vendor Added");
   });
 }
 
-/* ================= SETTLEMENT ================= */
-
-function addSettlement(){
-
-  if(!sDate.value || !sPaidTo.value || !sAmount.value){
-    alert("Fill required fields");
-    return;
-  }
-
-  api({
-    action:"addSettlement",
-    date:sDate.value,
-    paidTo:sPaidTo.value,
-    paidBy:sPaidBy.value,
-    amount:sAmount.value,
-    mode:sMode.value,
-    transactionId:sTransaction.value,
-    chequeNo:sCheque.value,
-    bankName:sBank.value,
-    remarks:sRemarks.value
-  }).then(()=>{
-    clearForm("settlement");
-    loadAllTables();
-    loadDashboard();
-    alert("Settlement Added");
-  });
+function clearMaterialForm(){
+  document.querySelectorAll("#material input").forEach(i=>i.value="");
+  mSize.style.display="none";
+  mVehicle.style.display="none";
 }
 
-/* ================= CLEAR FORM ================= */
-
-function clearForm(section){
-  document.querySelectorAll("#"+section+" input").forEach(i=>i.value="");
-}
-
-/* ================= LOAD DASHBOARD ================= */
+/* ================= DASHBOARD ================= */
 
 function loadDashboard(){
   api({action:"getDashboard"}).then(d=>{
@@ -182,176 +194,30 @@ function loadDashboard(){
   });
 }
 
-/* ================= LOAD TABLES ================= */
+/* ================= TABLE LOAD ================= */
 
 function loadAllTables(){
   api({action:"getReport"}).then(data=>{
     renderMaterial(data.material);
-    renderVendor(data.vendor);
-    renderSettlement(data.settlement);
   });
 }
 
-/* ================= RENDER TABLES ================= */
-
 function renderMaterial(data){
 
-  let html="<table><tr><th>Date</th><th>Item</th><th>Total</th><th>Paid By</th><th>Action</th></tr>";
+  let html="<table><tr><th>Date</th><th>Item</th><th>Qty</th><th>Total</th><th>Paid By</th></tr>";
 
   data.forEach(r=>{
     html+=`<tr>
       <td>${new Date(r.date).toLocaleDateString()}</td>
       <td>${r.item}</td>
       <td>${r.total}</td>
+      <td>${r.total}</td>
       <td>${r.paidBy}</td>
-      <td>
-        <button class="btn-edit" onclick="openEdit('material',${encodeURIComponent(JSON.stringify(r))})">Edit</button>
-        <button class="btn-cancel" onclick="cancelEntry('cancelMaterial','${r.id}')">Cancel</button>
-      </td>
     </tr>`;
   });
 
   html+="</table>";
   materialTable.innerHTML=html;
-}
-
-function renderVendor(data){
-
-  let html="<table><tr><th>Date</th><th>Vendor</th><th>Amount</th><th>Paid By</th><th>Action</th></tr>";
-
-  data.forEach(r=>{
-    html+=`<tr>
-      <td>${new Date(r.date).toLocaleDateString()}</td>
-      <td>${r.vendor}</td>
-      <td>${r.amount}</td>
-      <td>${r.paidBy}</td>
-      <td>
-        <button class="btn-edit" onclick="openEdit('vendor',${encodeURIComponent(JSON.stringify(r))})">Edit</button>
-        <button class="btn-cancel" onclick="cancelEntry('cancelVendor','${r.id}')">Cancel</button>
-      </td>
-    </tr>`;
-  });
-
-  html+="</table>";
-  vendorTable.innerHTML=html;
-}
-
-function renderSettlement(data){
-
-  let html="<table><tr><th>Date</th><th>Paid To</th><th>Amount</th><th>Paid By</th><th>Action</th></tr>";
-
-  data.forEach(r=>{
-    html+=`<tr>
-      <td>${new Date(r.date).toLocaleDateString()}</td>
-      <td>${r.paidTo}</td>
-      <td>${r.amount}</td>
-      <td>${r.paidBy}</td>
-      <td>
-        <button class="btn-edit" onclick="openEdit('settlement',${encodeURIComponent(JSON.stringify(r))})">Edit</button>
-        <button class="btn-cancel" onclick="cancelEntry('cancelSettlement','${r.id}')">Cancel</button>
-      </td>
-    </tr>`;
-  });
-
-  html+="</table>";
-  settlementTable.innerHTML=html;
-}
-
-/* ================= EDIT ================= */
-
-function openEdit(type,dataEncoded){
-
-  const data = JSON.parse(decodeURIComponent(dataEncoded));
-  CURRENT_EDIT = {type,data};
-
-  let html="";
-
-  for(let key in data){
-    if(key==="id") continue;
-    html+=`<input id="edit_${key}" value="${data[key]||''}">`;
-  }
-
-  editFormContainer.innerHTML=html;
-  editModal.style.display="flex";
-}
-
-function saveEdit(){
-
-  if(!CURRENT_EDIT) return;
-
-  let updated = { id: CURRENT_EDIT.data.id };
-
-  for(let key in CURRENT_EDIT.data){
-    if(key==="id") continue;
-    const el = document.getElementById("edit_"+key);
-    if(el) updated[key]=el.value;
-  }
-
-  let action="";
-  if(CURRENT_EDIT.type==="material") action="editMaterial";
-  if(CURRENT_EDIT.type==="vendor") action="editVendor";
-  if(CURRENT_EDIT.type==="settlement") action="editSettlement";
-
-  updated.action = action;
-
-  api(updated).then(()=>{
-    closeModal();
-    loadAllTables();
-    loadDashboard();
-  });
-}
-
-function closeModal(){
-  editModal.style.display="none";
-}
-
-/* ================= CANCEL ================= */
-
-function cancelEntry(action,id){
-  if(!confirm("Are you sure?")) return;
-  api({action:action,id:id}).then(()=>{
-    loadAllTables();
-    loadDashboard();
-  });
-}
-
-/* ================= REPORT ================= */
-
-function loadReport(){
-
-  api({
-    action:"getReport",
-    from:rFrom.value,
-    to:rTo.value
-  }).then(data=>{
-
-    let html="<h4>Material</h4>";
-    html+=renderReportTable(data.material,"item","total");
-
-    html+="<h4>Vendor</h4>";
-    html+=renderReportTable(data.vendor,"vendor","amount");
-
-    html+="<h4>Settlement</h4>";
-    html+=renderReportTable(data.settlement,"paidTo","amount");
-
-    reportTable.innerHTML=html;
-  });
-}
-
-function renderReportTable(data,nameKey,amountKey){
-
-  let html="<table><tr><th>Date</th><th>Name</th><th>Amount</th></tr>";
-
-  data.forEach(r=>{
-    html+=`<tr>
-      <td>${new Date(r.date).toLocaleDateString()}</td>
-      <td>${r[nameKey]}</td>
-      <td>${r[amountKey]}</td>
-    </tr>`;
-  });
-
-  html+="</table>";
-  return html;
 }
 
 /* ================= LEDGER ================= */
@@ -366,14 +232,4 @@ function loadLedger(){
     html+="</table>";
     ledgerTable.innerHTML=html;
   });
-}
-
-/* ================= EXPORT ================= */
-
-function exportExcel(){
-  window.print(); // Simple print fallback (can upgrade to CSV if needed)
-}
-
-function exportPDF(){
-  window.print();
 }
