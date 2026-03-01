@@ -1,1 +1,196 @@
+/* ================= ROOT COLORS ================= */
 
+:root {
+  --navy: #0f172a;
+  --navy-light: #1e293b;
+  --yellow: #facc15;
+  --green: #16a34a;
+  --red: #dc2626;
+  --bg: #f4f6fb;
+  --white: #ffffff;
+}
+
+/* ================= GLOBAL ================= */
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--bg);
+}
+
+h2, h3 {
+  margin: 0 0 10px 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* ================= LOGIN ================= */
+
+.login-screen {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--navy);
+}
+
+.login-box {
+  background: var(--white);
+  padding: 40px;
+  width: 320px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.login-box button {
+  width: 100%;
+  padding: 10px;
+  background: var(--navy);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+  background: var(--navy);
+  color: var(--white);
+  padding: 20px;
+  display: none;
+}
+
+.sidebar h2 {
+  color: var(--yellow);
+  margin-bottom: 20px;
+}
+
+.sidebar button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 8px;
+  border: none;
+  border-radius: 8px;
+  background: var(--navy-light);
+  color: var(--white);
+}
+
+.sidebar button:hover {
+  background: var(--yellow);
+  color: var(--navy);
+}
+
+/* ================= MAIN ================= */
+
+.main {
+  margin-left: 270px;
+  padding: 30px;
+  display: none;
+}
+
+.section {
+  display: none;
+}
+
+.section.active {
+  display: block;
+}
+
+/* ================= CARD ================= */
+
+.card {
+  background: var(--white);
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+}
+
+/* ================= FORM ================= */
+
+input, select {
+  padding: 8px;
+  margin: 5px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* ================= TABLE ================= */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+th {
+  background: var(--navy);
+  color: var(--white);
+  padding: 8px;
+}
+
+td {
+  padding: 6px;
+  border-bottom: 1px solid #eee;
+}
+
+tr.cancelled {
+  background: #f3f4f6;
+  color: #9ca3af;
+}
+
+/* ================= BUTTONS ================= */
+
+.btn-primary {
+  background: var(--navy);
+  color: var(--white);
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+.btn-edit {
+  background: var(--yellow);
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.btn-cancel {
+  background: var(--red);
+  color: var(--white);
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+/* ================= COLORS ================= */
+
+.green {
+  color: var(--green);
+  font-weight: 600;
+}
+
+.red {
+  color: var(--red);
+  font-weight: 600;
+}
