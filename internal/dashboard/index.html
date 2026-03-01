@@ -8,7 +8,7 @@
 
 <body>
 
-<!-- ================= LOGIN ================= -->
+<!-- LOGIN -->
 
 <div class="login-screen" id="loginScreen">
   <div class="login-box">
@@ -19,7 +19,7 @@
   </div>
 </div>
 
-<!-- ================= SIDEBAR ================= -->
+<!-- SIDEBAR -->
 
 <div class="sidebar" id="sidebar">
   <h2>PandR ERP</h2>
@@ -31,7 +31,7 @@
   <button onclick="showSection('ledger')">Ledger</button>
 </div>
 
-<!-- ================= MAIN ================= -->
+<!-- MAIN -->
 
 <div class="main" id="main">
 
@@ -61,26 +61,72 @@
 
 </div>
 
-<!-- MATERIAL -->
+<!-- MATERIAL SECTION (CONSTRUCTION MODE) -->
 
 <div id="material" class="section">
 
 <div class="card">
-<h3>Add Material</h3>
+<h3>Add Construction Material</h3>
 
 <div class="form-row">
+
 <input type="date" id="mDate">
-<input id="mCategory" placeholder="Category">
-<input id="mItem" placeholder="Item">
-<input id="mSize" placeholder="Size">
-<input id="mVehicle" placeholder="Vehicle">
-<input type="number" id="mQty" placeholder="Qty" oninput="calculateMaterialTotal()">
-<input id="mUnit" placeholder="Unit">
+
+<!-- CATEGORY -->
+<select id="mCategory" onchange="loadMaterialItems()">
+<option value="">Select Category</option>
+<option>Structural</option>
+<option>Electrical</option>
+<option>Plumbing</option>
+<option>Finishing</option>
+<option>Furniture</option>
+<option>Miscellaneous</option>
+</select>
+
+<!-- ITEM -->
+<select id="mItem" onchange="handleMaterialLogic()">
+<option value="">Select Item</option>
+</select>
+
+<!-- TMT SIZE (Hidden by default) -->
+<select id="mSize" style="display:none;">
+<option value="">Select Size</option>
+<option>8mm</option>
+<option>10mm</option>
+<option>12mm</option>
+<option>16mm</option>
+<option>20mm</option>
+<option>25mm</option>
+</select>
+
+<!-- VEHICLE TYPE (Hidden by default) -->
+<select id="mVehicle" style="display:none;">
+<option value="">Vehicle Type</option>
+<option>Dumper</option>
+<option>Truck</option>
+<option>Trolley</option>
+<option>Pickup</option>
+</select>
+
+<!-- QUANTITY -->
+<input type="number" id="mQty" placeholder="Quantity" oninput="calculateMaterialTotal()">
+
+<!-- UNIT (Auto Controlled) -->
+<input id="mUnit" placeholder="Unit" readonly>
+
+<!-- RATE -->
 <input type="number" id="mRate" placeholder="Rate" oninput="calculateMaterialTotal()">
+
+<!-- TOTAL -->
 <input id="mTotal" placeholder="Total" readonly>
+
+<!-- VENDOR -->
 <input id="mVendor" placeholder="Vendor">
+
+<!-- PAID BY -->
 <input id="mPaidBy" placeholder="Paid By">
 
+<!-- PAYMENT MODE -->
 <select id="mMode" onchange="handlePaymentMode('m')">
 <option>Cash</option>
 <option>UPI</option>
@@ -91,9 +137,11 @@
 <input id="mTransaction" placeholder="Transaction ID" style="display:none">
 <input id="mCheque" placeholder="Cheque No" style="display:none">
 <input id="mBank" placeholder="Bank Name" style="display:none">
+
 <input id="mRemarks" placeholder="Remarks">
 
 <button class="btn-primary" onclick="addMaterial()">Submit</button>
+
 </div>
 </div>
 
@@ -186,6 +234,7 @@
 
 From <input type="date" id="rFrom">
 To <input type="date" id="rTo">
+
 <button class="btn-primary" onclick="loadReport()">Filter</button>
 <button class="btn-primary" onclick="exportExcel()">Export Excel</button>
 <button class="btn-primary" onclick="exportPDF()">Export PDF</button>
@@ -208,7 +257,7 @@ To <input type="date" id="rTo">
 
 </div>
 
-<!-- ================= EDIT MODAL ================= -->
+<!-- EDIT MODAL -->
 
 <div class="modal" id="editModal">
 <div class="modal-content">
