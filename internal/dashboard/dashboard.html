@@ -25,246 +25,243 @@ table th{background:#0f172a;color:white;padding:8px;}
 table td{padding:6px;border-bottom:1px solid #eee;}
 .green{color:#16a34a;font-weight:600;}
 .red{color:#dc2626;font-weight:600;}
-.grey{color:#999;}
+.grey{color:#888;}
 </style>
 </head>
 
 <body>
 
 <div class="sidebar">
-<h2>PandR ERP</h2>
-<button onclick="show('dashboard')">Dashboard</button>
-<button onclick="show('material')">Material</button>
-<button onclick="show('vendor')">Vendor</button>
-<button onclick="show('settlement')">Settlement</button>
-<button onclick="show('report')">Full Report</button>
-<button onclick="show('ledger')">Ledger</button>
+  <h2>PandR ERP</h2>
+  <button onclick="show('dashboard')">Dashboard</button>
+  <button onclick="show('material')">Material</button>
+  <button onclick="show('vendor')">Vendor</button>
+  <button onclick="show('settlement')">Settlement</button>
+  <button onclick="show('report')">Report</button>
+  <button onclick="show('ledger')">Ledger</button>
 </div>
 
 <div class="main">
 
 <!-- DASHBOARD -->
 <div id="dashboard" class="section active">
-<div class="card"><h3>Total Project Cost</h3><div id="totalExpense" class="green"></div></div>
-<div class="card"><h3>Total Settled</h3><div id="totalSettled" class="green"></div></div>
-<div class="card"><h3>Papa Ownership</h3><div id="papaExpense" class="red"></div></div>
+  <div class="card"><h3>Total Project Cost</h3><div id="totalExpense" class="green"></div></div>
+  <div class="card"><h3>Total Settled</h3><div id="totalSettled" class="green"></div></div>
+  <div class="card"><h3>Papa Ownership</h3><div id="papaExpense" class="red"></div></div>
 </div>
 
 <!-- MATERIAL -->
 <div id="material" class="section">
-<div class="card">
-<h3>Add Material</h3>
-<input type="date" id="mDate">
-<input placeholder="Category" id="mCategory">
-<input placeholder="Item" id="mItem">
-<input placeholder="Size" id="mSize">
-<input placeholder="Vehicle" id="mVehicle">
-<input type="number" id="mQty" placeholder="Quantity" oninput="calcTotal()">
-<input id="mUnit" placeholder="Unit">
-<input type="number" id="mRate" placeholder="Rate" oninput="calcTotal()">
-<input id="mTotal" placeholder="Total" readonly>
-<input placeholder="Vendor" id="mVendor">
-<input placeholder="Paid By" id="mPaidBy">
-<select id="mMode"><option>Cash</option><option>UPI</option><option>Bank</option><option>Cheque</option></select>
-<input placeholder="Remarks" id="mRemarks">
-<button class="primary" onclick="addMaterial()">Submit</button>
-</div>
+  <div class="card">
+    <h3>Add Material</h3>
+    <input type="date" id="mDate">
+    <input placeholder="Category" id="mCategory">
+    <input placeholder="Item" id="mItem">
+    <input placeholder="Size (if any)" id="mSize">
+    <input placeholder="Vehicle (if any)" id="mVehicle">
+    <input type="number" id="mQty" placeholder="Quantity" oninput="calcTotal()">
+    <input id="mUnit" placeholder="Unit (Kg/Bags/Ton etc)">
+    <input type="number" id="mRate" placeholder="Rate" oninput="calcTotal()">
+    <input id="mTotal" placeholder="Total" readonly>
+    <input placeholder="Vendor" id="mVendor">
+    <input placeholder="Paid By" id="mPaidBy">
+    <select id="mMode"><option>Cash</option><option>UPI</option><option>Bank Transfer</option><option>Cheque</option></select>
+    <input placeholder="Transaction ID" id="mTransaction">
+    <input placeholder="Cheque No" id="mCheque">
+    <input placeholder="Bank Name" id="mBank">
+    <input placeholder="Remarks" id="mRemarks">
+    <button class="primary" onclick="addMaterial()">Submit</button>
+  </div>
 </div>
 
 <!-- VENDOR -->
 <div id="vendor" class="section">
-<div class="card">
-<h3>Add Vendor Payment</h3>
-<input type="date" id="vDate">
-<input placeholder="Vendor" id="vVendor">
-<input placeholder="Category" id="vCategory">
-<input placeholder="Paid By" id="vPaidBy">
-<input type="number" id="vAmount" placeholder="Amount">
-<select id="vMode"><option>Cash</option><option>UPI</option><option>Bank</option><option>Cheque</option></select>
-<input placeholder="Remarks" id="vRemarks">
-<button class="primary" onclick="addVendor()">Submit</button>
-</div>
+  <div class="card">
+    <h3>Add Vendor Payment</h3>
+    <input type="date" id="vDate">
+    <input placeholder="Vendor" id="vVendor">
+    <input placeholder="Category" id="vCategory">
+    <input placeholder="Paid By" id="vPaidBy">
+    <input type="number" id="vAmount" placeholder="Amount">
+    <select id="vMode"><option>Cash</option><option>UPI</option><option>Bank Transfer</option><option>Cheque</option></select>
+    <input placeholder="Transaction ID" id="vTransaction">
+    <input placeholder="Cheque No" id="vCheque">
+    <input placeholder="Bank Name" id="vBank">
+    <input placeholder="Remarks" id="vRemarks">
+    <button class="primary" onclick="addVendor()">Submit</button>
+  </div>
 </div>
 
 <!-- SETTLEMENT -->
 <div id="settlement" class="section">
-<div class="card">
-<h3>Add Settlement</h3>
-<input type="date" id="sDate">
-<input placeholder="Paid To" id="sPaidTo">
-<input placeholder="Paid By" id="sPaidBy">
-<input type="number" id="sAmount" placeholder="Amount">
-<select id="sMode"><option>Cash</option><option>UPI</option><option>Bank</option><option>Cheque</option></select>
-<input placeholder="Remarks" id="sRemarks">
-<button class="primary" onclick="addSettlement()">Submit</button>
-</div>
+  <div class="card">
+    <h3>Add Settlement</h3>
+    <input type="date" id="sDate">
+    <input placeholder="Paid To" id="sPaidTo">
+    <input placeholder="Paid By" id="sPaidBy">
+    <input type="number" id="sAmount" placeholder="Amount">
+    <select id="sMode"><option>Cash</option><option>UPI</option><option>Bank Transfer</option><option>Cheque</option></select>
+    <input placeholder="Transaction ID" id="sTransaction">
+    <input placeholder="Cheque No" id="sCheque">
+    <input placeholder="Bank Name" id="sBank">
+    <input placeholder="Remarks" id="sRemarks">
+    <button class="primary" onclick="addSettlement()">Submit</button>
+  </div>
 </div>
 
 <!-- REPORT -->
 <div id="report" class="section">
-<div class="card">
-<h3>Complete Report</h3>
-<button class="primary" onclick="loadReport()">Refresh</button>
-<button class="primary" onclick="exportExcel()">Export Excel</button>
-<button class="primary" onclick="exportPDF()">Export PDF</button>
-<div id="reportTable"></div>
-</div>
+  <div class="card">
+    <h3>Reports</h3>
+    <input type="date" id="rFrom"> to <input type="date" id="rTo">
+    <button class="primary" onclick="loadReport()">Filter</button>
+    <button class="primary" onclick="exportExcel()">Export Excel</button>
+    <button class="primary" onclick="exportPDF()">Export PDF</button>
+    <div id="reportTables"></div>
+  </div>
 </div>
 
 <!-- LEDGER -->
 <div id="ledger" class="section">
-<div class="card">
-<h3>Ledger</h3>
-<div id="ledgerTable"></div>
-</div>
+  <div class="card">
+    <h3>Ledger</h3>
+    <div id="ledgerTable"></div>
+  </div>
 </div>
 
 </div>
 
 <script>
 
-const API="https://script.google.com/macros/s/AKfycbwo78mV92MKxcGMSB52NziL7bmn0AsEplVo2rhj92O3UGk7EKl9B8OlJt9ZqbmXEE7JiQ/exec";
-const PASSWORD="PandR@123";
+const API = "https://script.google.com/macros/s/AKfycbwo78mV92MKxcGMSB52NziL7bmn0AsEplVo2rhj92O3UGk7EKl9B8OlJt9ZqbmXEE7JiQ/exec";
+const PASSWORD = "PandR@123";
 
 function show(id){
-document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
 }
 
 function api(data){
-data.password=PASSWORD;
-return fetch(API,{method:"POST",body:JSON.stringify(data)}).then(r=>r.json());
+  data.password = PASSWORD;
+  return fetch(API,{method:"POST",body:JSON.stringify(data)}).then(r=>r.json());
 }
 
 function calcTotal(){
-mTotal.value=(Number(mQty.value||0)*Number(mRate.value||0));
+  mTotal.value = (Number(mQty.value||0) * Number(mRate.value||0));
 }
 
+/* ========== ADD ACTIONS ========== */
+
 function addMaterial(){
-api({action:"addMaterial",date:mDate.value,category:mCategory.value,item:mItem.value,size:mSize.value,vehicle:mVehicle.value,qty:mQty.value,unit:mUnit.value,rate:mRate.value,vendor:mVendor.value,paidBy:mPaidBy.value,mode:mMode.value,remarks:mRemarks.value})
-.then(()=>{alert("Material Added");loadDashboard();});
+  api({
+    action:"addMaterial",
+    date:mDate.value,category:mCategory.value,item:mItem.value,size:mSize.value,
+    vehicle:mVehicle.value,qty:mQty.value,unit:mUnit.value,rate:mRate.value,
+    vendor:mVendor.value,paidBy:mPaidBy.value,mode:mMode.value,
+    transactionId:mTransaction.value,chequeNo:mCheque.value,bankName:mBank.value,
+    remarks:mRemarks.value
+  }).then(()=>{alert("Material Added");});
 }
 
 function addVendor(){
-api({action:"addVendor",date:vDate.value,vendor:vVendor.value,category:vCategory.value,paidBy:vPaidBy.value,amount:vAmount.value,mode:vMode.value,remarks:vRemarks.value})
-.then(()=>{alert("Vendor Added");loadDashboard();});
+  api({
+    action:"addVendor",
+    date:vDate.value,vendor:vVendor.value,category:vCategory.value,
+    paidBy:vPaidBy.value,amount:vAmount.value,mode:vMode.value,
+    transactionId:vTransaction.value,chequeNo:vCheque.value,bankName:vBank.value,
+    remarks:vRemarks.value
+  }).then(()=>{alert("Vendor Payment Added");});
 }
 
 function addSettlement(){
-api({action:"addSettlement",date:sDate.value,paidTo:sPaidTo.value,paidBy:sPaidBy.value,amount:sAmount.value,mode:sMode.value,remarks:sRemarks.value})
-.then(()=>{alert("Settlement Added");loadDashboard();});
+  api({
+    action:"addSettlement",
+    date:sDate.value,paidTo:sPaidTo.value,paidBy:sPaidBy.value,
+    amount:sAmount.value,mode:sMode.value,
+    transactionId:sTransaction.value,chequeNo:sCheque.value,bankName:sBank.value,
+    remarks:sRemarks.value
+  }).then(()=>{alert("Settlement Added");});
 }
+
+/* ========== DASHBOARD ========== */
 
 function loadDashboard(){
-api({action:"getDashboard"}).then(d=>{
-totalExpense.innerText="₹ "+d.totalExpense;
-totalSettled.innerText="₹ "+d.totalSettled;
-papaExpense.innerText="₹ "+d.papaExpense;
-});
-loadLedger();
-}
-
-function loadReport(){
-
-  const from = prompt("Enter Start Date (YYYY-MM-DD)");
-  const to = prompt("Enter End Date (YYYY-MM-DD)");
-
-  const fromDate = new Date(from);
-  const toDate = new Date(to);
-
-  api({action:"getReport"}).then(data=>{
-
-    let materialHTML = "<h3>Material Report</h3><table><tr><th>Date</th><th>Item</th><th>Qty</th><th>Rate</th><th>Total</th><th>Paid By</th></tr>";
-    let vendorHTML = "<h3>Vendor Payment Report</h3><table><tr><th>Date</th><th>Vendor</th><th>Amount</th><th>Paid By</th></tr>";
-    let settlementHTML = "<h3>Settlement Report</h3><table><tr><th>Date</th><th>Paid To</th><th>Amount</th><th>Paid By</th></tr>";
-
-    // MATERIAL
-    data.material.forEach(r=>{
-      const d = new Date(r.date);
-      if(d >= fromDate && d <= toDate){
-        materialHTML += `<tr>
-          <td>${d.toLocaleDateString()}</td>
-          <td>${r.item}</td>
-          <td>${r.qty} ${r.unit}</td>
-          <td>${r.rate}</td>
-          <td>${r.total}</td>
-          <td>${r.paidBy}</td>
-        </tr>`;
-      }
-    });
-
-    materialHTML += "</table>";
-
-    // VENDOR
-    data.vendor.forEach(r=>{
-      const d = new Date(r.date);
-      if(d >= fromDate && d <= toDate){
-        vendorHTML += `<tr>
-          <td>${d.toLocaleDateString()}</td>
-          <td>${r.vendor}</td>
-          <td>${r.amount}</td>
-          <td>${r.paidBy}</td>
-        </tr>`;
-      }
-    });
-
-    vendorHTML += "</table>";
-
-    // SETTLEMENT
-    data.settlement.forEach(r=>{
-      const d = new Date(r.date);
-      if(d >= fromDate && d <= toDate){
-        settlementHTML += `<tr>
-          <td>${d.toLocaleDateString()}</td>
-          <td>${r.paidTo}</td>
-          <td>${r.amount}</td>
-          <td>${r.paidBy}</td>
-        </tr>`;
-      }
-    });
-
-    settlementHTML += "</table>";
-
-    reportTable.innerHTML = materialHTML + "<br><br>" + vendorHTML + "<br><br>" + settlementHTML;
-
+  api({action:"getDashboard"}).then(d=>{
+    totalExpense.innerText="₹ "+d.totalExpense;
+    totalSettled.innerText="₹ "+d.totalSettled;
+    papaExpense.innerText="₹ "+d.papaExpense;
   });
-
 }
+
+/* ========== LEDGER ========== */
+
+function loadLedger(){
+  api({action:"getLedger"}).then(d=>{
+    let html="<table><tr><th>Person</th><th>Balance</th></tr>";
+    for(let p in d){
+      html+="<tr><td>"+p+"</td><td>"+d[p]+"</td></tr>";
+    }
+    html+="</table>";
+    ledgerTable.innerHTML=html;
+  });
+}
+
+/* ========== REPORTS ========== */
 
 function loadReport(){
-api({action:"getReport"}).then(data=>{
-let html="<table><tr><th>Type</th><th>ID</th><th>Date</th><th>Paid By</th><th>Amount</th></tr>";
-data.forEach(r=>{
-html+="<tr><td>"+r.type+"</td><td>"+r.id+"</td><td>"+new Date(r.date).toLocaleDateString()+"</td><td>"+(r.paidBy||r.paidTo)+"</td><td>"+r.amount+"</td></tr>";
-});
-html+="</table>";
-reportTable.innerHTML=html;
-});
+  const from=rFrom.value;
+  const to=rTo.value;
+
+  api({action:"getReport",from:from,to:to}).then(data=>{
+    let matTable="<h4>Material Report</h4><table><tr><th>Date</th><th>Item</th><th>Qty</th><th>Total</th><th>Paid By</th></tr>";
+    data.material.forEach(r=>{
+      matTable+=`<tr><td>${new Date(r.date).toLocaleDateString()}</td><td>${r.item}</td><td>${r.qty+" "+r.unit}</td><td>${r.total}</td><td>${r.paidBy}</td></tr>`;
+    });
+    matTable+="</table>";
+
+    let venTable="<h4>Vendor Report</h4><table><tr><th>Date</th><th>Vendor</th><th>Amount</th><th>Paid By</th></tr>";
+    data.vendor.forEach(r=>{
+      venTable+=`<tr><td>${new Date(r.date).toLocaleDateString()}</td><td>${r.vendor}</td><td>${r.amount}</td><td>${r.paidBy}</td></tr>`;
+    });
+    venTable+="</table>";
+
+    let setTable="<h4>Settlement Report</h4><table><tr><th>Date</th><th>Paid To</th><th>Amount</th><th>Paid By</th></tr>";
+    data.settlement.forEach(r=>{
+      setTable+=`<tr><td>${new Date(r.date).toLocaleDateString()}</td><td>${r.paidTo}</td><td>${r.amount}</td><td>${r.paidBy}</td></tr>`;
+    });
+    setTable+="</table>";
+
+    reportTables.innerHTML = matTable + "<br>" + venTable + "<br>" + setTable;
+  });
 }
+
+/* ========== EXPORT ========== */
 
 function exportExcel(){
-api({action:"getReport"}).then(data=>{
-const ws=XLSX.utils.json_to_sheet(data);
-const wb=XLSX.utils.book_new();
-XLSX.utils.book_append_sheet(wb,ws,"Report");
-XLSX.writeFile(wb,"Construction_Report.xlsx");
-});
+  api({action:"getReport",from:rFrom.value,to:rTo.value}).then(data=>{  
+    const combined = [...data.material,...data.vendor,...data.settlement];
+    const ws = XLSX.utils.json_to_sheet(combined);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb,ws,"Report");
+    XLSX.writeFile(wb,"Report.xlsx");
+  });
 }
 
 function exportPDF(){
-api({action:"getReport"}).then(data=>{
-const {jsPDF}=window.jspdf;
-const doc=new jsPDF();
-let y=10;
-data.forEach(r=>{
-doc.text(`${r.type} | ${r.id} | ${r.amount}`,10,y);
-y+=8;
-});
-doc.save("Construction_Report.pdf");
-});
+  api({action:"getReport",from:rFrom.value,to:rTo.value}).then(data=>{
+    const {jsPDF} = window.jspdf;
+    const doc = new jsPDF();
+    let y=10;
+    [...data.material,...data.vendor,...data.settlement].forEach(r=>{
+      doc.text(`${r.date} | ${r.paidBy || r.paidTo} | ${r.amount||r.total}`,10,y);
+      y+=8;
+    });
+    doc.save("Report.pdf");
+  });
 }
 
 loadDashboard();
+loadLedger();
 
 </script>
 
