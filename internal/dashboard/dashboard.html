@@ -9,116 +9,24 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <style>
-body{
-  margin:0;
-  font-family:'Segoe UI',sans-serif;
-  background:#f4f6fb;
-}
-
-#loginScreen{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  height:100vh;
-  background:linear-gradient(135deg,#0f172a,#1e3a8a);
-}
-
-#loginScreen div{
-  background:white;
-  padding:35px;
-  border-radius:12px;
-  width:320px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.2);
-}
-
+body{margin:0;font-family:'Segoe UI',sans-serif;background:#f4f6fb;}
+#loginScreen{display:flex;align-items:center;justify-content:center;height:100vh;background:linear-gradient(135deg,#0f172a,#1e3a8a);}
+#loginScreen div{background:white;padding:35px;border-radius:12px;width:320px;}
 #app{display:none;}
-
-.sidebar{
-  width:260px;
-  background:#0f172a;
-  color:white;
-  height:100vh;
-  padding:25px;
-  float:left;
-}
-
-.sidebar h3{
-  color:#facc15;
-  margin-bottom:25px;
-}
-
-.sidebar button{
-  width:100%;
-  padding:12px;
-  margin:8px 0;
-  border:none;
-  border-radius:8px;
-  background:#1e293b;
-  color:white;
-  cursor:pointer;
-  transition:0.2s;
-}
-
-.sidebar button:hover{
-  background:#facc15;
-  color:#0f172a;
-  font-weight:600;
-}
-
-.main{
-  margin-left:280px;
-  padding:35px;
-}
-
+.sidebar{width:260px;background:#0f172a;color:white;height:100vh;padding:25px;float:left;}
+.sidebar h3{color:#facc15;margin-bottom:25px;}
+.sidebar button{width:100%;padding:12px;margin:8px 0;border:none;border-radius:8px;background:#1e293b;color:white;cursor:pointer;}
+.sidebar button:hover{background:#facc15;color:#0f172a;}
+.main{margin-left:280px;padding:35px;}
 .section{display:none;}
 .section.active{display:block;}
-
-.card{
-  background:white;
-  padding:25px;
-  border-radius:14px;
-  margin-bottom:25px;
-  box-shadow:0 8px 25px rgba(0,0,0,0.05);
-}
-
-input,select{
-  padding:8px 10px;
-  margin:6px;
-  border-radius:8px;
-  border:1px solid #d1d5db;
-}
-
-button.primary{
-  background:#0f172a;
-  color:white;
-  padding:10px 16px;
-  border:none;
-  border-radius:8px;
-  cursor:pointer;
-}
-
-button.primary:hover{
-  background:#facc15;
-  color:#0f172a;
-}
-
-table{
-  border-collapse:collapse;
-  width:100%;
-  margin-top:15px;
-}
-
-table th{
-  background:#0f172a;
-  color:white;
-  padding:10px;
-}
-
-table td{
-  padding:8px;
-  border-bottom:1px solid #eee;
-}
-
+.card{background:white;padding:25px;border-radius:14px;margin-bottom:25px;box-shadow:0 8px 25px rgba(0,0,0,0.05);}
+input,select{padding:8px;margin:6px;border-radius:8px;border:1px solid #ccc;}
+button.primary{background:#0f172a;color:white;padding:10px 16px;border:none;border-radius:8px;cursor:pointer;}
+button.primary:hover{background:#facc15;color:#0f172a;}
+table{border-collapse:collapse;width:100%;margin-top:15px;}
+table th{background:#0f172a;color:white;padding:10px;}
+table td{padding:8px;border-bottom:1px solid #eee;}
 .balance-positive{color:#16a34a;font-weight:600;}
 .balance-negative{color:#dc2626;font-weight:600;}
 </style>
@@ -131,7 +39,7 @@ table td{
 <h3>Login</h3>
 <input type="password" id="loginPass" placeholder="Enter Password" style="width:100%;padding:8px;">
 <br><br>
-<button class="primary" onclick="login()" style="width:100%;">Login</button>
+<button class="primary" style="width:100%;" onclick="login()">Login</button>
 </div>
 </div>
 
@@ -165,10 +73,7 @@ table td{
 <input placeholder="Paid By" id="vpaidBy">
 <input type="number" placeholder="Amount" id="vamount">
 <select id="vmode">
-<option>Cash</option>
-<option>UPI</option>
-<option>Bank Transfer</option>
-<option>Cheque</option>
+<option>Cash</option><option>UPI</option><option>Bank Transfer</option><option>Cheque</option>
 </select>
 <input placeholder="Transaction ID" id="vtransaction">
 <input placeholder="Cheque No" id="vcheque">
@@ -230,83 +135,46 @@ table td{
 </div>
 </div>
 
+<!-- EDIT MODAL -->
+<div id="editModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);align-items:center;justify-content:center;">
+<div style="background:white;padding:25px;border-radius:10px;width:400px;">
+<h3>Edit Vendor Entry</h3>
+<input type="hidden" id="editId">
+<input type="date" id="editDate"><br>
+<input placeholder="Vendor" id="editVendor"><br>
+<input placeholder="Category" id="editCategory"><br>
+<input placeholder="Paid By" id="editPaidBy"><br>
+<input type="number" placeholder="Amount" id="editAmount"><br>
+<input placeholder="Mode" id="editMode"><br>
+<input placeholder="Transaction ID" id="editTransaction"><br>
+<input placeholder="Cheque No" id="editCheque"><br>
+<input placeholder="Bank Name" id="editBank"><br>
+<input placeholder="Remarks" id="editRemarks"><br><br>
+<button class="primary" onclick="saveEdit()">Save</button>
+<button onclick="closeEdit()">Cancel</button>
+</div>
+</div>
 
 <script>
 
 const API="https://script.google.com/macros/s/AKfycbwo78mV92MKxcGMSB52NziL7bmn0AsEplVo2rhj92O3UGk7EKl9B8OlJt9ZqbmXEE7JiQ/exec";
-
 let USER_PASSWORD="";
 let currentReportData=[];
 
-/* ================= LOGIN ================= */
-
 function login(){
-const pass=document.getElementById("loginPass").value.trim();
-
-fetch(API,{
-  method:"POST",
-  body:JSON.stringify({action:"getDashboard",password:pass})
-})
+const pass=loginPass.value.trim();
+fetch(API,{method:"POST",body:JSON.stringify({action:"getDashboard",password:pass})})
 .then(r=>r.json())
 .then(d=>{
-if(d.status==="unauthorized"){
-  alert("Wrong Password");
-}else{
-  USER_PASSWORD=pass;
-  document.getElementById("loginScreen").style.display="none";
-  document.getElementById("app").style.display="block";
-  loadDashboard();
-}
+if(d.status==="unauthorized"){alert("Wrong Password");}
+else{USER_PASSWORD=pass;loginScreen.style.display="none";app.style.display="block";loadDashboard();}
 });
 }
 
-/* ================= COMMON API ================= */
-
 function api(data){
 data.password=USER_PASSWORD;
-return fetch(API,{
-  method:"POST",
-  body:JSON.stringify(data)
-}).then(r=>r.json());
+return fetch(API,{method:"POST",body:JSON.stringify(data)}).then(r=>r.json());
 }
-
-/* ================= SUCCESS POPUP ================= */
-
-function successMessage(msg){
-alert(msg);
-}
-
-/* ================= CLEAR FORM ================= */
-
-function clearVendorForm(){
-vdate.value="";
-vvendor.value="";
-vcategory.value="";
-vpaidBy.value="";
-vamount.value="";
-vmode.value="Cash";
-vtransaction.value="";
-vcheque.value="";
-vbank.value="";
-vremarks.value="";
-}
-
-function clearSettlementForm(){
-sdate.value="";
-spaidTo.value="";
-spaidBy.value="";
-samount.value="";
-}
-
-function clearMaterialForm(){
-mdate.value="";
-mvendor.value="";
-mmaterial.value="";
-mqty.value="";
-mrate.value="";
-}
-
-/* ================= DASHBOARD ================= */
 
 function show(id){
 document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
@@ -314,137 +182,34 @@ document.getElementById(id).classList.add('active');
 }
 
 function loadDashboard(){
-
-api({action:"getDashboard"})
-.then(d=>{
-totalExpense.innerText="₹ "+d.totalExpense;
+api({action:"getDashboard"}).then(d=>{totalExpense.innerText="₹ "+d.totalExpense;});
+api({action:"getAdvancedDashboard"}).then(d=>{
+if(window.monthChart) window.monthChart.destroy();
+if(window.vendorChartObj) window.vendorChartObj.destroy();
+window.monthChart=new Chart(monthlyChart,{type:"line",data:{labels:Object.keys(d.monthly),datasets:[{label:"Monthly",data:Object.values(d.monthly)}]}});
+window.vendorChartObj=new Chart(vendorChart,{type:"bar",data:{labels:Object.keys(d.vendorWise),datasets:[{label:"Vendor",data:Object.values(d.vendorWise)}]}});
 });
-
-api({action:"getAdvancedDashboard"})
-.then(d=>{
-
-if(window.monthlyChartInstance){
-  window.monthlyChartInstance.destroy();
-}
-if(window.vendorChartInstance){
-  window.vendorChartInstance.destroy();
-}
-
-window.monthlyChartInstance=new Chart(monthlyChart,{
-type:"line",
-data:{
-labels:Object.keys(d.monthly),
-datasets:[{
-label:"Monthly Expense",
-data:Object.values(d.monthly),
-borderColor:"#0f172a",
-backgroundColor:"rgba(250,204,21,0.3)"
-}]
-}
-});
-
-window.vendorChartInstance=new Chart(vendorChart,{
-type:"bar",
-data:{
-labels:Object.keys(d.vendorWise),
-datasets:[{
-label:"Vendor Expense",
-data:Object.values(d.vendorWise),
-backgroundColor:"#facc15"
-}]
-}
-});
-
-});
-
 renderLedger();
 loadManage();
 }
 
-/* ================= ADD VENDOR ================= */
-
 function addVendor(){
-
-if(!vdate.value || !vvendor.value || !vamount.value){
-alert("Please fill required fields");
-return;
+if(!vdate.value||!vvendor.value||!vamount.value){alert("Fill required fields");return;}
+api({action:"addVendorPayment",date:vdate.value,vendor:vvendor.value,category:vcategory.value,paidBy:vpaidBy.value,amount:vamount.value,mode:vmode.value,transactionId:vtransaction.value,chequeNo:vcheque.value,bankName:vbank.value,remarks:vremarks.value})
+.then(res=>{if(res.status==="success"){alert("Submitted Successfully");vdate.value=vvendor.value=vcategory.value=vpaidBy.value=vamount.value=vtransaction.value=vcheque.value=vbank.value=vremarks.value="";loadDashboard();}});
 }
-
-api({
-action:"addVendorPayment",
-date:vdate.value,
-vendor:vvendor.value,
-category:vcategory.value,
-paidBy:vpaidBy.value,
-amount:vamount.value,
-mode:vmode.value,
-transactionId:vtransaction.value,
-chequeNo:vcheque.value,
-bankName:vbank.value,
-remarks:vremarks.value
-})
-.then(res=>{
-if(res.status==="success"){
-successMessage("Vendor Payment Submitted Successfully");
-clearVendorForm();
-loadDashboard();
-}else{
-alert("Something went wrong");
-}
-});
-}
-
-/* ================= ADD SETTLEMENT ================= */
 
 function addSettlement(){
-
-if(!sdate.value || !spaidTo.value || !samount.value){
-alert("Please fill required fields");
-return;
+if(!sdate.value||!spaidTo.value||!samount.value){alert("Fill required fields");return;}
+api({action:"addSettlement",date:sdate.value,paidTo:spaidTo.value,paidBy:spaidBy.value,amount:samount.value})
+.then(res=>{if(res.status==="success"){alert("Settlement Submitted");sdate.value=spaidTo.value=spaidBy.value=samount.value="";loadDashboard();}});
 }
-
-api({
-action:"addSettlement",
-date:sdate.value,
-paidTo:spaidTo.value,
-paidBy:spaidBy.value,
-amount:samount.value
-})
-.then(res=>{
-if(res.status==="success"){
-successMessage("Settlement Submitted Successfully");
-clearSettlementForm();
-loadDashboard();
-}
-});
-}
-
-/* ================= ADD MATERIAL ================= */
 
 function addMaterial(){
-
-if(!mdate.value || !mmaterial.value || !mqty.value){
-alert("Please fill required fields");
-return;
+if(!mdate.value||!mmaterial.value||!mqty.value){alert("Fill required fields");return;}
+api({action:"addMaterial",date:mdate.value,vendor:mvendor.value,material:mmaterial.value,quantity:mqty.value,rate:mrate.value})
+.then(res=>{if(res.status==="success"){alert("Material Submitted");mdate.value=mvendor.value=mmaterial.value=mqty.value=mrate.value="";}});
 }
-
-api({
-action:"addMaterial",
-date:mdate.value,
-vendor:mvendor.value,
-material:mmaterial.value,
-quantity:mqty.value,
-rate:mrate.value
-})
-.then(res=>{
-if(res.status==="success"){
-successMessage("Material Submitted Successfully");
-clearMaterialForm();
-}
-});
-}
-
-/* ================= LEDGER ================= */
 
 function renderLedger(){
 api({action:"getLedger"}).then(d=>{
@@ -458,58 +223,22 @@ ledgerTable.innerHTML=html;
 });
 }
 
-/* ================= REPORT ================= */
-
 function loadReport(){
-api({
-action:"getReportData",
-startDate:rstart.value,
-endDate:rend.value
-})
+api({action:"getReportData",startDate:rstart.value,endDate:rend.value})
 .then(d=>{
 currentReportData=d;
 let html="<table><tr><th>ID</th><th>Date</th><th>Vendor</th><th>Amount</th></tr>";
-d.forEach(r=>{
-html+=`<tr>
-<td>${r[0]}</td>
-<td>${new Date(r[1]).toLocaleDateString()}</td>
-<td>${r[2]}</td>
-<td>${r[5]}</td>
-</tr>`;
-});
+d.forEach(r=>{html+=`<tr><td>${r[0]}</td><td>${new Date(r[1]).toLocaleDateString()}</td><td>${r[2]}</td><td>${r[5]}</td></tr>`;});
 html+="</table>";
 reportTable.innerHTML=html;
 });
 }
 
-/* ================= EXPORT ================= */
-
-function exportExcel(){
-const ws=XLSX.utils.aoa_to_sheet(currentReportData);
-const wb=XLSX.utils.book_new();
-XLSX.utils.book_append_sheet(wb,ws,"Report");
-XLSX.writeFile(wb,"Report.xlsx");
-}
-
-function exportPDF(){
-const {jsPDF}=window.jspdf;
-const doc=new jsPDF();
-let y=10;
-currentReportData.forEach(r=>{
-doc.text(`${r[0]} | ${r[2]} | ${r[5]}`,10,y);
-y+=8;
-});
-doc.save("Report.pdf");
-}
-
-/* ================= MANAGE ================= */
+function exportExcel(){const ws=XLSX.utils.aoa_to_sheet(currentReportData);const wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,"Report");XLSX.writeFile(wb,"Report.xlsx");}
+function exportPDF(){const {jsPDF}=window.jspdf;const doc=new jsPDF();let y=10;currentReportData.forEach(r=>{doc.text(`${r[0]} | ${r[2]} | ${r[5]}`,10,y);y+=8;});doc.save("Report.pdf");}
 
 function loadManage(){
-api({
-action:"getReportData",
-startDate:"2000-01-01",
-endDate:"2100-01-01"
-})
+api({action:"getReportData",startDate:"2000-01-01",endDate:"2100-01-01"})
 .then(d=>{
 let html="<table><tr><th>ID</th><th>Vendor</th><th>Amount</th><th>Action</th></tr>";
 d.forEach(r=>{
@@ -517,7 +246,10 @@ html+=`<tr>
 <td>${r[0]}</td>
 <td>${r[2]}</td>
 <td>${r[5]}</td>
-<td><button class="primary" onclick="cancelEntry('${r[0]}')">Cancel</button></td>
+<td>
+<button class="primary" onclick='openEdit(${JSON.stringify(r)})'>Edit</button>
+<button class="primary" onclick="cancelEntry('${r[0]}')">Cancel</button>
+</td>
 </tr>`;
 });
 html+="</table>";
@@ -525,13 +257,35 @@ manageTable.innerHTML=html;
 });
 }
 
+function openEdit(row){
+editModal.style.display="flex";
+editId.value=row[0];
+editDate.value=new Date(row[1]).toISOString().split('T')[0];
+editVendor.value=row[2];
+editCategory.value=row[3];
+editPaidBy.value=row[4];
+editAmount.value=row[5];
+editMode.value=row[6];
+editTransaction.value=row[7];
+editCheque.value=row[8];
+editBank.value=row[9];
+editRemarks.value=row[10];
+}
+
+function closeEdit(){editModal.style.display="none";}
+
+function saveEdit(){
+api({action:"editVendorPayment",entryId:editId.value,date:editDate.value,vendor:editVendor.value,category:editCategory.value,paidBy:editPaidBy.value,amount:editAmount.value,mode:editMode.value,transactionId:editTransaction.value,chequeNo:editCheque.value,bankName:editBank.value,remarks:editRemarks.value})
+.then(res=>{if(res.status==="success"){alert("Entry Updated");closeEdit();loadDashboard();}});
+}
+
 function cancelEntry(id){
-if(confirm("Are you sure you want to cancel this entry?")){
-api({action:"cancelVendorPayment",entryId:id})
-.then(()=>loadDashboard());
+if(confirm("Cancel this entry?")){
+api({action:"cancelVendorPayment",entryId:id}).then(()=>loadDashboard());
 }
 }
 
 </script>
+
 </body>
 </html>
