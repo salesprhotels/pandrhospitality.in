@@ -208,13 +208,45 @@ document.getElementById(id).classList.add('active');
 }
 
 function loadDashboard(){
-api({action:"getDashboard"}).then(d=>{totalExpense.innerText="₹ "+d.totalExpense;});
+
+api({action:"getDashboard"}).then(d=>{
+
+totalExpense.innerText = "₹ " + d.totalExpense;
+totalSettled.innerText = "₹ " + d.totalSettled;
+papaExpense.innerText = "₹ " + d.papaExpense;
+othersOutstanding.innerText = "₹ " + d.othersOutstanding;
+
+});
+
 api({action:"getAdvancedDashboard"}).then(d=>{
+
 if(window.monthChart) window.monthChart.destroy();
 if(window.vendorChartObj) window.vendorChartObj.destroy();
-window.monthChart=new Chart(monthlyChart,{type:"line",data:{labels:Object.keys(d.monthly),datasets:[{label:"Monthly",data:Object.values(d.monthly)}]}});
-window.vendorChartObj=new Chart(vendorChart,{type:"bar",data:{labels:Object.keys(d.vendorWise),datasets:[{label:"Vendor",data:Object.values(d.vendorWise)}]}});
+
+window.monthChart = new Chart(monthlyChart,{
+type:"line",
+data:{
+labels:Object.keys(d.monthly),
+datasets:[{
+label:"Monthly Expense",
+data:Object.values(d.monthly)
+}]
+}
 });
+
+window.vendorChartObj = new Chart(vendorChart,{
+type:"bar",
+data:{
+labels:Object.keys(d.vendorWise),
+datasets:[{
+label:"Vendor Expense",
+data:Object.values(d.vendorWise)
+}]
+}
+});
+
+});
+
 renderLedger();
 loadManage();
 }
