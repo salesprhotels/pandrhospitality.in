@@ -1,4 +1,4 @@
-/* ================= ROOT COLORS ================= */
+/* ================= ROOT VARIABLES ================= */
 
 :root {
   --navy: #0f172a;
@@ -8,9 +8,14 @@
   --red: #dc2626;
   --bg: #f4f6fb;
   --white: #ffffff;
+  --gray: #9ca3af;
 }
 
 /* ================= GLOBAL ================= */
+
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
@@ -19,11 +24,12 @@ body {
 }
 
 h2, h3 {
-  margin: 0 0 10px 0;
+  margin: 0 0 12px 0;
 }
 
 button {
   cursor: pointer;
+  transition: 0.2s ease;
 }
 
 /* ================= LOGIN ================= */
@@ -42,6 +48,7 @@ button {
   width: 320px;
   border-radius: 12px;
   text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
 .login-box input {
@@ -61,6 +68,11 @@ button {
   border-radius: 8px;
 }
 
+.login-box button:hover {
+  background: var(--yellow);
+  color: var(--navy);
+}
+
 /* ================= SIDEBAR ================= */
 
 .sidebar {
@@ -71,6 +83,7 @@ button {
   color: var(--white);
   padding: 20px;
   display: none;
+  overflow-y: auto;
 }
 
 .sidebar h2 {
@@ -121,16 +134,24 @@ button {
 
 /* ================= FORM ================= */
 
-input, select {
-  padding: 8px;
-  margin: 5px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-}
-
 .form-row {
   display: flex;
   flex-wrap: wrap;
+  gap: 8px;
+}
+
+input, select {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  min-width: 150px;
+  transition: 0.2s;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--yellow);
+  box-shadow: 0 0 0 2px rgba(250,204,21,0.3);
 }
 
 /* ================= TABLE ================= */
@@ -146,6 +167,7 @@ th {
   background: var(--navy);
   color: var(--white);
   padding: 8px;
+  text-align: left;
 }
 
 td {
@@ -153,9 +175,14 @@ td {
   border-bottom: 1px solid #eee;
 }
 
+tr:hover {
+  background: #f9fafb;
+}
+
 tr.cancelled {
   background: #f3f4f6;
-  color: #9ca3af;
+  color: var(--gray);
+  text-decoration: line-through;
 }
 
 /* ================= BUTTONS ================= */
@@ -168,11 +195,20 @@ tr.cancelled {
   border-radius: 6px;
 }
 
+.btn-primary:hover {
+  background: var(--yellow);
+  color: var(--navy);
+}
+
 .btn-edit {
   background: var(--yellow);
   border: none;
   padding: 4px 8px;
   border-radius: 4px;
+}
+
+.btn-edit:hover {
+  opacity: 0.8;
 }
 
 .btn-cancel {
@@ -183,7 +219,11 @@ tr.cancelled {
   border-radius: 4px;
 }
 
-/* ================= COLORS ================= */
+.btn-cancel:hover {
+  opacity: 0.8;
+}
+
+/* ================= FINANCIAL COLORS ================= */
 
 .green {
   color: var(--green);
@@ -193,4 +233,52 @@ tr.cancelled {
 .red {
   color: var(--red);
   font-weight: 600;
+}
+
+/* ================= MODAL ================= */
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: var(--white);
+  padding: 20px;
+  border-radius: 12px;
+  width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:900px){
+  .sidebar{
+    width: 200px;
+  }
+  .main{
+    margin-left: 220px;
+  }
+}
+
+@media(max-width:700px){
+  .sidebar{
+    display: none;
+  }
+  .main{
+    margin-left: 0;
+  }
+  .form-row{
+    flex-direction: column;
+  }
 }
