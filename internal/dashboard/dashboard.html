@@ -2,11 +2,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>PandR Internal ERP</title>
-
+<title>PandR ERP</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <style>
 body{margin:0;font-family:'Segoe UI',sans-serif;background:#f4f6fb;}
@@ -14,19 +11,19 @@ body{margin:0;font-family:'Segoe UI',sans-serif;background:#f4f6fb;}
 #loginScreen div{background:white;padding:35px;border-radius:12px;width:320px;}
 #app{display:none;}
 .sidebar{width:260px;background:#0f172a;color:white;height:100vh;padding:25px;float:left;}
-.sidebar h3{color:#facc15;margin-bottom:25px;}
-.sidebar button{width:100%;padding:12px;margin:8px 0;border:none;border-radius:8px;background:#1e293b;color:white;cursor:pointer;}
+.sidebar h3{color:#facc15;}
+.sidebar button{width:100%;padding:10px;margin:8px 0;border:none;border-radius:6px;background:#1e293b;color:white;cursor:pointer;}
 .sidebar button:hover{background:#facc15;color:#0f172a;}
-.main{margin-left:280px;padding:35px;}
+.main{margin-left:280px;padding:30px;}
 .section{display:none;}
 .section.active{display:block;}
-.card{background:white;padding:25px;border-radius:14px;margin-bottom:25px;box-shadow:0 8px 25px rgba(0,0,0,0.05);}
-input,select{padding:8px;margin:6px;border-radius:8px;border:1px solid #ccc;}
-button.primary{background:#0f172a;color:white;padding:10px 16px;border:none;border-radius:8px;cursor:pointer;}
+.card{background:white;padding:20px;border-radius:10px;margin-bottom:20px;}
+input,select{padding:6px;margin:5px;border-radius:6px;border:1px solid #ccc;}
+button.primary{background:#0f172a;color:white;padding:8px 14px;border:none;border-radius:6px;cursor:pointer;}
 button.primary:hover{background:#facc15;color:#0f172a;}
-table{border-collapse:collapse;width:100%;margin-top:15px;}
-table th{background:#0f172a;color:white;padding:10px;}
-table td{padding:8px;border-bottom:1px solid #eee;}
+table{border-collapse:collapse;width:100%;margin-top:10px;}
+table th{background:#0f172a;color:white;padding:8px;}
+table td{padding:6px;border-bottom:1px solid #eee;}
 .balance-positive{color:#16a34a;font-weight:600;}
 .balance-negative{color:#dc2626;font-weight:600;}
 </style>
@@ -37,7 +34,7 @@ table td{padding:8px;border-bottom:1px solid #eee;}
 <div id="loginScreen">
 <div>
 <h3>Login</h3>
-<input type="password" id="loginPass" placeholder="Enter Password" style="width:100%;padding:8px;">
+<input type="password" id="loginPass" placeholder="Password" style="width:100%;">
 <br><br>
 <button class="primary" style="width:100%;" onclick="login()">Login</button>
 </div>
@@ -49,45 +46,20 @@ table td{padding:8px;border-bottom:1px solid #eee;}
 <h3>PandR ERP</h3>
 <button onclick="show('overview')">Overview</button>
 <button onclick="show('vendor')">Vendor Payment</button>
+<button onclick="show('material')">Material</button>
 <button onclick="show('settlement')">Settlement</button>
 <button onclick="show('ledger')">Ledger</button>
 <button onclick="show('reports')">Reports</button>
-<button onclick="show('manage')">Manage</button>
 </div>
 
 <div class="main">
 
 <!-- OVERVIEW -->
 <div id="overview" class="section active">
-
-<div class="card">
-<h3>Total Project Cost</h3>
-<div id="totalExpense"></div>
-</div>
-
-<div class="card">
-<h3>Total Settled</h3>
-<div id="totalSettled"></div>
-</div>
-
-<div class="card">
-<h3>Papa Final Ownership</h3>
-<div id="papaExpense"></div>
-</div>
-
-<div class="card">
-<h3>Others Outstanding</h3>
-<div id="othersOutstanding"></div>
-</div>
-
-<div class="card">
-<canvas id="monthlyChart"></canvas>
-</div>
-
-<div class="card">
-<canvas id="vendorChart"></canvas>
-</div>
-
+<div class="card"><h3>Total Project Cost</h3><div id="totalExpense"></div></div>
+<div class="card"><h3>Total Settled</h3><div id="totalSettled"></div></div>
+<div class="card"><h3>Papa Final Ownership</h3><div id="papaExpense"></div></div>
+<div class="card"><h3>Others Outstanding</h3><div id="othersOutstanding"></div></div>
 </div>
 
 <!-- VENDOR -->
@@ -113,6 +85,19 @@ table td{padding:8px;border-bottom:1px solid #eee;}
 </div>
 </div>
 
+<!-- MATERIAL -->
+<div id="material" class="section">
+<div class="card">
+<h3>Add Material</h3>
+<input type="date" id="mdate">
+<input placeholder="Vendor" id="mvendor">
+<input placeholder="Material" id="mmaterial">
+<input type="number" placeholder="Quantity" id="mqty">
+<input type="number" placeholder="Rate" id="mrate">
+<button class="primary" onclick="addMaterial()">Submit</button>
+</div>
+</div>
+
 <!-- SETTLEMENT -->
 <div id="settlement" class="section">
 <div class="card">
@@ -132,6 +117,10 @@ table td{padding:8px;border-bottom:1px solid #eee;}
 <input placeholder="Bank Name" id="sbank">
 <input placeholder="Remarks" id="sremarks">
 <button class="primary" onclick="addSettlement()">Submit</button>
+
+<h4>Settlement Records</h4>
+<div id="settlementTable"></div>
+
 </div>
 </div>
 
@@ -146,21 +135,9 @@ table td{padding:8px;border-bottom:1px solid #eee;}
 <!-- REPORT -->
 <div id="reports" class="section">
 <div class="card">
-<h3>Reports</h3>
-<input type="date" id="rstart">
-<input type="date" id="rend">
-<button class="primary" onclick="loadReport()">Generate</button>
-<button class="primary" onclick="exportExcel()">Excel</button>
-<button class="primary" onclick="exportPDF()">PDF</button>
+<h3>Full Report</h3>
+<button class="primary" onclick="loadFullReport()">Refresh</button>
 <div id="reportTable"></div>
-</div>
-</div>
-
-<!-- MANAGE -->
-<div id="manage" class="section">
-<div class="card">
-<h3>Manage Vendor Payments</h3>
-<div id="manageTable"></div>
 </div>
 </div>
 
@@ -171,7 +148,6 @@ table td{padding:8px;border-bottom:1px solid #eee;}
 
 const API="https://script.google.com/macros/s/AKfycbwo78mV92MKxcGMSB52NziL7bmn0AsEplVo2rhj92O3UGk7EKl9B8OlJt9ZqbmXEE7JiQ/exec";
 let USER_PASSWORD="";
-let currentReportData=[];
 
 function login(){
 const pass=loginPass.value.trim();
@@ -179,7 +155,7 @@ fetch(API,{method:"POST",body:JSON.stringify({action:"getDashboard",password:pas
 .then(r=>r.json())
 .then(d=>{
 if(d.status==="unauthorized"){alert("Wrong Password");}
-else{USER_PASSWORD=pass;loginScreen.style.display="none";app.style.display="block";loadDashboard();}
+else{USER_PASSWORD=pass;loginScreen.style.display="none";app.style.display="block";loadDashboard();loadSettlementTable();loadFullReport();}
 });
 }
 
@@ -203,10 +179,19 @@ othersOutstanding.innerText="₹ "+d.othersOutstanding;
 renderLedger();
 }
 
-/* ===== ADD SETTLEMENT FULL STRUCTURE ===== */
-function addSettlement(){
-if(!sdate.value||!spaidTo.value||!samount.value){alert("Fill required fields");return;}
+function renderLedger(){
+api({action:"getLedger"}).then(d=>{
+let html="<table><tr><th>Person</th><th>Balance</th></tr>";
+for(let p in d){
+let cls=d[p]>=0?"balance-positive":"balance-negative";
+html+=`<tr><td>${p}</td><td class="${cls}">₹ ${d[p]}</td></tr>`;
+}
+html+="</table>";
+ledgerTable.innerHTML=html;
+});
+}
 
+function addSettlement(){
 api({
 action:"addSettlement",
 date:sdate.value,
@@ -218,25 +203,40 @@ transactionId:stransaction.value,
 chequeNo:scheque.value,
 bankName:sbank.value,
 remarks:sremarks.value
-})
-.then(res=>{
+}).then(res=>{
 if(res.status==="success"){
-alert("Settlement Submitted Successfully");
+alert("Settlement Added Successfully");
 sdate.value=spaidTo.value=spaidBy.value=samount.value=stransaction.value=scheque.value=sbank.value=sremarks.value="";
 loadDashboard();
+loadSettlementTable();
+loadFullReport();
 }
 });
 }
 
-function renderLedger(){
-api({action:"getLedger"}).then(d=>{
-let html="<table><tr><th>Person</th><th>Balance</th></tr>";
-for(let p in d){
-let cls=d[p]>=0?"balance-positive":"balance-negative";
-html+=`<tr><td>${p}</td><td class="${cls}">₹ ${d[p]}</td></tr>`;
-}
+function loadSettlementTable(){
+api({action:"getReportData",startDate:"2000-01-01",endDate:"2100-01-01"})
+.then(data=>{
+let html="<table><tr><th>ID</th><th>Date</th><th>Paid To</th><th>Paid By</th><th>Amount</th></tr>";
+data.forEach(r=>{
+html+=`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td>${r[4]}</td></tr>`;
+});
 html+="</table>";
-ledgerTable.innerHTML=html;
+settlementTable.innerHTML=html;
+});
+}
+
+function loadFullReport(){
+api({action:"getReportData",startDate:"2000-01-01",endDate:"2100-01-01"})
+.then(data=>{
+let html="<table>";
+data.forEach(row=>{
+html+="<tr>";
+row.forEach(col=>{html+="<td>"+col+"</td>";});
+html+="</tr>";
+});
+html+="</table>";
+reportTable.innerHTML=html;
 });
 }
 
