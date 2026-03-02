@@ -171,38 +171,82 @@ document.getElementById("travelForm").addEventListener("submit",function(e){
  grecaptcha.ready(function(){
   grecaptcha.execute('6LfZ5HUsAAAAAEJ7DJKe4QTqAomuEUJzs4fc53lU',{action:'submit'})
   .then(function(token){
+document.getElementById("travelForm").addEventListener("submit", function(e) {
+  e.preventDefault();
 
-   const formData=new FormData(document.getElementById("travelForm"));
-   formData.append("recaptchaToken",token);
+  const form = document.getElementById("travelForm");
+  const btn = document.getElementById("submitBtn");
+  const msg = document.getElementById("formMessage");
 
-   fetch("https://script.google.com/macros/s/AKfycbyhR3yVhsrMQWldIg3Qvz0dt8Boawv6bjWFqaitAfyXmHAyXxQ7EdgJ6e1ODys2KmVaWA/exec",{
-    method:"POST",
-    body:formData
-   })
-   .then(res=>res.json())
-   .then(data=>{
-    if(data.status==="success"){
-     msg.style.color="green";
-     msg.innerText="Enquiry submitted successfully!";
-     setTimeout(()=>{window.location.href="/thank-you-travel.html"},1500);
-    }
-    else if(data.status==="duplicate"){
-     msg.style.color="red";
-     msg.innerText="You already submitted recently. Please wait 2 minutes.";
-    }
-    else if(data.status==="spam"){
-     msg.style.color="red";
-     msg.innerText="Spam detected.";
-    }
-    else{
-     msg.style.color="red";
-     msg.innerText="Submission failed.";
-    }
-    btn.disabled=false;
-    btn.innerText="Submit Travel Enquiry";
-   });
+  btn.disabled = true;
+  btn.innerText = "Submitting...";
+  msg.style.color = "#4b3fd6";
+  msg.innerText = "Verifying... Please wait.";
+
+  const formData = new FormData(form);
+
+  // ✅ MESSAGE VALIDATION
+  const messageField = formData.get("message");
+
+  if (!messageField || messageField.trim().length < 15) {
+    msg.style.color = "red";
+    msg.innerText = "Please enter proper travel details (minimum 15 characters).";
+    btn.disabled = false;
+    btn.innerText = "Submit Travel Enquiry";
+    return;
+  }
+
+  // ✅ RECAPTCHA
+  grecaptcha.ready(function() {
+    grecaptcha.execute('6LfZ5HUsAAAAAEJ7DJKe4QTqAomuEUJzs4fc53lU', { action: 'submit' })
+    .then(function(token) {
+
+      formData.append("recaptchaToken", token);
+
+      fetch("https://script.google.com/macros/s/AKfycbyhR3yVhsrMQWldIg3Qvz0dt8Boawv6bjWFqaitAfyXmHAyXxQ7EdgJ6e1ODys2KmVaWA/exec", {
+        method: "POST",
+        body: formData
+      })
+      .then(res => res.json())
+      .then(data => {
+
+        if (data.status === "success") {
+          msg.style.color = "green";
+          msg.innerText = "Enquiry submitted successfully! Redirecting...";
+          setTimeout(() => {
+            window.location.href = "/thank-you-travel.html";
+          }, 1500);
+        } 
+        else if (data.status === "duplicate") {
+          msg.style.color = "red";
+          msg.innerText = "You already submitted recently. Please wait 2 minutes.";
+          btn.disabled = false;
+          btn.innerText = "Submit Travel Enquiry";
+        } 
+        else if (data.status === "spam") {
+          msg.style.color = "red";
+          msg.innerText = "Spam detected. Please try again.";
+          btn.disabled = false;
+          btn.innerText = "Submit Travel Enquiry";
+        }
+        else {
+          msg.style.color = "red";
+          msg.innerText = "Submission failed. Please try again.";
+          btn.disabled = false;
+          btn.innerText = "Submit Travel Enquiry";
+        }
+
+      })
+      .catch(() => {
+        msg.style.color = "red";
+        msg.innerText = "Connection error. Please try again.";
+        btn.disabled = false;
+        btn.innerText = "Submit Travel Enquiry";
+      });
+
+    });
   });
- });
+
 });
 </script>
 
