@@ -5,43 +5,71 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Travel Enquiry | Yes We Care Travels</title>
 
+<!-- RECAPTCHA -->
 <script src="https://www.google.com/recaptcha/api.js?render=6LfZ5HUsAAAAAEJ7DJKe4QTqAomuEUJzs4fc53lU"></script>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
+
 body{
-  font-family:Arial;
+  font-family:Arial, Helvetica, sans-serif;
   background:linear-gradient(135deg,#4b3fd6,#6c63ff);
   min-height:100vh;
   display:flex;
   flex-direction:column;
 }
+
 .header{
-  background:#fff;
-  padding:12px 0;
+  background:#ffffff;
+  padding:15px 0;
   text-align:center;
+  box-shadow:0 2px 8px rgba(0,0,0,0.08);
 }
-.header img{max-height:55px}
+
+.header img{
+  max-height:60px;
+  cursor:pointer;
+}
+
 .container{
-  max-width:720px;
+  max-width:750px;
   width:95%;
   margin:40px auto;
-  background:#fff;
+  background:#ffffff;
   padding:35px;
   border-radius:12px;
   box-shadow:0 15px 40px rgba(0,0,0,0.2);
 }
-h1{text-align:center;margin-bottom:25px;color:#4b3fd6}
-label{font-weight:600;display:block;margin-top:15px}
+
+h1{
+  text-align:center;
+  margin-bottom:25px;
+  color:#4b3fd6;
+}
+
+label{
+  font-weight:600;
+  display:block;
+  margin-top:15px;
+}
+
 input,select,textarea{
   width:100%;
   padding:12px;
   margin-top:6px;
   border:1px solid #ddd;
   border-radius:6px;
+  font-size:15px;
 }
+
 textarea{min-height:100px}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+
+.row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+
 button{
   width:100%;
   margin-top:25px;
@@ -49,13 +77,39 @@ button{
   background:#f5b400;
   border:none;
   border-radius:8px;
+  font-size:16px;
   font-weight:bold;
   cursor:pointer;
+  transition:0.3s;
 }
-button:disabled{opacity:.6}
-#formMessage{text-align:center;margin-top:15px;font-size:14px;color:#666}
-footer{margin-top:auto;text-align:center;color:#fff;padding:25px 10px;font-size:14px}
-@media(max-width:600px){.row{grid-template-columns:1fr}}
+
+button:hover{
+  background:#e0a800;
+}
+
+button:disabled{
+  opacity:0.6;
+  cursor:not-allowed;
+}
+
+#formMessage{
+  text-align:center;
+  margin-top:15px;
+  font-size:14px;
+  color:#666;
+}
+
+footer{
+  margin-top:auto;
+  text-align:center;
+  color:#ffffff;
+  padding:25px 10px;
+  font-size:14px;
+}
+
+@media(max-width:600px){
+  .row{grid-template-columns:1fr}
+}
 </style>
 </head>
 
@@ -63,7 +117,7 @@ footer{margin-top:auto;text-align:center;color:#fff;padding:25px 10px;font-size:
 
 <div class="header">
   <a href="/travel.html">
-    <img src="/images/logo-yes-we-care-travels-1.png">
+    <img src="/images/logo-yes-we-care-travels-1.png" alt="Yes We Care Travels">
   </a>
 </div>
 
@@ -143,105 +197,87 @@ Operated & Managed by PMS Hospitality Management Services
 
 <script>
 
-// Date blocking
+// DATE CONTROL
 const fromDate=document.getElementById("fromDate");
 const toDate=document.getElementById("toDate");
 const today=new Date().toISOString().split("T")[0];
+
 fromDate.min=today;
 toDate.min=today;
 
 fromDate.addEventListener("change",function(){
- let d=new Date(this.value);
- d.setDate(d.getDate()+1);
- let next=d.toISOString().split("T")[0];
- toDate.value=next;
- toDate.min=next;
+  let d=new Date(this.value);
+  d.setDate(d.getDate()+1);
+  let next=d.toISOString().split("T")[0];
+  toDate.value=next;
+  toDate.min=next;
 });
 
-// Submit
+// FORM SUBMIT
 document.getElementById("travelForm").addEventListener("submit",function(e){
- e.preventDefault();
- const btn=document.getElementById("submitBtn");
- const msg=document.getElementById("formMessage");
 
- btn.disabled=true;
- btn.innerText="Submitting...";
- msg.innerText="Verifying... Please wait.";
-
- grecaptcha.ready(function(){
-  grecaptcha.execute('6LfZ5HUsAAAAAEJ7DJKe4QTqAomuEUJzs4fc53lU',{action:'submit'})
-  .then(function(token){
-document.getElementById("travelForm").addEventListener("submit", function(e) {
   e.preventDefault();
 
-  const form = document.getElementById("travelForm");
-  const btn = document.getElementById("submitBtn");
-  const msg = document.getElementById("formMessage");
+  const btn=document.getElementById("submitBtn");
+  const msg=document.getElementById("formMessage");
+  const form=this;
 
-  btn.disabled = true;
-  btn.innerText = "Submitting...";
-  msg.style.color = "#4b3fd6";
-  msg.innerText = "Verifying... Please wait.";
+  btn.disabled=true;
+  btn.innerText="Submitting...";
+  msg.style.color="#4b3fd6";
+  msg.innerText="Verifying... Please wait.";
 
-  const formData = new FormData(form);
+  const formData=new FormData(form);
 
-  // ✅ MESSAGE VALIDATION
-  const messageField = formData.get("message");
+  const messageField=formData.get("message");
 
-  if (!messageField || messageField.trim().length < 15) {
-    msg.style.color = "red";
-    msg.innerText = "Please enter proper travel details (minimum 15 characters).";
-    btn.disabled = false;
-    btn.innerText = "Submit Travel Enquiry";
+  if(!messageField || messageField.trim().length<15){
+    msg.style.color="red";
+    msg.innerText="Please enter proper travel details (minimum 15 characters).";
+    btn.disabled=false;
+    btn.innerText="Submit Travel Enquiry";
     return;
   }
 
-  // ✅ RECAPTCHA
-  grecaptcha.ready(function() {
-    grecaptcha.execute('6LfZ5HUsAAAAAEJ7DJKe4QTqAomuEUJzs4fc53lU', { action: 'submit' })
-    .then(function(token) {
+  grecaptcha.ready(function(){
+    grecaptcha.execute('6LfZ5HUsAAAAAEJ7DJKe4QTqAomuEUJzs4fc53lU',{action:'submit'})
+    .then(function(token){
 
-      formData.append("recaptchaToken", token);
+      formData.append("recaptchaToken",token);
 
-      fetch("https://script.google.com/macros/s/AKfycbyhR3yVhsrMQWldIg3Qvz0dt8Boawv6bjWFqaitAfyXmHAyXxQ7EdgJ6e1ODys2KmVaWA/exec", {
-        method: "POST",
-        body: formData
+      fetch("https://script.google.com/macros/s/AKfycbyhR3yVhsrMQWldIg3Qvz0dt8Boawv6bjWFqaitAfyXmHAyXxQ7EdgJ6e1ODys2KmVaWA/exec",{
+        method:"POST",
+        body:formData
       })
-      .then(res => res.json())
-      .then(data => {
+      .then(res=>res.json())
+      .then(data=>{
 
-        if (data.status === "success") {
-          msg.style.color = "green";
-          msg.innerText = "Enquiry submitted successfully! Redirecting...";
-          setTimeout(() => {
-            window.location.href = "/thank-you-travel.html";
-          }, 1500);
-        } 
-        else if (data.status === "duplicate") {
-          msg.style.color = "red";
-          msg.innerText = "You already submitted recently. Please wait 2 minutes.";
-          btn.disabled = false;
-          btn.innerText = "Submit Travel Enquiry";
-        } 
-        else if (data.status === "spam") {
-          msg.style.color = "red";
-          msg.innerText = "Spam detected. Please try again.";
-          btn.disabled = false;
-          btn.innerText = "Submit Travel Enquiry";
+        if(data.status==="success"){
+          msg.style.color="green";
+          msg.innerText="Enquiry submitted successfully! Redirecting...";
+          setTimeout(()=>{
+            window.location.href="/thank-you-travel.html";
+          },1500);
         }
-        else {
-          msg.style.color = "red";
-          msg.innerText = "Submission failed. Please try again.";
-          btn.disabled = false;
-          btn.innerText = "Submit Travel Enquiry";
+        else if(data.status==="duplicate"){
+          msg.style.color="red";
+          msg.innerText="You already submitted recently. Please wait 2 minutes.";
+          btn.disabled=false;
+          btn.innerText="Submit Travel Enquiry";
+        }
+        else{
+          msg.style.color="red";
+          msg.innerText="Submission failed. Please try again.";
+          btn.disabled=false;
+          btn.innerText="Submit Travel Enquiry";
         }
 
       })
-      .catch(() => {
-        msg.style.color = "red";
-        msg.innerText = "Connection error. Please try again.";
-        btn.disabled = false;
-        btn.innerText = "Submit Travel Enquiry";
+      .catch(()=>{
+        msg.style.color="red";
+        msg.innerText="Connection error. Please try again.";
+        btn.disabled=false;
+        btn.innerText="Submit Travel Enquiry";
       });
 
     });
