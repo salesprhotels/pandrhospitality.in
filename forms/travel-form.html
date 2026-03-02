@@ -5,9 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Travel Enquiry | Yes We Care Travels</title>
 
-<!-- RECAPTCHA -->
-<script src="https://www.google.com/recaptcha/api.js?render=6LfZ5HUsAAAAAEJ7DJKe4QTqAomuEUJzs4fc53lU"></script>
-
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 
@@ -19,20 +16,22 @@ body{
   flex-direction:column;
 }
 
+/* HEADER */
 .header{
   background:#ffffff;
-  padding:15px 0;
+  padding:12px 0;
   text-align:center;
   box-shadow:0 2px 8px rgba(0,0,0,0.08);
 }
 
 .header img{
-  max-height:60px;
-  cursor:pointer;
+  max-height:55px;
+  width:auto;
 }
 
+/* FORM */
 .container{
-  max-width:750px;
+  max-width:720px;
   width:95%;
   margin:40px auto;
   background:#ffffff;
@@ -77,10 +76,8 @@ button{
   background:#f5b400;
   border:none;
   border-radius:8px;
-  font-size:16px;
   font-weight:bold;
   cursor:pointer;
-  transition:0.3s;
 }
 
 button:hover{
@@ -88,7 +85,7 @@ button:hover{
 }
 
 button:disabled{
-  opacity:0.6;
+  opacity:.6;
   cursor:not-allowed;
 }
 
@@ -99,6 +96,7 @@ button:disabled{
   color:#666;
 }
 
+/* FOOTER */
 footer{
   margin-top:auto;
   text-align:center;
@@ -197,7 +195,7 @@ Operated & Managed by PMS Hospitality Management Services
 
 <script>
 
-// DATE CONTROL
+/* DATE LOCKING */
 const fromDate=document.getElementById("fromDate");
 const toDate=document.getElementById("toDate");
 const today=new Date().toISOString().split("T")[0];
@@ -206,14 +204,16 @@ fromDate.min=today;
 toDate.min=today;
 
 fromDate.addEventListener("change",function(){
-  let d=new Date(this.value);
-  d.setDate(d.getDate()+1);
-  let next=d.toISOString().split("T")[0];
-  toDate.value=next;
-  toDate.min=next;
+  if(this.value){
+    let selected=new Date(this.value);
+    selected.setDate(selected.getDate()+1);
+    let nextDay=selected.toISOString().split("T")[0];
+    toDate.min=nextDay;
+    toDate.value=nextDay;
+  }
 });
 
-// FORM SUBMIT
+/* FORM SUBMIT */
 document.getElementById("travelForm").addEventListener("submit",function(e){
 
   e.preventDefault();
@@ -225,62 +225,41 @@ document.getElementById("travelForm").addEventListener("submit",function(e){
   btn.disabled=true;
   btn.innerText="Submitting...";
   msg.style.color="#4b3fd6";
-  msg.innerText="Verifying... Please wait.";
+  msg.innerText="Submitting your enquiry. Please wait...";
 
   const formData=new FormData(form);
 
-  const messageField=formData.get("message");
-
-  if(!messageField || messageField.trim().length<15){
-    msg.style.color="red";
-    msg.innerText="Please enter proper travel details (minimum 15 characters).";
-    btn.disabled=false;
-    btn.innerText="Submit Travel Enquiry";
-    return;
-  }
-
-  grecaptcha.ready(function(){
-    grecaptcha.execute('6LfZ5HUsAAAAAEJ7DJKe4QTqAomuEUJzs4fc53lU',{action:'submit'})
-    .then(function(token){
-
-      formData.append("recaptchaToken",token);
-
-      fetch("https://script.google.com/macros/s/AKfycbyhR3yVhsrMQWldIg3Qvz0dt8Boawv6bjWFqaitAfyXmHAyXxQ7EdgJ6e1ODys2KmVaWA/exec",{
-        method:"POST",
-        body:formData
-      })
-      .then(res=>res.json())
-      .then(data=>{
-
-        if(data.status==="success"){
+  fetch("https://script.google.com/macros/s/AKfycbyhR3yVhsrMQWldIg3Qvz0dt8Boawv6bjWFqaitAfyXmHAyXxQ7EdgJ6e1ODys2KmVaWA/exec",{
+    method:"POST",
+    body:formData
+  })
+  .then(res=>res.json())
+  .then(data=>{
+      if(data.status==="success"){
           msg.style.color="green";
           msg.innerText="Enquiry submitted successfully! Redirecting...";
           setTimeout(()=>{
-            window.location.href="/thank-you-travel.html";
+              window.location.href="/thank-you-travel.html";
           },1500);
-        }
-        else if(data.status==="duplicate"){
+      }
+      else if(data.status==="duplicate"){
           msg.style.color="red";
           msg.innerText="You already submitted recently. Please wait 2 minutes.";
           btn.disabled=false;
           btn.innerText="Submit Travel Enquiry";
-        }
-        else{
+      }
+      else{
           msg.style.color="red";
           msg.innerText="Submission failed. Please try again.";
           btn.disabled=false;
           btn.innerText="Submit Travel Enquiry";
-        }
-
-      })
-      .catch(()=>{
-        msg.style.color="red";
-        msg.innerText="Connection error. Please try again.";
-        btn.disabled=false;
-        btn.innerText="Submit Travel Enquiry";
-      });
-
-    });
+      }
+  })
+  .catch(()=>{
+      msg.style.color="red";
+      msg.innerText="Connection error. Please try again.";
+      btn.disabled=false;
+      btn.innerText="Submit Travel Enquiry";
   });
 
 });
