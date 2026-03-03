@@ -4,51 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- PRIMARY SEO -->
 <title>Holiday Packages in India | Goa, Kerala, Himachal & Honeymoon Tours</title>
 
 <meta name="description" content="Book customised holiday packages across India including Goa, Kerala, Himachal, North East and honeymoon tours with professional travel planning and verified hotel assistance.">
 
 <meta name="keywords" content="holiday packages India, Goa tour package, Kerala holiday, Himachal tour package, North East India tour, honeymoon packages India, customised tours India">
 
-<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Yes We Care Travels - P & R Hospitality">
 
 <link rel="canonical" href="https://pandrhospitality.in/holiday-packages.html">
 
-<meta name="author" content="Yes We Care Travels - P & R Hospitality">
-
-<!-- Favicon -->
-<link rel="icon" href="https://pandrhospitality.in/images/logo-pr-hospitality.png" type="image/png">
-
-<!-- Open Graph -->
-<meta property="og:title" content="Holiday Packages Across India | Yes We Care Travels">
-<meta property="og:description" content="Explore Goa, Kerala, Himachal, North East & Honeymoon tours with professional travel planning.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://pandrhospitality.in/holiday-packages.html">
-<meta property="og:image" content="https://pandrhospitality.in/images/holiday-goa.png">
-
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Holiday Packages | Yes We Care Travels">
-<meta name="twitter:description" content="Domestic & customised holiday tours across India.">
-<meta name="twitter:image" content="https://pandrhospitality.in/images/holiday-goa.png">
-
-<!-- Structured Data -->
-<script type="application/ld+json">
-{
- "@context": "https://schema.org",
- "@type": "TravelAgency",
- "name": "Yes We Care Travels",
- "url": "https://pandrhospitality.in/",
- "logo": "https://pandrhospitality.in/images/logo-yes-we-care-travels-1.png",
- "areaServed": {
-   "@type": "Country",
-   "name": "India"
- }
-}
-</script>
-
-<!-- Google Ads Base Tag (UNCHANGED) -->
+<!-- GOOGLE ADS BASE TAG -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-836426031"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
@@ -57,10 +24,45 @@ gtag('js', new Date());
 gtag('config', 'AW-836426031');
 </script>
 
+<!-- STRUCTURED DATA -->
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "TravelAgency",
+ "name": "Yes We Care Travels",
+ "url": "https://pandrhospitality.in/",
+ "telephone": "+919419287356",
+ "areaServed": "India"
+}
+</script>
+
 <script src="https://cdn.tailwindcss.com"></script>
 
 <style>
-body { font-family: Arial, Helvetica, sans-serif; }
+body{font-family:Arial,Helvetica,sans-serif}
+
+/* Dropdown */
+.menu{position:relative;cursor:pointer}
+.dropdown{
+display:none;
+position:absolute;
+top:100%;
+right:0;
+background:#fff;
+border:1px solid #ccc;
+box-shadow:0 6px 18px rgba(0,0,0,.15);
+min-width:240px;
+z-index:9999;
+}
+.dropdown a{
+display:block;
+padding:10px 14px;
+text-decoration:none;
+color:#222;
+font-size:14px;
+}
+.dropdown a:hover{background:#f4f6fb}
+.dropdown.show{display:block}
 </style>
 
 </head>
@@ -68,91 +70,106 @@ body { font-family: Arial, Helvetica, sans-serif; }
 <body class="bg-slate-50 text-slate-800">
 
 <!-- HEADER -->
-<header class="bg-white border-b shadow-sm">
-  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+<header class="bg-white border-b shadow-sm sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
 
-    <div class="flex items-center gap-4">
-      <a href="index.html">
-        <img src="images/logo-pr-hospitality.png" class="h-10" alt="P & R Hospitality Logo">
-      </a>
-      <a href="travel.html">
-        <img src="images/logo-yes-we-care-travels-1.png" class="h-10" alt="Yes We Care Travels Logo">
-      </a>
-    </div>
+<div class="flex items-center gap-4">
+<a href="index.html">
+<img src="images/logo-pr-hospitality.png" class="h-10" alt="P&R Hospitality">
+</a>
+<a href="travel.html">
+<img src="images/logo-yes-we-care-travels-1.png" class="h-10" alt="Yes We Care Travels">
+</a>
+</div>
 
-    <nav class="hidden md:flex items-center gap-6 text-sm font-semibold">
-      <a href="travel.html">Travel Services</a>
-      <a href="cab-services.html">Cab Services</a>
-      <a href="pilgrimage-services.html">Pilgrimage</a>
-      <a href="contact-travel.html">Contact</a>
-    </nav>
+<div class="flex items-center gap-6 font-semibold text-sm">
 
-  </div>
+<div class="menu" onclick="toggleServices()">
+☰ Services
+<div class="dropdown" id="servicesMenu">
+
+<a href="holiday-packages.html">Holiday Packages</a>
+<a href="pilgrimage-services.html">Pilgrimage Tours</a>
+<a href="cab-services.html">Cab Services</a>
+<a href="hotel-booking.html">Hotel Booking</a>
+<a href="volvo-tour-packages.html">Bus / Volvo Tickets</a>
+<a href="air-tickets.html">Air Tickets</a>
+<a href="group-corporate-travel.html">Group / Corporate Travel</a>
+
+</div>
+</div>
+
+<a href="contact-travel.html">Contact</a>
+
+</div>
+</div>
 </header>
 
 <!-- HERO -->
 <section class="bg-indigo-700 text-white text-center py-16 px-4">
-  <h1 class="text-3xl font-bold mb-3">Holiday Packages Across India</h1>
-  <p class="max-w-2xl mx-auto text-indigo-100">
-    Professionally curated holiday experiences including Goa, Kerala, Himachal, North East and honeymoon travel.
-  </p>
-
-  <a href="forms/travel-form.html"
-     class="inline-block mt-6 bg-yellow-400 text-black font-semibold px-6 py-3 rounded-lg">
-    Holiday Enquiry
-  </a>
+<h1 class="text-3xl font-bold mb-3">Holiday Packages Across India</h1>
+<p class="max-w-2xl mx-auto text-indigo-100">
+Professionally curated holiday experiences including Goa, Kerala, Himachal, North East and honeymoon travel.
+</p>
+<a href="forms/travel-form.html"
+class="inline-block mt-6 bg-yellow-400 text-black font-semibold px-6 py-3 rounded-lg">
+Holiday Enquiry
+</a>
 </section>
 
 <!-- PACKAGES -->
 <section class="max-w-7xl mx-auto px-4 py-14">
-  <h2 class="text-2xl font-bold text-center mb-10">Popular Holiday Destinations</h2>
+<h2 class="text-2xl font-bold text-center mb-10">Popular Holiday Destinations</h2>
 
-  <div class="grid md:grid-cols-3 gap-6">
+<div class="grid md:grid-cols-3 gap-6">
 
-    <div class="bg-white rounded-xl shadow p-4">
-      <h3 class="font-semibold text-lg">Goa Holidays</h3>
-      <p class="text-sm text-slate-600">Beach resorts and coastal relaxation.</p>
-    </div>
-
-    <div class="bg-white rounded-xl shadow p-4">
-      <h3 class="font-semibold text-lg">Kerala Tours</h3>
-      <p class="text-sm text-slate-600">Backwaters, Ayurveda & hill stations.</p>
-    </div>
-
-    <div class="bg-white rounded-xl shadow p-4">
-      <h3 class="font-semibold text-lg">Himachal Tours</h3>
-      <p class="text-sm text-slate-600">Manali, Shimla & scenic mountains.</p>
-    </div>
-
-    <div class="bg-white rounded-xl shadow p-4">
-      <h3 class="font-semibold text-lg">North East India</h3>
-      <p class="text-sm text-slate-600">Sikkim, Meghalaya & Himalayan culture.</p>
-    </div>
-
-    <div class="bg-white rounded-xl shadow p-4">
-      <h3 class="font-semibold text-lg">Honeymoon Packages</h3>
-      <p class="text-sm text-slate-600">Romantic domestic & international escapes.</p>
-    </div>
-
-    <div class="bg-white rounded-xl shadow p-4">
-      <h3 class="font-semibold text-lg">Customised Holidays</h3>
-      <p class="text-sm text-slate-600">Flexible travel planning as per budget.</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- WHATSAPP -->
-<a href="https://wa.me/919419287356"
-   target="_blank"
-   class="fixed bottom-5 right-5 bg-green-600 text-white px-4 py-3 rounded-full shadow-lg">
-  WhatsApp
+<a href="goa-tour-package.html" class="bg-white rounded-xl shadow p-4 hover:shadow-lg transition">
+<h3 class="font-semibold text-lg">Goa Holidays</h3>
+<p class="text-sm text-slate-600">Beach resorts and coastal relaxation.</p>
 </a>
 
-<!-- FOOTER -->
+<a href="kerala-tour-package.html" class="bg-white rounded-xl shadow p-4 hover:shadow-lg transition">
+<h3 class="font-semibold text-lg">Kerala Tours</h3>
+<p class="text-sm text-slate-600">Backwaters, Ayurveda & hill stations.</p>
+</a>
+
+<a href="himachal-tour-package.html" class="bg-white rounded-xl shadow p-4 hover:shadow-lg transition">
+<h3 class="font-semibold text-lg">Himachal Tours</h3>
+<p class="text-sm text-slate-600">Manali, Shimla & scenic mountains.</p>
+</a>
+
+<a href="north-east-tour-package.html" class="bg-white rounded-xl shadow p-4 hover:shadow-lg transition">
+<h3 class="font-semibold text-lg">North East India</h3>
+<p class="text-sm text-slate-600">Sikkim, Meghalaya & Himalayan culture.</p>
+</a>
+
+<a href="honeymoon-packages.html" class="bg-white rounded-xl shadow p-4 hover:shadow-lg transition">
+<h3 class="font-semibold text-lg">Honeymoon Packages</h3>
+<p class="text-sm text-slate-600">Romantic domestic & international escapes.</p>
+</a>
+
+<a href="customised-holidays.html" class="bg-white rounded-xl shadow p-4 hover:shadow-lg transition">
+<h3 class="font-semibold text-lg">Customised Holidays</h3>
+<p class="text-sm text-slate-600">Flexible travel planning as per budget.</p>
+</a>
+
+</div>
+</section>
+
+<a href="https://wa.me/919419287356"
+class="fixed bottom-5 right-5 bg-green-600 text-white px-4 py-3 rounded-full shadow-lg">
+WhatsApp
+</a>
+
 <footer class="text-center text-sm text-slate-500 py-6 bg-white border-t">
-  © 2026 Yes We Care Travels | Operated by P & R Hospitality Management Services
+© 2026 Yes We Care Travels | Operated by P & R Hospitality Management Services
 </footer>
+
+<script>
+function toggleServices(){
+document.getElementById("servicesMenu").classList.toggle("show");
+}
+</script>
 
 </body>
 </html>
