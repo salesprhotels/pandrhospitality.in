@@ -121,12 +121,20 @@ Holiday Enquiry
 </div>
 </div>
 
-<div class="bg-white rounded-xl shadow overflow-hidden hover:shadow-lg transition">
-<img src="images/holiday-himachal.png" alt="Himachal Tour Package" class="w-full h-48 object-cover">
+<div onclick="scrollAndOpen('himachalDetails')" 
+class="bg-white rounded-xl shadow overflow-hidden hover:shadow-lg transition cursor-pointer">
+
+<img src="images/holiday-himachal.png" 
+alt="Himachal Tour Package"
+class="w-full h-48 object-cover">
+
 <div class="p-4">
 <h3 class="font-semibold text-lg">Himachal Tours</h3>
-<p class="text-sm text-slate-600">Manali, Shimla & scenic mountains.</p>
+<p class="text-sm text-slate-600">
+Shimla, Manali & Complete Circuit Options
+</p>
 </div>
+
 </div>
 
 <div class="bg-white rounded-xl shadow overflow-hidden hover:shadow-lg transition">
@@ -155,7 +163,48 @@ Holiday Enquiry
 
 </div>
 </section>
+  
+<section id="himachalDetails" class="hidden max-w-6xl mx-auto px-4 py-16">
 
+<h2 class="text-3xl font-bold text-center mb-12">
+Himachal Tour Itinerary Options
+</h2>
+
+<div class="space-y-6">
+
+<div class="border rounded-xl bg-white shadow p-5">
+<h3 class="font-semibold text-lg mb-2">2N/3D – Shimla Escape</h3>
+<p><strong>Day 1:</strong> Arrival → Hotel → Mall Road</p>
+<p><strong>Day 2:</strong> Kufri → Jakhoo Temple → Local sightseeing</p>
+<p><strong>Day 3:</strong> Departure</p>
+</div>
+
+<div class="border rounded-xl bg-white shadow p-5">
+<h3 class="font-semibold text-lg mb-2">3N/4D – Manali Holiday</h3>
+<p><strong>Day 1:</strong> Arrival → Leisure</p>
+<p><strong>Day 2:</strong> Local sightseeing</p>
+<p><strong>Day 3:</strong> Solang Valley / Rohtang</p>
+<p><strong>Day 4:</strong> Departure</p>
+</div>
+
+<div class="border rounded-xl bg-white shadow p-5">
+<h3 class="font-semibold text-lg mb-2">5N/6D – Shimla + Manali</h3>
+<p><strong>Day 1-2:</strong> Shimla</p>
+<p><strong>Day 3-5:</strong> Manali</p>
+<p><strong>Day 6:</strong> Departure</p>
+</div>
+
+</div>
+
+<div class="text-center mt-10">
+<a href="forms/travel-form.html"
+class="inline-block bg-yellow-400 text-black px-8 py-3 rounded-lg font-semibold">
+Request Detailed Itinerary
+</a>
+</div>
+
+</section>
+  
 <!-- WHATSAPP -->
 <a href="https://wa.me/919419287356"
 class="fixed bottom-5 right-5 bg-green-600 text-white px-4 py-3 rounded-full shadow-lg">
@@ -171,6 +220,12 @@ function toggleServices(){
 document.getElementById("servicesMenu").classList.toggle("show");
 }
 </script>
-
+<script>
+function scrollAndOpen(id){
+const section = document.getElementById(id);
+section.classList.remove("hidden");
+section.scrollIntoView({behavior:"smooth"});
+}
+</script>
 </body>
 </html>
