@@ -130,7 +130,7 @@ footer{text-align:center;padding:20px;font-size:14px;color:#666;background:#fff;
 
 <div class="grid">
 
-<div class="card" onclick="scrollAndOpen('airportCabDetails')" style="cursor:pointer;">
+<div class="card" onclick="scrollAndOpen('airportDetails')" style="cursor:pointer;">
 <img src="images/airport-cab.png" alt="Airport Cab Service">
 <div class="card-content">
 <h3>Airport Pickup & Drop</h3>
@@ -139,14 +139,14 @@ footer{text-align:center;padding:20px;font-size:14px;color:#666;background:#fff;
 </div>
 
 <div class="card" onclick="scrollAndOpen('jammuKatraDetails')" style="cursor:pointer;">
-<img src="images/jammu-katra.png" alt="Jammu to Katra Cab">
+<img src="images/jammu-katra.png" alt="Jammu Katra Cab">
 <div class="card-content">
-<h3>Jammu – Katra Special Cab</h3>
-<p>Dedicated taxi service for Mata Vaishno Devi Yatra.</p>
+<h3>Jammu – Katra Cab</h3>
+<p>Airport / Railway pickup & transfer services.</p>
 </div>
 </div>
 
-<div class="card" onclick="scrollAndOpen('pilgrimageCabDetails')" style="cursor:pointer;">
+<div class="card" onclick="scrollAndOpen('pilgrimageDetails')" style="cursor:pointer;">
 <img src="images/pilgrimage-cab.png" alt="Pilgrimage Taxi">
 <div class="card-content">
 <h3>Pilgrimage Cab Services</h3>
@@ -317,9 +317,17 @@ document.getElementById("servicesMenu").classList.toggle("show");
 
 <script>
 function scrollAndOpen(id){
+
+// पहले सभी detail sections hide करो
+document.querySelectorAll("section[id$='Details']").forEach(section=>{
+section.classList.add("hidden");
+});
+
+// फिर जिस पर click हुआ उसे open करो
 const section = document.getElementById(id);
 section.classList.remove("hidden");
 section.scrollIntoView({behavior:"smooth"});
+
 }
 </script>
 
