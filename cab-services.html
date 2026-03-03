@@ -138,15 +138,15 @@ footer{text-align:center;padding:20px;font-size:14px;color:#666;background:#fff;
 </div>
 </div>
 
-<div class="card">
+<div class="card" onclick="scrollAndOpen('jammuKatraDetails')" style="cursor:pointer;">
 <img src="images/jammu-katra.png" alt="Jammu to Katra Cab">
 <div class="card-content">
 <h3>Jammu – Katra Special Cab</h3>
-<p>Dedicated taxi service for Mata Vaishno Devi Yatra with return option.</p>
+<p>Dedicated taxi service for Mata Vaishno Devi Yatra.</p>
 </div>
 </div>
 
-<div class="card">
+<div class="card" onclick="scrollAndOpen('pilgrimageCabDetails')" style="cursor:pointer;">
 <img src="images/pilgrimage-cab.png" alt="Pilgrimage Taxi">
 <div class="card-content">
 <h3>Pilgrimage Cab Services</h3>
@@ -188,6 +188,70 @@ Need customised travel plan with cab + hotel?
 <a href="forms/travel-form.html">Request Cab & Travel Plan</a>
 </section>
 
+<section id="jammuKatraDetails" class="hidden section">
+
+<h2>Jammu – Katra Cab Service Details</h2>
+
+<div class="card-content" style="background:#fff;padding:25px;border-radius:10px;box-shadow:0 4px 14px rgba(0,0,0,.08)">
+
+<h3>Same Day Return Option</h3>
+<p>
+Pickup from Jammu Airport / Railway Station → Transfer to Katra → 
+Wait & Return to Jammu.
+</p>
+
+<h3 style="margin-top:15px;">One Way Transfer</h3>
+<p>
+Direct drop service from Jammu to Katra hotels.
+</p>
+
+<h3 style="margin-top:15px;">Vehicle Options Available</h3>
+<p>Sedan • SUV • Tempo Traveller (Group)</p>
+
+<h3 style="margin-top:15px;">Ideal For</h3>
+<p>Vaishno Devi Yatra pilgrims and family travel.</p>
+
+<div style="margin-top:20px;">
+<a href="forms/travel-form.html" class="hero a">
+Request Route Details
+</a>
+</div>
+
+</div>
+
+</section> 
+
+ <section id="pilgrimageCabDetails" class="hidden section">
+
+<h2>Pilgrimage Cab Services</h2>
+
+<div class="card-content" style="background:#fff;padding:25px;border-radius:10px;box-shadow:0 4px 14px rgba(0,0,0,.08)">
+
+<h3>Available Routes</h3>
+<p>
+Shiv Khori • Nau Devi Darshan • Baba Jitto • Deva Mai • Patnitop
+</p>
+
+<h3 style="margin-top:15px;">Flexible Duration</h3>
+<p>
+Half day / Full day / Multi-temple pilgrimage routes available.
+</p>
+
+<h3 style="margin-top:15px;">Comfort & Safety</h3>
+<p>
+Clean vehicles with experienced drivers familiar with pilgrimage routes.
+</p>
+
+<div style="margin-top:20px;">
+<a href="forms/travel-form.html">
+Request Pilgrimage Plan
+</a>
+</div>
+
+</div>
+
+</section>
+ 
 <a class="whatsapp" href="https://wa.me/919419287356" target="_blank">
 WhatsApp
 </a>
@@ -201,6 +265,14 @@ function toggleServices(){
 document.getElementById("servicesMenu").classList.toggle("show");
 }
 </script>
+
+<script>
+function scrollAndOpen(id){
+const section = document.getElementById(id);
+section.classList.remove("hidden");
+section.scrollIntoView({behavior:"smooth"});
+}
+</script> 
 
 </body>
 </html>
