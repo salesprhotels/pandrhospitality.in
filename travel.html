@@ -48,6 +48,115 @@ gtag('config', 'AW-836426031');
   "description": "Cab services, pilgrimage tours, holiday packages, hotel bookings, Volvo bus tickets and air ticket booking across India.",
   "areaServed": "India"
 }
+<script>
+
+const chatBtn = document.getElementById("chatbotButton");
+const chatBox = document.getElementById("chatbotBox");
+
+chatBtn.onclick = () =>{
+chatBox.style.display="flex";
+}
+
+function closeChat(){
+chatBox.style.display="none";
+}
+
+function holidayFlow(){
+
+document.getElementById("chatMessages").innerHTML = `
+<div class="botMsg">
+Which destination are you planning?
+</div>
+
+<div class="chatOptions">
+<button onclick="showLink()">Himachal</button>
+<button onclick="showLink()">Goa</button>
+<button onclick="showLink()">Kerala</button>
+<button onclick="showLink()">North East</button>
+</div>
+`;
+
+}
+
+function pilgrimageFlow(){
+
+document.getElementById("chatMessages").innerHTML = `
+<div class="botMsg">
+Pilgrimage tours available:
+<br><br>
+• Vaishno Devi<br>
+• Shiv Khori<br>
+• Nau Devi Darshan
+</div>
+
+<div class="chatOptions">
+<button onclick="showForm()">Request Pilgrimage Plan</button>
+</div>
+`;
+
+}
+
+function cabFlow(){
+
+document.getElementById("chatMessages").innerHTML = `
+<div class="botMsg">
+Cab services available:
+<br><br>
+• Jammu Airport Pickup<br>
+• Jammu to Katra Cab<br>
+• Local Sightseeing<br>
+• Himachal Tours
+</div>
+
+<div class="chatOptions">
+<button onclick="showForm()">Book Cab</button>
+</div>
+`;
+
+}
+
+function contactFlow(){
+
+document.getElementById("chatMessages").innerHTML = `
+<div class="botMsg">
+You can contact our travel team directly.
+</div>
+
+<div class="chatOptions">
+<button onclick="showForm()">Travel Enquiry Form</button>
+<button onclick="whatsapp()">WhatsApp Chat</button>
+</div>
+`;
+
+}
+
+function showForm(){
+
+window.location.href="forms/travel-form.html";
+
+}
+
+function whatsapp(){
+
+window.open("https://wa.me/919419287356","_blank");
+
+}
+
+function showLink(){
+
+document.getElementById("chatMessages").innerHTML = `
+<div class="botMsg">
+Great choice 👍<br><br>
+Our travel team can prepare a customised itinerary.
+</div>
+
+<div class="chatOptions">
+<button onclick="showForm()">Fill Travel Form</button>
+<button onclick="whatsapp()">WhatsApp Chat</button>
+</div>
+`;
+
+}
 </script>
 
 <style>
@@ -91,6 +200,73 @@ header{background:#fff;border-bottom:1px solid #ddd}
 
 /* FOOTER */
 footer{text-align:center;padding:20px;font-size:14px;color:#666;background:#fff}
+  <style>
+
+#chatbotButton{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#4b3fd6;
+color:#fff;
+width:55px;
+height:55px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:24px;
+cursor:pointer;
+box-shadow:0 4px 12px rgba(0,0,0,.3);
+z-index:9999;
+}
+
+#chatbotBox{
+position:fixed;
+bottom:90px;
+right:20px;
+width:300px;
+background:#fff;
+border-radius:10px;
+box-shadow:0 6px 20px rgba(0,0,0,.25);
+display:none;
+flex-direction:column;
+overflow:hidden;
+z-index:9999;
+}
+
+#chatHeader{
+background:#4b3fd6;
+color:#fff;
+padding:12px;
+font-weight:bold;
+display:flex;
+justify-content:space-between;
+}
+
+#chatMessages{
+padding:15px;
+font-size:14px;
+}
+
+.botMsg{
+margin-bottom:12px;
+}
+
+.chatOptions button{
+display:block;
+width:100%;
+margin-top:8px;
+padding:8px;
+border:none;
+background:#eef1ff;
+cursor:pointer;
+border-radius:6px;
+}
+
+.chatOptions button:hover{
+background:#dcdfff;
+}
+  
 </style>
 </head>
 
@@ -200,5 +376,37 @@ footer{text-align:center;padding:20px;font-size:14px;color:#666;background:#fff}
   © 2026 Yes We Care Travels · Operated by P & R Hospitality Management Services
 </footer>
 
+<!-- CHATBOT BUTTON -->
+
+<div id="chatbotButton">
+💬
+</div>
+
+<div id="chatbotBox">
+
+<div id="chatHeader">
+Travel Assistant
+<span onclick="closeChat()">✖</span>
+</div>
+
+<div id="chatMessages">
+<div class="botMsg">
+Hello 👋<br>
+Welcome to Yes We Care Travels.<br><br>
+
+How can we help you today?
+</div>
+
+<div class="chatOptions">
+<button onclick="holidayFlow()">Holiday Packages</button>
+<button onclick="pilgrimageFlow()">Pilgrimage Tours</button>
+<button onclick="cabFlow()">Cab Services</button>
+<button onclick="contactFlow()">Contact Travel Expert</button>
+</div>
+
+</div>
+
+</div>  
+  
 </body>
 </html>
