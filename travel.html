@@ -105,6 +105,67 @@ Cab services available:
 • Jammu Airport Pickup<br>
 • Jammu to Katra Cab<br>
 • Local Sightseeing<br>
+<script>
+
+document.addEventListener("DOMContentLoaded", function(){
+
+const chatBtn = document.getElementById("chatbotButton");
+const chatBox = document.getElementById("chatbotBox");
+
+chatBtn.onclick = () =>{
+chatBox.style.display="flex";
+}
+
+});
+
+function closeChat(){
+document.getElementById("chatbotBox").style.display="none";
+}
+
+function holidayFlow(){
+
+document.getElementById("chatMessages").innerHTML = `
+<div class="botMsg">
+Which destination are you planning?
+</div>
+
+<div class="chatOptions">
+<button onclick="showLink()">Himachal</button>
+<button onclick="showLink()">Goa</button>
+<button onclick="showLink()">Kerala</button>
+<button onclick="showLink()">North East</button>
+</div>
+`;
+
+}
+
+function pilgrimageFlow(){
+
+document.getElementById("chatMessages").innerHTML = `
+<div class="botMsg">
+Pilgrimage tours available:
+<br><br>
+• Vaishno Devi<br>
+• Shiv Khori<br>
+• Nau Devi Darshan
+</div>
+
+<div class="chatOptions">
+<button onclick="showForm()">Request Pilgrimage Plan</button>
+</div>
+`;
+
+}
+
+function cabFlow(){
+
+document.getElementById("chatMessages").innerHTML = `
+<div class="botMsg">
+Cab services available:
+<br><br>
+• Jammu Airport Pickup<br>
+• Jammu to Katra Cab<br>
+• Local Sightseeing<br>
 • Himachal Tours
 </div>
 
@@ -131,15 +192,11 @@ You can contact our travel team directly.
 }
 
 function showForm(){
-
 window.location.href="forms/travel-form.html";
-
 }
 
 function whatsapp(){
-
 window.open("https://wa.me/919419287356","_blank");
-
 }
 
 function showLink(){
@@ -157,6 +214,8 @@ Our travel team can prepare a customised itinerary.
 `;
 
 }
+
+</script>
 </script>
 
 <style>
@@ -266,6 +325,8 @@ border-radius:6px;
 .chatOptions button:hover{
 background:#dcdfff;
 }
+
+</style>
   
 </style>
 </head>
