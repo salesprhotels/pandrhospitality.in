@@ -455,7 +455,12 @@ How can we help you today?
 
 </div>
 
+
 <script>
+
+let destination="";
+let days="";
+let travellers="";
 
 document.getElementById("chatbotButton").onclick=function(){
 document.getElementById("chatbotBox").style.display="flex";
@@ -467,84 +472,167 @@ document.getElementById("chatbotBox").style.display="none";
 
 function holidayFlow(){
 
-document.getElementById("chatMessages").innerHTML=
-`Which destination are you planning?
+document.getElementById("chatMessages").innerHTML=`
+<div class="botMsg">
+Which destination are you planning?
+</div>
 
 <div class="chatOptions">
-<button onclick="showLead()">Himachal</button>
-<button onclick="showLead()">Goa</button>
-<button onclick="showLead()">Kerala</button>
-<button onclick="showLead()">North East</button>
-</div>`;
+<button onclick="chooseDestination('Himachal')">Himachal</button>
+<button onclick="chooseDestination('Goa')">Goa</button>
+<button onclick="chooseDestination('Kerala')">Kerala</button>
+<button onclick="chooseDestination('North East')">North East</button>
+</div>
+`;
+
+}
+
+function chooseDestination(dest){
+
+destination=dest;
+
+document.getElementById("chatMessages").innerHTML=`
+<div class="botMsg">
+Great choice 👍
+
+${dest} tours available.
+
+How many days are you planning?
+</div>
+
+<div class="chatOptions">
+<button onclick="chooseDays('3-4 Days')">3-4 Days</button>
+<button onclick="chooseDays('5-6 Days')">5-6 Days</button>
+<button onclick="chooseDays('7+ Days')">7+ Days</button>
+</div>
+`;
+
+}
+
+function chooseDays(day){
+
+days=day;
+
+document.getElementById("chatMessages").innerHTML=`
+<div class="botMsg">
+How many travellers?
+</div>
+
+<div class="chatOptions">
+<button onclick="chooseTravellers('Couple')">Couple</button>
+<button onclick="chooseTravellers('Family')">Family</button>
+<button onclick="chooseTravellers('Group')">Group</button>
+<button onclick="chooseTravellers('Solo')">Solo</button>
+</div>
+`;
+
+}
+
+function chooseTravellers(t){
+
+travellers=t;
+
+document.getElementById("chatMessages").innerHTML=`
+<div class="botMsg">
+
+Perfect 👍
+
+Trip Details
+
+Destination: ${destination}  
+Days: ${days}  
+Travellers: ${travellers}
+
+Our travel team can prepare a customised itinerary.
+
+</div>
+
+<div class="chatOptions">
+<button onclick="openForm()">Fill Travel Form</button>
+<button onclick="openWhatsApp()">Chat on WhatsApp</button>
+</div>
+`;
+
+}
+
+function openForm(){
+
+window.location.href="forms/travel-form.html";
+
+}
+
+function openWhatsApp(){
+
+let msg="Hello Yes We Care Travels%0A%0A";
+msg+="I am interested in a travel package.%0A";
+msg+="Destination: "+destination+"%0A";
+msg+="Days: "+days+"%0A";
+msg+="Travellers: "+travellers;
+
+window.open("https://wa.me/919419287356?text="+msg,"_blank");
 
 }
 
 function pilgrimageFlow(){
 
-document.getElementById("chatMessages").innerHTML=
-`Pilgrimage tours available:
+document.getElementById("chatMessages").innerHTML=`
+<div class="botMsg">
 
-• Vaishno Devi
-• Shiv Khori
-• Nau Devi Darshan
+Pilgrimage tours available:
+
+• Vaishno Devi  
+• Shiv Khori  
+• Nau Devi Darshan  
+
+</div>
 
 <div class="chatOptions">
-<button onclick="showForm()">Request Pilgrimage Plan</button>
-</div>`;
+<button onclick="openForm()">Request Pilgrimage Plan</button>
+<button onclick="openWhatsApp()">WhatsApp Travel Team</button>
+</div>
+`;
 
 }
 
 function cabFlow(){
 
-document.getElementById("chatMessages").innerHTML=
-`Cab services available:
+document.getElementById("chatMessages").innerHTML=`
+<div class="botMsg">
 
-• Jammu Airport Pickup
-• Jammu to Katra Cab
-• Local Sightseeing
-• Himachal Tours
+Cab services available:
+
+• Jammu Airport Pickup  
+• Jammu to Katra Cab  
+• Local Sightseeing  
+• Himachal Tours  
+
+</div>
 
 <div class="chatOptions">
-<button onclick="showForm()">Book Cab</button>
-</div>`;
+<button onclick="openForm()">Book Cab</button>
+<button onclick="openWhatsApp()">WhatsApp Booking</button>
+</div>
+`;
 
 }
 
 function contactFlow(){
 
-document.getElementById("chatMessages").innerHTML=
-`Contact our travel team.
+document.getElementById("chatMessages").innerHTML=`
+<div class="botMsg">
+
+You can contact our travel team directly.
+
+</div>
 
 <div class="chatOptions">
-<button onclick="showForm()">Travel Form</button>
-<button onclick="whatsapp()">WhatsApp Chat</button>
-</div>`;
-
-}
-
-function showForm(){
-window.location.href="forms/travel-form.html";
-}
-
-function whatsapp(){
-window.open("https://wa.me/919419287356","_blank");
-}
-
-function showLead(){
-
-document.getElementById("chatMessages").innerHTML=
-`Great choice 👍
-
-Our travel team will prepare a customised itinerary.
-
-<div class="chatOptions">
-<button onclick="showForm()">Fill Travel Form</button>
-<button onclick="whatsapp()">WhatsApp Chat</button>
-</div>`;
+<button onclick="openForm()">Travel Enquiry Form</button>
+<button onclick="openWhatsApp()">WhatsApp Chat</button>
+</div>
+`;
 
 }
 
 </script>
-
 </body>
 </html>
