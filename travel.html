@@ -456,10 +456,9 @@ How can we help you today?
 </div>
 
 
-
-
 <script>
 
+let service="";
 let destination="";
 let days="";
 let travellers="";
@@ -472,9 +471,35 @@ function closeChat(){
 document.getElementById("chatbotBox").style.display="none";
 }
 
-function holidayFlow(){
+function resetHome(){
 
 document.getElementById("chatMessages").innerHTML=`
+
+<div class="botMsg">
+Hello 👋<br>
+Welcome to Yes We Care Travels.<br><br>
+How can we assist you today?
+</div>
+
+<div class="chatOptions">
+<button onclick="holidayFlow()">Holiday Packages</button>
+<button onclick="pilgrimageFlow()">Pilgrimage Tours</button>
+<button onclick="cabFlow()">Cab Services</button>
+<button onclick="hotelFlow()">Hotel Booking</button>
+<button onclick="busFlow()">Bus / Volvo Tickets</button>
+<button onclick="airFlow()">Air Tickets</button>
+</div>
+
+`;
+
+}
+
+function holidayFlow(){
+
+service="Holiday Package";
+
+document.getElementById("chatMessages").innerHTML=`
+
 <div class="botMsg">
 Which destination are you planning?
 </div>
@@ -485,6 +510,7 @@ Which destination are you planning?
 <button onclick="destinationSelect('Kerala')">Kerala</button>
 <button onclick="destinationSelect('North East')">North East</button>
 </div>
+
 `;
 
 }
@@ -493,29 +519,10 @@ function destinationSelect(dest){
 
 destination=dest;
 
-let info="";
-
-if(dest==="Himachal"){
-info="Popular destinations: Shimla, Manali, Kasol, Dharamshala.";
-}
-
-if(dest==="Goa"){
-info="Best beaches: Baga, Calangute, Candolim, South Goa.";
-}
-
-if(dest==="Kerala"){
-info="Top experiences: Munnar hills, Alleppey houseboats, Kochi culture.";
-}
-
-if(dest==="North East"){
-info="Popular tours: Sikkim, Meghalaya, Arunachal Pradesh.";
-}
-
 document.getElementById("chatMessages").innerHTML=`
+
 <div class="botMsg">
 Great choice 👍
-
-${info}
 
 How many days are you planning?
 </div>
@@ -525,6 +532,7 @@ How many days are you planning?
 <button onclick="chooseDays('5-6 Days')">5-6 Days</button>
 <button onclick="chooseDays('7+ Days')">7+ Days</button>
 </div>
+
 `;
 
 }
@@ -534,6 +542,7 @@ function chooseDays(day){
 days=day;
 
 document.getElementById("chatMessages").innerHTML=`
+
 <div class="botMsg">
 How many travellers?
 </div>
@@ -544,6 +553,7 @@ How many travellers?
 <button onclick="chooseTravellers('Group')">Group</button>
 <button onclick="chooseTravellers('Solo')">Solo</button>
 </div>
+
 `;
 
 }
@@ -552,50 +562,37 @@ function chooseTravellers(t){
 
 travellers=t;
 
-let itinerary="";
-
-if(destination==="Himachal"){
-itinerary="Suggested plan: Shimla + Manali tour with Solang Valley and Kufri sightseeing.";
-}
-
-if(destination==="Goa"){
-itinerary="Suggested plan: North Goa beaches + South Goa relaxation tour.";
-}
-
-if(destination==="Kerala"){
-itinerary="Suggested plan: Munnar hills + Alleppey houseboat experience.";
-}
-
-if(destination==="North East"){
-itinerary="Suggested plan: Gangtok + Tsomgo Lake + Meghalaya waterfalls.";
-}
-
 document.getElementById("chatMessages").innerHTML=`
+
 <div class="botMsg">
 
 Perfect 👍
 
+Service: ${service}  
 Destination: ${destination}  
 Days: ${days}  
 Travellers: ${travellers}
 
-${itinerary}
-
-Our travel team can prepare a customised itinerary for you.
+Our travel team can prepare a customised itinerary.
 
 </div>
 
 <div class="chatOptions">
 <button onclick="openForm()">Fill Travel Form</button>
-<button onclick="openWhatsApp()">Chat on WhatsApp</button>
+<button onclick="openWhatsApp()">WhatsApp Travel Team</button>
+<button onclick="resetHome()">Back</button>
 </div>
+
 `;
 
 }
 
 function pilgrimageFlow(){
 
+service="Pilgrimage Tour";
+
 document.getElementById("chatMessages").innerHTML=`
+
 <div class="botMsg">
 
 Pilgrimage tours available:
@@ -603,20 +600,26 @@ Pilgrimage tours available:
 • Vaishno Devi  
 • Shiv Khori  
 • Nau Devi Darshan  
+• Char Dham Yatra  
 
 </div>
 
 <div class="chatOptions">
 <button onclick="openForm()">Request Pilgrimage Plan</button>
 <button onclick="openWhatsApp()">WhatsApp Travel Team</button>
+<button onclick="resetHome()">Back</button>
 </div>
+
 `;
 
 }
 
 function cabFlow(){
 
+service="Cab Service";
+
 document.getElementById("chatMessages").innerHTML=`
+
 <div class="botMsg">
 
 Cab services available:
@@ -631,24 +634,88 @@ Cab services available:
 <div class="chatOptions">
 <button onclick="openForm()">Book Cab</button>
 <button onclick="openWhatsApp()">WhatsApp Booking</button>
+<button onclick="resetHome()">Back</button>
 </div>
+
 `;
 
 }
 
-function contactFlow(){
+function hotelFlow(){
+
+service="Hotel Booking";
 
 document.getElementById("chatMessages").innerHTML=`
+
 <div class="botMsg">
 
-You can contact our travel team directly.
+Hotel booking available across India.
+
+• Budget hotels  
+• Deluxe hotels  
+• Luxury resorts  
 
 </div>
 
 <div class="chatOptions">
-<button onclick="openForm()">Travel Enquiry Form</button>
-<button onclick="openWhatsApp()">WhatsApp Chat</button>
+<button onclick="openForm()">Request Hotel Options</button>
+<button onclick="openWhatsApp()">WhatsApp Hotel Team</button>
+<button onclick="resetHome()">Back</button>
 </div>
+
+`;
+
+}
+
+function busFlow(){
+
+service="Bus / Volvo Booking";
+
+document.getElementById("chatMessages").innerHTML=`
+
+<div class="botMsg">
+
+Bus and Volvo tickets available.
+
+Popular routes:
+
+• Jammu – Delhi  
+• Delhi – Manali  
+• Delhi – Shimla  
+
+</div>
+
+<div class="chatOptions">
+<button onclick="openForm()">Request Bus Booking</button>
+<button onclick="openWhatsApp()">WhatsApp Booking</button>
+<button onclick="resetHome()">Back</button>
+</div>
+
+`;
+
+}
+
+function airFlow(){
+
+service="Air Ticket Booking";
+
+document.getElementById("chatMessages").innerHTML=`
+
+<div class="botMsg">
+
+Flight booking available.
+
+• Domestic flights  
+• International flights  
+
+</div>
+
+<div class="chatOptions">
+<button onclick="openForm()">Request Flight Quote</button>
+<button onclick="openWhatsApp()">WhatsApp Booking</button>
+<button onclick="resetHome()">Back</button>
+</div>
+
 `;
 
 }
@@ -662,7 +729,7 @@ window.location.href="forms/travel-form.html";
 function openWhatsApp(){
 
 let msg="Hello Yes We Care Travels%0A%0A";
-msg+="I am interested in a travel package.%0A";
+msg+="Service: "+service+"%0A";
 msg+="Destination: "+destination+"%0A";
 msg+="Days: "+days+"%0A";
 msg+="Travellers: "+travellers;
@@ -672,5 +739,7 @@ window.open("https://wa.me/919419287356?text="+msg,"_blank");
 }
 
 </script>
+
+
 </body>
 </html>
