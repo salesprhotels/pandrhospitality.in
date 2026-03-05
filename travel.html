@@ -298,7 +298,27 @@ background:#eef1ff;
 cursor:pointer;
 border-radius:6px;
 }
+#chatInputArea{
+display:flex;
+border-top:1px solid #eee;
+}
 
+#userInput{
+flex:1;
+padding:10px;
+border:none;
+outline:none;
+font-size:14px;
+}
+
+#chatInputArea button{
+background:#4b3fd6;
+color:#fff;
+border:none;
+padding:10px 14px;
+cursor:pointer;
+}
+ 
 </style>
 
 </head>
@@ -436,7 +456,10 @@ Travel Assistant
 <span onclick="closeChat()">✖</span>
 </div>
 
-<div id="chatMessages">
+<div id="chatInputArea">
+<input id="userInput" placeholder="Ask about tours, taxis, hotels, flights...">
+<button onclick="sendMessage()">Send</button>
+</div>
 
 <div>
 Hello 👋<br>
@@ -458,265 +481,84 @@ How can we help you today?
 
 <script>
 
-let service="";
-let destination="";
-let days="";
-let travellers="";
+function sendMessage(){
 
-document.getElementById("chatbotButton").onclick=function(){
-document.getElementById("chatbotBox").style.display="flex";
+let input=document.getElementById("userInput").value.toLowerCase();
+
+let reply="";
+
+if(input.includes("himachal") || input.includes("manali") || input.includes("shimla") || input.includes("kasol")){
+
+reply="We offer Himachal tour packages including Shimla, Manali and Kasol. Typical tours are 4–6 days.";
+
 }
 
-function closeChat(){
-document.getElementById("chatbotBox").style.display="none";
+else if(input.includes("goa")){
+
+reply="Goa holiday packages available including North Goa beaches and South Goa sightseeing.";
+
 }
 
-function resetHome(){
+else if(input.includes("kerala") || input.includes("munnar") || input.includes("alleppey")){
 
-document.getElementById("chatMessages").innerHTML=`
+reply="Kerala tours include Munnar hill stations and Alleppey houseboat stays.";
 
-<div class="botMsg">
-Hello 👋<br>
-Welcome to Yes We Care Travels.<br><br>
-How can we assist you today?
-</div>
+}
+
+else if(input.includes("taxi") || input.includes("cab") || input.includes("katra") || input.includes("airport")){
+
+reply="Yes, we provide cab services including Jammu Airport pickup and Jammu–Katra taxi.";
+
+}
+
+else if(input.includes("vaishno") || input.includes("pilgrimage")){
+
+reply="Pilgrimage tours available including Vaishno Devi, Shiv Khori and Nau Devi Darshan.";
+
+}
+
+else if(input.includes("hotel")){
+
+reply="We can arrange hotel bookings from budget hotels to luxury resorts.";
+
+}
+
+else if(input.includes("bus") || input.includes("volvo")){
+
+reply="Volvo and bus ticket booking available for routes like Delhi–Manali, Delhi–Shimla and Jammu–Delhi.";
+
+}
+
+else if(input.includes("flight") || input.includes("air ticket")){
+
+reply="We provide domestic and international flight ticket booking.";
+
+}
+
+else if(input.includes("price") || input.includes("cost") || input.includes("package")){
+
+reply="Prices depend on dates, hotels and travellers. Please submit a travel enquiry.";
+
+}
+
+else{
+
+reply="Please tell us your destination or travel requirement.";
+
+}
+
+document.getElementById("chatMessages").innerHTML+=`
+
+<div class="botMsg">${reply}</div>
 
 <div class="chatOptions">
-<button onclick="holidayFlow()">Holiday Packages</button>
-<button onclick="pilgrimageFlow()">Pilgrimage Tours</button>
-<button onclick="cabFlow()">Cab Services</button>
-<button onclick="hotelFlow()">Hotel Booking</button>
-<button onclick="busFlow()">Bus / Volvo Tickets</button>
-<button onclick="airFlow()">Air Tickets</button>
-</div>
-
-`;
-
-}
-
-function holidayFlow(){
-
-service="Holiday Package";
-
-document.getElementById("chatMessages").innerHTML=`
-
-<div class="botMsg">
-Which destination are you planning?
-</div>
-
-<div class="chatOptions">
-<button onclick="destinationSelect('Himachal')">Himachal</button>
-<button onclick="destinationSelect('Goa')">Goa</button>
-<button onclick="destinationSelect('Kerala')">Kerala</button>
-<button onclick="destinationSelect('North East')">North East</button>
-</div>
-
-`;
-
-}
-
-function destinationSelect(dest){
-
-destination=dest;
-
-document.getElementById("chatMessages").innerHTML=`
-
-<div class="botMsg">
-Great choice 👍
-
-How many days are you planning?
-</div>
-
-<div class="chatOptions">
-<button onclick="chooseDays('3-4 Days')">3-4 Days</button>
-<button onclick="chooseDays('5-6 Days')">5-6 Days</button>
-<button onclick="chooseDays('7+ Days')">7+ Days</button>
-</div>
-
-`;
-
-}
-
-function chooseDays(day){
-
-days=day;
-
-document.getElementById("chatMessages").innerHTML=`
-
-<div class="botMsg">
-How many travellers?
-</div>
-
-<div class="chatOptions">
-<button onclick="chooseTravellers('Couple')">Couple</button>
-<button onclick="chooseTravellers('Family')">Family</button>
-<button onclick="chooseTravellers('Group')">Group</button>
-<button onclick="chooseTravellers('Solo')">Solo</button>
-</div>
-
-`;
-
-}
-
-function chooseTravellers(t){
-
-travellers=t;
-
-document.getElementById("chatMessages").innerHTML=`
-
-<div class="botMsg">
-
-Perfect 👍
-
-Service: ${service}  
-Destination: ${destination}  
-Days: ${days}  
-Travellers: ${travellers}
-
-Our travel team can prepare a customised itinerary.
-
-</div>
-
-<div class="chatOptions">
-<button onclick="openForm()">Fill Travel Form</button>
+<button onclick="openForm()">Travel Enquiry Form</button>
 <button onclick="openWhatsApp()">WhatsApp Travel Team</button>
-<button onclick="resetHome()">Back</button>
 </div>
 
 `;
 
-}
-
-function pilgrimageFlow(){
-
-service="Pilgrimage Tour";
-
-document.getElementById("chatMessages").innerHTML=`
-
-<div class="botMsg">
-
-Pilgrimage tours available:
-
-• Vaishno Devi  
-• Shiv Khori  
-• Nau Devi Darshan  
-• Char Dham Yatra  
-
-</div>
-
-<div class="chatOptions">
-<button onclick="openForm()">Request Pilgrimage Plan</button>
-<button onclick="openWhatsApp()">WhatsApp Travel Team</button>
-<button onclick="resetHome()">Back</button>
-</div>
-
-`;
-
-}
-
-function cabFlow(){
-
-service="Cab Service";
-
-document.getElementById("chatMessages").innerHTML=`
-
-<div class="botMsg">
-
-Cab services available:
-
-• Jammu Airport Pickup  
-• Jammu to Katra Cab  
-• Local Sightseeing  
-• Himachal Tours  
-
-</div>
-
-<div class="chatOptions">
-<button onclick="openForm()">Book Cab</button>
-<button onclick="openWhatsApp()">WhatsApp Booking</button>
-<button onclick="resetHome()">Back</button>
-</div>
-
-`;
-
-}
-
-function hotelFlow(){
-
-service="Hotel Booking";
-
-document.getElementById("chatMessages").innerHTML=`
-
-<div class="botMsg">
-
-Hotel booking available across India.
-
-• Budget hotels  
-• Deluxe hotels  
-• Luxury resorts  
-
-</div>
-
-<div class="chatOptions">
-<button onclick="openForm()">Request Hotel Options</button>
-<button onclick="openWhatsApp()">WhatsApp Hotel Team</button>
-<button onclick="resetHome()">Back</button>
-</div>
-
-`;
-
-}
-
-function busFlow(){
-
-service="Bus / Volvo Booking";
-
-document.getElementById("chatMessages").innerHTML=`
-
-<div class="botMsg">
-
-Bus and Volvo tickets available.
-
-Popular routes:
-
-• Jammu – Delhi  
-• Delhi – Manali  
-• Delhi – Shimla  
-
-</div>
-
-<div class="chatOptions">
-<button onclick="openForm()">Request Bus Booking</button>
-<button onclick="openWhatsApp()">WhatsApp Booking</button>
-<button onclick="resetHome()">Back</button>
-</div>
-
-`;
-
-}
-
-function airFlow(){
-
-service="Air Ticket Booking";
-
-document.getElementById("chatMessages").innerHTML=`
-
-<div class="botMsg">
-
-Flight booking available.
-
-• Domestic flights  
-• International flights  
-
-</div>
-
-<div class="chatOptions">
-<button onclick="openForm()">Request Flight Quote</button>
-<button onclick="openWhatsApp()">WhatsApp Booking</button>
-<button onclick="resetHome()">Back</button>
-</div>
-
-`;
+document.getElementById("userInput").value="";
 
 }
 
@@ -728,13 +570,7 @@ window.location.href="forms/travel-form.html";
 
 function openWhatsApp(){
 
-let msg="Hello Yes We Care Travels%0A%0A";
-msg+="Service: "+service+"%0A";
-msg+="Destination: "+destination+"%0A";
-msg+="Days: "+days+"%0A";
-msg+="Travellers: "+travellers;
-
-window.open("https://wa.me/919419287356?text="+msg,"_blank");
+window.open("https://wa.me/919419287356","_blank");
 
 }
 
