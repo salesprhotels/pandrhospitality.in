@@ -456,6 +456,8 @@ How can we help you today?
 </div>
 
 
+
+
 <script>
 
 let destination="";
@@ -478,24 +480,42 @@ Which destination are you planning?
 </div>
 
 <div class="chatOptions">
-<button onclick="chooseDestination('Himachal')">Himachal</button>
-<button onclick="chooseDestination('Goa')">Goa</button>
-<button onclick="chooseDestination('Kerala')">Kerala</button>
-<button onclick="chooseDestination('North East')">North East</button>
+<button onclick="destinationSelect('Himachal')">Himachal</button>
+<button onclick="destinationSelect('Goa')">Goa</button>
+<button onclick="destinationSelect('Kerala')">Kerala</button>
+<button onclick="destinationSelect('North East')">North East</button>
 </div>
 `;
 
 }
 
-function chooseDestination(dest){
+function destinationSelect(dest){
 
 destination=dest;
+
+let info="";
+
+if(dest==="Himachal"){
+info="Popular destinations: Shimla, Manali, Kasol, Dharamshala.";
+}
+
+if(dest==="Goa"){
+info="Best beaches: Baga, Calangute, Candolim, South Goa.";
+}
+
+if(dest==="Kerala"){
+info="Top experiences: Munnar hills, Alleppey houseboats, Kochi culture.";
+}
+
+if(dest==="North East"){
+info="Popular tours: Sikkim, Meghalaya, Arunachal Pradesh.";
+}
 
 document.getElementById("chatMessages").innerHTML=`
 <div class="botMsg">
 Great choice 👍
 
-${dest} tours available.
+${info}
 
 How many days are you planning?
 </div>
@@ -532,18 +552,36 @@ function chooseTravellers(t){
 
 travellers=t;
 
+let itinerary="";
+
+if(destination==="Himachal"){
+itinerary="Suggested plan: Shimla + Manali tour with Solang Valley and Kufri sightseeing.";
+}
+
+if(destination==="Goa"){
+itinerary="Suggested plan: North Goa beaches + South Goa relaxation tour.";
+}
+
+if(destination==="Kerala"){
+itinerary="Suggested plan: Munnar hills + Alleppey houseboat experience.";
+}
+
+if(destination==="North East"){
+itinerary="Suggested plan: Gangtok + Tsomgo Lake + Meghalaya waterfalls.";
+}
+
 document.getElementById("chatMessages").innerHTML=`
 <div class="botMsg">
 
 Perfect 👍
 
-Trip Details
-
 Destination: ${destination}  
 Days: ${days}  
 Travellers: ${travellers}
 
-Our travel team can prepare a customised itinerary.
+${itinerary}
+
+Our travel team can prepare a customised itinerary for you.
 
 </div>
 
@@ -552,24 +590,6 @@ Our travel team can prepare a customised itinerary.
 <button onclick="openWhatsApp()">Chat on WhatsApp</button>
 </div>
 `;
-
-}
-
-function openForm(){
-
-window.location.href="forms/travel-form.html";
-
-}
-
-function openWhatsApp(){
-
-let msg="Hello Yes We Care Travels%0A%0A";
-msg+="I am interested in a travel package.%0A";
-msg+="Destination: "+destination+"%0A";
-msg+="Days: "+days+"%0A";
-msg+="Travellers: "+travellers;
-
-window.open("https://wa.me/919419287356?text="+msg,"_blank");
 
 }
 
@@ -630,6 +650,24 @@ You can contact our travel team directly.
 <button onclick="openWhatsApp()">WhatsApp Chat</button>
 </div>
 `;
+
+}
+
+function openForm(){
+
+window.location.href="forms/travel-form.html";
+
+}
+
+function openWhatsApp(){
+
+let msg="Hello Yes We Care Travels%0A%0A";
+msg+="I am interested in a travel package.%0A";
+msg+="Destination: "+destination+"%0A";
+msg+="Days: "+days+"%0A";
+msg+="Travellers: "+travellers;
+
+window.open("https://wa.me/919419287356?text="+msg,"_blank");
 
 }
 
