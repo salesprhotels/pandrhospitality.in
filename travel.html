@@ -264,7 +264,7 @@ z-index:9999;
 position:fixed;
 bottom:90px;
 right:20px;
-width:300px;
+width:320px;
 background:#fff;
 border-radius:10px;
 box-shadow:0 6px 20px rgba(0,0,0,.25);
@@ -286,18 +286,25 @@ justify-content:space-between;
 #chatMessages{
 padding:15px;
 font-size:14px;
+max-height:260px;
+overflow-y:auto;
+}
+
+.botMsg{
+margin-bottom:10px;
 }
 
 .chatOptions button{
 display:block;
 width:100%;
-margin-top:8px;
+margin-top:6px;
 padding:8px;
 border:none;
 background:#eef1ff;
 cursor:pointer;
 border-radius:6px;
 }
+
 #chatInputArea{
 display:flex;
 border-top:1px solid #eee;
@@ -308,7 +315,6 @@ flex:1;
 padding:10px;
 border:none;
 outline:none;
-font-size:14px;
 }
 
 #chatInputArea button{
@@ -318,7 +324,7 @@ border:none;
 padding:10px 14px;
 cursor:pointer;
 }
- 
+
 </style>
 
 </head>
@@ -456,26 +462,12 @@ Travel Assistant
 <span onclick="closeChat()">✖</span>
 </div>
 
-<div id="chatbotBox">
-
-<div id="chatHeader">
-Travel Assistant
-<span onclick="closeChat()">✖</span>
-</div>
-
 <div id="chatMessages">
 
 <div class="botMsg">
 Hello 👋<br>
 Welcome to Yes We Care Travels.<br><br>
 How can we help you today?
-</div>
-
-<div class="chatOptions">
-<button onclick="holidayFlow()">Holiday Packages</button>
-<button onclick="pilgrimageFlow()">Pilgrimage Tours</button>
-<button onclick="cabFlow()">Cab Services</button>
-<button onclick="contactFlow()">Contact Travel Expert</button>
 </div>
 
 </div>
@@ -486,10 +478,16 @@ How can we help you today?
 </div>
 
 </div>
-</div>
-
 
 <script>
+
+document.getElementById("chatbotButton").onclick=function(){
+document.getElementById("chatbotBox").style.display="flex";
+}
+
+function closeChat(){
+document.getElementById("chatbotBox").style.display="none";
+}
 
 function sendMessage(){
 
@@ -497,95 +495,56 @@ let input=document.getElementById("userInput").value.toLowerCase();
 
 let reply="";
 
-if(input.includes("himachal") || input.includes("manali") || input.includes("shimla") || input.includes("kasol")){
-
-reply="We offer Himachal tour packages including Shimla, Manali and Kasol. Typical tours are 4–6 days.";
-
+if(input.includes("himachal") || input.includes("manali") || input.includes("shimla")){
+reply="We offer Himachal tour packages including Shimla and Manali.";
 }
 
 else if(input.includes("goa")){
-
 reply="Goa holiday packages available including North Goa beaches and South Goa sightseeing.";
-
 }
 
-else if(input.includes("kerala") || input.includes("munnar") || input.includes("alleppey")){
-
+else if(input.includes("kerala")){
 reply="Kerala tours include Munnar hill stations and Alleppey houseboat stays.";
-
 }
 
-else if(input.includes("taxi") || input.includes("cab") || input.includes("katra") || input.includes("airport")){
-
-reply="Yes, we provide cab services including Jammu Airport pickup and Jammu–Katra taxi.";
-
+else if(input.includes("taxi") || input.includes("cab") || input.includes("katra")){
+reply="Yes, we provide cab services including Jammu airport pickup and Jammu–Katra taxi.";
 }
 
 else if(input.includes("vaishno") || input.includes("pilgrimage")){
-
 reply="Pilgrimage tours available including Vaishno Devi, Shiv Khori and Nau Devi Darshan.";
-
 }
 
 else if(input.includes("hotel")){
-
 reply="We can arrange hotel bookings from budget hotels to luxury resorts.";
-
 }
 
 else if(input.includes("bus") || input.includes("volvo")){
-
-reply="Volvo and bus ticket booking available for routes like Delhi–Manali, Delhi–Shimla and Jammu–Delhi.";
-
+reply="Volvo and bus ticket booking available for major routes.";
 }
 
-else if(input.includes("flight") || input.includes("air ticket")){
-
-reply="We provide domestic and international flight ticket booking.";
-
-}
-
-else if(input.includes("price") || input.includes("cost") || input.includes("package")){
-
-reply="Prices depend on dates, hotels and travellers. Please submit a travel enquiry.";
-
+else if(input.includes("flight") || input.includes("air")){
+reply="We provide domestic and international air ticket booking.";
 }
 
 else{
-
 reply="Please tell us your destination or travel requirement.";
-
 }
 
 document.getElementById("chatMessages").innerHTML+=`
-
 <div class="botMsg">${reply}</div>
-
-<div class="chatOptions">
-<button onclick="openForm()">Travel Enquiry Form</button>
-<button onclick="openWhatsApp()">WhatsApp Travel Team</button>
-</div>
-
 `;
 
 document.getElementById("userInput").value="";
-
 }
 
-function openForm(){
-
-window.location.href="forms/travel-form.html";
-
+document.getElementById("userInput").addEventListener("keypress",function(e){
+if(e.key==="Enter"){
+sendMessage();
 }
-
-function openWhatsApp(){
-
-window.open("https://wa.me/919419287356","_blank");
-
-}
+});
 
 </script>
-
 
 </body>
 </html>
