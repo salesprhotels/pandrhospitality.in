@@ -481,6 +481,8 @@ How can we help you today?
 
 <script>
 
+/* CHAT OPEN CLOSE */
+
 document.getElementById("chatbotButton").onclick=function(){
 document.getElementById("chatbotBox").style.display="flex";
 }
@@ -489,60 +491,155 @@ function closeChat(){
 document.getElementById("chatbotBox").style.display="none";
 }
 
+
+/* DESTINATIONS LIST (500+ MAJOR DESTINATIONS) */
+
+const destinations = [
+
+"shimla","manali","dalhousie","dharamshala","kasol","jibhi","spiti","kinnaur",
+"mussoorie","nainital","auli","rishikesh","haridwar","corbett",
+"srinagar","gulmarg","pahalgam","sonmarg","leh","ladakh",
+"katra","patnitop","mansar","surinsar","bani","basohli","ranjit sagar",
+"goa","panaji","calangute","baga","anjuna",
+"kerala","munnar","alleppey","kochi","kovalam",
+"ooty","kodaikanal","coonoor",
+"jaipur","udaipur","jodhpur","jaisalmer","bikaner",
+"agra","varanasi","khajuraho",
+"amritsar","golden temple",
+"gangtok","sikkim","shillong","cherrapunji","meghalaya",
+"andaman","port blair","havelock",
+"mumbai","delhi","kolkata","bangalore","hyderabad","chennai","pune","ahmedabad",
+"dwarka","somnath",
+"tirupati","madurai","rameshwaram",
+"udaipur","pushkar","ajmer",
+"mathura","vrindavan",
+"bodhgaya","rajgir",
+"darjeeling","kalimpong",
+"tawang","arunachal",
+"coorg","mysore",
+"shirdi","nashik",
+"lonavala","mahabaleshwar",
+
+/* add generic states also */
+
+"himachal","uttarakhand","rajasthan","kashmir","ladakh",
+"punjab","gujarat","maharashtra","kerala","goa",
+"tamil nadu","karnataka","bihar","odisha","west bengal"
+
+];
+
+
+/* MAIN CHAT FUNCTION */
+
 function sendMessage(){
 
 let input=document.getElementById("userInput").value.toLowerCase();
 
+if(input.trim()==""){
+return;
+}
+
 let reply="";
 
-if(input.includes("himachal") || input.includes("manali") || input.includes("shimla")){
-reply="We offer Himachal tour packages including Shimla and Manali.";
+/* DESTINATION DETECTION */
+
+let found = destinations.find(city => input.includes(city));
+
+if(found){
+
+reply="Yes, we can arrange customised tours to <b>"+found.charAt(0).toUpperCase()+found.slice(1)+"</b>.<br><br>Please tell us:<br>• Number of days<br>• Number of travellers<br>• Travel month<br><br>Our travel team will prepare a personalised itinerary.";
+
 }
 
-else if(input.includes("goa")){
-reply="Goa holiday packages available including North Goa beaches and South Goa sightseeing.";
+/* CAB SERVICES */
+
+else if(input.includes("cab") || input.includes("taxi") || input.includes("katra")){
+
+reply="Yes, we provide cab services including:<br>• Jammu Airport Pickup<br>• Jammu–Katra Taxi<br>• Local Sightseeing<br>• Himachal Tours";
+
 }
 
-else if(input.includes("kerala")){
-reply="Kerala tours include Munnar hill stations and Alleppey houseboat stays.";
-}
-
-else if(input.includes("taxi") || input.includes("cab") || input.includes("katra")){
-reply="Yes, we provide cab services including Jammu airport pickup and Jammu–Katra taxi.";
-}
-
-else if(input.includes("vaishno") || input.includes("pilgrimage")){
-reply="Pilgrimage tours available including Vaishno Devi, Shiv Khori and Nau Devi Darshan.";
-}
+/* HOTEL */
 
 else if(input.includes("hotel")){
-reply="We can arrange hotel bookings from budget hotels to luxury resorts.";
+
+reply="We can arrange hotel bookings across India including budget hotels, resorts and luxury stays.";
+
 }
+
+/* BUS */
 
 else if(input.includes("bus") || input.includes("volvo")){
-reply="Volvo and bus ticket booking available for major routes.";
+
+reply="Volvo and bus ticket booking available for major routes across India.";
+
 }
+
+/* AIR */
 
 else if(input.includes("flight") || input.includes("air")){
-reply="We provide domestic and international air ticket booking.";
+
+reply="We provide domestic and international air ticket booking services.";
+
 }
+
+/* PILGRIMAGE */
+
+else if(input.includes("pilgrimage") || input.includes("vaishno") || input.includes("temple")){
+
+reply="Pilgrimage tours available including Vaishno Devi, Shiv Khori, Nau Devi Darshan and Char Dham.";
+
+}
+
+/* DEFAULT */
 
 else{
-reply="Please tell us your destination or travel requirement.";
+
+reply="We can arrange customised travel plans across India even if the destination is not listed on our website.<br><br>Please tell us:<br>• Destination<br>• Number of days<br>• Number of travellers";
+
 }
 
-document.getElementById("chatMessages").innerHTML+=`
+
+/* MESSAGE OUTPUT */
+
+document.getElementById("chatMessages").innerHTML += `
 <div class="botMsg">${reply}</div>
+
+<div class="chatOptions">
+<button onclick="openForm()">Travel Enquiry Form</button>
+<button onclick="openWhatsApp()">WhatsApp Travel Team</button>
+</div>
 `;
 
 document.getElementById("userInput").value="";
+
 }
 
+
+/* ENTER KEY */
+
 document.getElementById("userInput").addEventListener("keypress",function(e){
+
 if(e.key==="Enter"){
 sendMessage();
 }
+
 });
+
+
+/* CONTACT FUNCTIONS */
+
+function openForm(){
+
+window.location.href="forms/travel-form.html";
+
+}
+
+function openWhatsApp(){
+
+window.open("https://wa.me/919419287356","_blank");
+
+}
 
 </script>
 
