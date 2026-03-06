@@ -537,35 +537,13 @@ Please fill quick enquiry form.
 
 <div class="chatForm">
 
-<select id="destination">
+<input id="destination" value="${found}" readonly>
 
-<option>${found}</option>
-<option>Shimla</option>
-<option>Manali</option>
-<option>Kashmir</option>
-<option>Goa</option>
-<option>Kerala</option>
-<option>Vaishno Devi</option>
+<input id="days" placeholder="Number of Days">
 
-</select>
+<input id="adults" placeholder="Adults">
 
-<select id="days">
-
-<option>3 Days</option>
-<option>4 Days</option>
-<option>5 Days</option>
-<option>6 Days</option>
-
-</select>
-
-<select id="travellers">
-
-<option>1 Traveller</option>
-<option>2 Travellers</option>
-<option>3 Travellers</option>
-<option>4 Travellers</option>
-
-</select>
+<input id="children" placeholder="Children">
 
 <input id="month" placeholder="Travel Month">
 
@@ -573,11 +551,9 @@ Please fill quick enquiry form.
 
 <input id="email" placeholder="Email">
 
-<button onclick="sendEnquiry()">Submit Enquiry</button>
+<button onclick="sendEnquiry(event)">Submit Enquiry</button>
 
 </div>
-
-</div>`;
 
 }
 
@@ -706,29 +682,30 @@ document.getElementById("chatMessages").scrollHeight;
 
 /* FORM SUBMIT */
 
-function sendEnquiry(){
+function sendEnquiry(event){
 
-let destination=document.getElementById("destination").value;
-let days=document.getElementById("days").value;
-let travellers=document.getElementById("travellers").value;
-let month=document.getElementById("month").value;
-let phone=document.getElementById("phone").value;
-let email=document.getElementById("email").value;
+let form = event.target.closest(".chatForm");
 
+let destination=form.querySelector("#destination").value;
+let days=form.querySelector("#days").value;
+let adults=form.querySelector("#adults").value;
+let children=form.querySelector("#children").value;
+let month=form.querySelector("#month").value;
+let phone=form.querySelector("#phone").value;
+let email=form.querySelector("#email").value;
 
 let message=
 
 "NEW WEBSITE LEAD\n\n"+
 "Destination: "+destination+"\n"+
 "Days: "+days+"\n"+
-"Travellers: "+travellers+"\n"+
+"Adults: "+adults+"\n"+
+"Children: "+children+"\n"+
 "Month: "+month+"\n"+
 "Phone: "+phone+"\n"+
 "Email: "+email;
 
-
 sendTelegram(message);
-
 
 document.getElementById("chatMessages").innerHTML+=
 `<div class="botMsg">
@@ -736,7 +713,6 @@ Thank you 🙏 Our travel expert will contact you shortly.
 </div>`;
 
 }
-
 </script>
 
 </body>
