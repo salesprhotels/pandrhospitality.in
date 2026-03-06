@@ -108,15 +108,91 @@ header{background:#fff;border-bottom:1px solid #ddd}
 }
 
 /* WHATSAPP */
+
 .whatsapp{
-  position:fixed;bottom:20px;right:20px;
-  background:#25D366;color:#fff;
-  padding:12px 18px;border-radius:30px;
-  font-weight:bold;text-decoration:none
+position:fixed;
+bottom:20px;
+left:20px;
+background:#25D366;
+color:#fff;
+padding:12px 18px;
+border-radius:30px;
+text-decoration:none;
 }
 
-/* FOOTER */
-footer{text-align:center;padding:20px;font-size:14px;color:#666;background:#fff}
+/* CHATBOT */
+
+#chatbotButton{
+position:fixed;
+bottom:20px;
+right:20px;
+width:65px;
+height:65px;
+border-radius:50%;
+background:#fff;
+box-shadow:0 4px 12px rgba(0,0,0,.3);
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:9999;
+}
+
+#chatbotButton img{
+width:55px;
+height:55px;
+border-radius:50%;
+}
+
+#chatbotBox{
+position:fixed;
+bottom:100px;
+right:20px;
+width:340px;
+background:#fff;
+border-radius:12px;
+box-shadow:0 6px 20px rgba(0,0,0,.3);
+display:none;
+flex-direction:column;
+overflow:hidden;
+z-index:9999;
+}
+
+#chatHeader{
+background:#4b3fd6;
+color:#fff;
+padding:12px;
+font-weight:bold;
+display:flex;
+justify-content:space-between;
+}
+
+#chatMessages{
+padding:15px;
+font-size:14px;
+max-height:300px;
+overflow-y:auto;
+}
+
+.botMsg{
+background:#eef1ff;
+padding:8px;
+border-radius:6px;
+margin-bottom:8px;
+}
+
+.userMsg{
+text-align:right;
+margin-bottom:8px;
+}
+
+footer{
+text-align:center;
+padding:20px;
+font-size:14px;
+color:#666;
+background:#fff;
+}
 </style>
 </head>
 
