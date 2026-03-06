@@ -537,7 +537,9 @@ Please fill quick enquiry form.
 
 <div class="chatForm">
 
-<input id="destination" value="${found}" readonly>
+<input id="name" placeholder="Your Name">
+
+<input id="destination" value="${found}" placeholder="Destination">
 
 <input id="days" placeholder="Number of Days">
 
@@ -688,6 +690,7 @@ function sendEnquiry(event){
 
 let form = event.target.closest(".chatForm");
 
+let name=form.querySelector("#name").value;  
 let destination=form.querySelector("#destination").value;
 let days=form.querySelector("#days").value;
 let adults=form.querySelector("#adults").value;
@@ -699,6 +702,7 @@ let email=form.querySelector("#email").value;
 let message=
 
 "NEW WEBSITE LEAD\n\n"+
+"Name: "+name+"\n"+
 "Destination: "+destination+"\n"+
 "Days: "+days+"\n"+
 "Adults: "+adults+"\n"+
