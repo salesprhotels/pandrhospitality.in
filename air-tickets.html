@@ -408,6 +408,37 @@ text:message
 
 }
 
+function sendToGoogleSheet(data){
+
+const API_URL = "https://script.google.com/macros/s/AKfycbyhR3yVhsrMQWldIg3Qvz0dt8Boawv6bjWFqaitAfyXmHAyXxQ7EdgJ6e1ODys2KmVaWA/exec";
+
+fetch(API_URL,{
+
+method:"POST",
+
+body:new URLSearchParams(data)
+
+})
+.then(res=>res.json())
+.then(res=>{
+
+console.log("Sheet response:",res);
+
+if(res.status=="success"){
+
+document.getElementById("chatMessages").innerHTML+=`
+<div class="botMsg">
+Thank you 🙏  
+Your travel request has been received.
+
+Our travel expert will contact you shortly.
+</div>`;
+
+}
+
+});
+}
+   
 /* ================================
    OPEN CHAT
 ================================ */
