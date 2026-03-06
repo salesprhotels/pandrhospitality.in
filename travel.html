@@ -481,7 +481,51 @@ How can we help you today?
 
 <script>
 
-/* CHAT OPEN CLOSE */
+/* ===============================
+GEMINI AI SETTINGS
+================================ */
+
+const GEMINI_API_KEY = "AIzaSyB0_H292ELTjTJ1Nw5BvPYPEKAdTNRUN4o";
+
+async function askGemini(question){
+
+try{
+
+const response = await fetch(
+"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key="+GEMINI_API_KEY,
+{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+contents:[
+{
+parts:[
+{
+text:"You are a travel assistant for Yes We Care Travels India. Help customers with travel packages, pilgrimage tours, cab services, hotel bookings, Volvo buses and air ticket booking. Answer briefly and guide them to enquiry form or WhatsApp.\n\nCustomer question: "+question
+}
+]
+}
+]
+})
+});
+
+const data = await response.json();
+
+return data.candidates[0].content.parts[0].text;
+
+}catch(e){
+
+return "Please contact our travel team through enquiry form or WhatsApp.";
+
+}
+
+}
+
+/* ===============================
+CHAT OPEN CLOSE
+================================ */
 
 document.getElementById("chatbotButton").onclick=function(){
 document.getElementById("chatbotBox").style.display="flex";
@@ -491,10 +535,11 @@ function closeChat(){
 document.getElementById("chatbotBox").style.display="none";
 }
 
+/* ===============================
+DESTINATIONS
+================================ */
 
-/* DESTINATIONS LIST (500+ MAJOR DESTINATIONS) */
-
-const destinations = [
+const destinations=[
 
 "shimla","manali","dalhousie","dharamshala","kasol","jibhi","spiti","kinnaur",
 "mussoorie","nainital","auli","rishikesh","haridwar","corbett",
@@ -519,19 +564,17 @@ const destinations = [
 "coorg","mysore",
 "shirdi","nashik",
 "lonavala","mahabaleshwar",
-
-/* add generic states also */
-
 "himachal","uttarakhand","rajasthan","kashmir","ladakh",
 "punjab","gujarat","maharashtra","kerala","goa",
 "tamil nadu","karnataka","bihar","odisha","west bengal"
 
 ];
 
+/* ===============================
+MAIN CHAT FUNCTION
+================================ */
 
-/* MAIN CHAT FUNCTION */
-
-function sendMessage(){
+async function sendMessage(){
 
 let input=document.getElementById("userInput").value.toLowerCase();
 
@@ -539,9 +582,15 @@ if(input.trim()==""){
 return;
 }
 
+/* SHOW USER MESSAGE */
+
+document.getElementById("chatMessages").innerHTML += `
+<div class="botMsg"><b>You:</b> ${input}</div>
+`;
+
 let reply="";
 
-/* DESTINATION DETECTION */
+/* DESTINATION */
 
 let found = destinations.find(city => input.includes(city));
 
@@ -551,9 +600,9 @@ reply="Yes, we can arrange customised tours to <b>"+found.charAt(0).toUpperCase(
 
 }
 
-/* CAB SERVICES */
+/* CAB */
 
-else if(input.includes("cab") || input.includes("taxi") || input.includes("katra")){
+else if(input.includes("cab") || input.includes("taxi")){
 
 reply="Yes, we provide cab services including:<br>• Jammu Airport Pickup<br>• Jammu–Katra Taxi<br>• Local Sightseeing<br>• Himachal Tours";
 
@@ -585,22 +634,21 @@ reply="We provide domestic and international air ticket booking services.";
 
 /* PILGRIMAGE */
 
-else if(input.includes("pilgrimage") || input.includes("vaishno") || input.includes("temple")){
+else if(input.includes("vaishno") || input.includes("temple") || input.includes("pilgrimage")){
 
 reply="Pilgrimage tours available including Vaishno Devi, Shiv Khori, Nau Devi Darshan and Char Dham.";
 
 }
 
-/* DEFAULT */
+/* AI RESPONSE */
 
 else{
 
-reply="We can arrange customised travel plans across India even if the destination is not listed on our website.<br><br>Please tell us:<br>• Destination<br>• Number of days<br>• Number of travellers";
+reply=await askGemini(input);
 
 }
 
-
-/* MESSAGE OUTPUT */
+/* SHOW BOT MESSAGE */
 
 document.getElementById("chatMessages").innerHTML += `
 <div class="botMsg">${reply}</div>
@@ -615,7 +663,6 @@ document.getElementById("userInput").value="";
 
 }
 
-
 /* ENTER KEY */
 
 document.getElementById("userInput").addEventListener("keypress",function(e){
@@ -626,19 +673,14 @@ sendMessage();
 
 });
 
-
-/* CONTACT FUNCTIONS */
+/* CONTACT */
 
 function openForm(){
-
 window.location.href="forms/travel-form.html";
-
 }
 
 function openWhatsApp(){
-
 window.open("https://wa.me/919419287356","_blank");
-
 }
 
 </script>
