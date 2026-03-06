@@ -198,10 +198,190 @@ border-radius:6px;
 text-decoration:none;
 font-weight:bold;
 }
+<style>
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
+
+body{
+font-family:Arial, Helvetica, sans-serif;
+background:#f4f6fb;
+color:#222;
+line-height:1.6;
+}
+
+/* ================= HEADER ================= */
+
+header{
+background:#fff;
+border-bottom:1px solid #eee;
+}
+
+.header-wrap{
+max-width:1200px;
+margin:auto;
+padding:12px 16px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+flex-wrap:wrap;
+}
+
+.logos{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.logos img{
+height:48px;
+}
+
+nav{
+display:flex;
+flex-wrap:wrap;
+}
+
+nav a{
+margin:0 12px;
+text-decoration:none;
+color:#0b2a4a;
+font-weight:600;
+font-size:15px;
+transition:.2s;
+}
+
+nav a:hover{
+color:#4b3fd6;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+background:#4b3fd6;
+color:#fff;
+text-align:center;
+padding:70px 20px;
+}
+
+.hero h1{
+font-size:34px;
+margin-bottom:12px;
+}
+
+.hero p{
+opacity:.95;
+margin-bottom:25px;
+font-size:16px;
+}
+
+.hero a{
+background:#f5b400;
+color:#000;
+padding:12px 26px;
+border-radius:6px;
+text-decoration:none;
+font-weight:bold;
+display:inline-block;
+transition:.2s;
+}
+
+.hero a:hover{
+background:#ffd23a;
+}
+
+/* ================= SECTION ================= */
+
+.section{
+max-width:1200px;
+margin:auto;
+padding:60px 20px;
+}
+
+.section h2{
+text-align:center;
+margin-bottom:35px;
+color:#0b2a4a;
+font-size:26px;
+}
+
+/* ================= GRID ================= */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:24px;
+}
+
+/* ================= CARD ================= */
+
+.card{
+background:#fff;
+border-radius:10px;
+box-shadow:0 4px 14px rgba(0,0,0,.08);
+overflow:hidden;
+transition:transform .2s ease;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.card img{
+width:100%;
+height:180px;
+object-fit:cover;
+}
+
+.card div{
+padding:18px;
+}
+
+.card h3{
+color:#4b3fd6;
+margin-bottom:8px;
+font-size:18px;
+}
+
+.card p{
+font-size:14px;
+color:#555;
+}
+
+/* ================= CTA ================= */
+
+.cta{
+background:#eef1ff;
+text-align:center;
+padding:50px 20px;
+}
+
+.cta h2{
+margin-bottom:20px;
+color:#0b2a4a;
+}
+
+.cta a{
+display:inline-block;
+margin:10px;
+padding:12px 24px;
+border-radius:6px;
+text-decoration:none;
+font-weight:bold;
+font-size:14px;
+transition:.2s;
+}
 
 .cta .contact{
 background:#4b3fd6;
 color:#fff;
+}
+
+.cta .contact:hover{
+background:#372cb4;
 }
 
 .cta .enquiry{
@@ -209,20 +389,28 @@ background:#28a745;
 color:#fff;
 }
 
-/* FOOTER */
+.cta .enquiry:hover{
+background:#1e7e34;
+}
+
+/* ================= FOOTER ================= */
 
 footer{
 background:#0b2a4a;
 color:#fff;
 text-align:center;
-padding:15px;
+padding:18px;
 font-size:14px;
 margin-top:40px;
 }
 
-/* MOBILE */
+/* ================= MOBILE ================= */
 
 @media(max-width:768px){
+
+.hero h1{
+font-size:26px;
+}
 
 .header-wrap{
 flex-direction:column;
@@ -237,12 +425,9 @@ nav a{
 margin:6px 10px 0 0;
 }
 
-.hero h1{
-font-size:26px;
 }
 
-}
-</style> 
+</style>
 </head>
 
 <body>
