@@ -15,7 +15,6 @@
 
 <link rel="canonical" href="https://pandrhospitality.in/air-tickets.html">
 
-<!-- GOOGLE ADS -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-836426031"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
@@ -106,10 +105,6 @@ text-decoration:none;
 .section{max-width:1100px;margin:auto;padding:60px 20px}
 
 .section h2{text-align:center;margin-bottom:20px;color:#0b2a4a}
-
-.text{max-width:900px;margin:auto;text-align:center}
-
-/* GRID */
 
 .grid{
 display:grid;
@@ -242,23 +237,6 @@ text-align:right;
 margin-bottom:8px;
 }
 
-.chatForm select,
-.chatForm input{
-width:100%;
-margin-top:6px;
-padding:7px;
-}
-
-.chatForm button{
-margin-top:8px;
-background:#4b3fd6;
-color:#fff;
-border:none;
-padding:8px;
-width:100%;
-cursor:pointer;
-}
-
 footer{
 text-align:center;
 padding:20px;
@@ -282,6 +260,7 @@ background:#fff;
 </div>
 
 <div class="nav">
+
 <div class="menu">☰ Services
 
 <div class="dropdown">
@@ -297,8 +276,8 @@ background:#fff;
 </div>
 
 <a href="contact-travel.html">Contact</a>
-</div>
 
+</div>
 </div>
 </header>
 
@@ -379,23 +358,16 @@ Tara – Travel Assistant
 <div class="botMsg">
 Hi 👋 I'm <b>Tara</b>.
 
-I can help with:
+I can help with travel enquiries and ticket bookings.
 
-• Holiday Packages  
-• Honeymoon Tours  
-• Pilgrimage Tours  
-• Cab Services  
-• Hotel Booking  
-• Flights & Bus Tickets  
-
-Type your destination or travel requirement.
+Please type your destination or travel requirement.
 </div>
 
 </div>
 
-<div id="chatInputArea">
-<input id="userInput" placeholder="Ask about your travel plan...">
-<button onclick="sendMessage()">Send</button>
+<div style="display:flex;border-top:1px solid #ddd">
+<input id="userInput" placeholder="Ask about your travel plan..." style="flex:1;padding:10px;border:none">
+<button onclick="sendMessage()" style="background:#4b3fd6;color:#fff;border:none;padding:10px 16px">Send</button>
 </div>
 
 </div>
@@ -403,26 +375,20 @@ Type your destination or travel requirement.
 <script>
 
 const botToken="8433607327:AAHxRf1OXGFrHje40D1EDnbLGJvTGrEk4zw";
-const chatId=""-1003896402410";
+const chatId="-1003896402410";
 
 function sendTelegram(message){
 
 fetch("https://api.telegram.org/bot"+botToken+"/sendMessage",{
-
 method:"POST",
-
 headers:{"Content-Type":"application/json"},
-
 body:JSON.stringify({
 chat_id:chatId,
 text:message
 })
-
 });
 
 }
-
-/* CHAT OPEN */
 
 document.getElementById("chatbotButton").onclick=function(){
 document.getElementById("chatbotBox").style.display="flex";
@@ -432,92 +398,9 @@ function closeChat(){
 document.getElementById("chatbotBox").style.display="none";
 }
 
-/* DATABASE */
-const destinations = [
-
-/* HIMACHAL */
-
-"shimla","manali","dalhousie","dharamshala","kasol","jibhi","spiti","kinnaur","kufri","chamba","khajjiar","tirthan valley","kaza","kalpa","narkanda","barot","bir billing",
-
-/* JAMMU KASHMIR */
-
-"kashmir","srinagar","gulmarg","pahalgam","sonmarg","leh","ladakh","katra","vaishno devi","patnitop","shiv khori","mansar","surinsar","bani","basohli","ranjit sagar dam","doda","bhaderwah",
-
-/* UTTARAKHAND */
-
-"nainital","mussoorie","rishikesh","haridwar","auli","corbett","kedarnath","badrinath","gangotri","yamunotri","char dham","chopta","kanatal","dhanaulti","pithoragarh","kausani",
-
-/* GOA */
-
-"goa","north goa","south goa","panaji","calangute","baga","anjuna","candolim","vagator","colva","palolem","morjim",
-
-/* KERALA */
-
-"kerala","munnar","alleppey","kovalam","kochi","varkala","thekkady","wayanad","kumarakom","thrissur",
-
-/* TAMIL NADU */
-
-"ooty","kodaikanal","coonoor","madurai","rameshwaram","tiruchirappalli","kanchipuram","tirupati",
-
-/* KARNATAKA */
-
-"coorg","mysore","hampi","chikmagalur","udupi","murudeshwar","gokarna","bangalore",
-
-/* ANDAMAN */
-
-"andaman","port blair","havelock","neil island","ross island","baratang",
-
-/* NORTH EAST */
-
-"sikkim","gangtok","lachung","lachen","darjeeling","meghalaya","shillong","cherrapunji","mawlynnong","tawang","arunachal","kaziranga",
-
-/* RAJASTHAN */
-
-"jaipur","udaipur","jodhpur","jaisalmer","bikaner","pushkar","ajmer","mount abu","ranthambore","chittorgarh","kumbhalgarh",
-
-/* GUJARAT */
-
-"dwarka","somnath","gir","kachchh","statue of unity","ahmedabad","vadodara",
-
-/* MAHARASHTRA */
-
-"mumbai","pune","lonavala","khandala","mahabaleshwar","alibaug","shirdi","nashik","aurangabad",
-
-/* MADHYA PRADESH */
-
-"khajuraho","sanchi","bhopal","mandu","orchha","pachmarhi","kanha",
-
-/* UTTAR PRADESH */
-
-"agra","varanasi","mathura","vrindavan","ayodhya","lucknow","prayagraj",
-
-/* WEST BENGAL */
-
-"kolkata","darjeeling","kalimpong","siliguri","sundarbans",
-
-/* ODISHA */
-
-"puri","konark","bhubaneswar","chilika",
-
-/* BIHAR */
-
-"bodhgaya","rajgir","nalanda","patna",
-
-/* HONEYMOON DESTINATIONS */
-
-"shimla honeymoon","manali honeymoon","kashmir honeymoon","goa honeymoon","kerala honeymoon","andaman honeymoon",
-
-/* PILGRIMAGE */
-
-"vaishno devi yatra","shiv khori yatra","char dham yatra","haridwar pilgrimage","rishikesh pilgrimage","tirupati balaji","somnath temple","dwarka temple"
-
-];
-
-/* CHAT FUNCTION */
-
 function sendMessage(){
 
-let input=document.getElementById("userInput").value.toLowerCase();
+let input=document.getElementById("userInput").value;
 
 if(input.trim()=="") return;
 
@@ -526,203 +409,13 @@ document.getElementById("chatMessages").innerHTML+=
 
 sendTelegram("Website Chat:\n"+input);
 
-let reply="";
-
-/* DESTINATION */
-
-let found=destinations.find(city => input.includes(city));
-
-if(found){
-
-reply=`<div class="botMsg">
-
-Great 👍 We can arrange a tour for <b>${found}</b>.
-
-Please fill quick travel enquiry form.
-
-<div class="chatForm">
-
-<select id="destination">
-
-<option>${found}</option>
-<option>Shimla</option>
-<option>Manali</option>
-<option>Shimla Manali</option>
-<option>Kashmir</option>
-<option>Goa</option>
-<option>Kerala</option>
-<option>Vaishno Devi</option>
-<option>Char Dham</option>
-
-</select>
-
-<select id="days">
-
-<option>3 Days</option>
-<option>4 Days</option>
-<option>5 Days</option>
-<option>6 Days</option>
-<option>7 Days</option>
-
-</select>
-
-<select id="travellers">
-
-<option>1 Traveller</option>
-<option>2 Travellers</option>
-<option>3 Travellers</option>
-<option>4 Travellers</option>
-<option>5+</option>
-
-</select>
-
-<input id="month" placeholder="Travel Month">
-
-<input id="phone" placeholder="Mobile Number">
-
-<input id="email" placeholder="Email">
-
-<button onclick="sendEnquiry()">Submit Enquiry</button>
-
-</div>
-
-</div>`;
-
-}
-
-/* CAB */
-
-else if(input.includes("cab") || input.includes("taxi")){
-
-reply=`<div class="botMsg">
-
-Cab services available:
-
-• Jammu Airport Pickup  
-• Jammu → Katra Taxi  
-• Himachal Tours  
-• Local Sightseeing  
-• Outstation Trips  
-
-Please type destination for cab enquiry.
-
-</div>`;
-
-}
-
-/* PILGRIMAGE */
-
-else if(input.includes("pilgrimage") || input.includes("temple")){
-
-reply=`<div class="botMsg">
-
-Pilgrimage tours:
-
-• Vaishno Devi  
-• Shiv Khori  
-• Nau Devi Darshan  
-• Haridwar & Rishikesh  
-• Char Dham Yatra  
-
-Please type pilgrimage destination.
-
-</div>`;
-
-}
-
-/* HONEYMOON */
-
-else if(input.includes("honeymoon")){
-
-reply=`<div class="botMsg">
-
-Popular honeymoon destinations:
-
-• Manali  
-• Shimla  
-• Kashmir  
-• Goa  
-• Kerala  
-
-</div>`;
-
-}
-
-/* FLIGHTS */
-
-else if(input.includes("flight") || input.includes("air")){
-
-reply=`<div class="botMsg">
-
-We provide domestic and international air ticket booking assistance.
-
-</div>`;
-
-}
-
-/* HOTEL */
-
-else if(input.includes("hotel")){
-
-reply=`<div class="botMsg">
-
-Hotel booking available across India including budget, deluxe and luxury stays.
-
-</div>`;
-
-}
-
-/* DEFAULT */
-
-else{
-
-reply=`<div class="botMsg">
-
-Please type your destination.
-
-Example:
-
-Shimla  
-Manali  
-Kashmir  
-Vaishno Devi  
-Goa  
-
-</div>`;
-
-}
-
-document.getElementById("chatMessages").innerHTML+=reply;
+document.getElementById("chatMessages").innerHTML+=
+`<div class="botMsg">Thank you for contacting us. Our travel team will assist you shortly.</div>`;
 
 document.getElementById("userInput").value="";
 
-}
-
-/* FORM SUBMIT */
-
-function sendEnquiry(){
-
-let destination=document.getElementById("destination").value;
-let days=document.getElementById("days").value;
-let travellers=document.getElementById("travellers").value;
-let month=document.getElementById("month").value;
-let phone=document.getElementById("phone").value;
-let email=document.getElementById("email").value;
-
-let message=
-
-"NEW WEBSITE LEAD\n\n"+
-"Destination: "+destination+"\n"+
-"Days: "+days+"\n"+
-"Travellers: "+travellers+"\n"+
-"Month: "+month+"\n"+
-"Phone: "+phone+"\n"+
-"Email: "+email;
-
-sendTelegram(message);
-
-document.getElementById("chatMessages").innerHTML+=
-`<div class="botMsg">Thank you 🙏 Our travel expert will contact you shortly.</div>`;
+document.getElementById("chatMessages").scrollTop=
+document.getElementById("chatMessages").scrollHeight;
 
 }
 
