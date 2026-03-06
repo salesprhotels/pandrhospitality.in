@@ -60,11 +60,21 @@ body{font-family:Arial,Helvetica,sans-serif;background:#f4f6fb;color:#222}
 /* HEADER */
 header{background:#fff;border-bottom:1px solid #ddd}
 .header-wrap{
-  max-width:1200px;margin:auto;padding:10px 16px;
+  max-width:1200px;margin:auto;padding:12px 16px;
   display:flex;justify-content:space-between;align-items:center
 }
-.logos img{height:40px;margin-right:8px}
-.nav a{text-decoration:none;font-weight:600;color:#222;margin-left:20px}
+.logos img{height:42px;margin-right:8px}
+.nav{display:flex;align-items:center;gap:20px;font-weight:600}
+.nav a{text-decoration:none;color:#222}
+.nav a:hover{color:#4b3fd6}
+.menu{position:relative;cursor:pointer}
+.dropdown{
+  display:none;position:absolute;top:28px;right:0;
+  background:#fff;border:1px solid #ccc;
+  box-shadow:0 4px 12px rgba(0,0,0,.1);z-index:99
+}
+.dropdown a{display:block;padding:10px 16px}
+.menu:hover .dropdown{display:block}20px}
 
 /* HERO */
 .hero{
