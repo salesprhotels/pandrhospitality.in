@@ -1,0 +1,20 @@
+<button onclick="enableAuto()">Holiday Mode ON</button>
+<button onclick="disableAuto()">Holiday Mode OFF</button>
+
+<script>
+
+function enableAuto(){
+
+localStorage.setItem("autoMode","on");
+alert("Holiday Mode Enabled");
+
+}
+
+function disableAuto(){
+
+localStorage.setItem("autoMode","off");
+alert("Holiday Mode Disabled");
+
+}
+
+</script>
