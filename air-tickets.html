@@ -837,6 +837,22 @@ data.service=service;
 
 saveLead(data);
 
+/* SEND TO GOOGLE SHEET */
+
+sendToGoogleSheet({
+name:data.name || "",
+mobile:data.phone || "",
+email:data.email || "",
+travel_type:service,
+destination:data.destination || data.pickup || "",
+journey_date:data.date || data.month || "",
+return_date:"",
+adults:data.adults || data.persons || "",
+children:data.children || "",
+budget:"",
+message:"Website Chatbot Lead"
+});
+
 /* TELEGRAM */
 
 let message="NEW WEBSITE LEAD\n\n";
@@ -854,11 +870,8 @@ sendTelegram(message);
 let whatsappMsg=encodeURIComponent(message);
 
 window.open(
-
 "https://wa.me/"+whatsappNumber+"?text="+whatsappMsg,
-
 "_blank"
-
 );
 
 /* BOT MESSAGE */
