@@ -505,7 +505,10 @@ document.getElementById("chatMessages").innerHTML+=
 document.getElementById("userInput").value="";
 
 }
-
+if(localStorage.getItem("autoMode")=="on"){
+autoMode=true;
+}
+  
 document.getElementById("userInput").addEventListener("keypress",function(e){
 if(e.key==="Enter") sendMessage();
 });
