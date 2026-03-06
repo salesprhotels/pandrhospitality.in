@@ -526,12 +526,11 @@ let reply="";
 
 let found=destinations.find(city => input.includes(city));
 
-
-if(found){
+if(found || input.length>2){
 
 reply=`<div class="botMsg">
 
-Great 👍 We can arrange travel for <b>${found}</b>.
+Great 👍 We can arrange travel for <b>${found || input}</b>.
 
 Please fill quick enquiry form.
 
@@ -539,7 +538,7 @@ Please fill quick enquiry form.
 
 <input id="name" placeholder="Your Name">
 
-<input id="destination" value="${found}" placeholder="Destination">
+<input id="destination" value="${found || input}" placeholder="Destination">
 
 <input id="days" placeholder="Number of Days">
 
@@ -558,7 +557,6 @@ Please fill quick enquiry form.
 </div>
 
 </div>`;
-
 }
 
 
