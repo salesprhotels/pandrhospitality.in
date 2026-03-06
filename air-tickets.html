@@ -182,34 +182,43 @@ text-decoration:none;
 position:fixed;
 bottom:20px;
 right:20px;
-width:70px;
-height:70px;
+width:65px;
+height:65px;
 border-radius:50%;
 background:#fff;
 box-shadow:0 4px 12px rgba(0,0,0,.3);
+cursor:pointer;
 display:flex;
 align-items:center;
 justify-content:center;
-cursor:pointer;
+z-index:9999;
+}
+
+#chatbotButton img{
+width:55px;
+height:55px;
+border-radius:50%;
 }
 
 #chatbotBox{
 position:fixed;
 bottom:100px;
 right:20px;
-width:330px;
+width:340px;
 background:#fff;
-border-radius:10px;
+border-radius:12px;
 box-shadow:0 6px 20px rgba(0,0,0,.3);
 display:none;
 flex-direction:column;
 overflow:hidden;
+z-index:9999;
 }
 
 #chatHeader{
 background:#4b3fd6;
 color:#fff;
 padding:12px;
+font-weight:bold;
 display:flex;
 justify-content:space-between;
 }
@@ -217,7 +226,7 @@ justify-content:space-between;
 #chatMessages{
 padding:15px;
 font-size:14px;
-max-height:260px;
+max-height:300px;
 overflow-y:auto;
 }
 
@@ -233,23 +242,20 @@ text-align:right;
 margin-bottom:8px;
 }
 
-#chatInputArea{
-display:flex;
-border-top:1px solid #ddd;
+.chatForm select,
+.chatForm input{
+width:100%;
+margin-top:6px;
+padding:7px;
 }
 
-#userInput{
-flex:1;
-padding:10px;
-border:none;
-outline:none;
-}
-
-#chatInputArea button{
+.chatForm button{
+margin-top:8px;
 background:#4b3fd6;
 color:#fff;
 border:none;
-padding:10px 14px;
+padding:8px;
+width:100%;
 cursor:pointer;
 }
 
@@ -357,7 +363,9 @@ Need assistance with flight booking?
 © 2026 Yes We Care Travels · Operated by P & R Hospitality Management Services
 </footer>
 
-<div id="chatbotButton">💬</div>
+<div id="chatbotButton">
+<img src="images/tara-assistant.png">
+</div>
 
 <div id="chatbotBox">
 
@@ -369,26 +377,33 @@ Tara – Travel Assistant
 <div id="chatMessages">
 
 <div class="botMsg">
-Hi 👋 I'm Tara – your travel assistant.  
-Ask me about tours, flights, hotels or taxis.
+Hi 👋 I'm <b>Tara</b>.
+
+I can help with:
+
+• Holiday Packages  
+• Honeymoon Tours  
+• Pilgrimage Tours  
+• Cab Services  
+• Hotel Booking  
+• Flights & Bus Tickets  
+
+Type your destination or travel requirement.
 </div>
 
 </div>
 
 <div id="chatInputArea">
-<input id="userInput" placeholder="Type your travel question...">
+<input id="userInput" placeholder="Ask about your travel plan...">
 <button onclick="sendMessage()">Send</button>
 </div>
 
 </div>
 
-
 <script>
 
-/* TELEGRAM */
-
 const botToken="8433607327:AAHxRf1OXGFrHje40D1EDnbLGJvTGrEk4zw";
-const chatId="-1003896402410";
+const chatId=""-1003896402410";
 
 function sendTelegram(message){
 
@@ -396,9 +411,7 @@ fetch("https://api.telegram.org/bot"+botToken+"/sendMessage",{
 
 method:"POST",
 
-headers:{
-"Content-Type":"application/json"
-},
+headers:{"Content-Type":"application/json"},
 
 body:JSON.stringify({
 chat_id:chatId,
@@ -409,8 +422,7 @@ text:message
 
 }
 
-
-/* CHATBOT OPEN */
+/* CHAT OPEN */
 
 document.getElementById("chatbotButton").onclick=function(){
 document.getElementById("chatbotBox").style.display="flex";
@@ -420,41 +432,18 @@ function closeChat(){
 document.getElementById("chatbotBox").style.display="none";
 }
 
+/* DATABASE */
 
-/* DESTINATIONS DATABASE */
+const destinations=[
 
-const destinations = [
-
-"shimla","manali","kasol","jibhi","dharamshala","dalhousie","spiti","kinnaur",
-
-"nainital","mussoorie","rishikesh","haridwar","auli","corbett",
-
-"vaishno devi","shiv khori","katra","patnitop","mansar","surinsar",
-
-"jwala ji","chintpurni","kangra devi","chamunda devi","naina devi",
-
-"kedarnath","badrinath","gangotri","yamunotri",
-
-"goa","kerala","munnar","alleppey","kovalam",
-
-"kashmir","srinagar","gulmarg","pahalgam","sonmarg",
-
-"andaman","port blair","havelock",
-
-"darjeeling","gangtok","sikkim","meghalaya","shillong",
-
-"ooty","kodaikanal","coorg","mysore",
-
-"jaipur","udaipur","jodhpur","jaisalmer",
-
-"agra","varanasi","khajuraho",
-
-"dwarka","somnath","tirupati","madurai","rameshwaram",
-
-"mumbai","delhi","bangalore","hyderabad","chennai","kolkata"
+"shimla","manali","shimla manali","dalhousie","dharamshala","spiti","kasol",
+"kashmir","srinagar","gulmarg","pahalgam",
+"goa","kerala","munnar","alleppey",
+"vaishno devi","shiv khori","katra",
+"haridwar","rishikesh",
+"char dham","kedarnath","badrinath","gangotri","yamunotri"
 
 ];
-
 
 /* CHAT FUNCTION */
 
@@ -464,136 +453,210 @@ let input=document.getElementById("userInput").value.toLowerCase();
 
 if(input.trim()=="") return;
 
-/* USER MESSAGE */
-
 document.getElementById("chatMessages").innerHTML+=
 `<div class="userMsg">${input}</div>`;
 
-
-/* TELEGRAM */
-
-sendTelegram("WEBSITE CHAT:\n"+input);
-
-
-/* BOT REPLY */
+sendTelegram("Website Chat:\n"+input);
 
 let reply="";
 
+/* DESTINATION */
 
-/* HOLIDAY DESTINATIONS */
-
-let found = destinations.find(city => input.includes(city));
+let found=destinations.find(city => input.includes(city));
 
 if(found){
 
-reply="Yes, we can arrange customised tours to "+found+". Please tell us:\n• Number of days\n• Number of travellers\n• Travel month";
+reply=`<div class="botMsg">
+
+Great 👍 We can arrange a tour for <b>${found}</b>.
+
+Please fill quick travel enquiry form.
+
+<div class="chatForm">
+
+<select id="destination">
+
+<option>${found}</option>
+<option>Shimla</option>
+<option>Manali</option>
+<option>Shimla Manali</option>
+<option>Kashmir</option>
+<option>Goa</option>
+<option>Kerala</option>
+<option>Vaishno Devi</option>
+<option>Char Dham</option>
+
+</select>
+
+<select id="days">
+
+<option>3 Days</option>
+<option>4 Days</option>
+<option>5 Days</option>
+<option>6 Days</option>
+<option>7 Days</option>
+
+</select>
+
+<select id="travellers">
+
+<option>1 Traveller</option>
+<option>2 Travellers</option>
+<option>3 Travellers</option>
+<option>4 Travellers</option>
+<option>5+</option>
+
+</select>
+
+<input id="month" placeholder="Travel Month">
+
+<input id="phone" placeholder="Mobile Number">
+
+<input id="email" placeholder="Email">
+
+<button onclick="sendEnquiry()">Submit Enquiry</button>
+
+</div>
+
+</div>`;
 
 }
 
-
-/* CAB SERVICES */
+/* CAB */
 
 else if(input.includes("cab") || input.includes("taxi")){
 
-reply="We provide cab services including:\n• Jammu Airport Pickup\n• Jammu to Katra Taxi\n• Local Sightseeing\n• Himachal Tours\n• Outstation Trips";
+reply=`<div class="botMsg">
+
+Cab services available:
+
+• Jammu Airport Pickup  
+• Jammu → Katra Taxi  
+• Himachal Tours  
+• Local Sightseeing  
+• Outstation Trips  
+
+Please type destination for cab enquiry.
+
+</div>`;
 
 }
-
 
 /* PILGRIMAGE */
 
-else if(input.includes("vaishno") || input.includes("shiv khori")){
+else if(input.includes("pilgrimage") || input.includes("temple")){
 
-reply="Pilgrimage tours available:\n• Vaishno Devi Yatra\n• Shiv Khori\n• Nau Devi Darshan\n• Jammu Temple Sightseeing";
+reply=`<div class="botMsg">
 
-}
+Pilgrimage tours:
 
-else if(input.includes("char dham")){
+• Vaishno Devi  
+• Shiv Khori  
+• Nau Devi Darshan  
+• Haridwar & Rishikesh  
+• Char Dham Yatra  
 
-reply="Char Dham Yatra includes:\n• Yamunotri\n• Gangotri\n• Kedarnath\n• Badrinath\nTypical duration: 10–12 days.";
+Please type pilgrimage destination.
 
-}
-
-else if(input.includes("haridwar") || input.includes("rishikesh")){
-
-reply="Haridwar & Rishikesh pilgrimage tours available including Ganga Aarti and temple visits.";
-
-}
-
-
-/* HOTEL */
-
-else if(input.includes("hotel")){
-
-reply="We provide hotel booking services across India including budget hotels, resorts and luxury stays.";
+</div>`;
 
 }
-
-
-/* BUS */
-
-else if(input.includes("bus") || input.includes("volvo")){
-
-reply="Volvo and bus ticket booking available for major routes across India.";
-
-}
-
-
-/* FLIGHT */
-
-else if(input.includes("flight") || input.includes("air ticket")){
-
-reply="We provide domestic and international air ticket booking assistance.";
-
-}
-
 
 /* HONEYMOON */
 
 else if(input.includes("honeymoon")){
 
-reply="Popular honeymoon destinations:\n• Manali\n• Shimla\n• Kashmir\n• Goa\n• Kerala";
+reply=`<div class="botMsg">
+
+Popular honeymoon destinations:
+
+• Manali  
+• Shimla  
+• Kashmir  
+• Goa  
+• Kerala  
+
+</div>`;
 
 }
 
+/* FLIGHTS */
+
+else if(input.includes("flight") || input.includes("air")){
+
+reply=`<div class="botMsg">
+
+We provide domestic and international air ticket booking assistance.
+
+</div>`;
+
+}
+
+/* HOTEL */
+
+else if(input.includes("hotel")){
+
+reply=`<div class="botMsg">
+
+Hotel booking available across India including budget, deluxe and luxury stays.
+
+</div>`;
+
+}
 
 /* DEFAULT */
 
 else{
 
-reply="Please tell us your destination or travel requirement. We provide holiday packages, cab services, pilgrimage tours, hotel booking and flight tickets.";
+reply=`<div class="botMsg">
+
+Please type your destination.
+
+Example:
+
+Shimla  
+Manali  
+Kashmir  
+Vaishno Devi  
+Goa  
+
+</div>`;
 
 }
 
-
-/* SHOW REPLY */
-
-document.getElementById("chatMessages").innerHTML+=
-`<div class="botMsg">${reply}</div>`;
-
-
-/* CLEAR INPUT */
+document.getElementById("chatMessages").innerHTML+=reply;
 
 document.getElementById("userInput").value="";
 
-
-/* SCROLL */
-
-document.getElementById("chatMessages").scrollTop =
-document.getElementById("chatMessages").scrollHeight;
-
 }
 
+/* FORM SUBMIT */
 
-/* ENTER KEY */
+function sendEnquiry(){
 
-document.getElementById("userInput").addEventListener("keypress",function(e){
+let destination=document.getElementById("destination").value;
+let days=document.getElementById("days").value;
+let travellers=document.getElementById("travellers").value;
+let month=document.getElementById("month").value;
+let phone=document.getElementById("phone").value;
+let email=document.getElementById("email").value;
 
-if(e.key==="Enter"){
-sendMessage();
+let message=
+
+"NEW WEBSITE LEAD\n\n"+
+"Destination: "+destination+"\n"+
+"Days: "+days+"\n"+
+"Travellers: "+travellers+"\n"+
+"Month: "+month+"\n"+
+"Phone: "+phone+"\n"+
+"Email: "+email;
+
+sendTelegram(message);
+
+document.getElementById("chatMessages").innerHTML+=
+`<div class="botMsg">Thank you 🙏 Our travel expert will contact you shortly.</div>`;
+
 }
-
-});
 
 </script>
 
