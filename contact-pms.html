@@ -130,5 +130,382 @@ header{background:#fff;border-bottom:1px solid #e5e7eb}
   © 2026 P & R Hospitality Management Services. All rights reserved.
 </footer>
 
+<div id="chatbotButton">
+<img src="images/tara-assistant.png">
+</div>
+
+<div id="chatbotBox">
+
+<div id="chatHeader">
+Tara – Travel Assistant
+<span onclick="closeChat()">✖</span>
+</div>
+
+<div id="chatMessages">
+
+<div class="botMsg">
+Hi 👋 I'm <b>Tara</b>.
+
+I can help with travel enquiries and ticket bookings.
+
+Please type your destination or travel requirement.
+</div>
+
+</div>
+
+<div style="display:flex;border-top:1px solid #ddd">
+<input id="userInput" placeholder="Ask about your travel plan..." style="flex:1;padding:10px;border:none">
+<button onclick="sendMessage()" style="background:#4b3fd6;color:#fff;border:none;padding:10px 16px">Send</button>
+</div>
+
+</div>
+
+<script>
+
+/* TELEGRAM SETTINGS */
+
+const botToken="8433607327:AAHxRf1OXGFrHje40D1EDnbLGJvTGrEk4zw";
+const chatId="-1003896402410";
+
+
+/* SEND TELEGRAM MESSAGE */
+
+function sendTelegram(message){
+
+fetch("https://api.telegram.org/bot"+botToken+"/sendMessage",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+chat_id:chatId,
+text:message
+})
+
+});
+
+}
+
+
+/* CHAT OPEN */
+
+document.getElementById("chatbotButton").onclick=function(){
+document.getElementById("chatbotBox").style.display="flex";
+}
+
+
+/* CLOSE CHAT */
+
+function closeChat(){
+document.getElementById("chatbotBox").style.display="none";
+}
+
+
+/* DESTINATION DATABASE */
+
+const destinations = [
+
+/* HIMACHAL */
+
+"shimla","manali","dalhousie","dharamshala","kasol","jibhi","spiti","kinnaur","kufri","chamba","khajjiar","tirthan valley","kaza","kalpa","narkanda","barot","bir billing",
+
+/* JAMMU KASHMIR */
+
+"kashmir","srinagar","gulmarg","pahalgam","sonmarg","leh","ladakh","katra","vaishno devi","patnitop","shiv khori","mansar","surinsar","bani","basohli","ranjit sagar dam","doda","bhaderwah",
+
+/* UTTARAKHAND */
+
+"nainital","mussoorie","rishikesh","haridwar","auli","corbett","kedarnath","badrinath","gangotri","yamunotri","char dham","chopta","kanatal","dhanaulti","pithoragarh","kausani",
+
+/* GOA */
+
+"goa","north goa","south goa","panaji","calangute","baga","anjuna","candolim","vagator","colva","palolem","morjim",
+
+/* KERALA */
+
+"kerala","munnar","alleppey","kovalam","kochi","varkala","thekkady","wayanad","kumarakom","thrissur",
+
+/* TAMIL NADU */
+
+"ooty","kodaikanal","coonoor","madurai","rameshwaram","tiruchirappalli","kanchipuram","tirupati",
+
+/* KARNATAKA */
+
+"coorg","mysore","hampi","chikmagalur","udupi","murudeshwar","gokarna","bangalore",
+
+/* ANDAMAN */
+
+"andaman","port blair","havelock","neil island","ross island","baratang",
+
+/* NORTH EAST */
+
+"sikkim","gangtok","lachung","lachen","darjeeling","meghalaya","shillong","cherrapunji","mawlynnong","tawang","arunachal","kaziranga",
+
+/* RAJASTHAN */
+
+"jaipur","udaipur","jodhpur","jaisalmer","bikaner","pushkar","ajmer","mount abu","ranthambore","chittorgarh","kumbhalgarh",
+
+/* GUJARAT */
+
+"dwarka","somnath","gir","kachchh","statue of unity","ahmedabad","vadodara",
+
+/* MAHARASHTRA */
+
+"mumbai","pune","lonavala","khandala","mahabaleshwar","alibaug","shirdi","nashik","aurangabad",
+
+/* MADHYA PRADESH */
+
+"khajuraho","sanchi","bhopal","mandu","orchha","pachmarhi","kanha",
+
+/* UTTAR PRADESH */
+
+"agra","varanasi","mathura","vrindavan","ayodhya","lucknow","prayagraj",
+
+/* WEST BENGAL */
+
+"kolkata","darjeeling","kalimpong","siliguri","sundarbans",
+
+/* ODISHA */
+
+"puri","konark","bhubaneswar","chilika",
+
+/* BIHAR */
+
+"bodhgaya","rajgir","nalanda","patna",
+
+/* HONEYMOON DESTINATIONS */
+
+"shimla honeymoon","manali honeymoon","kashmir honeymoon","goa honeymoon","kerala honeymoon","andaman honeymoon",
+
+/* PILGRIMAGE */
+
+"vaishno devi yatra","shiv khori yatra","char dham yatra","haridwar pilgrimage","rishikesh pilgrimage","tirupati balaji","somnath temple","dwarka temple"
+
+];
+
+
+/* MAIN CHAT FUNCTION */
+
+function sendMessage(){
+
+let input=document.getElementById("userInput").value.toLowerCase();
+
+if(input.trim()=="") return;
+
+
+/* USER MESSAGE */
+
+document.getElementById("chatMessages").innerHTML+=
+`<div class="userMsg">${input}</div>`;
+
+
+/* TELEGRAM NOTIFICATION */
+
+sendTelegram("Website Chat:\n"+input);
+
+
+let reply="";
+
+
+/* DESTINATION DETECT */
+
+let found=destinations.find(city => input.includes(city));
+
+if(found || input.length>2){
+
+reply=`<div class="botMsg">
+
+Great 👍 We can arrange travel for <b>${found || input}</b>.
+
+Please fill quick enquiry form.
+
+<div class="chatForm">
+
+<input id="name" placeholder="Your Name">
+
+<input id="destination" value="${found || input}" placeholder="Destination">
+
+<input id="days" placeholder="Number of Days">
+
+<input id="adults" placeholder="Adults">
+
+<input id="children" placeholder="Children">
+
+<input id="month" placeholder="Travel Month">
+
+<input id="phone" placeholder="Mobile Number">
+
+<input id="email" placeholder="Email">
+
+<button onclick="sendEnquiry(event)">Submit Enquiry</button>
+
+</div>
+
+</div>`;
+}
+
+
+/* CAB */
+
+else if(input.includes("cab") || input.includes("taxi")){
+
+reply=`<div class="botMsg">
+
+Cab services available:
+
+• Jammu Airport Pickup  
+• Jammu → Katra Taxi  
+• Local Sightseeing  
+• Himachal Tours  
+
+Please type destination.
+
+</div>`;
+
+}
+
+
+/* PILGRIMAGE */
+
+else if(input.includes("pilgrimage") || input.includes("temple")){
+
+reply=`<div class="botMsg">
+
+Pilgrimage tours available:
+
+• Vaishno Devi  
+• Shiv Khori  
+• Nau Devi Darshan  
+• Haridwar & Rishikesh  
+• Char Dham Yatra  
+
+Please type pilgrimage destination.
+
+</div>`;
+
+}
+
+
+/* HONEYMOON */
+
+else if(input.includes("honeymoon")){
+
+reply=`<div class="botMsg">
+
+Popular honeymoon destinations:
+
+• Manali  
+• Shimla  
+• Kashmir  
+• Goa  
+• Kerala  
+
+</div>`;
+
+}
+
+
+/* FLIGHTS */
+
+else if(input.includes("flight") || input.includes("air")){
+
+reply=`<div class="botMsg">
+
+We provide domestic and international air ticket booking assistance.
+
+</div>`;
+
+}
+
+
+/* HOTELS */
+
+else if(input.includes("hotel")){
+
+reply=`<div class="botMsg">
+
+Hotel booking available across India including budget, deluxe and luxury stays.
+
+</div>`;
+
+}
+
+
+/* DEFAULT */
+
+else{
+
+reply=`<div class="botMsg">
+
+Please type your destination.
+
+Example:
+
+Shimla  
+Manali  
+Kashmir  
+Goa  
+Vaishno Devi  
+
+</div>`;
+
+}
+
+
+/* SHOW BOT MESSAGE */
+
+document.getElementById("chatMessages").innerHTML+=reply;
+
+document.getElementById("userInput").value="";
+
+
+/* SCROLL */
+
+document.getElementById("chatMessages").scrollTop=
+document.getElementById("chatMessages").scrollHeight;
+
+}
+
+
+/* FORM SUBMIT */
+
+function sendEnquiry(event){
+
+let form = event.target.closest(".chatForm");
+
+let name=form.querySelector("#name").value;  
+let destination=form.querySelector("#destination").value;
+let days=form.querySelector("#days").value;
+let adults=form.querySelector("#adults").value;
+let children=form.querySelector("#children").value;
+let month=form.querySelector("#month").value;
+let phone=form.querySelector("#phone").value;
+let email=form.querySelector("#email").value;
+
+let message=
+
+"NEW WEBSITE LEAD\n\n"+
+"Name: "+name+"\n"+
+"Destination: "+destination+"\n"+
+"Days: "+days+"\n"+
+"Adults: "+adults+"\n"+
+"Children: "+children+"\n"+
+"Month: "+month+"\n"+
+"Phone: "+phone+"\n"+
+"Email: "+email;
+
+sendTelegram(message);
+
+document.getElementById("chatMessages").innerHTML+=
+`<div class="botMsg">
+Thank you 🙏 Our travel expert will contact you shortly.
+</div>`;
+
+}
+</script>  
+  
 </body>
 </html>
