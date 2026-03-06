@@ -28,13 +28,23 @@ gtag('config', 'AW-836426031');
 
 <style>
 
-body{font-family:Arial,Helvetica,sans-serif}
+/* ===============================
+GLOBAL
+=============================== */
 
-/* MENU */
+body{
+font-family:Arial,Helvetica,sans-serif;
+background:#f8fafc;
+color:#1e293b;
+}
+
+/* ===============================
+SERVICES MENU
+=============================== */
 
 .menu{
 position:relative;
-cursor:pointer
+cursor:pointer;
 }
 
 .dropdown{
@@ -42,30 +52,35 @@ display:none;
 position:absolute;
 top:100%;
 right:0;
-background:#fff;
-border:1px solid #ccc;
-box-shadow:0 6px 18px rgba(0,0,0,.15);
+background:#ffffff;
+border:1px solid #e2e8f0;
+border-radius:8px;
+box-shadow:0 8px 20px rgba(0,0,0,.12);
 min-width:240px;
 z-index:9999;
+overflow:hidden;
 }
 
 .dropdown a{
 display:block;
 padding:10px 14px;
-text-decoration:none;
-color:#222;
 font-size:14px;
+color:#1e293b;
+text-decoration:none;
+transition:background .2s;
 }
 
 .dropdown a:hover{
-background:#f4f6fb
+background:#f1f5f9;
 }
 
 .dropdown.show{
-display:block
+display:block;
 }
 
-/* WHATSAPP */
+/* ===============================
+WHATSAPP BUTTON
+=============================== */
 
 .whatsapp{
 position:fixed;
@@ -74,13 +89,16 @@ left:20px;
 background:#25D366;
 color:#fff;
 padding:12px 18px;
-border-radius:30px;
+border-radius:40px;
 text-decoration:none;
-font-weight:bold;
+font-weight:600;
+box-shadow:0 6px 16px rgba(0,0,0,.2);
 z-index:9997;
 }
 
-/* CHATBOT BUTTON */
+/* ===============================
+CHATBOT BUTTON
+=============================== */
 
 #chatbotButton{
 position:fixed;
@@ -89,14 +107,19 @@ right:20px;
 width:65px;
 height:65px;
 border-radius:50%;
-background:#fff;
-box-shadow:0 4px 12px rgba(0,0,0,.3);
+background:#ffffff;
+box-shadow:0 6px 16px rgba(0,0,0,.25);
 cursor:pointer;
 display:flex;
 align-items:center;
 justify-content:center;
 overflow:hidden;
 z-index:9998;
+transition:transform .2s;
+}
+
+#chatbotButton:hover{
+transform:scale(1.05);
 }
 
 #chatbotButton img{
@@ -106,66 +129,134 @@ object-fit:cover;
 border-radius:50%;
 }
 
-/* CHATBOT BOX */
+/* ===============================
+CHATBOX
+=============================== */
 
 #chatbotBox{
 position:fixed;
-bottom:100px;
+bottom:95px;
 right:20px;
 width:340px;
-background:#fff;
-border-radius:12px;
-box-shadow:0 6px 20px rgba(0,0,0,.3);
+max-height:480px;
+background:#ffffff;
+border-radius:14px;
+box-shadow:0 10px 25px rgba(0,0,0,.3);
 display:none;
 flex-direction:column;
 overflow:hidden;
 z-index:9999;
 }
 
-/* CHAT HEADER */
+/* ===============================
+CHAT HEADER
+=============================== */
 
 #chatHeader{
 background:#4b3fd6;
-color:#fff;
-padding:12px;
-font-weight:bold;
+color:#ffffff;
+padding:12px 14px;
+font-weight:600;
 display:flex;
 justify-content:space-between;
 align-items:center;
 }
 
-/* CHAT MESSAGES */
+/* ===============================
+CHAT MESSAGES
+=============================== */
 
 #chatMessages{
-padding:15px;
+padding:14px;
 font-size:14px;
-max-height:300px;
+max-height:280px;
 overflow-y:auto;
+background:#f8fafc;
 }
 
+/* BOT MESSAGE */
+
 .botMsg{
-background:#eef1ff;
-padding:8px;
-border-radius:6px;
+background:#eef2ff;
+padding:8px 10px;
+border-radius:8px;
 margin-bottom:8px;
+font-size:13px;
+line-height:1.4;
 }
+
+/* USER MESSAGE */
 
 .userMsg{
 text-align:right;
 margin-bottom:8px;
+font-size:13px;
 }
 
-/* FOOTER */
+/* ===============================
+CHAT INPUT AREA
+=============================== */
+
+#chatbotBox input{
+flex:1;
+padding:10px;
+border:none;
+border-top:1px solid #e2e8f0;
+outline:none;
+font-size:14px;
+}
+
+#chatbotBox button{
+background:#4b3fd6;
+color:#ffffff;
+border:none;
+padding:10px 14px;
+cursor:pointer;
+font-size:14px;
+}
+
+/* ===============================
+FORM INSIDE CHAT
+=============================== */
+
+.chatForm input,
+.chatForm select{
+width:100%;
+margin-top:6px;
+padding:7px;
+border:1px solid #cbd5e1;
+border-radius:6px;
+font-size:13px;
+}
+
+.chatForm button{
+margin-top:8px;
+background:#4b3fd6;
+color:#ffffff;
+border:none;
+padding:8px;
+border-radius:6px;
+width:100%;
+cursor:pointer;
+font-size:13px;
+}
+
+/* ===============================
+FOOTER
+=============================== */
 
 footer{
 text-align:center;
 padding:20px;
 font-size:14px;
-color:#666;
-background:#fff;
+color:#64748b;
+background:#ffffff;
+border-top:1px solid #e2e8f0;
 }
 
-/* MOBILE FIX */
+/* ===============================
+MOBILE RESPONSIVE
+=============================== */
 
 @media(max-width:480px){
 
