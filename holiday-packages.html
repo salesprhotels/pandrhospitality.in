@@ -78,9 +78,11 @@ background:#f1f5f9;
 display:block;
 }
 
-/* ===============================
-WHATSAPP BUTTON
-=============================== */
+/* ================================
+FLOATING BUTTONS LAYOUT
+================================ */
+
+/* WHATSAPP LEFT */
 
 .whatsapp{
 position:fixed;
@@ -89,16 +91,14 @@ left:20px;
 background:#25D366;
 color:#fff;
 padding:12px 18px;
-border-radius:40px;
+border-radius:30px;
 text-decoration:none;
-font-weight:600;
-box-shadow:0 6px 16px rgba(0,0,0,.2);
+font-weight:bold;
+box-shadow:0 4px 12px rgba(0,0,0,.25);
 z-index:9997;
 }
 
-/* ===============================
-CHATBOT BUTTON
-=============================== */
+/* CHATBOT BUTTON RIGHT */
 
 #chatbotButton{
 position:fixed;
@@ -107,19 +107,14 @@ right:20px;
 width:65px;
 height:65px;
 border-radius:50%;
-background:#ffffff;
-box-shadow:0 6px 16px rgba(0,0,0,.25);
+background:#fff;
+box-shadow:0 4px 12px rgba(0,0,0,.3);
 cursor:pointer;
 display:flex;
 align-items:center;
 justify-content:center;
 overflow:hidden;
 z-index:9998;
-transition:transform .2s;
-}
-
-#chatbotButton:hover{
-transform:scale(1.05);
 }
 
 #chatbotButton img{
@@ -129,116 +124,75 @@ object-fit:cover;
 border-radius:50%;
 }
 
-/* ===============================
-CHATBOX
-=============================== */
+/* CHATBOX */
 
 #chatbotBox{
 position:fixed;
 bottom:95px;
 right:20px;
 width:340px;
-max-height:480px;
-background:#ffffff;
-border-radius:14px;
-box-shadow:0 10px 25px rgba(0,0,0,.3);
+background:#fff;
+border-radius:12px;
+box-shadow:0 6px 20px rgba(0,0,0,.3);
 display:none;
 flex-direction:column;
 overflow:hidden;
 z-index:9999;
 }
 
-/* ===============================
-CHAT HEADER
-=============================== */
+/* CHAT HEADER */
 
 #chatHeader{
 background:#4b3fd6;
-color:#ffffff;
-padding:12px 14px;
-font-weight:600;
+color:#fff;
+padding:12px;
+font-weight:bold;
 display:flex;
 justify-content:space-between;
 align-items:center;
 }
 
-/* ===============================
-CHAT MESSAGES
-=============================== */
+/* CHAT MESSAGES */
 
 #chatMessages{
-padding:14px;
+padding:15px;
 font-size:14px;
-max-height:280px;
+max-height:300px;
 overflow-y:auto;
-background:#f8fafc;
 }
-
-/* BOT MESSAGE */
 
 .botMsg{
-background:#eef2ff;
-padding:8px 10px;
-border-radius:8px;
+background:#eef1ff;
+padding:8px;
+border-radius:6px;
 margin-bottom:8px;
-font-size:13px;
-line-height:1.4;
 }
-
-/* USER MESSAGE */
 
 .userMsg{
 text-align:right;
 margin-bottom:8px;
-font-size:13px;
 }
 
-/* ===============================
-CHAT INPUT AREA
-=============================== */
+/* MOBILE FIX */
 
-#chatbotBox input{
-flex:1;
-padding:10px;
-border:none;
-border-top:1px solid #e2e8f0;
-outline:none;
-font-size:14px;
+@media(max-width:480px){
+
+.whatsapp{
+left:15px;
+bottom:20px;
 }
 
-#chatbotBox button{
-background:#4b3fd6;
-color:#ffffff;
-border:none;
-padding:10px 14px;
-cursor:pointer;
-font-size:14px;
+#chatbotButton{
+right:15px;
+bottom:20px;
 }
 
-/* ===============================
-FORM INSIDE CHAT
-=============================== */
-
-.chatForm input,
-.chatForm select{
-width:100%;
-margin-top:6px;
-padding:7px;
-border:1px solid #cbd5e1;
-border-radius:6px;
-font-size:13px;
+#chatbotBox{
+width:92%;
+right:4%;
+bottom:90px;
 }
 
-.chatForm button{
-margin-top:8px;
-background:#4b3fd6;
-color:#ffffff;
-border:none;
-padding:8px;
-border-radius:6px;
-width:100%;
-cursor:pointer;
-font-size:13px;
 }
 
 /* ===============================
@@ -252,26 +206,6 @@ font-size:14px;
 color:#64748b;
 background:#ffffff;
 border-top:1px solid #e2e8f0;
-}
-
-/* ===============================
-MOBILE RESPONSIVE
-=============================== */
-
-@media(max-width:480px){
-
-#chatbotBox{
-width:92%;
-right:4%;
-}
-
-.whatsapp{
-bottom:90px;
-left:15px;
-}
-
-#chatbotButton{
-right:15px;
 }
 
 }
