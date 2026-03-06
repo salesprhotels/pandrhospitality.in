@@ -44,8 +44,8 @@
 }
 </script>
 
-<style> 
- 
+<style>
+
 *{
 margin:0;
 padding:0;
@@ -53,7 +53,7 @@ box-sizing:border-box;
 }
 
 body{
-font-family:Arial,Helvetica,sans-serif;
+font-family:Arial, Helvetica, sans-serif;
 background:#f4f6fb;
 color:#222;
 line-height:1.6;
@@ -76,17 +76,14 @@ justify-content:space-between;
 flex-wrap:wrap;
 }
 
-/* LOGOS */
-
 .logos{
 display:flex;
 align-items:center;
-gap:10px;
+gap:12px;
 }
 
 .logos img{
-height:40px;
-width:auto;
+height:42px;
 }
 
 /* NAV */
@@ -97,11 +94,15 @@ flex-wrap:wrap;
 }
 
 nav a{
-margin:0 10px;
+margin:0 12px;
 text-decoration:none;
 color:#0b2a4a;
 font-weight:600;
 font-size:15px;
+}
+
+nav a:hover{
+color:#4b3fd6;
 }
 
 /* HERO */
@@ -109,10 +110,10 @@ font-size:15px;
 .hero{
 background:
 linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
-url('images/hotel-bg.jpg') center/cover no-repeat;
+url('images/hotel-bg.png') center/cover no-repeat;
 color:#fff;
 text-align:center;
-padding:90px 20px;
+padding:80px 20px;
 }
 
 .hero h1{
@@ -173,7 +174,23 @@ color:#4b3fd6;
 margin-bottom:8px;
 }
 
-/* WHATSAPP BUTTON */
+/* CTA */
+
+.cta{
+background:#eef1ff;
+text-align:center;
+padding:40px 20px;
+}
+
+.cta a{
+background:#4b3fd6;
+color:#fff;
+padding:12px 26px;
+border-radius:6px;
+text-decoration:none;
+}
+
+/* WHATSAPP */
 
 .whatsapp{
 position:fixed;
@@ -184,7 +201,6 @@ color:#fff;
 padding:12px 18px;
 border-radius:30px;
 text-decoration:none;
-font-size:14px;
 }
 
 /* FOOTER */
@@ -215,12 +231,9 @@ margin-top:10px;
 font-size:26px;
 }
 
-.hero{
-padding:70px 20px;
 }
 
-}
-<style>
+</style>
 
 /* ================= HEADER ================= */
 
