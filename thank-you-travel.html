@@ -1,32 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Thank You | Travel Enquiry</title>
 
-<!-- Google Ads Global Tag -->
+<!-- Google Ads Global Site Tag -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-836426031"></script>
-
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
-
 gtag('js', new Date());
 gtag('config', 'AW-836426031');
 </script>
 
-<!-- Google Ads Conversion Tracking -->
-<script>
-gtag('event','conversion',{
-'send_to':'AW-836426031/k33SCMJLsfoBEKy64D'
-});
-</script>
-
 <style>
-
 body{
 font-family:Arial,Helvetica,sans-serif;
 background:#f4f6fb;
@@ -37,11 +25,11 @@ justify-content:center;
 height:100vh;
 }
 
-.container{
+.box{
 background:#fff;
 padding:40px;
-border-radius:12px;
-box-shadow:0 8px 25px rgba(0,0,0,0.1);
+border-radius:10px;
+box-shadow:0 10px 25px rgba(0,0,0,.1);
 text-align:center;
 max-width:450px;
 }
@@ -53,50 +41,46 @@ margin-bottom:10px;
 
 p{
 color:#555;
-margin-bottom:20px;
 }
 
 .btn{
 display:inline-block;
-padding:12px 22px;
-margin:8px;
-border-radius:8px;
-text-decoration:none;
-color:#fff;
-font-weight:bold;
-}
-
-.home{
+margin-top:15px;
+padding:12px 20px;
 background:#2563eb;
-}
-
-.contact{
-background:#f59e0b;
-}
-
-.btn:hover{
-opacity:.9;
+color:#fff;
+text-decoration:none;
+border-radius:6px;
 }
 
 </style>
-
 </head>
 
 <body>
 
-<div class="container">
+<div class="box">
 
 <h1>Thank You 🙏</h1>
 
 <p>Your travel enquiry has been received.</p>
 <p>Our travel expert will contact you shortly.</p>
 
-<a href="/travel.html" class="btn home">Book Another Enquiry</a>
-
-<a href="/contact-travel.html" class="btn contact">Contact Us</a>
+<a href="/travel.html" class="btn">Book Another Enquiry</a>
 
 </div>
 
-</body>
+<!-- Google Ads Conversion Tracking -->
+<script>
 
+window.addEventListener("load", function(){
+
+gtag('event','conversion',{
+'send_to':'AW-836426031/k33SCMJLsfoBEKy64D'
+});
+
+});
+
+</script>
+
+</body>
 </html>
