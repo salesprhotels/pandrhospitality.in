@@ -9,104 +9,100 @@
 *{box-sizing:border-box;margin:0;padding:0}
 
 body{
-  font-family:Arial, Helvetica, sans-serif;
-  background:linear-gradient(135deg,#4b3fd6,#6c63ff);
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
+font-family:Arial, Helvetica, sans-serif;
+background:linear-gradient(135deg,#4b3fd6,#6c63ff);
+min-height:100vh;
+display:flex;
+flex-direction:column;
 }
 
-/* HEADER */
 .header{
-  background:#ffffff;
-  padding:12px 0;
-  text-align:center;
-  box-shadow:0 2px 8px rgba(0,0,0,0.08);
+background:#ffffff;
+padding:12px 0;
+text-align:center;
+box-shadow:0 2px 8px rgba(0,0,0,0.08);
 }
 
 .header img{
-  max-height:55px;
-  width:auto;
+max-height:55px;
 }
 
-/* FORM */
 .container{
-  max-width:720px;
-  width:95%;
-  margin:40px auto;
-  background:#ffffff;
-  padding:35px;
-  border-radius:12px;
-  box-shadow:0 15px 40px rgba(0,0,0,0.2);
+max-width:720px;
+width:95%;
+margin:40px auto;
+background:#ffffff;
+padding:35px;
+border-radius:12px;
+box-shadow:0 15px 40px rgba(0,0,0,0.2);
 }
 
 h1{
-  text-align:center;
-  margin-bottom:25px;
-  color:#4b3fd6;
+text-align:center;
+margin-bottom:25px;
+color:#4b3fd6;
 }
 
 label{
-  font-weight:600;
-  display:block;
-  margin-top:15px;
+font-weight:600;
+display:block;
+margin-top:15px;
 }
 
 input,select,textarea{
-  width:100%;
-  padding:12px;
-  margin-top:6px;
-  border:1px solid #ddd;
-  border-radius:6px;
-  font-size:15px;
+width:100%;
+padding:12px;
+margin-top:6px;
+border:1px solid #ddd;
+border-radius:6px;
+font-size:15px;
 }
 
 textarea{min-height:100px}
 
 .row{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:15px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px;
 }
 
 button{
-  width:100%;
-  margin-top:25px;
-  padding:14px;
-  background:#f5b400;
-  border:none;
-  border-radius:8px;
-  font-weight:bold;
-  cursor:pointer;
+width:100%;
+margin-top:25px;
+padding:14px;
+background:#f5b400;
+border:none;
+border-radius:8px;
+font-weight:bold;
+cursor:pointer;
 }
 
 button:hover{
-  background:#e0a800;
+background:#e0a800;
 }
 
 button:disabled{
-  opacity:.6;
-  cursor:not-allowed;
+opacity:.6;
+cursor:not-allowed;
 }
 
 #formMessage{
-  text-align:center;
-  margin-top:15px;
-  font-size:14px;
-  color:#666;
+text-align:center;
+margin-top:15px;
+font-size:14px;
+color:#666;
 }
 
-/* FOOTER */
 footer{
-  margin-top:auto;
-  text-align:center;
-  color:#ffffff;
-  padding:25px 10px;
-  font-size:14px;
+margin-top:auto;
+text-align:center;
+color:#ffffff;
+padding:25px 10px;
+font-size:14px;
 }
 
 @media(max-width:600px){
-  .row{grid-template-columns:1fr}
+.row{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -114,9 +110,9 @@ footer{
 <body>
 
 <div class="header">
-  <a href="/travel.html">
-    <img src="/images/logo-yes-we-care-travels-1.png" alt="Yes We Care Travels">
-  </a>
+<a href="/travel.html">
+<img src="/images/logo-yes-we-care-travels-1.png">
+</a>
 </div>
 
 <div class="container">
@@ -183,7 +179,10 @@ footer{
 <textarea name="message" required></textarea>
 
 <button type="submit" id="submitBtn">Submit Travel Enquiry</button>
-<div id="formMessage">Please wait a few seconds after clicking submit.</div>
+
+<div id="formMessage">
+Please wait a few seconds after clicking submit.
+</div>
 
 </form>
 </div>
@@ -195,7 +194,7 @@ Operated & Managed by PMS Hospitality Management Services
 
 <script>
 
-/* DATE LOCKING */
+/* DATE LOCK */
 const fromDate=document.getElementById("fromDate");
 const toDate=document.getElementById("toDate");
 const today=new Date().toISOString().split("T")[0];
@@ -204,63 +203,125 @@ fromDate.min=today;
 toDate.min=today;
 
 fromDate.addEventListener("change",function(){
-  if(this.value){
-    let selected=new Date(this.value);
-    selected.setDate(selected.getDate()+1);
-    let nextDay=selected.toISOString().split("T")[0];
-    toDate.min=nextDay;
-    toDate.value=nextDay;
-  }
+if(this.value){
+let selected=new Date(this.value);
+selected.setDate(selected.getDate()+1);
+let nextDay=selected.toISOString().split("T")[0];
+toDate.min=nextDay;
+toDate.value=nextDay;
+}
 });
 
+/* TELEGRAM FUNCTION */
+
+function sendTelegram(data){
+
+const botToken="8433607327:AAHxRf1OXGFrHje40D1EDnbLGJvTGrEk4zw";
+const chatId="-1003896402410";
+
+let text=
+"🚨 NEW TRAVEL LEAD\n\n"+
+"Name: "+data.get("name")+"\n"+
+"Phone: "+data.get("mobile")+"\n"+
+"Email: "+data.get("email")+"\n"+
+"Destination: "+data.get("destination")+"\n"+
+"Journey Date: "+data.get("journey_date")+"\n"+
+"Budget: "+data.get("budget")+"\n\n"+
+"Message:\n"+data.get("message");
+
+fetch("https://api.telegram.org/bot"+botToken+"/sendMessage",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({
+chat_id:chatId,
+text:text
+})
+});
+
+}
+
 /* FORM SUBMIT */
+
 document.getElementById("travelForm").addEventListener("submit",function(e){
 
-  e.preventDefault();
+e.preventDefault();
 
-  const btn=document.getElementById("submitBtn");
-  const msg=document.getElementById("formMessage");
-  const form=this;
+const btn=document.getElementById("submitBtn");
+const msg=document.getElementById("formMessage");
+const form=this;
 
-  btn.disabled=true;
-  btn.innerText="Submitting...";
-  msg.style.color="#4b3fd6";
-  msg.innerText="Submitting your enquiry. Please wait...";
+btn.disabled=true;
+btn.innerText="Submitting...";
+msg.style.color="#4b3fd6";
+msg.innerText="Submitting your enquiry. Please wait...";
 
-  const formData=new FormData(form);
+const formData=new FormData(form);
 
-  fetch("https://script.google.com/macros/s/AKfycbyhR3yVhsrMQWldIg3Qvz0dt8Boawv6bjWFqaitAfyXmHAyXxQ7EdgJ6e1ODys2KmVaWA/exec",{
-    method:"POST",
-    body:formData
-  })
-  .then(res=>res.json())
-  .then(data=>{
-      if(data.status==="success"){
-          msg.style.color="green";
-          msg.innerText="Enquiry submitted successfully! Redirecting...";
-          setTimeout(()=>{
-              window.location.href="/thank-you-travel.html";
-          },1500);
-      }
-      else if(data.status==="duplicate"){
-          msg.style.color="red";
-          msg.innerText="You already submitted recently. Please wait 2 minutes.";
-          btn.disabled=false;
-          btn.innerText="Submit Travel Enquiry";
-      }
-      else{
-          msg.style.color="red";
-          msg.innerText="Submission failed. Please try again.";
-          btn.disabled=false;
-          btn.innerText="Submit Travel Enquiry";
-      }
-  })
-  .catch(()=>{
-      msg.style.color="red";
-      msg.innerText="Connection error. Please try again.";
-      btn.disabled=false;
-      btn.innerText="Submit Travel Enquiry";
-  });
+/* MESSAGE VALIDATION */
+
+const message=formData.get("message").trim();
+
+if(message.length<10){
+msg.style.color="red";
+msg.innerText="Message must contain at least 10 characters.";
+btn.disabled=false;
+btn.innerText="Submit Travel Enquiry";
+return;
+}
+
+fetch("https://script.google.com/macros/s/AKfycbyhR3yVhsrMQWldIg3Qvz0dt8Boawv6bjWFqaitAfyXmHAyXxQ7EdgJ6e1ODys2KmVaWA/exec",{
+method:"POST",
+body:formData
+})
+
+.then(res=>res.json())
+
+.then(data=>{
+
+if(data.status==="success"){
+
+sendTelegram(formData);
+
+msg.style.color="green";
+msg.innerText="Enquiry submitted successfully! Redirecting...";
+
+setTimeout(()=>{
+window.location.href="/thank-you-travel.html";
+},1500);
+
+}
+
+else if(data.status==="duplicate"){
+
+msg.style.color="red";
+msg.innerText="You already submitted recently. Please wait 2 minutes.";
+
+btn.disabled=false;
+btn.innerText="Submit Travel Enquiry";
+
+}
+
+else{
+
+msg.style.color="red";
+msg.innerText="Submission failed. Please try again.";
+
+btn.disabled=false;
+btn.innerText="Submit Travel Enquiry";
+
+}
+
+})
+
+.catch(()=>{
+
+msg.style.color="red";
+msg.innerText="Connection error. Please try again.";
+
+btn.disabled=false;
+btn.innerText="Submit Travel Enquiry";
+
+});
 
 });
 </script>
