@@ -285,6 +285,62 @@ font-size:26px;
 
 }
 
+nav{
+display:flex;
+align-items:center;
+gap:25px;
+}
+
+.menu{
+position:relative;
+cursor:pointer;
+font-weight:600;
+}
+
+.menu-btn{
+font-size:16px;
+color:#0b2a4a;
+}
+
+/* dropdown */
+
+.dropdown{
+display:none;
+position:absolute;
+top:35px;
+left:0;
+background:#fff;
+box-shadow:0 6px 20px rgba(0,0,0,.15);
+border-radius:6px;
+min-width:220px;
+overflow:hidden;
+z-index:999;
+}
+
+.dropdown a{
+display:block;
+padding:12px 15px;
+color:#0b2a4a;
+text-decoration:none;
+border-bottom:1px solid #eee;
+}
+
+.dropdown a:hover{
+background:#f4f6fb;
+}
+
+/* show dropdown */
+
+.menu:hover .dropdown{
+display:block;
+}
+
+.contact-link{
+font-weight:600;
+color:#0b2a4a;
+text-decoration:none;
+}
+
 </style>
 
 </head>
@@ -292,6 +348,7 @@ font-size:26px;
 <body>
 
 <header>
+
 <div class="header-wrap">
 
 <div class="logos">
@@ -308,7 +365,7 @@ font-size:26px;
 
 <div class="menu">
 
-<a href="#">☰ Services</a>
+<span class="menu-btn">☰ Services</span>
 
 <div class="dropdown">
 
@@ -328,11 +385,12 @@ font-size:26px;
 
 </div>
 
-<a href="contact-travel.html">Contact</a>
+<a class="contact-link" href="contact-travel.html">Contact</a>
 
 </nav>
 
 </div>
+
 </header>
 
 <section class="hero">
