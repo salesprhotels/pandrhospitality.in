@@ -250,7 +250,76 @@ section.appendChild(box);
 
 }
 
+<script>
 
+const API_URL = "https://script.google.com/macros/s/AKfycbwEwzJxbVD0qeWrmarSmkjU-HgtUTpEfWGxzHDC99dn3PkmnkJi_aA_c05my9ICVXAJ/exec";
+
+
+// FORM SUBMIT
+document.querySelector("button[type='submit']").addEventListener("click", sendData);
+
+function sendData(e){
+
+e.preventDefault();
+
+let data = {
+
+guestName: document.getElementById("guestName").value,
+mobile: document.getElementById("mobile").value,
+email: document.getElementById("email").value,
+
+adults: document.getElementById("adults").value,
+children: document.getElementById("children").value,
+
+tourStart: document.getElementById("tourStart").value,
+tourEnd: document.getElementById("tourEnd").value,
+
+city1: document.querySelector(".hotel-box input").value,
+
+vehicleType: document.querySelectorAll("input")[10].value,
+vehicleModel: document.querySelectorAll("input")[11].value,
+vehicleNumber: document.querySelectorAll("input")[12].value,
+driverName: document.querySelectorAll("input")[13].value,
+driverMobile: document.querySelectorAll("input")[14].value,
+
+totalCost: document.querySelectorAll("input")[15].value,
+advancePaid: document.querySelectorAll("input")[16].value,
+
+paymentMode: document.querySelector("select").value,
+
+bookingRef: "WEB-"+Date.now(),
+notes: ""
+
+};
+
+
+fetch(API_URL,{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify(data)
+})
+.then(res => res.text())
+.then(response => {
+
+alert("Voucher Saved Successfully");
+
+console.log(response);
+
+})
+.catch(err => {
+
+alert("Error sending data");
+
+console.log(err);
+
+});
+
+}
+
+</script>
+  
 </script>
 
 </body>
