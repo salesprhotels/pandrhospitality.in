@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Travel Voucher</title>
+
+<style>
+
+body{
+font-family: Arial;
+background:#f4f4f4;
+padding:20px;
+}
+
+.voucher{
+background:white;
+padding:30px;
+max-width:900px;
+margin:auto;
+border-radius:8px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+border-bottom:2px solid #eee;
+padding-bottom:10px;
+}
+
+.logo{
+height:60px;
+}
+
+.title{
+font-size:22px;
+font-weight:bold;
+}
+
+.section{
+margin-top:20px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:10px;
+}
+
+table th, table td{
+border:1px solid #ddd;
+padding:8px;
+text-align:left;
+}
+
+.printBtn{
+margin-top:20px;
+padding:10px 20px;
+background:#4CAF50;
+color:white;
+border:none;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="voucher">
+
+<div class="header">
+
+<img src="https://raw.githubusercontent.com/salesprhotels/pandrhospitality/main/pandrhospitality.in/images/logo-yes-we-care-travels-1.png" class="logo">
+
+<div>
+<div class="title">Yes We Care Travels</div>
+<div>Operated by P & R Hospitality Management Services</div>
+</div>
+
+</div>
+
+<div class="section">
+<h3>Guest Details</h3>
+
+<p><b>Name:</b> <span id="guestName"></span></p>
+<p><b>Mobile:</b> <span id="mobile"></span></p>
+<p><b>Email:</b> <span id="email"></span></p>
+
+</div>
+
+<div class="section">
+
+<h3>Tour Dates</h3>
+
+<p><b>Start:</b> <span id="tourStart"></span></p>
+<p><b>End:</b> <span id="tourEnd"></span></p>
+<p><b>Total Nights:</b> <span id="nights"></span></p>
+
+</div>
+
+<div class="section">
+
+<h3>Hotel Details</h3>
+
+<table>
+
+<thead>
+<tr>
+<th>City</th>
+<th>Hotel</th>
+<th>Check-in</th>
+<th>Check-out</th>
+<th>Nights</th>
+<th>Room</th>
+<th>Meal</th>
+</tr>
+</thead>
+
+<tbody id="hotelTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+<div class="section">
+
+<h3>Vehicle Details</h3>
+
+<p><b>Vehicle:</b> <span id="vehicle"></span></p>
+<p><b>Driver:</b> <span id="driver"></span></p>
+
+</div>
+
+<div class="section">
+
+<h3>Payment</h3>
+
+<p><b>Total Package:</b> ₹<span id="total"></span></p>
+<p><b>Advance:</b> ₹<span id="advance"></span></p>
+<p><b>Balance:</b> ₹<span id="balance"></span></p>
+
+</div>
+
+<button class="printBtn" onclick="window.print()">Print / Download PDF</button>
+
+</div>
+
+<script>
+
+const data = JSON.parse(localStorage.getItem("voucherData"));
+
+document.getElementById("guestName").innerText=data.name;
+document.getElementById("mobile").innerText=data.mobile;
+document.getElementById("email").innerText=data.email;
+
+document.getElementById("tourStart").innerText=data.start;
+document.getElementById("tourEnd").innerText=data.end;
+document.getElementById("nights").innerText=data.nights;
+
+document.getElementById("vehicle").innerText=data.vehicle;
+document.getElementById("driver").innerText=data.driver;
+
+document.getElementById("total").innerText=data.total;
+document.getElementById("advance").innerText=data.advance;
+document.getElementById("balance").innerText=data.balance;
+
+</script>
+
+</body>
+</html>
