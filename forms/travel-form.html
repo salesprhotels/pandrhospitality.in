@@ -212,6 +212,7 @@ toDate.value=nextDay;
 }
 });
 
+
 /* TELEGRAM FUNCTION */
 
 function sendTelegram(data){
@@ -231,7 +232,9 @@ let text=
 
 fetch("https://api.telegram.org/bot"+botToken+"/sendMessage",{
 method:"POST",
-headers:{"Content-Type":"application/json"},
+headers:{
+"Content-Type":"application/json"
+},
 body:JSON.stringify({
 chat_id:chatId,
 text:text
@@ -239,6 +242,7 @@ text:text
 });
 
 }
+
 
 /* FORM SUBMIT */
 
@@ -252,31 +256,47 @@ const form=this;
 
 btn.disabled=true;
 btn.innerText="Submitting...";
+
 msg.style.color="#4b3fd6";
-msg.innerText="Submitting your enquiry. Please wait...";
+msg.innerText="Submitting your enquiry...";
 
 const formData=new FormData(form);
+
 
 /* MESSAGE VALIDATION */
 
 const message=formData.get("message").trim();
 
 if(message.length<10){
+
 msg.style.color="red";
 msg.innerText="Message must contain at least 10 characters.";
+
 btn.disabled=false;
 btn.innerText="Submit Travel Enquiry";
+
 return;
+
 }
+
+
+/* SEND TO APPS SCRIPT */
 
 fetch("https://script.google.com/macros/s/AKfycbyhR3yVhsrMQWldIg3Qvz0dt8Boawv6bjWFqaitAfyXmHAyXxQ7EdgJ6e1ODys2KmVaWA/exec",{
 method:"POST",
-body:formData
+body:new URLSearchParams(formData)
 })
 
-.then(res=>res.json())
+.then(response=>response.text())
+.then(result=>{
 
-.then(data=>{
+let data;
+
+try{
+data=JSON.parse(result);
+}catch(e){
+throw new Error("Invalid response from server");
+}
 
 if(data.status==="success"){
 
@@ -303,27 +323,26 @@ btn.innerText="Submit Travel Enquiry";
 
 else{
 
+throw new Error("Submission failed");
+
+}
+
+})
+
+.catch(error=>{
+
 msg.style.color="red";
 msg.innerText="Submission failed. Please try again.";
 
 btn.disabled=false;
 btn.innerText="Submit Travel Enquiry";
 
-}
-
-})
-
-.catch(()=>{
-
-msg.style.color="red";
-msg.innerText="Connection error. Please try again.";
-
-btn.disabled=false;
-btn.innerText="Submit Travel Enquiry";
+console.error(error);
 
 });
 
 });
+
 </script>
 
 </body>
