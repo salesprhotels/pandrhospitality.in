@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 
 <title>Voucher Generator</title>
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
@@ -30,9 +28,13 @@ text-align:center;
 input,select{
 width:100%;
 padding:10px;
-margin:8px 0;
+margin:6px 0;
 border:1px solid #ccc;
 border-radius:5px;
+}
+
+label{
+font-weight:bold;
 }
 
 button{
@@ -42,6 +44,7 @@ padding:12px;
 border:none;
 border-radius:6px;
 cursor:pointer;
+margin-top:10px;
 }
 
 button:hover{
@@ -53,6 +56,10 @@ border:1px solid #ddd;
 padding:15px;
 margin-top:10px;
 border-radius:6px;
+}
+
+.required{
+color:red;
 }
 
 </style>
@@ -72,24 +79,32 @@ Operated by P & R Hospitality Management Services
 
 <h3>Guest Details</h3>
 
-<input type="text" placeholder="Guest Name" id="guestName">
+<label>Guest Name <span class="required">*</span></label>
+<input type="text" id="guestName" required>
 
-<input type="text" placeholder="Mobile Number" id="mobile">
+<label>Mobile Number <span class="required">*</span></label>
+<input type="text" id="mobile" required>
 
-<input type="email" placeholder="Email" id="email">
+<label>Email</label>
+<input type="email" id="email">
 
-<input type="number" placeholder="Adults" id="adults">
+<label>Adults <span class="required">*</span></label>
+<input type="number" id="adults" min="1" required>
 
-<input type="number" placeholder="Children" id="children">
+<label>Children</label>
+<input type="number" id="children" min="0">
 
 
 <h3>Tour Dates</h3>
 
-<label>Tour Start</label>
-<input type="date" id="tourStart">
+<label>Tour Start <span class="required">*</span></label>
+<input type="date" id="tourStart" required>
 
-<label>Tour End</label>
-<input type="date" id="tourEnd">
+<label>Tour End <span class="required">*</span></label>
+<input type="date" id="tourEnd" required>
+
+<label>Total Nights</label>
+<input type="number" id="totalNights" readonly>
 
 
 <h3>Hotel Details</h3>
@@ -98,21 +113,26 @@ Operated by P & R Hospitality Management Services
 
 <div class="hotel-box">
 
-<input type="text" placeholder="City">
+<label>City <span class="required">*</span></label>
+<input type="text">
 
-<input type="text" placeholder="Hotel Name">
+<label>Hotel Name</label>
+<input type="text">
 
 <label>Check-in</label>
-<input type="date">
+<input type="date" class="checkin">
 
 <label>Check-out</label>
-<input type="date">
+<input type="date" class="checkout">
 
-<input type="number" placeholder="Nights">
+<label>Nights</label>
+<input type="number" class="nights" readonly>
 
-<input type="text" placeholder="Room Type">
+<label>Room Type</label>
+<input type="text">
 
-<input type="text" placeholder="Meal Plan">
+<label>Meal Plan</label>
+<input type="text">
 
 </div>
 
@@ -149,7 +169,7 @@ Operated by P & R Hospitality Management Services
 
 </select>
 
-<br><br>
+<br>
 
 <button>Generate Voucher</button>
 
@@ -157,6 +177,41 @@ Operated by P & R Hospitality Management Services
 
 
 <script>
+
+
+// TOUR DATE LOGIC
+
+const startDate = document.getElementById("tourStart");
+const endDate = document.getElementById("tourEnd");
+const nightsField = document.getElementById("totalNights");
+
+startDate.addEventListener("change",function(){
+
+endDate.min = startDate.value;
+
+calculateNights();
+
+});
+
+endDate.addEventListener("change",calculateNights);
+
+function calculateNights(){
+
+if(startDate.value && endDate.value){
+
+let start = new Date(startDate.value);
+let end = new Date(endDate.value);
+
+let diff = (end - start) / (1000*60*60*24);
+
+nightsField.value = diff;
+
+}
+
+}
+
+
+// ADD HOTEL
 
 function addHotel(){
 
@@ -168,21 +223,26 @@ box.classList.add("hotel-box");
 
 box.innerHTML = `
 
-<input type="text" placeholder="City">
+<label>City</label>
+<input type="text">
 
-<input type="text" placeholder="Hotel Name">
+<label>Hotel Name</label>
+<input type="text">
 
 <label>Check-in</label>
-<input type="date">
+<input type="date" class="checkin">
 
 <label>Check-out</label>
-<input type="date">
+<input type="date" class="checkout">
 
-<input type="number" placeholder="Nights">
+<label>Nights</label>
+<input type="number" class="nights" readonly>
 
-<input type="text" placeholder="Room Type">
+<label>Room Type</label>
+<input type="text">
 
-<input type="text" placeholder="Meal Plan">
+<label>Meal Plan</label>
+<input type="text">
 
 `;
 
@@ -190,8 +250,8 @@ section.appendChild(box);
 
 }
 
+
 </script>
 
 </body>
-
 </html>
