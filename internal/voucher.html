@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Voucher Generator</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f4f4;
+padding:20px;
+}
+
+.container{
+background:white;
+padding:25px;
+border-radius:8px;
+max-width:900px;
+margin:auto;
+}
+
+h2{
+text-align:center;
+}
+
+input,select{
+width:100%;
+padding:10px;
+margin:8px 0;
+border:1px solid #ccc;
+border-radius:5px;
+}
+
+button{
+background:#4b3df0;
+color:white;
+padding:12px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+button:hover{
+background:#3727d6;
+}
+
+.hotel-box{
+border:1px solid #ddd;
+padding:15px;
+margin-top:10px;
+border-radius:6px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Yes We Care Travels – Voucher Generator</h2>
+
+<p style="text-align:center">
+Operated by P & R Hospitality Management Services
+</p>
+
+
+<h3>Guest Details</h3>
+
+<input type="text" placeholder="Guest Name" id="guestName">
+
+<input type="text" placeholder="Mobile Number" id="mobile">
+
+<input type="email" placeholder="Email" id="email">
+
+<input type="number" placeholder="Adults" id="adults">
+
+<input type="number" placeholder="Children" id="children">
+
+
+<h3>Tour Dates</h3>
+
+<label>Tour Start</label>
+<input type="date" id="tourStart">
+
+<label>Tour End</label>
+<input type="date" id="tourEnd">
+
+
+<h3>Hotel Details</h3>
+
+<div id="hotelSection">
+
+<div class="hotel-box">
+
+<input type="text" placeholder="City">
+
+<input type="text" placeholder="Hotel Name">
+
+<label>Check-in</label>
+<input type="date">
+
+<label>Check-out</label>
+<input type="date">
+
+<input type="number" placeholder="Nights">
+
+<input type="text" placeholder="Room Type">
+
+<input type="text" placeholder="Meal Plan">
+
+</div>
+
+</div>
+
+
+<button onclick="addHotel()">Add Another Hotel</button>
+
+
+<h3>Vehicle Details</h3>
+
+<input type="text" placeholder="Vehicle Type">
+
+<input type="text" placeholder="Vehicle Model">
+
+<input type="text" placeholder="Vehicle Number">
+
+<input type="text" placeholder="Driver Name">
+
+<input type="text" placeholder="Driver Mobile">
+
+
+<h3>Payment</h3>
+
+<input type="number" placeholder="Total Package Cost">
+
+<input type="number" placeholder="Advance Paid">
+
+<select>
+
+<option>Cash</option>
+<option>UPI</option>
+<option>Bank Transfer</option>
+
+</select>
+
+<br><br>
+
+<button>Generate Voucher</button>
+
+</div>
+
+
+<script>
+
+function addHotel(){
+
+const section = document.getElementById("hotelSection");
+
+const box = document.createElement("div");
+
+box.classList.add("hotel-box");
+
+box.innerHTML = `
+
+<input type="text" placeholder="City">
+
+<input type="text" placeholder="Hotel Name">
+
+<label>Check-in</label>
+<input type="date">
+
+<label>Check-out</label>
+<input type="date">
+
+<input type="number" placeholder="Nights">
+
+<input type="text" placeholder="Room Type">
+
+<input type="text" placeholder="Meal Plan">
+
+`;
+
+section.appendChild(box);
+
+}
+
+</script>
+
+</body>
+
+</html>
