@@ -211,7 +211,30 @@ fromDate.addEventListener("change",function(){
     toDate.min=nextDay;  
     toDate.value=nextDay;  
   }  
-});  
+});
+
+/* TELEGRAM ALERT */
+
+function sendTelegram(formData){
+
+const botToken="8433607327:AAHxRf1OXGFrHje40D1EDnbLGJvTGrEk4zw";
+const chatId="-1003896402410";
+
+let text =
+"🚨 NEW TRAVEL LEAD\n\n"+
+"Name: "+formData.get("name")+"\n"+
+"Phone: "+formData.get("mobile")+"\n"+
+"Email: "+formData.get("email")+"\n"+
+"Destination: "+formData.get("destination")+"\n"+
+"Journey Date: "+formData.get("journey_date")+"\n"+
+"Budget: "+formData.get("budget")+"\n\n"+
+"Message:\n"+formData.get("message");
+
+fetch(
+"https://api.telegram.org/bot"+botToken+"/sendMessage?chat_id="+chatId+"&text="+encodeURIComponent(text)
+);
+
+}  
   
 /* FORM SUBMIT */  
 document.getElementById("travelForm").addEventListener("submit",function(e){  
@@ -235,13 +258,18 @@ document.getElementById("travelForm").addEventListener("submit",function(e){
   })  
   .then(res=>res.json())  
   .then(data=>{  
-      if(data.status==="success"){  
-          msg.style.color="green";  
-          msg.innerText="Enquiry submitted successfully! Redirecting...";  
-          setTimeout(()=>{  
-              window.location.href="/thank-you-travel.html";  
-          },1500);  
-      }  
+      if(data.status==="success"){
+
+sendTelegram(formData);
+
+msg.style.color="green";
+msg.innerText="Enquiry submitted successfully! Redirecting...";
+
+setTimeout(()=>{
+window.location.href="/thank-you-travel.html";
+},1500);
+
+}
       else if(data.status==="duplicate"){  
           msg.style.color="red";  
           msg.innerText="You already submitted recently. Please wait 2 minutes.";  
