@@ -213,7 +213,7 @@ toDate.value=nextDay;
 });
 
 
-/* TELEGRAM FUNCTION */
+/* TELEGRAM MESSAGE */
 
 function sendTelegram(data){
 
@@ -262,7 +262,6 @@ msg.innerText="Submitting your enquiry...";
 
 const formData=new FormData(form);
 
-
 /* MESSAGE VALIDATION */
 
 const message=formData.get("message").trim();
@@ -283,19 +282,22 @@ return;
 /* SEND TO APPS SCRIPT */
 
 fetch("https://script.google.com/macros/s/AKfycbyhR3yVhsrMQWldIg3Qvz0dt8Boawv6bjWFqaitAfyXmHAyXxQ7EdgJ6e1ODys2KmVaWA/exec",{
+
 method:"POST",
 body:new URLSearchParams(formData)
+
 })
 
-.then(response=>response.text())
-.then(result=>{
+.then(res=>res.text())
+
+.then(text=>{
 
 let data;
 
 try{
-data=JSON.parse(result);
-}catch(e){
-throw new Error("Invalid response from server");
+data=JSON.parse(text);
+}catch(err){
+throw new Error("Invalid server response");
 }
 
 if(data.status==="success"){
@@ -329,7 +331,7 @@ throw new Error("Submission failed");
 
 })
 
-.catch(error=>{
+.catch(err=>{
 
 msg.style.color="red";
 msg.innerText="Submission failed. Please try again.";
@@ -337,7 +339,7 @@ msg.innerText="Submission failed. Please try again.";
 btn.disabled=false;
 btn.innerText="Submit Travel Enquiry";
 
-console.error(error);
+console.error(err);
 
 });
 
