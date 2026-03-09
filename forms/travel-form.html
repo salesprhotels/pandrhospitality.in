@@ -1,351 +1,269 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Travel Enquiry | Yes We Care Travels</title>
-
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-
-body{
-font-family:Arial, Helvetica, sans-serif;
-background:linear-gradient(135deg,#4b3fd6,#6c63ff);
-min-height:100vh;
-display:flex;
-flex-direction:column;
-}
-
-.header{
-background:#ffffff;
-padding:12px 0;
-text-align:center;
-box-shadow:0 2px 8px rgba(0,0,0,0.08);
-}
-
-.header img{
-max-height:55px;
-}
-
-.container{
-max-width:720px;
-width:95%;
-margin:40px auto;
-background:#ffffff;
-padding:35px;
-border-radius:12px;
-box-shadow:0 15px 40px rgba(0,0,0,0.2);
-}
-
-h1{
-text-align:center;
-margin-bottom:25px;
-color:#4b3fd6;
-}
-
-label{
-font-weight:600;
-display:block;
-margin-top:15px;
-}
-
-input,select,textarea{
-width:100%;
-padding:12px;
-margin-top:6px;
-border:1px solid #ddd;
-border-radius:6px;
-font-size:15px;
-}
-
-textarea{min-height:100px}
-
-.row{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:15px;
-}
-
-button{
-width:100%;
-margin-top:25px;
-padding:14px;
-background:#f5b400;
-border:none;
-border-radius:8px;
-font-weight:bold;
-cursor:pointer;
-}
-
-button:hover{
-background:#e0a800;
-}
-
-button:disabled{
-opacity:.6;
-cursor:not-allowed;
-}
-
-#formMessage{
-text-align:center;
-margin-top:15px;
-font-size:14px;
-color:#666;
-}
-
-footer{
-margin-top:auto;
-text-align:center;
-color:#ffffff;
-padding:25px 10px;
-font-size:14px;
-}
-
-@media(max-width:600px){
-.row{grid-template-columns:1fr}
-}
-</style>
-</head>
-
-<body>
-
-<div class="header">
-<a href="/travel.html">
-<img src="/images/logo-yes-we-care-travels-1.png">
-</a>
-</div>
-
-<div class="container">
-<h1>Travel Enquiry Form</h1>
-
-<form id="travelForm">
-
-<label>Full Name *</label>
-<input type="text" name="name" required>
-
-<label>Mobile *</label>
-<input type="tel" name="mobile" pattern="[0-9]{10}" required>
-
-<label>Email *</label>
-<input type="email" name="email" required>
-
-<label>Travel Type *</label>
-<select name="travel_type" required>
-<option value="">Select Travel Type</option>
-<option>Domestic Tour</option>
-<option>Pilgrimage Tour</option>
-<option>Hotel Booking</option>
-<option>Taxi / Transport</option>
-<option>Group / Corporate Travel</option>
-<option>Air Tickets</option>
-<option>Bus Tickets</option>
-</select>
-
-<label>Destination *</label>
-<input type="text" name="destination" required>
-
-<div class="row">
-<div>
-<label>From Date *</label>
-<input type="date" id="fromDate" name="journey_date" required>
-</div>
-<div>
-<label>To Date *</label>
-<input type="date" id="toDate" name="return_date" required>
-</div>
-</div>
-
-<div class="row">
-<div>
-<label>Adults *</label>
-<input type="number" min="1" value="1" name="adults" required>
-</div>
-<div>
-<label>Children</label>
-<input type="number" min="0" value="0" name="children">
-</div>
-</div>
-
-<label>Budget *</label>
-<select name="budget" required>
-<option value="">Select Budget</option>
-<option>Below ₹20,000</option>
-<option>₹20,000 – ₹50,000</option>
-<option>₹50,000 – ₹1,00,000</option>
-<option>Above ₹1,00,000</option>
-</select>
-
-<label>Message *</label>
-<textarea name="message" required></textarea>
-
-<button type="submit" id="submitBtn">Submit Travel Enquiry</button>
-
-<div id="formMessage">
-Please wait a few seconds after clicking submit.
-</div>
-
-</form>
-</div>
-
-<footer>
-© 2026 Yes We Care Travels<br>
-Operated & Managed by PMS Hospitality Management Services
-</footer>
-
-<script>
-
-/* DATE LOCK */
-const fromDate=document.getElementById("fromDate");
-const toDate=document.getElementById("toDate");
-const today=new Date().toISOString().split("T")[0];
-
-fromDate.min=today;
-toDate.min=today;
-
-fromDate.addEventListener("change",function(){
-if(this.value){
-let selected=new Date(this.value);
-selected.setDate(selected.getDate()+1);
-let nextDay=selected.toISOString().split("T")[0];
-toDate.min=nextDay;
-toDate.value=nextDay;
-}
-});
-
-
-/* TELEGRAM MESSAGE */
-
-function sendTelegram(data){
-
-const botToken="8433607327:AAHxRf1OXGFrHje40D1EDnbLGJvTGrEk4zw";
-const chatId="-1003896402410";
-
-let text=
-"🚨 NEW TRAVEL LEAD\n\n"+
-"Name: "+data.get("name")+"\n"+
-"Phone: "+data.get("mobile")+"\n"+
-"Email: "+data.get("email")+"\n"+
-"Destination: "+data.get("destination")+"\n"+
-"Journey Date: "+data.get("journey_date")+"\n"+
-"Budget: "+data.get("budget")+"\n\n"+
-"Message:\n"+data.get("message");
-
-fetch("https://api.telegram.org/bot"+botToken+"/sendMessage",{
-method:"POST",
-headers:{
-"Content-Type":"application/json"
-},
-body:JSON.stringify({
-chat_id:chatId,
-text:text
-})
-});
-
-}
-
-
-/* FORM SUBMIT */
-
-document.getElementById("travelForm").addEventListener("submit",function(e){
-
-e.preventDefault();
-
-const btn=document.getElementById("submitBtn");
-const msg=document.getElementById("formMessage");
-const form=this;
-
-btn.disabled=true;
-btn.innerText="Submitting...";
-
-msg.style.color="#4b3fd6";
-msg.innerText="Submitting your enquiry...";
-
-const formData=new FormData(form);
-
-/* MESSAGE VALIDATION */
-
-const message=formData.get("message").trim();
-
-if(message.length<10){
-
-msg.style.color="red";
-msg.innerText="Message must contain at least 10 characters.";
-
-btn.disabled=false;
-btn.innerText="Submit Travel Enquiry";
-
-return;
-
-}
-
-
-/* SEND TO APPS SCRIPT */
-
-fetch("https://script.google.com/macros/s/AKfycbyhR3yVhsrMQWldIg3Qvz0dt8Boawv6bjWFqaitAfyXmHAyXxQ7EdgJ6e1ODys2KmVaWA/exec",{
-
-method:"POST",
-body:new URLSearchParams(formData)
-
-})
-
-.then(res=>res.text())
-
-.then(text=>{
-
-let data;
-
-try{
-data=JSON.parse(text);
-}catch(err){
-throw new Error("Invalid server response");
-}
-
-if(data.status==="success"){
-
-sendTelegram(formData);
-
-msg.style.color="green";
-msg.innerText="Enquiry submitted successfully! Redirecting...";
-
-setTimeout(()=>{
-window.location.href="/thank-you-travel.html";
-},1500);
-
-}
-
-else if(data.status==="duplicate"){
-
-msg.style.color="red";
-msg.innerText="You already submitted recently. Please wait 2 minutes.";
-
-btn.disabled=false;
-btn.innerText="Submit Travel Enquiry";
-
-}
-
-else{
-
-throw new Error("Submission failed");
-
-}
-
-})
-
-.catch(err=>{
-
-msg.style.color="red";
-msg.innerText="Submission failed. Please try again.";
-
-btn.disabled=false;
-btn.innerText="Submit Travel Enquiry";
-
-console.error(err);
-
-});
-
-});
-
-</script>
-
-</body>
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+<title>Travel Enquiry | Yes We Care Travels</title>  
+  
+<style>  
+*{box-sizing:border-box;margin:0;padding:0}  
+  
+body{  
+  font-family:Arial, Helvetica, sans-serif;  
+  background:linear-gradient(135deg,#4b3fd6,#6c63ff);  
+  min-height:100vh;  
+  display:flex;  
+  flex-direction:column;  
+}  
+  
+/* HEADER */  
+.header{  
+  background:#ffffff;  
+  padding:12px 0;  
+  text-align:center;  
+  box-shadow:0 2px 8px rgba(0,0,0,0.08);  
+}  
+  
+.header img{  
+  max-height:55px;  
+  width:auto;  
+}  
+  
+/* FORM */  
+.container{  
+  max-width:720px;  
+  width:95%;  
+  margin:40px auto;  
+  background:#ffffff;  
+  padding:35px;  
+  border-radius:12px;  
+  box-shadow:0 15px 40px rgba(0,0,0,0.2);  
+}  
+  
+h1{  
+  text-align:center;  
+  margin-bottom:25px;  
+  color:#4b3fd6;  
+}  
+  
+label{  
+  font-weight:600;  
+  display:block;  
+  margin-top:15px;  
+}  
+  
+input,select,textarea{  
+  width:100%;  
+  padding:12px;  
+  margin-top:6px;  
+  border:1px solid #ddd;  
+  border-radius:6px;  
+  font-size:15px;  
+}  
+  
+textarea{min-height:100px}  
+  
+.row{  
+  display:grid;  
+  grid-template-columns:1fr 1fr;  
+  gap:15px;  
+}  
+  
+button{  
+  width:100%;  
+  margin-top:25px;  
+  padding:14px;  
+  background:#f5b400;  
+  border:none;  
+  border-radius:8px;  
+  font-weight:bold;  
+  cursor:pointer;  
+}  
+  
+button:hover{  
+  background:#e0a800;  
+}  
+  
+button:disabled{  
+  opacity:.6;  
+  cursor:not-allowed;  
+}  
+  
+#formMessage{  
+  text-align:center;  
+  margin-top:15px;  
+  font-size:14px;  
+  color:#666;  
+}  
+  
+/* FOOTER */  
+footer{  
+  margin-top:auto;  
+  text-align:center;  
+  color:#ffffff;  
+  padding:25px 10px;  
+  font-size:14px;  
+}  
+  
+@media(max-width:600px){  
+  .row{grid-template-columns:1fr}  
+}  
+</style>  
+</head>  
+  
+<body>  
+  
+<div class="header">  
+  <a href="/travel.html">  
+    <img src="/images/logo-yes-we-care-travels-1.png" alt="Yes We Care Travels">  
+  </a>  
+</div>  
+  
+<div class="container">  
+<h1>Travel Enquiry Form</h1>  
+  
+<form id="travelForm">  
+  
+<label>Full Name *</label>  
+<input type="text" name="name" required>  
+  
+<label>Mobile *</label>  
+<input type="tel" name="mobile" pattern="[0-9]{10}" required>  
+  
+<label>Email *</label>  
+<input type="email" name="email" required>  
+  
+<label>Travel Type *</label>  
+<select name="travel_type" required>  
+<option value="">Select Travel Type</option>  
+<option>Domestic Tour</option>  
+<option>Pilgrimage Tour</option>  
+<option>Hotel Booking</option>  
+<option>Taxi / Transport</option>  
+<option>Group / Corporate Travel</option>  
+<option>Air Tickets</option>  
+<option>Bus Tickets</option>  
+</select>  
+  
+<label>Destination *</label>  
+<input type="text" name="destination" required>  
+  
+<div class="row">  
+<div>  
+<label>From Date *</label>  
+<input type="date" id="fromDate" name="journey_date" required>  
+</div>  
+<div>  
+<label>To Date *</label>  
+<input type="date" id="toDate" name="return_date" required>  
+</div>  
+</div>  
+  
+<div class="row">  
+<div>  
+<label>Adults *</label>  
+<input type="number" min="1" value="1" name="adults" required>  
+</div>  
+<div>  
+<label>Children</label>  
+<input type="number" min="0" value="0" name="children">  
+</div>  
+</div>  
+  
+<label>Budget *</label>  
+<select name="budget" required>  
+<option value="">Select Budget</option>  
+<option>Below ₹20,000</option>  
+<option>₹20,000 – ₹50,000</option>  
+<option>₹50,000 – ₹1,00,000</option>  
+<option>Above ₹1,00,000</option>  
+</select>  
+  
+<label>Message *</label>  
+<textarea name="message" required></textarea>  
+  
+<button type="submit" id="submitBtn">Submit Travel Enquiry</button>  
+<div id="formMessage">Please wait a few seconds after clicking submit.</div>  
+  
+</form>  
+</div>  
+  
+<footer>  
+© 2026 Yes We Care Travels<br>  
+Operated & Managed by PMS Hospitality Management Services  
+</footer>  
+  
+<script>  
+  
+/* DATE LOCKING */  
+const fromDate=document.getElementById("fromDate");  
+const toDate=document.getElementById("toDate");  
+const today=new Date().toISOString().split("T")[0];  
+  
+fromDate.min=today;  
+toDate.min=today;  
+  
+fromDate.addEventListener("change",function(){  
+  if(this.value){  
+    let selected=new Date(this.value);  
+    selected.setDate(selected.getDate()+1);  
+    let nextDay=selected.toISOString().split("T")[0];  
+    toDate.min=nextDay;  
+    toDate.value=nextDay;  
+  }  
+});  
+  
+/* FORM SUBMIT */  
+document.getElementById("travelForm").addEventListener("submit",function(e){  
+  
+  e.preventDefault();  
+  
+  const btn=document.getElementById("submitBtn");  
+  const msg=document.getElementById("formMessage");  
+  const form=this;  
+  
+  btn.disabled=true;  
+  btn.innerText="Submitting...";  
+  msg.style.color="#4b3fd6";  
+  msg.innerText="Submitting your enquiry. Please wait...";  
+  
+  const formData=new FormData(form);  
+  
+  fetch("https://script.google.com/macros/s/AKfycbyhR3yVhsrMQWldIg3Qvz0dt8Boawv6bjWFqaitAfyXmHAyXxQ7EdgJ6e1ODys2KmVaWA/exec",{  
+    method:"POST",  
+    body:formData  
+  })  
+  .then(res=>res.json())  
+  .then(data=>{  
+      if(data.status==="success"){  
+          msg.style.color="green";  
+          msg.innerText="Enquiry submitted successfully! Redirecting...";  
+          setTimeout(()=>{  
+              window.location.href="/thank-you-travel.html";  
+          },1500);  
+      }  
+      else if(data.status==="duplicate"){  
+          msg.style.color="red";  
+          msg.innerText="You already submitted recently. Please wait 2 minutes.";  
+          btn.disabled=false;  
+          btn.innerText="Submit Travel Enquiry";  
+      }  
+      else{  
+          msg.style.color="red";  
+          msg.innerText="Submission failed. Please try again.";  
+          btn.disabled=false;  
+          btn.innerText="Submit Travel Enquiry";  
+      }  
+  })  
+  .catch(()=>{  
+      msg.style.color="red";  
+      msg.innerText="Connection error. Please try again.";  
+      btn.disabled=false;  
+      btn.innerText="Submit Travel Enquiry";  
+  });  
+  
+});  
+</script>  
+  
+</body>  
 </html>
