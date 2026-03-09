@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Travel Voucher</title>
@@ -7,39 +7,67 @@
 <style>
 
 body{
-font-family: Arial;
-background:#f4f4f4;
-padding:20px;
+font-family: Arial, Helvetica, sans-serif;
+background:#eef2f7;
+margin:0;
+padding:40px;
 }
 
 .voucher{
-background:white;
-padding:30px;
 max-width:900px;
 margin:auto;
-border-radius:8px;
-box-shadow:0 0 10px rgba(0,0,0,0.1);
+background:white;
+border-radius:10px;
+box-shadow:0 10px 30px rgba(0,0,0,0.15);
+overflow:hidden;
 }
 
 .header{
 display:flex;
 justify-content:space-between;
 align-items:center;
-border-bottom:2px solid #eee;
-padding-bottom:10px;
+background:#0a2a66;
+color:white;
+padding:20px;
 }
 
-.logo{
+.header img{
 height:60px;
 }
 
-.title{
+.company{
+text-align:right;
+}
+
+.company h2{
+margin:0;
 font-size:22px;
-font-weight:bold;
+}
+
+.company p{
+margin:3px 0;
+font-size:13px;
 }
 
 .section{
-margin-top:20px;
+padding:20px 30px;
+border-bottom:1px solid #eee;
+}
+
+.section h3{
+margin-top:0;
+color:#0a2a66;
+}
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+}
+
+.label{
+font-weight:bold;
+color:#333;
 }
 
 table{
@@ -48,58 +76,112 @@ border-collapse:collapse;
 margin-top:10px;
 }
 
-table th, table td{
+table th{
+background:#0a2a66;
+color:white;
+padding:8px;
+font-size:14px;
+}
+
+table td{
 border:1px solid #ddd;
 padding:8px;
-text-align:left;
+font-size:14px;
+}
+
+.payment{
+display:grid;
+grid-template-columns:1fr 1fr 1fr;
+text-align:center;
+gap:10px;
+}
+
+.payBox{
+background:#f5f7fb;
+padding:15px;
+border-radius:6px;
+}
+
+.payBox h4{
+margin:0;
+color:#0a2a66;
+}
+
+.footer{
+padding:20px 30px;
+font-size:13px;
+color:#555;
 }
 
 .printBtn{
-margin-top:20px;
-padding:10px 20px;
-background:#4CAF50;
-color:white;
+display:block;
+margin:30px auto;
+padding:12px 30px;
+background:#f5b400;
 border:none;
+font-weight:bold;
+border-radius:6px;
 cursor:pointer;
 }
 
-</style>
+.printBtn:hover{
+background:#e3a700;
+}
 
+@media print{
+.printBtn{
+display:none;
+}
+body{
+background:white;
+}
+}
+
+</style>
 </head>
 
 <body>
 
 <div class="voucher">
 
+<!-- HEADER -->
+
 <div class="header">
 
-<img src="https://raw.githubusercontent.com/salesprhotels/pandrhospitality/main/pandrhospitality.in/images/logo-yes-we-care-travels-1.png" class="logo">
+<img src="https://drive.google.com/uc?export=view&id=1bxq1_DTun2V5kl_F7lhc1ITULUNYAZtk">
 
-<div>
-<div class="title">Yes We Care Travels</div>
-<div>Operated by P & R Hospitality Management Services</div>
+<div class="company">
+
+<h2>YES WE CARE TRAVELS</h2>
+<p>Operated by P & R Hospitality Management Services</p>
+<p>📞 +91 94192 87356</p>
+
 </div>
 
 </div>
+
+<!-- GUEST DETAILS -->
 
 <div class="section">
+
 <h3>Guest Details</h3>
 
-<p><b>Name:</b> <span id="guestName"></span></p>
-<p><b>Mobile:</b> <span id="mobile"></span></p>
-<p><b>Email:</b> <span id="email"></span></p>
+<div class="grid">
+
+<div><span class="label">Guest Name:</span> <span id="guestName"></span></div>
+<div><span class="label">Mobile:</span> <span id="mobile"></span></div>
+
+<div><span class="label">Email:</span> <span id="email"></span></div>
+<div><span class="label">Guests:</span> <span id="guests"></span></div>
+
+<div><span class="label">Tour Start:</span> <span id="tourStart"></span></div>
+<div><span class="label">Tour End:</span> <span id="tourEnd"></span></div>
 
 </div>
 
-<div class="section">
-
-<h3>Tour Dates</h3>
-
-<p><b>Start:</b> <span id="tourStart"></span></p>
-<p><b>End:</b> <span id="tourEnd"></span></p>
-<p><b>Total Nights:</b> <span id="nights"></span></p>
-
 </div>
+
+<!-- HOTEL DETAILS -->
 
 <div class="section">
 
@@ -119,55 +201,100 @@ cursor:pointer;
 </tr>
 </thead>
 
-<tbody id="hotelTable">
-
-</tbody>
+<tbody id="hotelTable"></tbody>
 
 </table>
 
 </div>
 
+<!-- VEHICLE -->
+
 <div class="section">
 
-<h3>Vehicle Details</h3>
+<h3>Transport Details</h3>
 
-<p><b>Vehicle:</b> <span id="vehicle"></span></p>
-<p><b>Driver:</b> <span id="driver"></span></p>
+<div class="grid">
+
+<div><span class="label">Vehicle Type:</span> <span id="vehicle"></span></div>
+<div><span class="label">Driver Name:</span> <span id="driver"></span></div>
+
+<div><span class="label">Vehicle Number:</span> <span id="vehicleNo"></span></div>
+<div><span class="label">Driver Mobile:</span> <span id="driverMobile"></span></div>
 
 </div>
 
+</div>
+
+<!-- PAYMENT -->
+
 <div class="section">
 
-<h3>Payment</h3>
+<h3>Payment Summary</h3>
 
-<p><b>Total Package:</b> ₹<span id="total"></span></p>
-<p><b>Advance:</b> ₹<span id="advance"></span></p>
-<p><b>Balance:</b> ₹<span id="balance"></span></p>
+<div class="payment">
+
+<div class="payBox">
+<h4>Total Package</h4>
+₹ <span id="total"></span>
+</div>
+
+<div class="payBox">
+<h4>Advance Paid</h4>
+₹ <span id="advance"></span>
+</div>
+
+<div class="payBox">
+<h4>Balance Payable</h4>
+₹ <span id="balance"></span>
+</div>
+
+</div>
+
+</div>
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+<b>Cancellation Policy</b><br><br>
+
+Any cancellation must be informed in writing. Cancellation charges will apply as per hotel and transport policies.  
+No refund for no-show, early checkout, or unused services.
+
+<br><br>
+
+📧 yeswecaretravels@gmail.com
+
+</div>
 
 </div>
 
 <button class="printBtn" onclick="window.print()">Print / Download PDF</button>
 
-</div>
-
 <script>
 
 const data = JSON.parse(localStorage.getItem("voucherData"));
 
+if(data){
+
 document.getElementById("guestName").innerText=data.name;
 document.getElementById("mobile").innerText=data.mobile;
 document.getElementById("email").innerText=data.email;
+document.getElementById("guests").innerText=data.guests;
 
 document.getElementById("tourStart").innerText=data.start;
 document.getElementById("tourEnd").innerText=data.end;
-document.getElementById("nights").innerText=data.nights;
 
 document.getElementById("vehicle").innerText=data.vehicle;
 document.getElementById("driver").innerText=data.driver;
+document.getElementById("vehicleNo").innerText=data.vehicleNo;
+document.getElementById("driverMobile").innerText=data.driverMobile;
 
 document.getElementById("total").innerText=data.total;
 document.getElementById("advance").innerText=data.advance;
 document.getElementById("balance").innerText=data.balance;
+
+}
 
 </script>
 
