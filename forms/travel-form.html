@@ -253,11 +253,13 @@ document.getElementById("travelForm").addEventListener("submit",function(e){
   const formData=new FormData(form);  
   
   fetch("https://script.google.com/macros/s/AKfycbyhR3yVhsrMQWldIg3Qvz0dt8Boawv6bjWFqaitAfyXmHAyXxQ7EdgJ6e1ODys2KmVaWA/exec",{  
-    method:"POST",  
-    body:formData  
-  })  
-  .then(res=>res.json())  
-  .then(data=>{  
+method:"POST",  
+body:new URLSearchParams(formData)  
+})  
+.then(res=>res.text())
+.then(text=>{
+
+let data=JSON.parse(text); 
       if(data.status==="success"){
 
 sendTelegram(formData);
