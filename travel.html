@@ -648,8 +648,6 @@ if(input.trim()=="") return;
 
 addUserMessage(input);
 
-sendTelegram("Website Chat:\n"+input);
-
 let reply="";
 
 /* CAB */
@@ -941,8 +939,6 @@ for(let key in data){
 message+=key+": "+data[key]+"\n";
 
 }
-
-sendTelegram(message);
 
 /* WHATSAPP */
 
