@@ -44,7 +44,7 @@ gtag('config', 'AW-836426031');
  "areaServed": "India"
 }
 </script>
- 
+
 <style>
 
 /* COLOR SYSTEM */
@@ -113,10 +113,6 @@ text-decoration:none;
 color:var(--text);
 }
 
-.nav a:hover{
-color:var(--primary);
-}
-
 .menu{
 position:relative;
 cursor:pointer;
@@ -150,11 +146,7 @@ display:block;
 /* HERO */
 
 .hero{
-background:linear-gradient(
-135deg,
-var(--primary),
-var(--accent)
-);
+background:linear-gradient(135deg,var(--primary),var(--accent));
 color:#fff;
 text-align:center;
 padding:80px 20px;
@@ -180,12 +172,39 @@ padding:14px 28px;
 border-radius:8px;
 text-decoration:none;
 font-weight:bold;
-transition:.3s;
 }
 
-.hero a:hover{
-background:#e57c00;
-transform:translateY(-2px);
+/* SERVICE TABS */
+
+.tabs{
+background:#fff;
+border-bottom:1px solid var(--border);
+}
+
+.tabs-wrap{
+max-width:1100px;
+margin:auto;
+display:flex;
+justify-content:space-around;
+padding:18px 10px;
+text-align:center;
+}
+
+.tab{
+text-decoration:none;
+color:var(--primary);
+font-weight:600;
+font-size:14px;
+}
+
+.tab span{
+display:block;
+font-size:22px;
+margin-bottom:5px;
+}
+
+.tab:hover{
+color:var(--secondary);
 }
 
 /* SERVICES */
@@ -199,7 +218,6 @@ padding:60px 20px;
 .section h2{
 text-align:center;
 margin-bottom:30px;
-color:var(--text);
 font-size:30px;
 }
 
@@ -216,12 +234,6 @@ box-shadow:0 6px 18px rgba(0,0,0,.08);
 overflow:hidden;
 text-decoration:none;
 color:var(--text);
-transition:.3s;
-}
-
-.card:hover{
-transform:translateY(-6px);
-box-shadow:0 10px 26px rgba(0,0,0,.12);
 }
 
 .card img{
@@ -271,72 +283,6 @@ text-decoration:none;
 font-weight:600;
 }
 
-/* CHATBOT */
-
-#chatbotButton{
-position:fixed;
-bottom:20px;
-right:20px;
-width:65px;
-height:65px;
-border-radius:50%;
-background:#fff;
-box-shadow:0 4px 12px rgba(0,0,0,.3);
-cursor:pointer;
-display:flex;
-align-items:center;
-justify-content:center;
-z-index:9999;
-}
-
-#chatbotButton img{
-width:55px;
-height:55px;
-border-radius:50%;
-}
-
-#chatbotBox{
-position:fixed;
-bottom:100px;
-right:20px;
-width:340px;
-background:#fff;
-border-radius:12px;
-box-shadow:0 6px 20px rgba(0,0,0,.3);
-display:none;
-flex-direction:column;
-overflow:hidden;
-z-index:9999;
-}
-
-#chatHeader{
-background:var(--primary);
-color:#fff;
-padding:12px;
-font-weight:bold;
-display:flex;
-justify-content:space-between;
-}
-
-#chatMessages{
-padding:15px;
-font-size:14px;
-max-height:300px;
-overflow-y:auto;
-}
-
-.botMsg{
-background:#eef1ff;
-padding:8px;
-border-radius:6px;
-margin-bottom:8px;
-}
-
-.userMsg{
-text-align:right;
-margin-bottom:8px;
-}
-
 /* FOOTER */
 
 footer{
@@ -348,16 +294,6 @@ background:#0B2A4A;
 }
 
 </style>
-
-<!-- Travelpayouts verification script -->
-<script data-noptimize="1" data-cfasync="false" data-wpfc-render="false">
-(function () {
-    var script = document.createElement("script");
-    script.async = 1;
-    script.src = 'https://emrldtp.cc/NTA3MTEx.js?t=507111';
-    document.head.appendChild(script);
-})();
-</script> 
 
 </head>
 
@@ -399,8 +335,7 @@ background:#0B2A4A;
 <section class="hero">
 
 <h1>Yes We Care Travels</h1>
-<p class="tagline">Your Journey, Our Responsibility</p>
-
+<p>Your Journey, Our Responsibility</p>
 
 <p>
 Comfortable, reliable and affordable travel solutions across India including 
@@ -409,6 +344,51 @@ and air ticket booking.
 </p>
 
 <a href="forms/travel-form.html">Travel Enquiry</a>
+
+</section>
+
+<!-- SERVICE TABS -->
+
+<section class="tabs">
+
+<div class="tabs-wrap">
+
+<a href="air-tickets.html" class="tab">
+<span>✈</span>
+Flights
+</a>
+
+<a href="hotel-booking.html" class="tab">
+<span>🏨</span>
+Hotels
+</a>
+
+<a href="cab-services.html" class="tab">
+<span>🚕</span>
+Cabs
+</a>
+
+<a href="pilgrimage-services.html" class="tab">
+<span>🛕</span>
+Pilgrimage
+</a>
+
+<a href="holiday-packages.html" class="tab">
+<span>🌴</span>
+Holidays
+</a>
+
+<a href="volvo-tour-packages.html" class="tab">
+<span>🚌</span>
+Volvo Bus
+</a>
+
+<a href="contact-travel.html" class="tab">
+<span>📞</span>
+Contact
+</a>
+
+</div>
 
 </section>
 
@@ -487,537 +467,5 @@ WhatsApp
 © 2026 Yes We Care Travels · Operated by P & R Hospitality Management Services
 </footer>
 
-<div id="chatbotButton">
-<img src="images/tara-assistant.png">
-</div>
-
-<div id="chatbotBox">
-
-<div id="chatHeader">
-Tara – Travel Assistant
-<span onclick="closeChat()">✖</span>
-</div>
-
-<div id="chatMessages">
-
-<div class="botMsg">
-Hi 👋 I'm <b>Tara</b>.
-
-I can help with travel enquiries and ticket bookings.
-
-Please type your destination or travel requirement.
-</div>
-
-</div>
-
-<div style="display:flex;border-top:1px solid #ddd">
-<input id="userInput" placeholder="Ask about your travel plan..." style="flex:1;padding:10px;border:none">
-<button onclick="sendMessage()" style="background:#4b3fd6;color:#fff;border:none;padding:10px 16px">Send</button>
-</div>
-
-</div>
-
-<script>
-
-/* ================================
-   WHATSAPP
-================================ */
-
-const whatsappNumber="919419287356";
-
-/* ================================
-   SEND DATA TO BOTH SCRIPTS
-================================ */
-
-function sendToGoogleSheet(data){
-
-const TELEGRAM_API = "https://script.google.com/macros/s/AKfycbzDiJKT6BmIU8y9LnjQJFfaxDyyJPzm1EbodK9lP0ODD6H-70NJRlB81UjOqqnZJQG5/exec";
-
-const CRM_API = "https://script.google.com/macros/s/AKfycbyhR3yVhsrMQWldIg3Qvz0dt8Boawv6bjWFqaitAfyXmHAyXxQ7EdgJ6e1ODys2KmVaWA/exec";
-
-/* TELEGRAM LEADS SCRIPT */
-
-fetch(TELEGRAM_API,{
-method:"POST",
-body:new URLSearchParams(data)
-});
-
-/* CRM SHEET SCRIPT */
-
-fetch(CRM_API,{
-method:"POST",
-body:new URLSearchParams(data)
-})
-
-.then(res=>res.json())
-.then(res=>{
-
-console.log("Sheet response:",res);
-
-if(res.status=="success"){
-
-document.getElementById("chatMessages").innerHTML+=`
-<div class="botMsg">
-Thank you 🙏  
-Your travel request has been received.
-
-Our travel expert will contact you shortly.
-</div>`;
-
-}
-
-});
-
-}
-   
-/* ================================
-   OPEN CHAT
-================================ */
-
-document.getElementById("chatbotButton").onclick=function(){
-
-document.getElementById("chatbotBox").style.display="flex";
-
-}
-
-/* ================================
-   CLOSE CHAT
-================================ */
-
-function closeChat(){
-
-document.getElementById("chatbotBox").style.display="none";
-
-}
-
-/* ================================
-   1000+ DESTINATION SUPPORT
-================================ */
-
-const destinations = [
-
-/* HIMACHAL */
-
-"shimla","manali","kullu","kasol","dalhousie","dharamshala","spiti","kinnaur","kaza","kalpa","chamba","khajjiar","bir billing","tirthan valley","narkanda","barot","palampur","solan","kasauli","una",
-
-/* JAMMU KASHMIR */
-
-"srinagar","gulmarg","pahalgam","sonmarg","leh","ladakh","kargil","drass","zanskar","anantnag","baramulla","kupwara","pulwama","katra","vaishno devi","shiv khori","patnitop","mansar","surinsar","bhaderwah",
-
-/* UTTARAKHAND */
-
-"nainital","mussoorie","rishikesh","haridwar","auli","corbett","kedarnath","badrinath","gangotri","yamunotri","chopta","kanatal","dhanaulti","kausani","pithoragarh","munsiyari","almora","binsar","lansdowne","chaukori",
-
-/* GOA */
-
-"goa","north goa","south goa","panaji","calangute","baga","anjuna","candolim","vagator","colva","palolem","morjim","arambol","cavelossim","agonda",
-
-/* KERALA */
-
-"kerala","munnar","alleppey","kovalam","kochi","varkala","thekkady","wayanad","kumarakom","thrissur","bekal","malappuram","palakkad","idukki","ponmudi",
-
-/* TAMIL NADU */
-
-"ooty","kodaikanal","coonoor","madurai","rameshwaram","tiruchirappalli","kanchipuram","tirupati","vellore","yercaud","chennai","mahabs","pondicherry","thanjavur","dindigul",
-
-/* KARNATAKA */
-
-"coorg","mysore","hampi","chikmagalur","udupi","murudeshwar","gokarna","bangalore","bandipur","kabini","badami","aihole","bijapur","dandeli","shimoga",
-
-/* ANDAMAN */
-
-"andaman","port blair","havelock","neil island","ross island","baratang","diglipur","rangat","mayabunder","little andaman",
-
-/* NORTH EAST */
-
-"sikkim","gangtok","lachung","lachen","darjeeling","meghalaya","shillong","cherrapunji","mawlynnong","tawang","arunachal","kaziranga","majuli","dawki","ziro",
-
-/* RAJASTHAN */
-
-"jaipur","udaipur","jodhpur","jaisalmer","bikaner","pushkar","ajmer","mount abu","ranthambore","chittorgarh","kumbhalgarh","shekhawati","mandawa","alwar","bharatpur",
-
-/* GUJARAT */
-
-"dwarka","somnath","gir","kachchh","statue of unity","ahmedabad","vadodara","rajkot","porbandar","patan","bhuj","saputara","junagadh","jamnagar","bhavnagar",
-
-/* MAHARASHTRA */
-
-"mumbai","pune","lonavala","khandala","mahabaleshwar","alibaug","shirdi","nashik","aurangabad","ajanta","ellora","ratnagiri","kolhapur","tarkarli","karjat",
-
-/* MADHYA PRADESH */
-
-"khajuraho","sanchi","bhopal","mandu","orchha","pachmarhi","kanha","bandhavgarh","gwalior","ujjain","maheshwar","omkareshwar","amarkantak","chitrakoot",
-
-/* UTTAR PRADESH */
-
-"agra","varanasi","mathura","vrindavan","ayodhya","lucknow","prayagraj","chitrakoot","jhansi","meerut","noida","ghaziabad","kanpur","gorakhpur",
-
-/* WEST BENGAL */
-
-"kolkata","darjeeling","kalimpong","siliguri","sundarbans","digha","mandarmani","shantiniketan","mirik","kurseong",
-
-/* ODISHA */
-
-"puri","konark","bhubaneswar","chilika","cuttack","sambalpur","simlipal","gopalpur","satkosia","daringbadi",
-
-/* BIHAR */
-
-"bodhgaya","rajgir","nalanda","patna","gaya","vaishali","pawapuri","madhubani","sasaram","bhagalpur",
-
-/* INTERNATIONAL POPULAR */
-
-"dubai","abu dhabi","sharjah","doha","muscat","singapore","bangkok","phuket","krabi","pattaya","kuala lumpur","bali","jakarta","maldives","colombo","kandy","nuwara eliya",
-
-"london","paris","rome","barcelona","amsterdam","zurich","vienna","prague","budapest","athens",
-
-"new york","los angeles","las vegas","san francisco","chicago","miami","toronto","vancouver","montreal",
-
-"sydney","melbourne","brisbane","perth","auckland","queenstown"
-
-];
-
-/* ================================
-   SERVICE KEYWORDS
-================================ */
-
-const cabKeywords=["cab","taxi","pickup","drop"];
-const hotelKeywords=["hotel","stay","room"];
-const flightKeywords=["flight","air ticket"];
-const busKeywords=["bus","volvo"];
-const honeymoonKeywords=["honeymoon"];
-const pilgrimageKeywords=["vaishno devi","char dham","temple","pilgrimage"];
-const packageKeywords=["tour","trip","package","holiday"];
-
-/* ================================
-   MAIN CHAT FUNCTION
-================================ */
-
-function sendMessage(){
-
-let input=document.getElementById("userInput").value.toLowerCase();
-
-if(input.trim()=="") return;
-
-addUserMessage(input);
-
-let reply="";
-
-/* CAB */
-
-if(cabKeywords.some(word=>input.includes(word))){
-
-reply=cabForm();
-
-}
-
-/* BUS */
-
-else if(busKeywords.some(word=>input.includes(word))){
-
-reply=busForm();
-
-}
-
-/* HOTEL */
-
-else if(hotelKeywords.some(word=>input.includes(word))){
-
-reply=hotelForm();
-
-}
-
-/* FLIGHT */
-
-else if(flightKeywords.some(word=>input.includes(word))){
-
-reply=flightForm();
-
-}
-
-/* HONEYMOON */
-
-else if(honeymoonKeywords.some(word=>input.includes(word))){
-
-reply=honeymoonForm();
-
-}
-
-/* PILGRIMAGE */
-
-else if(pilgrimageKeywords.some(word=>input.includes(word))){
-
-reply=pilgrimageForm();
-
-}
-
-/* PACKAGE */
-
-else{
-
-reply=packageForm(input);
-
-}
-
-addBotMessage(reply);
-
-}
-
-/* ================================
-   MESSAGE DISPLAY
-================================ */
-
-function addUserMessage(msg){
-
-document.getElementById("chatMessages").innerHTML+=
-`<div class="userMsg">${msg}</div>`;
-
-}
-
-function addBotMessage(msg){
-
-document.getElementById("chatMessages").innerHTML+=msg;
-
-document.getElementById("chatMessages").scrollTop=
-document.getElementById("chatMessages").scrollHeight;
-
-document.getElementById("userInput").value="";
-
-}
-
-/* ================================
-   CAB FORM
-================================ */
-
-function cabForm(){
-
-return `
-
-<div class="botMsg">
-
-🚕 Cab Booking
-
-<div class="chatForm">
-
-<input id="name" placeholder="Name">
-
-<input id="pickup" placeholder="Pickup City">
-
-<input id="drop" placeholder="Drop City">
-
-<select id="vehicle">
-
-<option>Sedan</option>
-<option>SUV</option>
-<option>Innova</option>
-<option>Tempo Traveller</option>
-
-</select>
-
-<input id="persons" placeholder="Persons">
-
-<input id="date" placeholder="Travel Date">
-
-<input id="phone" placeholder="Phone">
-
-<button onclick="submitLead('Cab')">Submit</button>
-
-</div>
-
-</div>
-
-`;
-
-}
-
-/* ================================
-   HOTEL FORM
-================================ */
-
-function hotelForm(){
-
-return `
-
-<div class="botMsg">
-
-🏨 Hotel Booking
-
-<div class="chatForm">
-
-<input id="name" placeholder="Name">
-
-<input id="destination" placeholder="Destination">
-
-<input id="checkin" placeholder="Check-in">
-
-<input id="checkout" placeholder="Check-out">
-
-<select id="category">
-
-<option>Budget</option>
-<option>Deluxe</option>
-<option>Luxury</option>
-
-</select>
-
-<input id="phone" placeholder="Phone">
-
-<button onclick="submitLead('Hotel')">Submit</button>
-
-</div>
-
-</div>
-
-`;
-
-}
-
-/* ================================
-   PACKAGE FORM
-================================ */
-
-function packageForm(destination){
-
-return `
-
-<div class="botMsg">
-
-🌍 Holiday Package
-
-<div class="chatForm">
-
-<input id="name" placeholder="Name">
-
-<input id="destination" value="${destination}" placeholder="Destination">
-
-<input id="days" placeholder="Days">
-
-<input id="adults" placeholder="Adults">
-
-<input id="children" placeholder="Children">
-
-<input id="month" placeholder="Travel Month">
-
-<input id="phone" placeholder="Phone">
-
-<button onclick="submitLead('Package')">Submit</button>
-
-</div>
-
-</div>
-
-`;
-
-}
-
-/* ================================
-   ITINERARY GENERATOR
-================================ */
-
-function generateItinerary(destination,days){
-
-return `
-
-Suggested Itinerary for ${destination}
-
-Day 1: Arrival & sightseeing  
-Day 2: Local attractions  
-Day 3: Adventure / nature visit  
-Day 4: Shopping & departure
-
-`;
-
-}
-
-/* ================================
-   SAVE LEAD HISTORY
-================================ */
-
-function saveLead(data){
-
-let leads=JSON.parse(localStorage.getItem("travelLeads"))||[];
-
-leads.push(data);
-
-localStorage.setItem("travelLeads",JSON.stringify(leads));
-
-}
-
-/* ================================
-   SUBMIT LEAD
-================================ */
-
-function submitLead(service){
-
-let form=document.querySelector(".chatForm");
-
-let inputs=form.querySelectorAll("input,select");
-
-let data={};
-
-inputs.forEach(el=>{
-
-data[el.id]=el.value;
-
-});
-
-data.service=service;
-
-/* SAVE HISTORY */
-
-saveLead(data);
-
-/* SEND TO GOOGLE SHEET */
-
-sendToGoogleSheet({
-name:data.name || "",
-mobile:data.phone || "",
-email:data.email || "",
-travel_type:service,
-destination:data.destination || data.pickup || "",
-journey_date:data.date || data.month || "",
-return_date:"",
-adults:data.adults || data.persons || "",
-children:data.children || "",
-budget:"",
-message:"Website Chatbot Lead"
-});
-
-/* TELEGRAM */
-
-let message="NEW WEBSITE LEAD\n\n";
-
-for(let key in data){
-
-message+=key+": "+data[key]+"\n";
-
-}
-
-/* WHATSAPP */
-
-let whatsappMsg=encodeURIComponent(message);
-
-window.open(
-"https://wa.me/"+whatsappNumber+"?text="+whatsappMsg,
-"_blank"
-);
-
-/* BOT MESSAGE */
-
-addBotMessage(
-
-`<div class="botMsg">
-
-✅ Thank you.
-
-Our travel expert will contact you shortly.
-
-</div>`
-
-);
-
-}
-
-</script>
- 
 </body>
 </html>
