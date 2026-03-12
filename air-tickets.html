@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Book Flights | Yes We Care Travels</title>
+<title>Flight Booking | Yes We Care Travels</title>
+
+<meta name="description" content="Search and compare domestic and international flights with Yes We Care Travels.">
 
 <style>
 
@@ -30,13 +31,13 @@ max-width:1200px;
 margin:auto;
 padding:12px 16px;
 display:flex;
-justify-content:space-between;
 align-items:center;
+justify-content:space-between;
 }
 
 .logos img{
-height:40px;
-margin-right:10px;
+height:42px;
+margin-right:8px;
 }
 
 /* HERO */
@@ -44,8 +45,8 @@ margin-right:10px;
 .hero{
 background:linear-gradient(135deg,#0b5ed7,#ff8c00);
 color:#fff;
-padding:70px 20px;
 text-align:center;
+padding:70px 20px;
 }
 
 .hero h1{
@@ -53,20 +54,24 @@ font-size:36px;
 margin-bottom:10px;
 }
 
-/* SEARCH BOX */
+.hero p{
+font-size:18px;
+}
 
-.search-container{
+/* SEARCH SECTION */
+
+.search-section{
 background:#fff;
 max-width:1000px;
 margin:-40px auto 40px auto;
+padding:30px;
 border-radius:10px;
-box-shadow:0 6px 20px rgba(0,0,0,.1);
-padding:25px;
+box-shadow:0 6px 18px rgba(0,0,0,.1);
 }
 
 /* SERVICE ICONS */
 
-.service-tabs{
+.service-icons{
 display:flex;
 justify-content:space-around;
 border-bottom:1px solid #eee;
@@ -74,24 +79,42 @@ padding-bottom:15px;
 margin-bottom:20px;
 }
 
-.service-tabs a{
+.service-icons a{
 text-align:center;
 text-decoration:none;
 color:#0b5ed7;
 font-weight:600;
 }
 
-.service-tabs a:hover{
-color:#ff8c00;
-}
-
-.service-tabs span{
+.service-icons a span{
 display:block;
-font-size:22px;
+font-size:24px;
 margin-bottom:4px;
 }
 
-/* SERVICES SECTION */
+.service-icons a:hover{
+color:#ff8c00;
+}
+
+/* INFO TEXT */
+
+.info{
+text-align:center;
+font-size:15px;
+margin-bottom:20px;
+color:#444;
+}
+
+/* DISCLAIMER */
+
+.disclaimer{
+margin-top:20px;
+font-size:13px;
+text-align:center;
+color:#666;
+}
+
+/* SERVICES */
 
 .services{
 max-width:1100px;
@@ -161,22 +184,13 @@ color:#666;
 <div class="header-wrap">
 
 <div class="logos">
-
-<a href="index.html">
-<img src="images/logo-pr-hospitality.png">
-</a>
-
-<a href="travel.html">
-<img src="images/logo-yes-we-care-travels-1.png">
-</a>
-
+<a href="index.html"><img src="images/logo-pr-hospitality.png"></a>
+<a href="travel.html"><img src="images/logo-yes-we-care-travels-1.png"></a>
 </div>
 
 </div>
 
 </header>
-
-<!-- HERO -->
 
 <section class="hero">
 
@@ -185,13 +199,11 @@ color:#666;
 
 </section>
 
-<!-- SEARCH BOX -->
+<section class="search-section">
 
-<div class="search-container">
+<!-- SERVICE LINKS -->
 
-<!-- SERVICE ICON LINKS -->
-
-<div class="service-tabs">
+<div class="service-icons">
 
 <a href="air-tickets.html">
 <span>✈</span>
@@ -230,13 +242,33 @@ Contact
 
 </div>
 
-<!-- FLIGHT SEARCH WIDGET -->
+<!-- INFO TEXT -->
 
-<script async src="https://tpscr.com/content?currency=inr&trs=507111&shmarker=710102&show_hotels=true&powered_by=true&locale=en&searchUrl=www.aviasales.com%2Fsearch&primary_override=%230b5ed7&color_button=%23ff8c00&color_icons=%230b5ed7&dark=%23262626&light=%23FFFFFF&secondary=%23FFFFFF&special=%23C4C4C4&color_focused=%230b5ed7&border_radius=6&plain=false&promo_id=7879&campaign_id=100" charset="utf-8"></script>
+<div class="info">
+
+You can search and compare flight prices directly using the tool below.  
+After selecting your flight you will be redirected to our trusted booking partner to complete the booking.
+
+<br><br>
+
+If you prefer assistance, you may also contact our travel desk and we can issue the air ticket for you.
 
 </div>
 
-<!-- SERVICES -->
+<!-- FLIGHT WIDGET -->
+
+<script async src="https://tpscr.com/content?currency=inr&trs=507111&shmarker=710102&show_hotels=true&powered_by=true&locale=en&searchUrl=www.aviasales.com%2Fsearch&primary_override=%230b5ed7&color_button=%23ff8c00&color_icons=%230b5ed7&dark=%23262626&light=%23FFFFFF&secondary=%23FFFFFF&special=%23C4C4C4&color_focused=%230b5ed7&border_radius=6&plain=false&promo_id=7879&campaign_id=100" charset="utf-8"></script>
+
+<!-- DISCLAIMER -->
+
+<div class="disclaimer">
+
+⚠️ Flight search and booking results are provided by our trusted travel partners.  
+Prices, payments and ticket issuance are handled directly by the partner website you choose.
+
+</div>
+
+</section>
 
 <section class="services">
 
@@ -255,13 +287,13 @@ Contact
 </div>
 
 <div class="card">
-<h3>Flexible Travel</h3>
-<p>Choose the best travel dates.</p>
+<h3>Flexible Travel Dates</h3>
+<p>Choose the best travel date combinations.</p>
 </div>
 
 <div class="card">
 <h3>Airline Support</h3>
-<p>Professional booking assistance.</p>
+<p>Professional booking assistance available.</p>
 </div>
 
 </div>
@@ -270,9 +302,7 @@ Contact
 
 <section class="cta">
 
-<p style="margin-bottom:15px">
-Need help booking flights?
-</p>
+<p style="margin-bottom:15px">Need help booking flights?</p>
 
 <a href="forms/travel-form.html">
 Send Booking Request
