@@ -5,8 +5,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
- <link rel="stylesheet" href="style.css">
-
 <title>Travel Services in India | Cab, Pilgrimage, Holidays | Yes We Care Travels</title>
 
 <meta name="description" content="Yes We Care Travels provides professional cab services, pilgrimage tours, holiday packages, hotel bookings, Volvo bus tickets and air ticket booking across India including Jammu, Himachal Pradesh and Uttarakhand.">
@@ -47,21 +45,42 @@ gtag('config', 'AW-836426031');
 }
 </script>
 
+{
 <style>
 
-*{box-sizing:border-box;margin:0;padding:0}
+/* COLOR SYSTEM */
+
+:root{
+--primary:#0B5ED7;
+--secondary:#FF8C00;
+--accent:#4DA3FF;
+--bg:#F4F6FB;
+--white:#ffffff;
+--text:#0B2A4A;
+--lightText:#666;
+--border:#e4e7ef;
+}
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
 
 body{
-font-family:Arial,Helvetica,sans-serif;
-background:#f4f6fb;
-color:#222;
+font-family:'Poppins',Arial,Helvetica,sans-serif;
+background:var(--bg);
+color:var(--text);
 }
 
 /* HEADER */
 
 header{
-background:#fff;
-border-bottom:1px solid #ddd;
+background:var(--white);
+border-bottom:1px solid var(--border);
+position:sticky;
+top:0;
+z-index:999;
 }
 
 .header-wrap{
@@ -90,6 +109,15 @@ gap:20px;
 font-weight:600;
 }
 
+.nav a{
+text-decoration:none;
+color:var(--text);
+}
+
+.nav a:hover{
+color:var(--primary);
+}
+
 .menu{
 position:relative;
 cursor:pointer;
@@ -101,7 +129,7 @@ position:absolute;
 top:30px;
 right:0;
 background:#fff;
-border:1px solid #ccc;
+border:1px solid var(--border);
 box-shadow:0 4px 12px rgba(0,0,0,.1);
 }
 
@@ -109,11 +137,11 @@ box-shadow:0 4px 12px rgba(0,0,0,.1);
 display:block;
 padding:10px 16px;
 text-decoration:none;
-color:#222;
+color:var(--text);
 }
 
 .dropdown a:hover{
-background:#f4f6fb;
+background:var(--bg);
 }
 
 .menu:hover .dropdown{
@@ -123,14 +151,18 @@ display:block;
 /* HERO */
 
 .hero{
-background:#4b3fd6;
+background:linear-gradient(
+135deg,
+var(--primary),
+var(--accent)
+);
 color:#fff;
 text-align:center;
-padding:60px 20px;
+padding:80px 20px;
 }
 
 .hero h1{
-font-size:34px;
+font-size:38px;
 margin-bottom:10px;
 }
 
@@ -143,12 +175,18 @@ font-size:18px;
 .hero a{
 display:inline-block;
 margin-top:22px;
-background:#f5b400;
-color:#000;
-padding:12px 26px;
-border-radius:6px;
+background:var(--secondary);
+color:#fff;
+padding:14px 28px;
+border-radius:8px;
 text-decoration:none;
 font-weight:bold;
+transition:.3s;
+}
+
+.hero a:hover{
+background:#e57c00;
+transform:translateY(-2px);
 }
 
 /* SERVICES */
@@ -156,13 +194,14 @@ font-weight:bold;
 .section{
 max-width:1200px;
 margin:auto;
-padding:50px 20px;
+padding:60px 20px;
 }
 
 .section h2{
 text-align:center;
 margin-bottom:30px;
-color:#0b2a4a;
+color:var(--text);
+font-size:30px;
 }
 
 .grid{
@@ -172,18 +211,18 @@ gap:20px;
 }
 
 .card{
-background:#fff;
-border-radius:8px;
-box-shadow:0 4px 14px rgba(0,0,0,.08);
+background:var(--white);
+border-radius:10px;
+box-shadow:0 6px 18px rgba(0,0,0,.08);
 overflow:hidden;
 text-decoration:none;
-color:#222;
-transition:.2s;
+color:var(--text);
+transition:.3s;
 }
 
 .card:hover{
-transform:translateY(-4px);
-box-shadow:0 8px 22px rgba(0,0,0,.12);
+transform:translateY(-6px);
+box-shadow:0 10px 26px rgba(0,0,0,.12);
 }
 
 .card img{
@@ -197,23 +236,24 @@ padding:16px;
 }
 
 .card h3{
-color:#4b3fd6;
+color:var(--primary);
 margin-bottom:6px;
 }
 
 /* CTA */
 
 .cta{
-background:#eef1ff;
+background:var(--primary);
 text-align:center;
-padding:40px 20px;
+padding:50px 20px;
+color:white;
 }
 
 .cta a{
-background:#4b3fd6;
+background:var(--secondary);
 color:#fff;
-padding:12px 24px;
-border-radius:6px;
+padding:14px 30px;
+border-radius:8px;
 text-decoration:none;
 font-weight:bold;
 }
@@ -229,6 +269,7 @@ color:#fff;
 padding:12px 18px;
 border-radius:30px;
 text-decoration:none;
+font-weight:600;
 }
 
 /* CHATBOT */
@@ -270,7 +311,7 @@ z-index:9999;
 }
 
 #chatHeader{
-background:#4b3fd6;
+background:var(--primary);
 color:#fff;
 padding:12px;
 font-weight:bold;
@@ -297,15 +338,18 @@ text-align:right;
 margin-bottom:8px;
 }
 
+/* FOOTER */
+
 footer{
 text-align:center;
-padding:20px;
+padding:25px;
 font-size:14px;
-color:#666;
-background:#fff;
+color:#ddd;
+background:#0B2A4A;
 }
 
 </style>
+
 
 </head>
 
