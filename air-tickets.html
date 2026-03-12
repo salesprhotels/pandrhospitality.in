@@ -8,8 +8,6 @@
 
 <title>Book Flights | Yes We Care Travels</title>
 
-<meta name="description" content="Compare and book cheap flights with Yes We Care Travels">
-
 <style>
 
 *{margin:0;padding:0;box-sizing:border-box}
@@ -30,72 +28,70 @@ border-bottom:1px solid #ddd;
 .header-wrap{
 max-width:1200px;
 margin:auto;
-padding:10px 16px;
+padding:12px 16px;
 display:flex;
-align-items:center;
 justify-content:space-between;
+align-items:center;
 }
 
 .logos img{
-height:42px;
-margin-right:8px;
-}
-
-.nav a{
-text-decoration:none;
-margin-left:18px;
-font-weight:600;
-color:#333;
+height:40px;
+margin-right:10px;
 }
 
 /* HERO */
 
 .hero{
-background:linear-gradient(135deg,#4b3fd6,#0b2a4a);
+background:linear-gradient(135deg,#0b5ed7,#ff8c00);
 color:#fff;
-padding:60px 20px;
+padding:70px 20px;
 text-align:center;
 }
 
 .hero h1{
-font-size:34px;
+font-size:36px;
 margin-bottom:10px;
 }
 
 /* SEARCH BOX */
 
-.search-box{
+.search-container{
 background:#fff;
 max-width:1000px;
 margin:-40px auto 40px auto;
 border-radius:10px;
 box-shadow:0 6px 20px rgba(0,0,0,.1);
-padding:30px;
+padding:25px;
 }
 
-/* TABS */
+/* SERVICE ICONS */
 
-.tabs{
+.service-tabs{
 display:flex;
-justify-content:center;
-gap:30px;
+justify-content:space-around;
+border-bottom:1px solid #eee;
+padding-bottom:15px;
 margin-bottom:20px;
+}
+
+.service-tabs a{
+text-align:center;
+text-decoration:none;
+color:#0b5ed7;
 font-weight:600;
 }
 
-.tab{
-display:flex;
-align-items:center;
-gap:6px;
-cursor:pointer;
-color:#4b3fd6;
+.service-tabs a:hover{
+color:#ff8c00;
 }
 
-.tab img{
-width:20px;
+.service-tabs span{
+display:block;
+font-size:22px;
+margin-bottom:4px;
 }
 
-/* SERVICES */
+/* SERVICES SECTION */
 
 .services{
 max-width:1100px;
@@ -124,7 +120,7 @@ text-align:center;
 }
 
 .card h3{
-color:#4b3fd6;
+color:#0b5ed7;
 margin-bottom:10px;
 }
 
@@ -137,7 +133,7 @@ padding:40px 20px;
 }
 
 .cta a{
-background:#4b3fd6;
+background:#ff8c00;
 color:#fff;
 padding:12px 26px;
 border-radius:6px;
@@ -176,16 +172,6 @@ color:#666;
 
 </div>
 
-<div class="nav">
-
-<a href="travel.html">Travel Home</a>
-<a href="holiday-packages.html">Packages</a>
-<a href="hotel-booking.html">Hotels</a>
-<a href="cab-services.html">Cabs</a>
-<a href="contact-travel.html">Contact</a>
-
-</div>
-
 </div>
 
 </header>
@@ -195,44 +181,60 @@ color:#666;
 <section class="hero">
 
 <h1>Search & Compare Cheap Flights</h1>
-
-<p>Find the best airfare deals for domestic and international travel.</p>
+<p>Find the best airfare deals for domestic and international travel</p>
 
 </section>
 
 <!-- SEARCH BOX -->
 
-<section class="search-box">
+<div class="search-container">
 
-<div class="tabs">
+<!-- SERVICE ICON LINKS -->
 
-<div class="tab">
-<img src="https://img.icons8.com/ios-filled/50/airplane-take-off.png">
+<div class="service-tabs">
+
+<a href="air-tickets.html">
+<span>✈</span>
 Flights
-</div>
+</a>
 
-<div class="tab">
-<img src="https://img.icons8.com/ios-filled/50/hotel.png">
+<a href="hotel-booking.html">
+<span>🏨</span>
 Hotels
-</div>
+</a>
 
-<div class="tab">
-<img src="https://img.icons8.com/ios-filled/50/taxi.png">
+<a href="cab-services.html">
+<span>🚕</span>
 Cabs
-</div>
+</a>
 
-<div class="tab">
-<img src="https://img.icons8.com/ios-filled/50/beach.png">
-Tours
-</div>
+<a href="holiday-packages.html">
+<span>🌴</span>
+Holidays
+</a>
+
+<a href="pilgrimage-services.html">
+<span>🛕</span>
+Pilgrimage
+</a>
+
+<a href="volvo-tour-packages.html">
+<span>🚌</span>
+Volvo Bus
+</a>
+
+<a href="contact-travel.html">
+<span>📞</span>
+Contact
+</a>
 
 </div>
 
 <!-- FLIGHT SEARCH WIDGET -->
 
-<script async src="https://tpscr.com/content?currency=inr&trs=507111&shmarker=710102&show_hotels=true&powered_by=true&locale=en&searchUrl=www.aviasales.com%2Fsearch&primary_override=%234b3fd6&color_button=%234b3fd6&color_icons=%234b3fd6&dark=%23262626&light=%23FFFFFF&secondary=%23FFFFFF&special=%23C4C4C4&color_focused=%234b3fd6&border_radius=6&plain=false&promo_id=7879&campaign_id=100" charset="utf-8"></script>
+<script async src="https://tpscr.com/content?currency=inr&trs=507111&shmarker=710102&show_hotels=true&powered_by=true&locale=en&searchUrl=www.aviasales.com%2Fsearch&primary_override=%230b5ed7&color_button=%23ff8c00&color_icons=%230b5ed7&dark=%23262626&light=%23FFFFFF&secondary=%23FFFFFF&special=%23C4C4C4&color_focused=%230b5ed7&border_radius=6&plain=false&promo_id=7879&campaign_id=100" charset="utf-8"></script>
 
-</section>
+</div>
 
 <!-- SERVICES -->
 
@@ -254,7 +256,7 @@ Tours
 
 <div class="card">
 <h3>Flexible Travel</h3>
-<p>Choose the best date combinations.</p>
+<p>Choose the best travel dates.</p>
 </div>
 
 <div class="card">
@@ -265,8 +267,6 @@ Tours
 </div>
 
 </section>
-
-<!-- CTA -->
 
 <section class="cta">
 
