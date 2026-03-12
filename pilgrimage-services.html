@@ -7,26 +7,15 @@
 
 <title>Pilgrimage Tours in Jammu, Himachal & Char Dham</title>
 
-<meta name="description" content="Book reliable pilgrimage tours including Vaishno Devi, Himachal Shaktipeeths, Char Dham Yatra, Kedarnath & Badrinath with experienced drivers.">
-
-<meta name="keywords" content="Vaishno Devi Yatra, Char Dham Yatra, Himachal Shaktipeeth tour, Kedarnath tour package">
+<meta name="description" content="Book pilgrimage tours including Vaishno Devi, Himachal Shaktipeeths and Char Dham Yatra with experienced drivers.">
 
 <meta name="robots" content="index, follow">
 
 <link rel="canonical" href="https://pandrhospitality.in/pilgrimage-services.html">
 
-<link rel="icon" href="images/favicon.png">
-
 <meta name="google-site-verification" content="DBAXMGzlYze9u3hdFVfGII8ryzPMvN6Paac0TbNlpZ4">
 
-<!-- Open Graph -->
-
-<meta property="og:title" content="Pilgrimage Tours | Yes We Care Travels">
-<meta property="og:description" content="Trusted pilgrimage tours across Jammu, Himachal & Uttarakhand.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://pandrhospitality.in/pilgrimage-services.html">
-
-<!-- Google Ads -->
+<!-- GOOGLE ADS -->
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-836426031"></script>
 
@@ -37,7 +26,7 @@ gtag('js', new Date());
 gtag('config', 'AW-836426031');
 </script>
 
-<!-- Structured Data -->
+<!-- STRUCTURED DATA -->
 
 <script type="application/ld+json">
 {
@@ -46,8 +35,7 @@ gtag('config', 'AW-836426031');
  "name": "Yes We Care Travels",
  "url": "https://pandrhospitality.in/",
  "telephone": "+919419287356",
- "areaServed": "India",
- "serviceType": "Pilgrimage Tours"
+ "areaServed": "India"
 }
 </script>
 
@@ -65,7 +53,7 @@ color:#222
 
 header{
 background:#fff;
-border-bottom:1px solid #ddd;
+border-bottom:1px solid #ddd
 }
 
 .header-wrap{
@@ -155,7 +143,8 @@ gap:20px
 background:#fff;
 border-radius:10px;
 box-shadow:0 4px 14px rgba(0,0,0,.08);
-overflow:hidden
+overflow:hidden;
+cursor:pointer
 }
 
 .card img{
@@ -171,6 +160,20 @@ padding:18px
 .card h3{
 color:#0b5ed7;
 margin-bottom:8px
+}
+
+/* DETAIL BOX */
+
+.detail-box{
+background:#fff;
+padding:30px;
+border-radius:10px;
+box-shadow:0 4px 14px rgba(0,0,0,.08);
+margin-top:40px
+}
+
+.hidden{
+display:none
 }
 
 /* WHY */
@@ -260,34 +263,24 @@ background:#fff
 
 <h1>Pilgrimage Tours & Yatra Services</h1>
 
-<p>
-Sacred journeys made comfortable across Jammu, Himachal Pradesh and Uttarakhand.
-</p>
+<p>Sacred journeys across Jammu, Himachal Pradesh and Uttarakhand.</p>
 
-<a href="forms/travel-form.html">
-Pilgrimage Enquiry
-</a>
+<a href="forms/travel-form.html">Pilgrimage Enquiry</a>
 
 </section>
 
-<!-- SERVICE TABS -->
+<!-- TABS -->
 
 <section class="tabs">
 
 <div class="tabs-wrap">
 
 <a href="air-tickets.html" class="tab"><span>✈</span>Flights</a>
-
 <a href="hotel-booking.html" class="tab"><span>🏨</span>Hotels</a>
-
 <a href="cab-services.html" class="tab"><span>🚕</span>Cabs</a>
-
 <a href="pilgrimage-services.html" class="tab"><span>🛕</span>Pilgrimage</a>
-
 <a href="holiday-packages.html" class="tab"><span>🌴</span>Holidays</a>
-
 <a href="volvo-tour-packages.html" class="tab"><span>🚌</span>Volvo Bus</a>
-
 <a href="contact-travel.html" class="tab"><span>📞</span>Contact</a>
 
 </div>
@@ -300,35 +293,93 @@ Pilgrimage Enquiry
 
 <div class="grid">
 
-<div class="card">
-<a href="vaishno-devi-yatra.html">
+<div class="card" onclick="toggleDetail('vaishno')">
+
 <img src="images/pilgrimage-jammu-composite.png">
+
 <div>
-<h3>Vaishno Devi & Jammu Temples</h3>
-<p>Darbar, Shiv Khori and temple tours with safe pilgrimage cabs.</p>
-</div>
-</a>
+
+<h3>Vaishno Devi Yatra</h3>
+
+<p>Katra Darbar, Shiv Khori and Jammu temples.</p>
+
 </div>
 
-<div class="card">
-<a href="himachal-shaktipeeth-tour.html">
+</div>
+
+<div class="card" onclick="toggleDetail('himachal')">
+
 <img src="images/shaktipeeth-himachal-composite.png">
+
 <div>
-<h3>Himachal Shaktipeeths</h3>
-<p>Jwala Ji, Chintpurni, Baglamukhi & Naina Devi spiritual tours.</p>
-</div>
-</a>
+
+<h3>Himachal Shaktipeeth Tour</h3>
+
+<p>Jwala Ji, Chintpurni, Baglamukhi and Naina Devi.</p>
+
 </div>
 
-<div class="card">
-<a href="uttarakhand-pilgrimage-tour.html">
+</div>
+
+<div class="card" onclick="toggleDetail('chardham')">
+
 <img src="images/char-dham-uttarakhand-composite.png">
+
 <div>
-<h3>Char Dham & Uttarakhand</h3>
-<p>Kedarnath, Badrinath, Haridwar & Rishikesh journeys.</p>
+
+<h3>Char Dham Yatra</h3>
+
+<p>Kedarnath, Badrinath, Gangotri & Yamunotri.</p>
+
 </div>
-</a>
+
 </div>
+
+</div>
+
+</section>
+
+<!-- ITINERARIES -->
+
+<section class="section">
+
+<div id="vaishno" class="detail-box hidden">
+
+<h2>Vaishno Devi Yatra Itinerary</h2>
+
+<p><b>Day 1:</b> Arrival Jammu – transfer to Katra.</p>
+
+<p><b>Day 2:</b> Vaishno Devi Darshan trek / helicopter option.</p>
+
+<p><b>Day 3:</b> Shiv Khori Temple visit.</p>
+
+</div>
+
+<div id="himachal" class="detail-box hidden">
+
+<h2>Himachal Shaktipeeth Tour</h2>
+
+<p><b>Day 1:</b> Jammu – Chintpurni Temple.</p>
+
+<p><b>Day 2:</b> Jwala Ji Temple Darshan.</p>
+
+<p><b>Day 3:</b> Naina Devi Temple visit.</p>
+
+</div>
+
+<div id="chardham" class="detail-box hidden">
+
+<h2>Char Dham Yatra</h2>
+
+<p><b>Day 1:</b> Haridwar arrival.</p>
+
+<p><b>Day 2:</b> Yamunotri Darshan.</p>
+
+<p><b>Day 3:</b> Gangotri Temple visit.</p>
+
+<p><b>Day 4:</b> Kedarnath Temple Darshan.</p>
+
+<p><b>Day 5:</b> Badrinath Temple visit.</p>
 
 </div>
 
@@ -339,11 +390,17 @@ Pilgrimage Enquiry
 <h2>Why Travel With Us?</h2>
 
 <ul>
+
 <li>✔ Clean & Sanitized Vehicles</li>
+
 <li>✔ Experienced Pilgrimage Drivers</li>
+
 <li>✔ Senior-Friendly Travel Support</li>
+
 <li>✔ Transparent Pricing</li>
+
 <li>✔ 24×7 Assistance</li>
+
 </ul>
 
 </section>
@@ -351,7 +408,9 @@ Pilgrimage Enquiry
 <section class="cta">
 
 <a href="forms/travel-form.html">
+
 Submit Pilgrimage Enquiry
+
 </a>
 
 </section>
@@ -367,6 +426,25 @@ WhatsApp Us
 © 2026 Yes We Care Travels · Operated by P & R Hospitality Management Services
 
 </footer>
+
+<script>
+
+function toggleDetail(id){
+
+document.querySelectorAll(".detail-box").forEach(box=>{
+box.classList.add("hidden")
+})
+
+document.getElementById(id).classList.remove("hidden")
+
+window.scrollTo({
+top:document.getElementById(id).offsetTop-80,
+behavior:"smooth"
+})
+
+}
+
+</script>
 
 </body>
 </html>
