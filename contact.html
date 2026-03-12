@@ -23,7 +23,6 @@
 <meta property="og:url" content="https://pandrhospitality.in/contact.html">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Contact | P & R Hospitality Management Services">
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-836426031"></script>
 
@@ -212,10 +211,9 @@ For PMS Solutions, Hospitality Consulting or Travel Services
 
 <p><strong>Phone:</strong> +91 9419287356</p>
 <p><strong>Email:</strong> info@pandrhospitality.in</p>
-<p><strong>Services:</strong> PMS Solutions • Hospitality Consultancy • Travel Services</p>
 
 <p>
-Our team will respond to your enquiry as soon as possible.
+For hotel PMS software, hospitality consulting or travel services enquiries, please contact us using the form.
 </p>
 
 </div>
@@ -224,7 +222,7 @@ Our team will respond to your enquiry as soon as possible.
 
 <h2>Send an Enquiry</h2>
 
-<form action="thanks.html" method="GET">
+<form id="contactForm">
 
 <select name="service" required>
 
@@ -245,6 +243,8 @@ Our team will respond to your enquiry as soon as possible.
 <input type="tel" name="phone" placeholder="Phone Number" required>
 
 <textarea name="message" placeholder="Your Message" rows="4"></textarea>
+
+<input type="hidden" name="source" value="website-contact-page">
 
 <button type="submit">Submit Enquiry</button>
 
@@ -267,6 +267,35 @@ src="https://www.google.com/maps?q=India&output=embed">
 © 2026 P & R Hospitality Management Services
 
 </footer>
+
+<script>
+
+const scriptURL="PASTE_YOUR_APPS_SCRIPT_URL_HERE";
+
+document.getElementById("contactForm").addEventListener("submit",function(e){
+
+e.preventDefault();
+
+let formData=new FormData(this);
+
+fetch(scriptURL,{
+method:"POST",
+body:formData
+})
+.then(response=>{
+
+window.location.href="thanks.html";
+
+})
+.catch(error=>{
+
+alert("Form submission failed");
+
+});
+
+});
+
+</script>
 
 </body>
 </html>
