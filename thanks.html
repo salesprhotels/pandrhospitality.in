@@ -12,66 +12,79 @@
 <style>
 
 body{
-font-family:Arial,Helvetica,sans-serif;
-background:#f4f6fb;
 margin:0;
-text-align:center;
+font-family:Arial,Helvetica,sans-serif;
+background:linear-gradient(135deg,#4b3fd6,#0b2a4a);
+min-height:100vh;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
 color:#222;
 }
 
-/* HEADER */
-
-header{
-background:#fff;
-border-bottom:1px solid #ddd;
-padding:12px;
-}
+/* LOGOS */
 
 .logos{
+position:absolute;
+top:20px;
 display:flex;
-justify-content:center;
 gap:12px;
-align-items:center;
 }
 
 .logos img{
 height:40px;
 }
 
-/* BOX */
+/* CARD */
 
-.box{
-max-width:700px;
-margin:80px auto;
+.card{
 background:#fff;
-padding:40px;
-border-radius:10px;
-box-shadow:0 4px 14px rgba(0,0,0,.08);
+padding:50px 40px;
+border-radius:12px;
+box-shadow:0 10px 30px rgba(0,0,0,.25);
+text-align:center;
+max-width:600px;
+width:90%;
 }
 
-h1{
+/* SUCCESS ICON */
+
+.icon{
+font-size:70px;
 color:#4b3fd6;
 margin-bottom:10px;
+}
+
+/* TEXT */
+
+h1{
+margin:10px 0;
+color:#4b3fd6;
 }
 
 p{
 font-size:16px;
 line-height:1.6;
+color:#555;
 }
 
 /* BUTTONS */
 
 .buttons{
 margin-top:30px;
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:10px;
 }
 
 .btn{
-display:inline-block;
 padding:12px 22px;
-margin:8px;
-text-decoration:none;
 border-radius:6px;
+text-decoration:none;
 font-weight:bold;
+transition:.2s;
 }
 
 .call{
@@ -89,13 +102,18 @@ background:#eee;
 color:#222;
 }
 
+.btn:hover{
+transform:translateY(-2px);
+box-shadow:0 5px 15px rgba(0,0,0,.2);
+}
+
 /* FOOTER */
 
 footer{
-margin-top:60px;
-padding:20px;
-font-size:14px;
-color:#777;
+position:absolute;
+bottom:10px;
+color:#ddd;
+font-size:13px;
 }
 
 </style>
@@ -103,8 +121,6 @@ color:#777;
 </head>
 
 <body>
-
-<header>
 
 <div class="logos">
 
@@ -118,10 +134,9 @@ color:#777;
 
 </div>
 
-</header>
+<div class="card">
 
-
-<div class="box">
+<div class="icon">✔</div>
 
 <h1>Thank You!</h1>
 
@@ -130,7 +145,7 @@ Your travel enquiry has been received successfully.
 </p>
 
 <p>
-Our travel expert will contact you shortly with the best available options.
+Our travel expert will contact you shortly with the best available options for your journey.
 </p>
 
 <p>
@@ -154,7 +169,6 @@ Back to Travel Page
 </div>
 
 </div>
-
 
 <footer>
 
