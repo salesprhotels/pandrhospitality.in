@@ -269,25 +269,61 @@ Contact
 
 </section>
 
-<!-- CAR RENTAL WIDGET SECTION -->
+<!-- CAB SEARCH / ENQUIRY FORM -->
 
 <section class="section">
 
 <h2 style="text-align:center;margin-bottom:30px">
-Global Car Rental
+Check Cab Availability
 </h2>
 
-<p style="text-align:center;margin-bottom:25px">
-Compare self-drive rental cars worldwide through our travel partners.
-</p>
+<form id="cabForm" style="max-width:700px;margin:auto">
 
-<div style="max-width:900px;margin:auto">
+<div style="margin-bottom:15px;text-align:center">
 
-<script async src="https://tpscr.com/content?trs=507111&shmarker=710102&locale=en&powered_by=true&border_radius=0&plain=true&show_logo=true&color_background=%23ffca28&color_button=%2332a8dd&color_text=%23000000&color_input_text=%23000000&color_button_text=%23ffffff&promo_id=4480&campaign_id=10" charset="utf-8"></script>
+<label>
+<input type="radio" name="trip" value="oneway" checked onclick="toggleReturn()"> 
+One Way
+</label>
+
+<label style="margin-left:20px">
+<input type="radio" name="trip" value="round" onclick="toggleReturn()"> 
+Round Trip
+</label>
 
 </div>
 
-</section>  
+<input type="text" id="pickup" placeholder="Pickup City" required
+style="width:100%;padding:12px;margin-bottom:10px">
+
+<input type="text" id="drop" placeholder="Destination" required
+style="width:100%;padding:12px;margin-bottom:10px">
+
+<label>Departure Date</label>
+<input type="date" id="departDate" required
+style="width:100%;padding:12px;margin-bottom:10px">
+
+<div id="returnBox" style="display:none">
+
+<label>Return Date</label>
+<input type="date" id="returnDate"
+style="width:100%;padding:12px;margin-bottom:10px">
+
+</div>
+
+<input type="tel" id="phone" placeholder="Phone Number" required
+style="width:100%;padding:12px;margin-bottom:15px">
+
+<button type="submit"
+style="background:#4b3fd6;color:#fff;padding:14px;border:none;width:100%;font-weight:bold;border-radius:6px">
+Check Availability
+</button>
+
+</form>
+
+</section>
+
+<!-- CAB SERVICES -->
 
 <section class="section">
 
@@ -297,7 +333,7 @@ Our Cab Services
 
 <div class="grid">
 
-<div class="card" onclick="openDetail('airport')">
+<div class="card">
 <img src="images/airport-cab.png">
 <div class="card-content">
 <h3>Airport Pickup & Drop</h3>
@@ -305,7 +341,7 @@ Our Cab Services
 </div>
 </div>
 
-<div class="card" onclick="openDetail('jammu')">
+<div class="card">
 <img src="images/jammu-katra.png">
 <div class="card-content">
 <h3>Jammu – Katra Cab</h3>
@@ -313,7 +349,7 @@ Our Cab Services
 </div>
 </div>
 
-<div class="card" onclick="openDetail('pilgrimage')">
+<div class="card">
 <img src="images/pilgrimage-cab.png">
 <div class="card-content">
 <h3>Pilgrimage Cab Services</h3>
@@ -347,48 +383,73 @@ Our Cab Services
 
 </div>
 
-<!-- DETAIL BOXES -->
-
-<div id="airport" class="detail-box hidden">
-<h2>Airport Transfer Details</h2>
-<p>Pickup & drop from Jammu Airport with flight tracking.</p>
-</div>
-
-<div id="jammu" class="detail-box hidden">
-<h2>Jammu – Katra Cab Details</h2>
-<p>Same day return & one way transfer options available.</p>
-</div>
-
-<div id="pilgrimage" class="detail-box hidden">
-<h2>Pilgrimage Cab Details</h2>
-<p>Shiv Khori, Nau Devi Darshan, Baba Jitto, Patnitop routes.</p>
-</div>
-
 </section>
-
-<a class="whatsapp" href="https://wa.me/919419287356">
-WhatsApp
-</a>
-
-<footer>
-© 2026 Yes We Care Travels · Operated by P & R Hospitality
-</footer>
 
 <script>
 
-function openDetail(id){
+/* SHOW RETURN DATE */
 
-document.querySelectorAll(".detail-box").forEach(box=>{
-box.classList.add("hidden")
-})
+function toggleReturn(){
 
-document.getElementById(id).classList.remove("hidden")
+let trip=document.querySelector('input[name="trip"]:checked').value;
 
-document.getElementById(id).scrollIntoView({
-behavior:"smooth"
-})
+let returnBox=document.getElementById("returnBox");
+
+if(trip==="round"){
+returnBox.style.display="block";
+}else{
+returnBox.style.display="none";
+}
 
 }
+
+/* DISABLE PAST DATE */
+
+const today=new Date().toISOString().split("T")[0];
+
+document.getElementById("departDate").setAttribute("min",today);
+
+/* RETURN DATE AFTER DEPARTURE */
+
+document.getElementById("departDate").addEventListener("change",function(){
+
+document.getElementById("returnDate").setAttribute("min",this.value);
+
+});
+
+/* FORM SUBMIT */
+
+document.getElementById("cabForm").addEventListener("submit",function(e){
+
+e.preventDefault();
+
+let trip=document.querySelector('input[name="trip"]:checked').value;
+
+let data={
+
+pickup:document.getElementById("pickup").value,
+drop:document.getElementById("drop").value,
+depart:document.getElementById("departDate").value,
+returnDate:document.getElementById("returnDate").value,
+phone:document.getElementById("phone").value,
+trip:trip
+
+};
+
+fetch("PASTE_YOUR_APPS_SCRIPT_URL_HERE",{
+
+method:"POST",
+body:new URLSearchParams(data)
+
+})
+.then(res=>res.text())
+.then(()=>{
+
+window.location.href="thanks.html";
+
+});
+
+});
 
 </script>
 
