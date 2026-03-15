@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Global Exploration | Yes We Care Travels</title>
+<title>Global Expeditions | Yes We Care Travels</title>
 
 <style>
 
 body{
 font-family:Arial;
 margin:0;
-background:#f4f6fb;
-color:#222;
+background:#f5f7fb;
 }
 
 /* HEADER */
@@ -21,7 +21,7 @@ color:#222;
 header{
 background:#0b2a4a;
 color:white;
-padding:14px 20px;
+padding:15px;
 display:flex;
 justify-content:space-between;
 align-items:center;
@@ -42,7 +42,7 @@ position:relative;
 background:#4b3fd6;
 color:white;
 border:none;
-padding:8px 14px;
+padding:8px 12px;
 cursor:pointer;
 }
 
@@ -50,13 +50,13 @@ cursor:pointer;
 display:none;
 position:absolute;
 right:0;
-top:36px;
+top:35px;
 background:white;
-box-shadow:0 4px 12px rgba(0,0,0,.2);
+color:black;
+box-shadow:0 4px 10px rgba(0,0,0,.2);
 }
 
-.language-menu a{
-display:block;
+.language-menu div{
 padding:10px;
 cursor:pointer;
 }
@@ -74,10 +74,13 @@ text-align:center;
 padding:70px 20px;
 }
 
-.hero input{
+.search{
+margin-top:20px;
+}
+
+.search input{
 padding:12px;
-width:280px;
-margin-top:10px;
+width:260px;
 border:none;
 border-radius:4px;
 }
@@ -90,20 +93,34 @@ margin:auto;
 padding:40px 20px;
 }
 
-/* DESTINATION CARDS */
+/* FILTER */
+
+.filter{
+margin-bottom:20px;
+}
+
+.filter button{
+margin:5px;
+padding:8px 12px;
+border:none;
+background:#ddd;
+cursor:pointer;
+}
+
+/* DESTINATIONS */
 
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:20px;
 }
 
 .card{
 background:white;
 border-radius:8px;
-box-shadow:0 4px 14px rgba(0,0,0,.1);
-cursor:pointer;
+box-shadow:0 4px 12px rgba(0,0,0,.1);
 overflow:hidden;
+cursor:pointer;
 }
 
 .card img{
@@ -113,15 +130,15 @@ object-fit:cover;
 }
 
 .card div{
-padding:14px;
+padding:15px;
 }
 
-/* TOURS */
+/* TOUR CARD */
 
 .tour{
 background:white;
-padding:20px;
 margin-top:20px;
+padding:20px;
 border-radius:8px;
 box-shadow:0 4px 10px rgba(0,0,0,.1);
 }
@@ -131,20 +148,17 @@ color:#4b3fd6;
 font-weight:bold;
 }
 
-/* BUTTON */
-
 button{
 background:#4b3fd6;
 color:white;
 border:none;
-padding:10px 16px;
+padding:8px 14px;
 cursor:pointer;
 margin-top:10px;
 }
 
-/* ITINERARY */
-
 .itinerary{
+display:none;
 background:#eef1ff;
 padding:12px;
 margin-top:10px;
@@ -155,8 +169,6 @@ margin-top:10px;
 </head>
 
 <body>
-
-<div id="google_translate_element" style="position:absolute;left:-9999px;"></div>
 
 <header>
 
@@ -170,11 +182,11 @@ Yes We Care Travels
 
 <div class="language-menu">
 
-<a onclick="changeLanguage('en')">🇬🇧 English</a>
-<a onclick="changeLanguage('es')">🇪🇸 Spanish</a>
-<a onclick="changeLanguage('fr')">🇫🇷 French</a>
-<a onclick="changeLanguage('de')">🇩🇪 German</a>
-<a onclick="changeLanguage('hi')">🇮🇳 Hindi</a>
+<div>🇬🇧 English</div>
+<div>🇪🇸 Spanish</div>
+<div>🇫🇷 French</div>
+<div>🇩🇪 German</div>
+<div>🇮🇳 Hindi</div>
 
 </div>
 
@@ -184,21 +196,25 @@ Yes We Care Travels
 
 <section class="hero">
 
-<h1>Global Exploration</h1>
+<h1>Global Expeditions</h1>
 
-<p>Discover international expeditions and curated travel experiences</p>
+<p>Explore curated international tours</p>
 
-<input placeholder="Search destination or tour">
+<div class="search">
+
+<input id="search" placeholder="Search destination or tour">
+
+</div>
 
 </section>
 
 <section class="section">
 
-<h2>Popular Destinations</h2>
+<h2>Destinations</h2>
 
 <div class="grid">
 
-<div class="card" onclick="showCountry('peru')">
+<div class="card" onclick="showTours('peru')">
 
 <img src="images/peru.jpg">
 
@@ -206,13 +222,13 @@ Yes We Care Travels
 
 <h3>Peru</h3>
 
-<p>Machu Picchu & Andes Expeditions</p>
+<p>Machu Picchu & Andes</p>
 
 </div>
 
 </div>
 
-<div class="card" onclick="showCountry('thailand')">
+<div class="card" onclick="showTours('thailand')">
 
 <img src="images/thailand.jpg">
 
@@ -220,13 +236,13 @@ Yes We Care Travels
 
 <h3>Thailand</h3>
 
-<p>Bangkok & Island Adventures</p>
+<p>Bangkok & Islands</p>
 
 </div>
 
 </div>
 
-<div class="card" onclick="showCountry('dubai')">
+<div class="card" onclick="showTours('dubai')">
 
 <img src="images/dubai.jpg">
 
@@ -234,11 +250,23 @@ Yes We Care Travels
 
 <h3>Dubai</h3>
 
-<p>Luxury desert & city tours</p>
+<p>Luxury Desert Tours</p>
 
 </div>
 
 </div>
+
+</div>
+
+<div class="filter">
+
+<h3>Filter by Duration</h3>
+
+<button onclick="filterTours('all')">All</button>
+<button onclick="filterTours('4')">4 Days</button>
+<button onclick="filterTours('5')">5 Days</button>
+<button onclick="filterTours('6')">6 Days</button>
+<button onclick="filterTours('7')">7 Days</button>
 
 </div>
 
@@ -251,57 +279,66 @@ Yes We Care Travels
 const tours={
 
 peru:[
-{name:"Cusco City Tour",price:"$120"},
-{name:"Sacred Valley Classic",price:"$180"},
-{name:"Rainbow Mountain",price:"$150"}
+{name:"Cusco Explorer",days:"4",price:"$950"},
+{name:"Sacred Valley",days:"5",price:"$1100"},
+{name:"Machu Picchu Classic",days:"6",price:"$1400"},
+{name:"Amazon Expedition",days:"7",price:"$1800"}
 ],
 
 thailand:[
-{name:"Bangkok City Tour",price:"$90"},
-{name:"Phuket Island Tour",price:"$140"}
+{name:"Bangkok Explorer",days:"4",price:"$650"},
+{name:"Phuket Escape",days:"5",price:"$850"}
 ],
 
 dubai:[
-{name:"Dubai City Tour",price:"$110"},
-{name:"Desert Safari",price:"$130"}
+{name:"Dubai City Experience",days:"4",price:"$700"},
+{name:"Dubai Luxury Tour",days:"5",price:"$1100"}
 ]
 
 };
 
-function showCountry(country){
+let currentCountry="";
 
-let html="<h2>Available Tours</h2>";
+function showTours(country){
 
-tours[country].forEach(tour=>{
+currentCountry=country;
+
+renderTours(tours[country]);
+
+}
+
+function renderTours(list){
+
+let html="";
+
+list.forEach((tour,i)=>{
 
 html+=`
 
-<div class="tour">
+<div class="tour" data-days="${tour.days}">
 
 <h3>${tour.name}</h3>
 
+<p>Duration: ${tour.days} Days</p>
+
 <p class="price">Price: ${tour.price}</p>
 
-<label>Select Travel Date</label>
+<button onclick="toggleItinerary(${i})">
+View Itinerary
+</button>
 
-<input type="date">
+<a href="global-tour-booking.html?tour=${tour.name}">
+<button>Book Tour</button>
+</a>
 
-<div class="itinerary">
+<div class="itinerary" id="it${i}">
 
-<strong>Sample Itinerary</strong><br>
-
-Day 1 – Arrival and local sightseeing<br>
-Day 2 – Tour activities<br>
-Day 3 – Adventure experience<br>
+Day 1 – Arrival & city tour<br>
+Day 2 – Local exploration<br>
+Day 3 – Adventure activities<br>
 Day 4 – Departure
 
 </div>
-
-<a href="global-tour-booking.html?tour=${tour.name}">
-
-<button>Book This Tour</button>
-
-</a>
 
 </div>
 
@@ -313,40 +350,35 @@ document.getElementById("tours").innerHTML=html;
 
 }
 
-/* GOOGLE TRANSLATE */
+function toggleItinerary(i){
 
-function googleTranslateElementInit(){
+let el=document.getElementById("it"+i);
 
-new google.translate.TranslateElement({
-
-pageLanguage:'en',
-includedLanguages:'en,es,fr,de,hi'
-
-},'google_translate_element');
+if(el.style.display=="block")
+el.style.display="none";
+else
+el.style.display="block";
 
 }
 
-function changeLanguage(lang){
+function filterTours(days){
 
-var interval=setInterval(function(){
+if(days=="all"){
 
-var select=document.querySelector(".goog-te-combo");
+renderTours(tours[currentCountry]);
 
-if(select){
-
-select.value=lang;
-select.dispatchEvent(new Event("change"));
-clearInterval(interval);
+return;
 
 }
 
-},500);
+let filtered=tours[currentCountry].filter(t=>t.days==days);
+
+renderTours(filtered);
 
 }
 
 </script>
 
-<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
 </body>
+
 </html>
