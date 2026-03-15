@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Global Exploration Booking | Yes We Care Travels</title>
+<title>Global Tour Booking | Yes We Care Travels</title>
 
 <style>
 
@@ -12,6 +13,7 @@ body{
 font-family:Arial;
 margin:0;
 background:#f4f6fb;
+color:#222;
 }
 
 /* HEADER */
@@ -19,14 +21,48 @@ background:#f4f6fb;
 header{
 background:#0b2a4a;
 color:white;
-padding:14px 30px;
+padding:14px 20px;
 display:flex;
 justify-content:space-between;
+align-items:center;
 }
 
 .logo{
 font-size:20px;
 font-weight:bold;
+}
+
+/* LANGUAGE */
+
+.language{
+position:relative;
+}
+
+.language button{
+background:#4b3fd6;
+color:white;
+border:none;
+padding:8px 14px;
+cursor:pointer;
+}
+
+.language-menu{
+display:none;
+position:absolute;
+right:0;
+top:36px;
+background:white;
+box-shadow:0 4px 12px rgba(0,0,0,.2);
+}
+
+.language-menu a{
+display:block;
+padding:10px;
+cursor:pointer;
+}
+
+.language:hover .language-menu{
+display:block;
 }
 
 /* HERO */
@@ -38,84 +74,50 @@ text-align:center;
 padding:60px 20px;
 }
 
-/* COUNTRY CARDS */
+/* BOOKING BOX */
 
-.section{
-max-width:1200px;
+.container{
+max-width:900px;
 margin:auto;
 padding:40px 20px;
 }
 
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-gap:20px;
-}
-
-.card{
+.booking-box{
 background:white;
+padding:30px;
 border-radius:8px;
 box-shadow:0 4px 12px rgba(0,0,0,.1);
-overflow:hidden;
-cursor:pointer;
 }
 
-.card img{
-width:100%;
-height:160px;
-object-fit:cover;
-}
-
-.card div{
-padding:14px;
-}
-
-/* TOURS */
-
-.tour{
-background:white;
-padding:20px;
-margin-top:20px;
-border-radius:8px;
-box-shadow:0 4px 10px rgba(0,0,0,.1);
-}
-
-/* PRICE */
-
-.price{
-color:#4b3fd6;
-font-size:18px;
-font-weight:bold;
-}
-
-/* FORM */
-
-.booking{
-background:white;
-padding:20px;
-margin-top:20px;
-border-radius:8px;
-box-shadow:0 4px 10px rgba(0,0,0,.1);
-}
-
-.booking input,
-.booking select{
+.booking-box input,
+.booking-box select{
 width:100%;
 padding:10px;
 margin:6px 0;
 }
 
-button{
-background:#4b3fd6;
-color:white;
-border:none;
-padding:10px 16px;
-cursor:pointer;
+.price{
+font-weight:bold;
+color:#4b3fd6;
+margin-top:10px;
 }
+
+/* ITINERARY */
 
 .itinerary{
 background:#eef1ff;
 padding:12px;
+margin-top:12px;
+}
+
+/* BUTTON */
+
+button{
+background:#4b3fd6;
+color:white;
+border:none;
+padding:12px 16px;
+cursor:pointer;
 margin-top:10px;
 }
 
@@ -125,226 +127,205 @@ margin-top:10px;
 
 <body>
 
+<div id="google_translate_element" style="position:absolute;left:-9999px;"></div>
+
 <header>
 
 <div class="logo">
 Yes We Care Travels
 </div>
 
+<div class="language">
+
+<button>🌐 Language</button>
+
+<div class="language-menu">
+
+<a onclick="changeLanguage('en')">🇬🇧 English</a>
+<a onclick="changeLanguage('es')">🇪🇸 Spanish</a>
+<a onclick="changeLanguage('fr')">🇫🇷 French</a>
+<a onclick="changeLanguage('de')">🇩🇪 German</a>
+<a onclick="changeLanguage('hi')">🇮🇳 Hindi</a>
+
+</div>
+
+</div>
+
 </header>
 
 <section class="hero">
 
-<h1>Global Exploration</h1>
-<p>Book international tours and expeditions</p>
+<h1>Global Tour Booking</h1>
+
+<p>Secure your international travel experience</p>
 
 </section>
 
+<div class="container">
 
-<section class="section">
+<div class="booking-box">
 
-<h2>Select Destination</h2>
+<h2 id="tourName">Selected Tour</h2>
 
-<div class="grid">
+<label>Travel Date</label>
+<input type="date" id="date">
 
-<div class="card" onclick="showCountry('peru')">
+<label>Adults</label>
+<input type="number" id="adults" value="1">
 
-<img src="images/peru.jpg">
+<label>Children</label>
+<input type="number" id="children" value="0">
 
-<div>
-
-<h3>Peru</h3>
-
+<div class="price" id="price">
+Price: --
 </div>
 
-</div>
-
-<div class="card" onclick="showCountry('thailand')">
-
-<img src="images/thailand.jpg">
-
-<div>
-
-<h3>Thailand</h3>
-
-</div>
-
-</div>
-
-<div class="card" onclick="showCountry('dubai')">
-
-<img src="images/dubai.jpg">
-
-<div>
-
-<h3>Dubai</h3>
-
-</div>
-
-</div>
-
-</div>
-
-
-<div id="tours"></div>
-
-</section>
-
-
-
-<script>
-
-const tourData = {
-
-peru: [
-
-{
-name:"Cusco City Tour",
-price:"$120",
-days:1
-},
-
-{
-name:"Sacred Valley Classic",
-price:"$190",
-days:1
-},
-
-{
-name:"Rainbow Mountain",
-price:"$150",
-days:1
-}
-
-],
-
-thailand:[
-
-{
-name:"Bangkok City Tour",
-price:"$80",
-days:1
-},
-
-{
-name:"Phuket Island Tour",
-price:"$120",
-days:1
-}
-
-],
-
-dubai:[
-
-{
-name:"Dubai City Tour",
-price:"$90",
-days:1
-},
-
-{
-name:"Desert Safari",
-price:"$110",
-days:1
-}
-
-]
-
-};
-
-
-
-function showCountry(country){
-
-let tours=tourData[country];
-
-let html="";
-
-tours.forEach(tour=>{
-
-html+=`
-
-<div class="tour">
-
-<h3>${tour.name}</h3>
-
-<p class="price">Price: ${tour.price}</p>
-
-<button onclick="openBooking('${tour.name}',${tour.days})">
-
-Book Now
-
+<button onclick="calculatePrice()">
+Calculate Price
 </button>
 
-</div>
-
-`;
-
-});
-
-document.getElementById("tours").innerHTML=html;
-
-}
-
-
-
-function openBooking(name,days){
-
-document.getElementById("tours").innerHTML+=`
-
-<div class="booking">
-
-<h3>Book ${name}</h3>
-
-<input placeholder="Your Name">
-
-<input placeholder="Phone Number">
-
-<input type="date">
-
-<select id="days">
-
-<option value="${days}">${days} Day Tour</option>
-
-</select>
-
-<input type="number" placeholder="Adults">
-
-<input type="number" placeholder="Children">
-
-<button onclick="generateItinerary(${days})">
-
+<button onclick="generateItinerary()">
 Generate Itinerary
-
 </button>
 
 <div id="itinerary"></div>
 
+<h3>Traveler Details</h3>
+
+<input placeholder="Full Name">
+
+<input placeholder="Phone Number">
+
+<input placeholder="Email">
+
+<button onclick="sendWhatsApp()">
+Book via WhatsApp
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+/* GET TOUR NAME FROM URL */
+
+const params = new URLSearchParams(window.location.search);
+const tour = params.get("tour");
+
+document.getElementById("tourName").innerText = tour;
+
+/* TOUR PRICE DATA */
+
+const prices = {
+
+"Cusco City Tour":120,
+"Sacred Valley Classic":180,
+"Rainbow Mountain":150,
+"Bangkok City Tour":90,
+"Phuket Island Tour":140,
+"Dubai City Tour":110,
+"Desert Safari":130
+
+};
+
+/* PRICE CALCULATION */
+
+function calculatePrice(){
+
+let adults = document.getElementById("adults").value;
+let children = document.getElementById("children").value;
+
+let base = prices[tour] || 100;
+
+let total = (adults * base) + (children * base * 0.5);
+
+document.getElementById("price").innerText =
+"Total Price: $" + total;
+
+}
+
+/* ITINERARY */
+
+function generateItinerary(){
+
+let html = `
+
+<div class="itinerary">
+
+<strong>Sample Itinerary</strong><br>
+
+Day 1 – Arrival and orientation<br>
+Day 2 – Main sightseeing tour<br>
+Day 3 – Adventure / nature exploration<br>
+Day 4 – Departure
+
 </div>
 
 `;
 
-}
-
-
-
-function generateItinerary(days){
-
-let result="";
-
-for(let i=1;i<=days;i++){
-
-result += "Day "+i+" : Tour activities and sightseeing<br>";
+document.getElementById("itinerary").innerHTML = html;
 
 }
 
-document.getElementById("itinerary").innerHTML=
+/* WHATSAPP BOOKING */
 
-"<div class='itinerary'>"+result+"</div>";
+function sendWhatsApp(){
+
+let adults = document.getElementById("adults").value;
+
+let url =
+
+"https://wa.me/919419287356?text=" +
+
+encodeURIComponent(
+
+"Tour Booking Request\n\n" +
+
+"Tour: "+tour+"\n" +
+
+"Adults: "+adults
+
+);
+
+window.open(url);
+
+}
+
+/* GOOGLE TRANSLATE */
+
+function googleTranslateElementInit(){
+
+new google.translate.TranslateElement({
+
+pageLanguage:'en',
+includedLanguages:'en,es,fr,de,hi'
+
+},'google_translate_element');
+
+}
+
+function changeLanguage(lang){
+
+var interval=setInterval(function(){
+
+var select=document.querySelector(".goog-te-combo");
+
+if(select){
+
+select.value=lang;
+select.dispatchEvent(new Event("change"));
+clearInterval(interval);
+
+}
+
+},500);
 
 }
 
 </script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </body>
 </html>
