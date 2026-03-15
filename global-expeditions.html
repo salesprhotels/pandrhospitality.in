@@ -10,9 +10,10 @@
 <style>
 
 body{
-font-family:Arial;
+font-family:Arial, Helvetica, sans-serif;
 margin:0;
 background:#f4f6fb;
+color:#222;
 }
 
 /* HEADER */
@@ -20,7 +21,7 @@ background:#f4f6fb;
 header{
 background:#0b2a4a;
 color:white;
-padding:15px 30px;
+padding:12px 20px;
 display:flex;
 justify-content:space-between;
 align-items:center;
@@ -33,8 +34,44 @@ font-weight:bold;
 
 /* LANGUAGE */
 
-.language{
-font-size:14px;
+.language-menu{
+position:relative;
+}
+
+.lang-btn{
+background:#4b3fd6;
+color:white;
+border:none;
+padding:8px 14px;
+cursor:pointer;
+border-radius:4px;
+}
+
+.lang-dropdown{
+display:none;
+position:absolute;
+right:0;
+top:38px;
+background:white;
+box-shadow:0 4px 12px rgba(0,0,0,.2);
+border-radius:6px;
+overflow:hidden;
+}
+
+.lang-dropdown a{
+display:block;
+padding:10px 16px;
+cursor:pointer;
+text-decoration:none;
+color:#333;
+}
+
+.lang-dropdown a:hover{
+background:#f1f1f1;
+}
+
+.language-menu:hover .lang-dropdown{
+display:block;
 }
 
 /* HERO */
@@ -60,7 +97,6 @@ border-bottom:1px solid #ddd;
 }
 
 .tabs button{
-
 padding:14px 30px;
 border:none;
 background:none;
@@ -86,97 +122,104 @@ margin:auto;
 display:block;
 }
 
-/* TOUR CARDS */
+/* GRID */
 
 .grid{
-
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:20px;
-
 }
 
-.card{
+/* CARD */
 
+.card{
 background:white;
 border-radius:8px;
-box-shadow:0 4px 12px rgba(0,0,0,.1);
+box-shadow:0 4px 14px rgba(0,0,0,.1);
 overflow:hidden;
-
 }
 
 .card img{
-
 width:100%;
 height:180px;
 object-fit:cover;
-
 }
 
 .card div{
-
 padding:16px;
-
 }
 
 .card h3{
-
 margin-bottom:6px;
+}
 
+/* BUTTON */
+
+.view{
+background:#4b3fd6;
+color:white;
+border:none;
+padding:8px 14px;
+margin-top:10px;
+cursor:pointer;
+border-radius:4px;
 }
 
 /* ITINERARY */
 
 .itinerary{
-
 display:none;
-background:#f1f3ff;
+background:#eef1ff;
 padding:14px;
 margin-top:10px;
-
+border-radius:6px;
 }
 
-button.view{
-
-background:#4b3fd6;
-color:white;
-border:none;
-padding:8px 14px;
-margin-top:8px;
-cursor:pointer;
+.itinerary ul{
+padding-left:18px;
 }
 
 </style>
+
 </head>
 
 <body>
 
+<!-- GOOGLE TRANSLATE HIDDEN -->
+<div id="google_translate_element" style="position:absolute; left:-9999px;"></div>
+
 <header>
 
-<div class="logo">Yes We Care Travels</div>
+<div class="logo">
+Yes We Care Travels
+</div>
 
-<div class="language">
+<div class="language-menu">
 
-🌐 Language
+<button class="lang-btn">🌐 Language</button>
 
-<select>
+<div class="lang-dropdown">
 
-<option>English</option>
-<option>Spanish</option>
-<option>French</option>
-<option>German</option>
+<a onclick="changeLanguage('en')">🇬🇧 English</a>
+<a onclick="changeLanguage('es')">🇪🇸 Español</a>
+<a onclick="changeLanguage('fr')">🇫🇷 Français</a>
+<a onclick="changeLanguage('de')">🇩🇪 Deutsch</a>
+<a onclick="changeLanguage('pt')">🇧🇷 Português</a>
+<a onclick="changeLanguage('hi')">🇮🇳 हिन्दी</a>
 
-</select>
+</div>
 
 </div>
 
 </header>
 
+<!-- HERO -->
+
 <section class="hero">
 
 <h1>Global Exploration</h1>
 
-<p>Discover curated international destinations and expedition experiences.</p>
+<p>Discover curated international expeditions and travel experiences.</p>
 
 </section>
 
@@ -210,24 +253,19 @@ cursor:pointer;
 
 <p>Half day cultural exploration.</p>
 
-<button class="view" onclick="toggleItinerary(this)">View Itinerary</button>
+<button class="view" onclick="toggleItinerary(this)">
+View Itinerary
+</button>
 
 <div class="itinerary">
 
 <ul>
-
 <li>Qoricancha Temple</li>
-
 <li>Sacsayhuamán Fortress</li>
-
 <li>Qenqo</li>
-
 <li>Puca Pucara</li>
-
 <li>Tambomachay</li>
-
-<li>Cristo Blanco Viewpoint</li>
-
+<li>Cristo Blanco viewpoint</li>
 </ul>
 
 </div>
@@ -247,20 +285,17 @@ cursor:pointer;
 
 <p>Full day Sacred Valley experience.</p>
 
-<button class="view" onclick="toggleItinerary(this)">View Itinerary</button>
+<button class="view" onclick="toggleItinerary(this)">
+View Itinerary
+</button>
 
 <div class="itinerary">
 
 <ul>
-
 <li>Pisac ruins</li>
-
 <li>Urubamba lunch</li>
-
 <li>Ollantaytambo fortress</li>
-
 <li>Chinchero village</li>
-
 </ul>
 
 </div>
@@ -280,22 +315,18 @@ cursor:pointer;
 
 <p>Premium Sacred Valley route.</p>
 
-<button class="view" onclick="toggleItinerary(this)">View Itinerary</button>
+<button class="view" onclick="toggleItinerary(this)">
+View Itinerary
+</button>
 
 <div class="itinerary">
 
 <ul>
-
 <li>Chinchero</li>
-
 <li>Moray terraces</li>
-
 <li>Maras salt mines</li>
-
 <li>Urubamba lunch</li>
-
-<li>Ollantaytambo</li>
-
+<li>Ollantaytambo fortress</li>
 </ul>
 
 </div>
@@ -313,24 +344,20 @@ cursor:pointer;
 
 <h3>Rainbow Mountain Adventure</h3>
 
-<p>One of the most famous Andean hikes.</p>
+<p>Famous Andean mountain hike.</p>
 
-<button class="view" onclick="toggleItinerary(this)">View Itinerary</button>
+<button class="view" onclick="toggleItinerary(this)">
+View Itinerary
+</button>
 
 <div class="itinerary">
 
 <ul>
-
-<li>Early departure</li>
-
+<li>Early morning departure</li>
 <li>Mountain trekking</li>
-
 <li>Rainbow viewpoint</li>
-
 <li>Lunch stop</li>
-
 <li>Return to Cusco</li>
-
 </ul>
 
 </div>
@@ -343,17 +370,15 @@ cursor:pointer;
 
 </div>
 
-
 <!-- THAILAND -->
 
 <div id="thailand" class="tab-content">
 
 <h2>Thailand Tours</h2>
 
-<p>Bangkok, Phuket, Krabi and island tours will appear here.</p>
+<p>Bangkok, Phuket and island packages coming soon.</p>
 
 </div>
-
 
 <!-- DUBAI -->
 
@@ -361,10 +386,9 @@ cursor:pointer;
 
 <h2>Dubai Experiences</h2>
 
-<p>Luxury desert safari, city tours and cruise experiences.</p>
+<p>Luxury desert safari and city tours.</p>
 
 </div>
-
 
 <script>
 
@@ -392,7 +416,39 @@ box.style.display = box.style.display==="block" ? "none" : "block";
 
 }
 
+/* GOOGLE TRANSLATE */
+
+function googleTranslateElementInit(){
+
+new google.translate.TranslateElement({
+pageLanguage:'en',
+includedLanguages:'en,es,fr,de,pt,hi',
+autoDisplay:false
+},'google_translate_element');
+
+}
+
+function changeLanguage(lang){
+
+var interval=setInterval(function(){
+
+var select=document.querySelector(".goog-te-combo");
+
+if(select){
+
+select.value=lang;
+select.dispatchEvent(new Event("change"));
+clearInterval(interval);
+
+}
+
+},500);
+
+}
+
 </script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </body>
 </html>
