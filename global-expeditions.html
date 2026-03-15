@@ -5,192 +5,168 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Global Exploration | International Travel Destinations</title>
-
-<meta name="description" content="Explore international travel destinations including Peru, Amazon rainforest, Thailand and global adventure expeditions.">
+<title>Global Exploration | Yes We Care Travels</title>
 
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
 body{
-font-family:Arial,Helvetica,sans-serif;
+font-family:Arial;
+margin:0;
 background:#f4f6fb;
-color:#222;
 }
 
 /* HEADER */
 
 header{
-background:#0f172a;
+background:#0b2a4a;
 color:white;
-}
-
-.header-wrap{
-max-width:1200px;
-margin:auto;
-padding:14px 18px;
+padding:15px 30px;
 display:flex;
-align-items:center;
 justify-content:space-between;
+align-items:center;
 }
 
-.logos img{
-height:38px;
+.logo{
+font-size:20px;
+font-weight:bold;
+}
+
+/* LANGUAGE */
+
+.language{
+font-size:14px;
 }
 
 /* HERO */
 
 .hero{
-background:url("images/global-exploration.jpg") center/cover no-repeat;
+background:#4b3fd6;
 color:white;
-padding:120px 20px;
 text-align:center;
-}
-
-.hero-overlay{
-background:rgba(0,0,0,0.6);
 padding:60px 20px;
 }
 
 .hero h1{
-font-size:42px;
 margin-bottom:10px;
 }
 
-.hero p{
-font-size:18px;
-max-width:800px;
-margin:auto;
-line-height:1.6;
+/* TABS */
+
+.tabs{
+display:flex;
+justify-content:center;
+background:white;
+border-bottom:1px solid #ddd;
 }
 
-.hero a{
-display:inline-block;
-margin-top:24px;
-background:#facc15;
-color:black;
-padding:12px 28px;
-border-radius:6px;
-text-decoration:none;
+.tabs button{
+
+padding:14px 30px;
+border:none;
+background:none;
+cursor:pointer;
 font-weight:bold;
 }
 
-/* SECTION */
+.tabs button.active{
+border-bottom:3px solid #4b3fd6;
+color:#4b3fd6;
+}
 
-.section{
-max-width:1200px;
+/* TAB CONTENT */
+
+.tab-content{
+display:none;
+padding:40px 20px;
+max-width:1100px;
 margin:auto;
-padding:60px 20px;
 }
 
-.section h2{
-text-align:center;
-margin-bottom:40px;
+.tab-content.active{
+display:block;
 }
 
-/* GRID */
+/* TOUR CARDS */
 
 .grid{
+
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:24px;
+gap:20px;
+
 }
 
 .card{
-background:white;
-border-radius:10px;
-overflow:hidden;
-box-shadow:0 4px 14px rgba(0,0,0,0.08);
-transition:0.2s;
-}
 
-.card:hover{
-transform:translateY(-4px);
-box-shadow:0 8px 20px rgba(0,0,0,0.15);
+background:white;
+border-radius:8px;
+box-shadow:0 4px 12px rgba(0,0,0,.1);
+overflow:hidden;
+
 }
 
 .card img{
+
 width:100%;
 height:180px;
 object-fit:cover;
+
 }
 
 .card div{
-padding:18px;
+
+padding:16px;
+
 }
 
 .card h3{
+
 margin-bottom:6px;
+
 }
 
-.card p{
-font-size:14px;
-line-height:1.5;
-margin-bottom:12px;
+/* ITINERARY */
+
+.itinerary{
+
+display:none;
+background:#f1f3ff;
+padding:14px;
+margin-top:10px;
+
 }
 
-.card a{
-background:#2563eb;
+button.view{
+
+background:#4b3fd6;
 color:white;
-padding:8px 16px;
-border-radius:5px;
-text-decoration:none;
-font-size:14px;
-}
-
-/* CTA */
-
-.cta{
-background:#eef2ff;
-text-align:center;
-padding:60px 20px;
-}
-
-.cta a{
-background:#2563eb;
-color:white;
-padding:12px 26px;
-border-radius:6px;
-text-decoration:none;
-font-weight:bold;
-}
-
-/* FOOTER */
-
-footer{
-background:#0f172a;
-color:#ccc;
-text-align:center;
-padding:20px;
-font-size:14px;
+border:none;
+padding:8px 14px;
+margin-top:8px;
+cursor:pointer;
 }
 
 </style>
-
 </head>
 
 <body>
 
 <header>
 
-<div class="header-wrap">
+<div class="logo">Yes We Care Travels</div>
 
-<div class="logos">
+<div class="language">
 
-<a href="index.html">
-<img src="images/logo-pr-hospitality.png">
-</a>
+🌐 Language
 
-<a href="travel.html">
-<img src="images/logo-yes-we-care-travels-1.png">
-</a>
+<select>
 
-</div>
+<option>English</option>
+<option>Spanish</option>
+<option>French</option>
+<option>German</option>
+
+</select>
 
 </div>
 
@@ -198,49 +174,31 @@ font-size:14px;
 
 <section class="hero">
 
-<div class="hero-overlay">
-
 <h1>Global Exploration</h1>
 
-<p>
-Discover international destinations and adventure travel
-experiences around the world.
-Explore cultural journeys, rainforest expeditions
-and vibrant cities across continents.
-</p>
-
-<a href="forms/global-travel-enquiry.html">Plan Your Journey</a>
-
-</div>
+<p>Discover curated international destinations and expedition experiences.</p>
 
 </section>
 
-<section class="section">
+<!-- TABS -->
 
-<h2>International Destinations</h2>
+<div class="tabs">
+
+<button class="tab active" onclick="openTab(event,'peru')">Peru</button>
+
+<button class="tab" onclick="openTab(event,'thailand')">Thailand</button>
+
+<button class="tab" onclick="openTab(event,'dubai')">Dubai</button>
+
+</div>
+
+<!-- PERU -->
+
+<div id="peru" class="tab-content active">
+
+<h2>Peru Expeditions</h2>
 
 <div class="grid">
-
-<div class="card">
-
-<img src="images/machu-picchu.jpg">
-
-<div>
-
-<h3>Peru & Machu Picchu</h3>
-
-<p>
-Explore the legendary Machu Picchu,
-Andes mountains and cultural heritage
-of Peru.
-</p>
-
-<a href="peru-expeditions.html">Explore Packages</a>
-
-</div>
-
-</div>
-
 
 <div class="card">
 
@@ -248,14 +206,31 @@ of Peru.
 
 <div>
 
-<h3>Amazon Rainforest</h3>
+<h3>Cusco City Tour</h3>
 
-<p>
-Wildlife expeditions and jungle eco-lodge
-experiences deep in the Amazon basin.
-</p>
+<p>Half day cultural exploration.</p>
 
-<a href="amazon-expeditions.html">Explore Packages</a>
+<button class="view" onclick="toggleItinerary(this)">View Itinerary</button>
+
+<div class="itinerary">
+
+<ul>
+
+<li>Qoricancha Temple</li>
+
+<li>Sacsayhuamán Fortress</li>
+
+<li>Qenqo</li>
+
+<li>Puca Pucara</li>
+
+<li>Tambomachay</li>
+
+<li>Cristo Blanco Viewpoint</li>
+
+</ul>
+
+</div>
 
 </div>
 
@@ -264,18 +239,29 @@ experiences deep in the Amazon basin.
 
 <div class="card">
 
-<img src="images/bangkok.jpg">
+<img src="images/peru-cultural.jpg">
 
 <div>
 
-<h3>Bangkok & Thailand</h3>
+<h3>Sacred Valley Classic</h3>
 
-<p>
-Discover temples, tropical beaches
-and vibrant nightlife across Thailand.
-</p>
+<p>Full day Sacred Valley experience.</p>
 
-<a href="thailand-tours.html">Explore Packages</a>
+<button class="view" onclick="toggleItinerary(this)">View Itinerary</button>
+
+<div class="itinerary">
+
+<ul>
+
+<li>Pisac ruins</li>
+
+<li>Urubamba lunch</li>
+
+<li>Ollantaytambo fortress</li>
+
+<li>Chinchero village</li>
+
+</ul>
 
 </div>
 
@@ -283,27 +269,130 @@ and vibrant nightlife across Thailand.
 
 </div>
 
-</section>
 
-<section class="cta">
+<div class="card">
 
-<h2>Start Your Global Adventure</h2>
+<img src="images/nature-adventure.jpg">
 
-<p style="margin:20px auto;max-width:700px">
-Share your travel plans and our team will help
-design the perfect international journey.
-</p>
+<div>
 
-<a href="forms/travel-form.html">Send Travel Enquiry</a>
+<h3>Sacred Valley VIP</h3>
 
-</section>
+<p>Premium Sacred Valley route.</p>
 
-<footer>
+<button class="view" onclick="toggleItinerary(this)">View Itinerary</button>
 
-© 2026 Yes We Care Travels · Global Exploration
+<div class="itinerary">
 
-</footer>
+<ul>
+
+<li>Chinchero</li>
+
+<li>Moray terraces</li>
+
+<li>Maras salt mines</li>
+
+<li>Urubamba lunch</li>
+
+<li>Ollantaytambo</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<img src="images/rainbow-mountain.jpg">
+
+<div>
+
+<h3>Rainbow Mountain Adventure</h3>
+
+<p>One of the most famous Andean hikes.</p>
+
+<button class="view" onclick="toggleItinerary(this)">View Itinerary</button>
+
+<div class="itinerary">
+
+<ul>
+
+<li>Early departure</li>
+
+<li>Mountain trekking</li>
+
+<li>Rainbow viewpoint</li>
+
+<li>Lunch stop</li>
+
+<li>Return to Cusco</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- THAILAND -->
+
+<div id="thailand" class="tab-content">
+
+<h2>Thailand Tours</h2>
+
+<p>Bangkok, Phuket, Krabi and island tours will appear here.</p>
+
+</div>
+
+
+<!-- DUBAI -->
+
+<div id="dubai" class="tab-content">
+
+<h2>Dubai Experiences</h2>
+
+<p>Luxury desert safari, city tours and cruise experiences.</p>
+
+</div>
+
+
+<script>
+
+function openTab(evt,tab){
+
+let tabs=document.querySelectorAll(".tab-content");
+
+tabs.forEach(t=>t.classList.remove("active"));
+
+document.getElementById(tab).classList.add("active");
+
+let buttons=document.querySelectorAll(".tab");
+
+buttons.forEach(b=>b.classList.remove("active"));
+
+evt.currentTarget.classList.add("active");
+
+}
+
+function toggleItinerary(btn){
+
+let box=btn.nextElementSibling;
+
+box.style.display = box.style.display==="block" ? "none" : "block";
+
+}
+
+</script>
 
 </body>
-
 </html>
