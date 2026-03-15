@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Global Exploration Booking | Yes We Care Travels</title>
+
+<style>
+
+body{
+font-family:Arial;
+margin:0;
+background:#f4f6fb;
+}
+
+/* HEADER */
+
+header{
+background:#0b2a4a;
+color:white;
+padding:14px 30px;
+display:flex;
+justify-content:space-between;
+}
+
+.logo{
+font-size:20px;
+font-weight:bold;
+}
+
+/* HERO */
+
+.hero{
+background:#4b3fd6;
+color:white;
+text-align:center;
+padding:60px 20px;
+}
+
+/* COUNTRY CARDS */
+
+.section{
+max-width:1200px;
+margin:auto;
+padding:40px 20px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:20px;
+}
+
+.card{
+background:white;
+border-radius:8px;
+box-shadow:0 4px 12px rgba(0,0,0,.1);
+overflow:hidden;
+cursor:pointer;
+}
+
+.card img{
+width:100%;
+height:160px;
+object-fit:cover;
+}
+
+.card div{
+padding:14px;
+}
+
+/* TOURS */
+
+.tour{
+background:white;
+padding:20px;
+margin-top:20px;
+border-radius:8px;
+box-shadow:0 4px 10px rgba(0,0,0,.1);
+}
+
+/* PRICE */
+
+.price{
+color:#4b3fd6;
+font-size:18px;
+font-weight:bold;
+}
+
+/* FORM */
+
+.booking{
+background:white;
+padding:20px;
+margin-top:20px;
+border-radius:8px;
+box-shadow:0 4px 10px rgba(0,0,0,.1);
+}
+
+.booking input,
+.booking select{
+width:100%;
+padding:10px;
+margin:6px 0;
+}
+
+button{
+background:#4b3fd6;
+color:white;
+border:none;
+padding:10px 16px;
+cursor:pointer;
+}
+
+.itinerary{
+background:#eef1ff;
+padding:12px;
+margin-top:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+Yes We Care Travels
+</div>
+
+</header>
+
+<section class="hero">
+
+<h1>Global Exploration</h1>
+<p>Book international tours and expeditions</p>
+
+</section>
+
+
+<section class="section">
+
+<h2>Select Destination</h2>
+
+<div class="grid">
+
+<div class="card" onclick="showCountry('peru')">
+
+<img src="images/peru.jpg">
+
+<div>
+
+<h3>Peru</h3>
+
+</div>
+
+</div>
+
+<div class="card" onclick="showCountry('thailand')">
+
+<img src="images/thailand.jpg">
+
+<div>
+
+<h3>Thailand</h3>
+
+</div>
+
+</div>
+
+<div class="card" onclick="showCountry('dubai')">
+
+<img src="images/dubai.jpg">
+
+<div>
+
+<h3>Dubai</h3>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div id="tours"></div>
+
+</section>
+
+
+
+<script>
+
+const tourData = {
+
+peru: [
+
+{
+name:"Cusco City Tour",
+price:"$120",
+days:1
+},
+
+{
+name:"Sacred Valley Classic",
+price:"$190",
+days:1
+},
+
+{
+name:"Rainbow Mountain",
+price:"$150",
+days:1
+}
+
+],
+
+thailand:[
+
+{
+name:"Bangkok City Tour",
+price:"$80",
+days:1
+},
+
+{
+name:"Phuket Island Tour",
+price:"$120",
+days:1
+}
+
+],
+
+dubai:[
+
+{
+name:"Dubai City Tour",
+price:"$90",
+days:1
+},
+
+{
+name:"Desert Safari",
+price:"$110",
+days:1
+}
+
+]
+
+};
+
+
+
+function showCountry(country){
+
+let tours=tourData[country];
+
+let html="";
+
+tours.forEach(tour=>{
+
+html+=`
+
+<div class="tour">
+
+<h3>${tour.name}</h3>
+
+<p class="price">Price: ${tour.price}</p>
+
+<button onclick="openBooking('${tour.name}',${tour.days})">
+
+Book Now
+
+</button>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("tours").innerHTML=html;
+
+}
+
+
+
+function openBooking(name,days){
+
+document.getElementById("tours").innerHTML+=`
+
+<div class="booking">
+
+<h3>Book ${name}</h3>
+
+<input placeholder="Your Name">
+
+<input placeholder="Phone Number">
+
+<input type="date">
+
+<select id="days">
+
+<option value="${days}">${days} Day Tour</option>
+
+</select>
+
+<input type="number" placeholder="Adults">
+
+<input type="number" placeholder="Children">
+
+<button onclick="generateItinerary(${days})">
+
+Generate Itinerary
+
+</button>
+
+<div id="itinerary"></div>
+
+</div>
+
+`;
+
+}
+
+
+
+function generateItinerary(days){
+
+let result="";
+
+for(let i=1;i<=days;i++){
+
+result += "Day "+i+" : Tour activities and sightseeing<br>";
+
+}
+
+document.getElementById("itinerary").innerHTML=
+
+"<div class='itinerary'>"+result+"</div>";
+
+}
+
+</script>
+
+</body>
+</html>
