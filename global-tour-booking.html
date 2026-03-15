@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Global Tour Booking | Yes We Care Travels</title>
+<title>Global Exploration | Yes We Care Travels</title>
 
 <style>
 
@@ -13,7 +13,6 @@ body{
 font-family:Arial;
 margin:0;
 background:#f4f6fb;
-color:#222;
 }
 
 /* HEADER */
@@ -71,52 +70,71 @@ display:block;
 background:#4b3fd6;
 color:white;
 text-align:center;
-padding:60px 20px;
+padding:70px 20px;
 }
 
-/* BOOKING BOX */
+.hero input{
+padding:12px;
+width:300px;
+border:none;
+border-radius:4px;
+margin-top:10px;
+}
 
-.container{
-max-width:900px;
+/* SECTION */
+
+.section{
+max-width:1100px;
 margin:auto;
 padding:40px 20px;
 }
 
-.booking-box{
-background:white;
-padding:30px;
-border-radius:8px;
-box-shadow:0 4px 12px rgba(0,0,0,.1);
+/* DESTINATION GRID */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:20px;
 }
 
-.booking-box input,
-.booking-box select{
+.card{
+background:white;
+border-radius:8px;
+box-shadow:0 4px 14px rgba(0,0,0,.1);
+cursor:pointer;
+overflow:hidden;
+}
+
+.card img{
 width:100%;
-padding:10px;
-margin:6px 0;
+height:170px;
+object-fit:cover;
+}
+
+.card div{
+padding:14px;
+}
+
+/* TOUR CARD */
+
+.tour{
+background:white;
+padding:20px;
+margin-top:20px;
+border-radius:8px;
+box-shadow:0 4px 10px rgba(0,0,0,.1);
 }
 
 .price{
-font-weight:bold;
 color:#4b3fd6;
-margin-top:10px;
+font-weight:bold;
 }
-
-/* ITINERARY */
-
-.itinerary{
-background:#eef1ff;
-padding:12px;
-margin-top:12px;
-}
-
-/* BUTTON */
 
 button{
 background:#4b3fd6;
 color:white;
 border:none;
-padding:12px 16px;
+padding:10px 16px;
 cursor:pointer;
 margin-top:10px;
 }
@@ -126,8 +144,6 @@ margin-top:10px;
 </head>
 
 <body>
-
-<div id="google_translate_element" style="position:absolute;left:-9999px;"></div>
 
 <header>
 
@@ -155,177 +171,166 @@ Yes We Care Travels
 
 <section class="hero">
 
-<h1>Global Tour Booking</h1>
+<h1>Global Exploration</h1>
 
-<p>Secure your international travel experience</p>
+<p>Discover international expeditions and curated travel experiences</p>
+
+<input id="searchBox" placeholder="Search destination or tour..." onkeyup="searchTour()">
 
 </section>
 
-<div class="container">
+<section class="section">
 
-<div class="booking-box">
+<h2>Popular Destinations</h2>
 
-<h2 id="tourName">Selected Tour</h2>
+<div class="grid">
 
-<label>Travel Date</label>
-<input type="date" id="date">
+<div class="card" onclick="showCountry('peru')">
 
-<label>Adults</label>
-<input type="number" id="adults" value="1">
+<img src="https://images.unsplash.com/photo-1526392060635-9d6019884377">
 
-<label>Children</label>
-<input type="number" id="children" value="0">
+<div>
 
-<div class="price" id="price">
-Price: --
-</div>
+<h3>Peru</h3>
 
-<button onclick="calculatePrice()">
-Calculate Price
-</button>
-
-<button onclick="generateItinerary()">
-Generate Itinerary
-</button>
-
-<div id="itinerary"></div>
-
-<h3>Traveler Details</h3>
-
-<input placeholder="Full Name">
-
-<input placeholder="Phone Number">
-
-<input placeholder="Email">
-
-<button onclick="sendWhatsApp()">
-Book via WhatsApp
-</button>
+<p>Machu Picchu & Andes Expeditions</p>
 
 </div>
 
 </div>
+
+<div class="card" onclick="showCountry('thailand')">
+
+<img src="https://images.unsplash.com/photo-1508005530349-7b7c6f6c8d52">
+
+<div>
+
+<h3>Thailand</h3>
+
+<p>Bangkok & Island Adventures</p>
+
+</div>
+
+</div>
+
+<div class="card" onclick="showCountry('dubai')">
+
+<img src="https://images.unsplash.com/photo-1504274066651-8d31a536b11a">
+
+<div>
+
+<h3>Dubai</h3>
+
+<p>Luxury desert & city tours</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div id="tours"></div>
+
+</section>
 
 <script>
 
-/* GET TOUR NAME FROM URL */
+/* TOUR DATABASE */
 
-const params = new URLSearchParams(window.location.search);
-const tour = params.get("tour");
+const tours={
 
-document.getElementById("tourName").innerText = tour;
+peru:[
+{name:"Cusco City Tour",price:"$120"},
+{name:"Sacred Valley Classic",price:"$180"},
+{name:"Rainbow Mountain",price:"$150"}
+],
 
-/* TOUR PRICE DATA */
+thailand:[
+{name:"Bangkok City Tour",price:"$90"},
+{name:"Phuket Island Tour",price:"$140"}
+],
 
-const prices = {
-
-"Cusco City Tour":120,
-"Sacred Valley Classic":180,
-"Rainbow Mountain":150,
-"Bangkok City Tour":90,
-"Phuket Island Tour":140,
-"Dubai City Tour":110,
-"Desert Safari":130
+dubai:[
+{name:"Dubai City Tour",price:"$110"},
+{name:"Desert Safari",price:"$130"}
+]
 
 };
 
-/* PRICE CALCULATION */
+/* SHOW COUNTRY TOURS */
 
-function calculatePrice(){
+function showCountry(country){
 
-let adults = document.getElementById("adults").value;
-let children = document.getElementById("children").value;
+let html="<h2>Available Tours</h2>";
 
-let base = prices[tour] || 100;
+tours[country].forEach(tour=>{
 
-let total = (adults * base) + (children * base * 0.5);
+html+=`
 
-document.getElementById("price").innerText =
-"Total Price: $" + total;
+<div class="tour">
 
-}
+<h3>${tour.name}</h3>
 
-/* ITINERARY */
+<p class="price">Price: ${tour.price}</p>
 
-function generateItinerary(){
-
-let html = `
-
-<div class="itinerary">
-
-<strong>Sample Itinerary</strong><br>
-
-Day 1 – Arrival and orientation<br>
-Day 2 – Main sightseeing tour<br>
-Day 3 – Adventure / nature exploration<br>
-Day 4 – Departure
+<a href="global-tour-booking.html?tour=${tour.name}">
+<button>Book This Tour</button>
+</a>
 
 </div>
 
 `;
 
-document.getElementById("itinerary").innerHTML = html;
+});
+
+document.getElementById("tours").innerHTML=html;
 
 }
 
-/* WHATSAPP BOOKING */
+/* SEARCH SYSTEM */
 
-function sendWhatsApp(){
+function searchTour(){
 
-let adults = document.getElementById("adults").value;
+let input=document.getElementById("searchBox").value.toLowerCase();
 
-let url =
+let html="<h2>Search Results</h2>";
 
-"https://wa.me/919419287356?text=" +
+for(let country in tours){
 
-encodeURIComponent(
+tours[country].forEach(tour=>{
 
-"Tour Booking Request\n\n" +
+if(
+tour.name.toLowerCase().includes(input) ||
+country.toLowerCase().includes(input)
+){
 
-"Tour: "+tour+"\n" +
+html+=`
 
-"Adults: "+adults
+<div class="tour">
 
-);
+<h3>${tour.name}</h3>
 
-window.open(url);
+<p class="price">Price: ${tour.price}</p>
 
-}
+<a href="global-tour-booking.html?tour=${tour.name}">
+<button>Book This Tour</button>
+</a>
 
-/* GOOGLE TRANSLATE */
+</div>
 
-function googleTranslateElementInit(){
-
-new google.translate.TranslateElement({
-
-pageLanguage:'en',
-includedLanguages:'en,es,fr,de,hi'
-
-},'google_translate_element');
+`;
 
 }
 
-function changeLanguage(lang){
-
-var interval=setInterval(function(){
-
-var select=document.querySelector(".goog-te-combo");
-
-if(select){
-
-select.value=lang;
-select.dispatchEvent(new Event("change"));
-clearInterval(interval);
+});
 
 }
 
-},500);
+document.getElementById("tours").innerHTML=html;
 
 }
 
 </script>
-
-<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </body>
 </html>
