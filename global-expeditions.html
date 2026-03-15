@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
@@ -28,14 +27,13 @@ align-items:center;
 }
 
 .logo{
-font-size:20px;
-font-weight:bold;
+display:flex;
+align-items:center;
+gap:10px;
 }
 
-/* LANGUAGE */
-
-.language{
-position:relative;
+.logo img{
+height:35px;
 }
 
 .language button{
@@ -44,25 +42,6 @@ color:white;
 border:none;
 padding:8px 12px;
 cursor:pointer;
-}
-
-.language-menu{
-display:none;
-position:absolute;
-right:0;
-top:35px;
-background:white;
-color:black;
-box-shadow:0 4px 10px rgba(0,0,0,.2);
-}
-
-.language-menu div{
-padding:10px;
-cursor:pointer;
-}
-
-.language:hover .language-menu{
-display:block;
 }
 
 /* HERO */
@@ -74,40 +53,22 @@ text-align:center;
 padding:70px 20px;
 }
 
-.search{
-margin-top:20px;
-}
-
 .search input{
 padding:12px;
-width:260px;
+width:250px;
+border-radius:5px;
 border:none;
-border-radius:4px;
 }
 
 /* SECTION */
 
 .section{
-max-width:1200px;
+max-width:1100px;
 margin:auto;
 padding:40px 20px;
 }
 
-/* FILTER */
-
-.filter{
-margin-bottom:20px;
-}
-
-.filter button{
-margin:5px;
-padding:8px 12px;
-border:none;
-background:#ddd;
-cursor:pointer;
-}
-
-/* DESTINATIONS */
+/* DESTINATION CARDS */
 
 .grid{
 display:grid;
@@ -118,14 +79,14 @@ gap:20px;
 .card{
 background:white;
 border-radius:8px;
-box-shadow:0 4px 12px rgba(0,0,0,.1);
-overflow:hidden;
+box-shadow:0 4px 10px rgba(0,0,0,.1);
 cursor:pointer;
+overflow:hidden;
 }
 
 .card img{
 width:100%;
-height:170px;
+height:160px;
 object-fit:cover;
 }
 
@@ -133,12 +94,12 @@ object-fit:cover;
 padding:15px;
 }
 
-/* TOUR CARD */
+/* TOURS */
 
 .tour{
 background:white;
-margin-top:20px;
 padding:20px;
+margin-top:20px;
 border-radius:8px;
 box-shadow:0 4px 10px rgba(0,0,0,.1);
 }
@@ -160,8 +121,31 @@ margin-top:10px;
 .itinerary{
 display:none;
 background:#eef1ff;
-padding:12px;
+padding:10px;
 margin-top:10px;
+}
+
+/* CONTACT */
+
+.contact{
+background:#0b2a4a;
+color:white;
+padding:40px;
+text-align:center;
+}
+
+/* WHATSAPP */
+
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25d366;
+color:white;
+padding:12px 18px;
+border-radius:30px;
+text-decoration:none;
+font-weight:bold;
 }
 
 </style>
@@ -173,23 +157,15 @@ margin-top:10px;
 <header>
 
 <div class="logo">
-Yes We Care Travels
+
+<img src="images/logo-yes-we-care-travels.png">
+
+<b>Yes We Care Travels</b>
+
 </div>
 
 <div class="language">
-
 <button>🌐 Language</button>
-
-<div class="language-menu">
-
-<div>🇬🇧 English</div>
-<div>🇪🇸 Spanish</div>
-<div>🇫🇷 French</div>
-<div>🇩🇪 German</div>
-<div>🇮🇳 Hindi</div>
-
-</div>
-
 </div>
 
 </header>
@@ -201,9 +177,7 @@ Yes We Care Travels
 <p>Explore curated international tours</p>
 
 <div class="search">
-
 <input id="search" placeholder="Search destination or tour">
-
 </div>
 
 </section>
@@ -215,64 +189,44 @@ Yes We Care Travels
 <div class="grid">
 
 <div class="card" onclick="showTours('peru')">
-
-<img src="images/peru.jpg">
-
+<img src="https://images.unsplash.com/photo-1526392060635-9d6019884377">
 <div>
-
 <h3>Peru</h3>
-
-<p>Machu Picchu & Andes</p>
-
+<p>Machu Picchu Tours</p>
 </div>
-
 </div>
 
 <div class="card" onclick="showTours('thailand')">
-
-<img src="images/thailand.jpg">
-
+<img src="https://images.unsplash.com/photo-1508009603885-50cf7c579365">
 <div>
-
 <h3>Thailand</h3>
-
-<p>Bangkok & Islands</p>
-
+<p>Bangkok & Phuket</p>
 </div>
-
 </div>
-
-<div class="card" onclick="showTours('dubai')">
-
-<img src="images/dubai.jpg">
-
-<div>
-
-<h3>Dubai</h3>
-
-<p>Luxury Desert Tours</p>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="filter">
-
-<h3>Filter by Duration</h3>
-
-<button onclick="filterTours('all')">All</button>
-<button onclick="filterTours('4')">4 Days</button>
-<button onclick="filterTours('5')">5 Days</button>
-<button onclick="filterTours('6')">6 Days</button>
-<button onclick="filterTours('7')">7 Days</button>
 
 </div>
 
 <div id="tours"></div>
 
 </section>
+
+<section class="contact">
+
+<h2>Contact Us</h2>
+
+<p>Email: support@yeswecaretravels.com</p>
+
+<p>Phone / WhatsApp: +91 9419287356</p>
+
+</section>
+
+<a class="whatsapp"
+href="https://wa.me/919419287356"
+target="_blank">
+
+WhatsApp
+
+</a>
 
 <script>
 
@@ -288,11 +242,6 @@ peru:[
 thailand:[
 {name:"Bangkok Explorer",days:"4",price:"$650"},
 {name:"Phuket Escape",days:"5",price:"$850"}
-],
-
-dubai:[
-{name:"Dubai City Experience",days:"4",price:"$700"},
-{name:"Dubai Luxury Tour",days:"5",price:"$1100"}
 ]
 
 };
@@ -315,7 +264,7 @@ list.forEach((tour,i)=>{
 
 html+=`
 
-<div class="tour" data-days="${tour.days}">
+<div class="tour">
 
 <h3>${tour.name}</h3>
 
@@ -324,18 +273,26 @@ html+=`
 <p class="price">Price: ${tour.price}</p>
 
 <button onclick="toggleItinerary(${i})">
+
 View Itinerary
+
 </button>
 
 <a href="global-tour-booking.html?tour=${tour.name}">
-<button>Book Tour</button>
+
+<button>
+
+Book Tour
+
+</button>
+
 </a>
 
 <div class="itinerary" id="it${i}">
 
-Day 1 – Arrival & city tour<br>
-Day 2 – Local exploration<br>
-Day 3 – Adventure activities<br>
+Day 1 – Arrival<br>
+Day 2 – Local tour<br>
+Day 3 – Activities<br>
 Day 4 – Departure
 
 </div>
@@ -354,31 +311,31 @@ function toggleItinerary(i){
 
 let el=document.getElementById("it"+i);
 
-if(el.style.display=="block")
+if(el.style.display=="block"){
 el.style.display="none";
-else
+}else{
 el.style.display="block";
+}
 
 }
 
-function filterTours(days){
+document.getElementById("search").addEventListener("keyup",function(){
 
-if(days=="all"){
+let keyword=this.value.toLowerCase();
 
-renderTours(tours[currentCountry]);
+if(!currentCountry) return;
 
-return;
+let filtered=tours[currentCountry].filter(tour=>{
 
-}
+return tour.name.toLowerCase().includes(keyword);
 
-let filtered=tours[currentCountry].filter(t=>t.days==days);
+});
 
 renderTours(filtered);
 
-}
+});
 
 </script>
 
 </body>
-
 </html>
