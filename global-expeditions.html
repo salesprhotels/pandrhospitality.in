@@ -10,7 +10,7 @@
 <style>
 
 body{
-font-family:Arial, Helvetica, sans-serif;
+font-family:Arial;
 margin:0;
 background:#f4f6fb;
 color:#222;
@@ -21,7 +21,7 @@ color:#222;
 header{
 background:#0b2a4a;
 color:white;
-padding:12px 20px;
+padding:14px 20px;
 display:flex;
 justify-content:space-between;
 align-items:center;
@@ -34,43 +34,34 @@ font-weight:bold;
 
 /* LANGUAGE */
 
-.language-menu{
+.language{
 position:relative;
 }
 
-.lang-btn{
+.language button{
 background:#4b3fd6;
 color:white;
 border:none;
 padding:8px 14px;
 cursor:pointer;
-border-radius:4px;
 }
 
-.lang-dropdown{
+.language-menu{
 display:none;
 position:absolute;
 right:0;
-top:38px;
+top:36px;
 background:white;
 box-shadow:0 4px 12px rgba(0,0,0,.2);
-border-radius:6px;
-overflow:hidden;
 }
 
-.lang-dropdown a{
+.language-menu a{
 display:block;
-padding:10px 16px;
+padding:10px;
 cursor:pointer;
-text-decoration:none;
-color:#333;
 }
 
-.lang-dropdown a:hover{
-background:#f1f1f1;
-}
-
-.language-menu:hover .lang-dropdown{
+.language:hover .language-menu{
 display:block;
 }
 
@@ -80,103 +71,83 @@ display:block;
 background:#4b3fd6;
 color:white;
 text-align:center;
-padding:60px 20px;
+padding:70px 20px;
 }
 
-.hero h1{
-margin-bottom:10px;
-}
-
-/* TABS */
-
-.tabs{
-display:flex;
-justify-content:center;
-background:white;
-border-bottom:1px solid #ddd;
-}
-
-.tabs button{
-padding:14px 30px;
+.hero input{
+padding:12px;
+width:280px;
+margin-top:10px;
 border:none;
-background:none;
-cursor:pointer;
-font-weight:bold;
+border-radius:4px;
 }
 
-.tabs button.active{
-border-bottom:3px solid #4b3fd6;
-color:#4b3fd6;
-}
+/* SECTION */
 
-/* TAB CONTENT */
-
-.tab-content{
-display:none;
-padding:40px 20px;
-max-width:1100px;
+.section{
+max-width:1200px;
 margin:auto;
+padding:40px 20px;
 }
 
-.tab-content.active{
-display:block;
-}
-
-/* GRID */
+/* DESTINATION CARDS */
 
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
 gap:20px;
 }
-
-/* CARD */
 
 .card{
 background:white;
 border-radius:8px;
 box-shadow:0 4px 14px rgba(0,0,0,.1);
+cursor:pointer;
 overflow:hidden;
 }
 
 .card img{
 width:100%;
-height:180px;
+height:170px;
 object-fit:cover;
 }
 
 .card div{
-padding:16px;
+padding:14px;
 }
 
-.card h3{
-margin-bottom:6px;
+/* TOURS */
+
+.tour{
+background:white;
+padding:20px;
+margin-top:20px;
+border-radius:8px;
+box-shadow:0 4px 10px rgba(0,0,0,.1);
+}
+
+.price{
+color:#4b3fd6;
+font-weight:bold;
 }
 
 /* BUTTON */
 
-.view{
+button{
 background:#4b3fd6;
 color:white;
 border:none;
-padding:8px 14px;
-margin-top:10px;
+padding:10px 16px;
 cursor:pointer;
-border-radius:4px;
+margin-top:10px;
 }
 
 /* ITINERARY */
 
 .itinerary{
-display:none;
 background:#eef1ff;
-padding:14px;
+padding:12px;
 margin-top:10px;
-border-radius:6px;
-}
-
-.itinerary ul{
-padding-left:18px;
 }
 
 </style>
@@ -185,8 +156,7 @@ padding-left:18px;
 
 <body>
 
-<!-- GOOGLE TRANSLATE HIDDEN -->
-<div id="google_translate_element" style="position:absolute; left:-9999px;"></div>
+<div id="google_translate_element" style="position:absolute;left:-9999px;"></div>
 
 <header>
 
@@ -194,18 +164,17 @@ padding-left:18px;
 Yes We Care Travels
 </div>
 
+<div class="language">
+
+<button>🌐 Language</button>
+
 <div class="language-menu">
 
-<button class="lang-btn">🌐 Language</button>
-
-<div class="lang-dropdown">
-
 <a onclick="changeLanguage('en')">🇬🇧 English</a>
-<a onclick="changeLanguage('es')">🇪🇸 Español</a>
-<a onclick="changeLanguage('fr')">🇫🇷 Français</a>
-<a onclick="changeLanguage('de')">🇩🇪 Deutsch</a>
-<a onclick="changeLanguage('pt')">🇧🇷 Português</a>
-<a onclick="changeLanguage('hi')">🇮🇳 हिन्दी</a>
+<a onclick="changeLanguage('es')">🇪🇸 Spanish</a>
+<a onclick="changeLanguage('fr')">🇫🇷 French</a>
+<a onclick="changeLanguage('de')">🇩🇪 German</a>
+<a onclick="changeLanguage('hi')">🇮🇳 Hindi</a>
 
 </div>
 
@@ -213,152 +182,59 @@ Yes We Care Travels
 
 </header>
 
-<!-- HERO -->
-
 <section class="hero">
 
 <h1>Global Exploration</h1>
 
-<p>Discover curated international expeditions and travel experiences.</p>
+<p>Discover international expeditions and curated travel experiences</p>
+
+<input placeholder="Search destination or tour">
 
 </section>
 
-<!-- TABS -->
+<section class="section">
 
-<div class="tabs">
-
-<button class="tab active" onclick="openTab(event,'peru')">Peru</button>
-
-<button class="tab" onclick="openTab(event,'thailand')">Thailand</button>
-
-<button class="tab" onclick="openTab(event,'dubai')">Dubai</button>
-
-</div>
-
-<!-- PERU -->
-
-<div id="peru" class="tab-content active">
-
-<h2>Peru Expeditions</h2>
+<h2>Popular Destinations</h2>
 
 <div class="grid">
 
-<div class="card">
+<div class="card" onclick="showCountry('peru')">
 
-<img src="images/amazon-expedition.jpg">
-
-<div>
-
-<h3>Cusco City Tour</h3>
-
-<p>Half day cultural exploration.</p>
-
-<button class="view" onclick="toggleItinerary(this)">
-View Itinerary
-</button>
-
-<div class="itinerary">
-
-<ul>
-<li>Qoricancha Temple</li>
-<li>Sacsayhuamán Fortress</li>
-<li>Qenqo</li>
-<li>Puca Pucara</li>
-<li>Tambomachay</li>
-<li>Cristo Blanco viewpoint</li>
-</ul>
-
-</div>
-
-</div>
-
-</div>
-
-
-<div class="card">
-
-<img src="images/peru-cultural.jpg">
+<img src="images/peru.jpg">
 
 <div>
 
-<h3>Sacred Valley Classic</h3>
+<h3>Peru</h3>
 
-<p>Full day Sacred Valley experience.</p>
-
-<button class="view" onclick="toggleItinerary(this)">
-View Itinerary
-</button>
-
-<div class="itinerary">
-
-<ul>
-<li>Pisac ruins</li>
-<li>Urubamba lunch</li>
-<li>Ollantaytambo fortress</li>
-<li>Chinchero village</li>
-</ul>
+<p>Machu Picchu & Andes Expeditions</p>
 
 </div>
 
 </div>
 
-</div>
+<div class="card" onclick="showCountry('thailand')">
 
-
-<div class="card">
-
-<img src="images/nature-adventure.jpg">
+<img src="images/thailand.jpg">
 
 <div>
 
-<h3>Sacred Valley VIP</h3>
+<h3>Thailand</h3>
 
-<p>Premium Sacred Valley route.</p>
-
-<button class="view" onclick="toggleItinerary(this)">
-View Itinerary
-</button>
-
-<div class="itinerary">
-
-<ul>
-<li>Chinchero</li>
-<li>Moray terraces</li>
-<li>Maras salt mines</li>
-<li>Urubamba lunch</li>
-<li>Ollantaytambo fortress</li>
-</ul>
+<p>Bangkok & Island Adventures</p>
 
 </div>
 
 </div>
 
-</div>
+<div class="card" onclick="showCountry('dubai')">
 
-
-<div class="card">
-
-<img src="images/rainbow-mountain.jpg">
+<img src="images/dubai.jpg">
 
 <div>
 
-<h3>Rainbow Mountain Adventure</h3>
+<h3>Dubai</h3>
 
-<p>Famous Andean mountain hike.</p>
-
-<button class="view" onclick="toggleItinerary(this)">
-View Itinerary
-</button>
-
-<div class="itinerary">
-
-<ul>
-<li>Early morning departure</li>
-<li>Mountain trekking</li>
-<li>Rainbow viewpoint</li>
-<li>Lunch stop</li>
-<li>Return to Cusco</li>
-</ul>
+<p>Luxury desert & city tours</p>
 
 </div>
 
@@ -366,53 +242,74 @@ View Itinerary
 
 </div>
 
-</div>
+<div id="tours"></div>
 
-</div>
-
-<!-- THAILAND -->
-
-<div id="thailand" class="tab-content">
-
-<h2>Thailand Tours</h2>
-
-<p>Bangkok, Phuket and island packages coming soon.</p>
-
-</div>
-
-<!-- DUBAI -->
-
-<div id="dubai" class="tab-content">
-
-<h2>Dubai Experiences</h2>
-
-<p>Luxury desert safari and city tours.</p>
-
-</div>
+</section>
 
 <script>
 
-function openTab(evt,tab){
+const tours={
 
-let tabs=document.querySelectorAll(".tab-content");
+peru:[
+{name:"Cusco City Tour",price:"$120"},
+{name:"Sacred Valley Classic",price:"$180"},
+{name:"Rainbow Mountain",price:"$150"}
+],
 
-tabs.forEach(t=>t.classList.remove("active"));
+thailand:[
+{name:"Bangkok City Tour",price:"$90"},
+{name:"Phuket Island Tour",price:"$140"}
+],
 
-document.getElementById(tab).classList.add("active");
+dubai:[
+{name:"Dubai City Tour",price:"$110"},
+{name:"Desert Safari",price:"$130"}
+]
 
-let buttons=document.querySelectorAll(".tab");
+};
 
-buttons.forEach(b=>b.classList.remove("active"));
+function showCountry(country){
 
-evt.currentTarget.classList.add("active");
+let html="<h2>Available Tours</h2>";
 
-}
+tours[country].forEach(tour=>{
 
-function toggleItinerary(btn){
+html+=`
 
-let box=btn.nextElementSibling;
+<div class="tour">
 
-box.style.display = box.style.display==="block" ? "none" : "block";
+<h3>${tour.name}</h3>
+
+<p class="price">Price: ${tour.price}</p>
+
+<label>Select Travel Date</label>
+
+<input type="date">
+
+<div class="itinerary">
+
+<strong>Sample Itinerary</strong><br>
+
+Day 1 – Arrival and local sightseeing<br>
+Day 2 – Tour activities<br>
+Day 3 – Adventure experience<br>
+Day 4 – Departure
+
+</div>
+
+<a href="global-tour-booking.html?tour=${tour.name}">
+
+<button>Book This Tour</button>
+
+</a>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("tours").innerHTML=html;
 
 }
 
@@ -421,9 +318,10 @@ box.style.display = box.style.display==="block" ? "none" : "block";
 function googleTranslateElementInit(){
 
 new google.translate.TranslateElement({
+
 pageLanguage:'en',
-includedLanguages:'en,es,fr,de,pt,hi',
-autoDisplay:false
+includedLanguages:'en,es,fr,de,hi'
+
 },'google_translate_element');
 
 }
