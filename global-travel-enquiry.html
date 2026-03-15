@@ -13,6 +13,7 @@ body{
 font-family:Arial;
 margin:0;
 background:#f4f6fb;
+color:#222;
 }
 
 /* HEADER */
@@ -48,9 +49,9 @@ cursor:pointer;
 .language-menu{
 display:none;
 position:absolute;
-background:white;
 right:0;
 top:36px;
+background:white;
 box-shadow:0 4px 12px rgba(0,0,0,.2);
 }
 
@@ -70,16 +71,26 @@ display:block;
 background:#4b3fd6;
 color:white;
 text-align:center;
-padding:60px 20px;
+padding:70px 20px;
 }
 
-/* COUNTRY CARDS */
+.hero input{
+padding:12px;
+width:280px;
+margin-top:10px;
+border:none;
+border-radius:4px;
+}
+
+/* SECTION */
 
 .section{
-max-width:1100px;
+max-width:1200px;
 margin:auto;
 padding:40px 20px;
 }
+
+/* DESTINATION CARDS */
 
 .grid{
 display:grid;
@@ -90,14 +101,14 @@ gap:20px;
 .card{
 background:white;
 border-radius:8px;
-box-shadow:0 4px 12px rgba(0,0,0,.1);
+box-shadow:0 4px 14px rgba(0,0,0,.1);
 cursor:pointer;
 overflow:hidden;
 }
 
 .card img{
 width:100%;
-height:160px;
+height:170px;
 object-fit:cover;
 }
 
@@ -105,7 +116,7 @@ object-fit:cover;
 padding:14px;
 }
 
-/* TOUR */
+/* TOURS */
 
 .tour{
 background:white;
@@ -120,12 +131,23 @@ color:#4b3fd6;
 font-weight:bold;
 }
 
+/* BUTTON */
+
 button{
 background:#4b3fd6;
 color:white;
 border:none;
 padding:10px 16px;
 cursor:pointer;
+margin-top:10px;
+}
+
+/* ITINERARY */
+
+.itinerary{
+background:#eef1ff;
+padding:12px;
+margin-top:10px;
 }
 
 </style>
@@ -164,13 +186,15 @@ Yes We Care Travels
 
 <h1>Global Exploration</h1>
 
-<p>Explore international destinations and tour packages</p>
+<p>Discover international expeditions and curated travel experiences</p>
+
+<input placeholder="Search destination or tour">
 
 </section>
 
 <section class="section">
 
-<h2>Select Destination</h2>
+<h2>Popular Destinations</h2>
 
 <div class="grid">
 
@@ -181,6 +205,8 @@ Yes We Care Travels
 <div>
 
 <h3>Peru</h3>
+
+<p>Machu Picchu & Andes Expeditions</p>
 
 </div>
 
@@ -194,6 +220,8 @@ Yes We Care Travels
 
 <h3>Thailand</h3>
 
+<p>Bangkok & Island Adventures</p>
+
 </div>
 
 </div>
@@ -205,6 +233,8 @@ Yes We Care Travels
 <div>
 
 <h3>Dubai</h3>
+
+<p>Luxury desert & city tours</p>
 
 </div>
 
@@ -240,7 +270,7 @@ dubai:[
 
 function showCountry(country){
 
-let html="";
+let html="<h2>Available Tours</h2>";
 
 tours[country].forEach(tour=>{
 
@@ -251,6 +281,21 @@ html+=`
 <h3>${tour.name}</h3>
 
 <p class="price">Price: ${tour.price}</p>
+
+<label>Select Travel Date</label>
+
+<input type="date">
+
+<div class="itinerary">
+
+<strong>Sample Itinerary</strong><br>
+
+Day 1 – Arrival and local sightseeing<br>
+Day 2 – Tour activities<br>
+Day 3 – Adventure experience<br>
+Day 4 – Departure
+
+</div>
 
 <a href="global-tour-booking.html?tour=${tour.name}">
 
@@ -275,7 +320,6 @@ function googleTranslateElementInit(){
 new google.translate.TranslateElement({
 
 pageLanguage:'en',
-
 includedLanguages:'en,es,fr,de,hi'
 
 },'google_translate_element');
@@ -291,9 +335,7 @@ var select=document.querySelector(".goog-te-combo");
 if(select){
 
 select.value=lang;
-
 select.dispatchEvent(new Event("change"));
-
 clearInterval(interval);
 
 }
