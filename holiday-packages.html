@@ -18,8 +18,6 @@
 
 <meta name="author" content="Yes We Care Travels">
 
-<!-- Google Ads -->
-
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-836426031"></script>
 
 <script>
@@ -27,19 +25,6 @@ window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'AW-836426031');
-</script>
-
-<!-- Schema -->
-
-<script type="application/ld+json">
-{
- "@context":"https://schema.org",
- "@type":"TravelAgency",
- "name":"Yes We Care Travels",
- "url":"https://pandrhospitality.in",
- "telephone":"+919419287356",
- "areaServed":"India"
-}
 </script>
 
 <style>
@@ -55,8 +40,6 @@ font-family:Arial,Helvetica,sans-serif;
 background:#f4f6fb;
 color:#222;
 }
-
-/* HEADER */
 
 header{
 background:#fff;
@@ -77,8 +60,6 @@ gap:10px;
 height:40px;
 }
 
-/* HERO */
-
 .hero{
 background:linear-gradient(135deg,#0b5ed7,#ff8c00);
 color:#fff;
@@ -94,8 +75,6 @@ margin-bottom:10px;
 .hero p{
 font-size:18px;
 }
-
-/* SERVICE TABS */
 
 .tabs{
 background:#fff;
@@ -128,8 +107,6 @@ margin-bottom:5px;
 color:#ff8c00;
 }
 
-/* SECTION */
-
 .section{
 max-width:1200px;
 margin:auto;
@@ -140,8 +117,6 @@ padding:50px 20px;
 text-align:center;
 margin-bottom:30px;
 }
-
-/* DESTINATION CARDS */
 
 .grid{
 display:grid;
@@ -168,17 +143,28 @@ object-fit:cover;
 padding:18px;
 }
 
-/* ITINERARY CONTAINER */
-
 .itinerary-box{
-margin-top:40px;
+margin-top:30px;
 background:#fff;
-padding:30px;
+padding:25px;
 border-radius:10px;
 box-shadow:0 4px 14px rgba(0,0,0,.08);
+text-align:center;
 }
 
-/* CTA */
+.itinerary-box button{
+margin:8px;
+padding:10px 18px;
+border:none;
+background:#0b5ed7;
+color:#fff;
+border-radius:5px;
+cursor:pointer;
+}
+
+.itinerary-box button:hover{
+background:#ff8c00;
+}
 
 .cta{
 text-align:center;
@@ -194,8 +180,6 @@ text-decoration:none;
 font-weight:bold;
 }
 
-/* WHATSAPP */
-
 .whatsapp{
 position:fixed;
 bottom:20px;
@@ -206,8 +190,6 @@ padding:12px 18px;
 border-radius:30px;
 text-decoration:none;
 }
-
-/* FOOTER */
 
 footer{
 text-align:center;
@@ -250,8 +232,6 @@ font-size:14px;
 <p>Discover professionally curated travel experiences across India.</p>
 
 </section>
-
-<!-- SERVICE TABS -->
 
 <section class="tabs">
 
@@ -296,8 +276,6 @@ Contact
 
 </section>
 
-<!-- DESTINATIONS -->
-
 <section class="section">
 
 <h2>Popular Holiday Destinations</h2>
@@ -340,40 +318,28 @@ Contact
 
 </section>
 
-<!-- ITINERARIES (Database will load here later) -->
-
 <section class="section">
 
 <h2>Available Itineraries</h2>
 
-<div id="itineraryContainer" class="grid">
-
-<!-- Database itineraries will appear here -->
-
-</div>
+<div id="itineraryContainer"></div>
 
 </section>
 
 <section class="cta">
 
 <p style="margin-bottom:15px">
-
 Need a customised travel plan?
-
 </p>
 
 <a href="forms/travel-form.html">
-
 Send Travel Enquiry
-
 </a>
 
 </section>
 
 <a class="whatsapp" href="https://wa.me/919419287356" target="_blank">
-
 WhatsApp
-
 </a>
 
 <footer>
@@ -386,11 +352,88 @@ WhatsApp
 
 function loadDestination(destination){
 
-document.getElementById("itineraryContainer").innerHTML=
+let html = `
 
-"<div class='itinerary-box'>Loading itineraries for "+destination+"...</div>";
+<div class="itinerary-box">
 
-/* Later Apps Script API will load itineraries here */
+<h3>Select Tour Type</h3>
+
+<button onclick="loadType('${destination}','holiday')">Holiday Packages</button>
+
+<button onclick="loadType('${destination}','honeymoon')">Honeymoon Tours</button>
+
+<button onclick="loadType('${destination}','family')">Family Tours</button>
+
+<button onclick="loadType('${destination}','custom')">Customised Tours</button>
+
+</div>
+
+`;
+
+document.getElementById("itineraryContainer").innerHTML = html;
+
+}
+
+function loadType(destination,type){
+
+document.getElementById("itineraryContainer").innerHTML =
+"<div class='itinerary-box'>Loading "+type+" itineraries for "+destination+"...</div>";
+
+loadItineraries(destination,type);
+
+}
+
+function loadItineraries(destination,type){
+
+let demo=[
+
+{
+name:""+destination+" Classic Tour",
+days:"5 Days / 4 Nights",
+desc:"Arrival, sightseeing and local experiences."
+},
+
+{
+name:""+destination+" Premium Tour",
+days:"6 Days / 5 Nights",
+desc:"Extended sightseeing with nearby destinations."
+}
+
+];
+
+renderItineraries(demo);
+
+}
+
+function renderItineraries(data){
+
+let html="";
+
+data.forEach(item=>{
+
+html+=`
+
+<div class="itinerary-box">
+
+<h3>${item.name}</h3>
+
+<p><strong>Duration:</strong> ${item.days}</p>
+
+<p>${item.desc}</p>
+
+<a href="global-tour-booking.html">
+
+<button>Book This Tour</button>
+
+</a>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("itineraryContainer").innerHTML = html;
 
 }
 
