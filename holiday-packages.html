@@ -18,6 +18,16 @@
 
 <meta name="author" content="Yes We Care Travels">
 
+<meta property="og:title" content="Holiday Packages Across India">
+<meta property="og:description" content="Explore curated holiday tours across India.">
+<meta property="og:type" content="website">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Holiday Packages Across India">
+<meta name="twitter:description" content="Customised holiday packages across India">
+
+<!-- Google Ads -->
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-836426031"></script>
 
 <script>
@@ -29,11 +39,9 @@ gtag('config', 'AW-836426031');
 
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+/* SAME DESIGN - NO CHANGE */
+
+*{margin:0;padding:0;box-sizing:border-box;}
 
 body{
 font-family:Arial,Helvetica,sans-serif;
@@ -41,10 +49,7 @@ background:#f4f6fb;
 color:#222;
 }
 
-header{
-background:#fff;
-border-bottom:1px solid #ddd;
-}
+header{background:#fff;border-bottom:1px solid #ddd;}
 
 .header-wrap{
 max-width:1200px;
@@ -56,9 +61,7 @@ align-items:center;
 gap:10px;
 }
 
-.logos img{
-height:40px;
-}
+.logos img{height:40px;}
 
 .hero{
 background:linear-gradient(135deg,#0b5ed7,#ff8c00);
@@ -67,19 +70,11 @@ text-align:center;
 padding:70px 20px;
 }
 
-.hero h1{
-font-size:34px;
-margin-bottom:10px;
-}
+.hero h1{font-size:34px;margin-bottom:10px;}
 
-.hero p{
-font-size:18px;
-}
+.hero p{font-size:18px;}
 
-.tabs{
-background:#fff;
-border-bottom:1px solid #eee;
-}
+.tabs{background:#fff;border-bottom:1px solid #eee;}
 
 .tabs-wrap{
 max-width:1100px;
@@ -97,15 +92,9 @@ font-weight:600;
 font-size:14px;
 }
 
-.tab span{
-display:block;
-font-size:22px;
-margin-bottom:5px;
-}
+.tab span{display:block;font-size:22px;margin-bottom:5px;}
 
-.tab:hover{
-color:#ff8c00;
-}
+.tab:hover{color:#ff8c00;}
 
 .section{
 max-width:1200px;
@@ -113,10 +102,7 @@ margin:auto;
 padding:50px 20px;
 }
 
-.section h2{
-text-align:center;
-margin-bottom:30px;
-}
+.section h2{text-align:center;margin-bottom:30px;}
 
 .grid{
 display:grid;
@@ -139,9 +125,7 @@ height:180px;
 object-fit:cover;
 }
 
-.card div{
-padding:18px;
-}
+.card div{padding:18px;}
 
 .itinerary-box{
 margin-top:30px;
@@ -162,14 +146,9 @@ border-radius:5px;
 cursor:pointer;
 }
 
-.itinerary-box button:hover{
-background:#ff8c00;
-}
+.itinerary-box button:hover{background:#ff8c00;}
 
-.cta{
-text-align:center;
-padding:40px 20px;
-}
+.cta{text-align:center;padding:40px 20px;}
 
 .cta a{
 background:#ff8c00;
@@ -206,9 +185,7 @@ font-size:14px;
 <body>
 
 <header>
-
 <div class="header-wrap">
-
 <div class="logos">
 
 <a href="index.html">
@@ -220,57 +197,25 @@ font-size:14px;
 </a>
 
 </div>
-
 </div>
-
 </header>
 
 <section class="hero">
-
 <h1>Holiday Packages Across India</h1>
-
 <p>Discover professionally curated travel experiences across India.</p>
-
 </section>
 
 <section class="tabs">
 
 <div class="tabs-wrap">
 
-<a href="air-tickets.html" class="tab">
-<span>✈</span>
-Flights
-</a>
-
-<a href="hotel-booking.html" class="tab">
-<span>🏨</span>
-Hotels
-</a>
-
-<a href="cab-services.html" class="tab">
-<span>🚕</span>
-Cabs
-</a>
-
-<a href="holiday-packages.html" class="tab">
-<span>🌴</span>
-Holidays
-</a>
-
-<a href="pilgrimage-services.html" class="tab">
-<span>🛕</span>
-Pilgrimage
-</a>
-
-<a href="volvo-tour-packages.html" class="tab">
-<span>🚌</span>
-Volvo Bus
-</a>
-
-<a href="contact-travel.html" class="tab">
-<span>📞</span>
-Contact
-</a>
+<a href="air-tickets.html" class="tab"><span>✈</span>Flights</a>
+<a href="hotel-booking.html" class="tab"><span>🏨</span>Hotels</a>
+<a href="cab-services.html" class="tab"><span>🚕</span>Cabs</a>
+<a href="holiday-packages.html" class="tab"><span>🌴</span>Holidays</a>
+<a href="pilgrimage-services.html" class="tab"><span>🛕</span>Pilgrimage</a>
+<a href="volvo-tour-packages.html" class="tab"><span>🚌</span>Volvo Bus</a>
+<a href="contact-travel.html" class="tab"><span>📞</span>Contact</a>
 
 </div>
 
@@ -350,80 +295,78 @@ WhatsApp
 
 <script>
 
+const API_URL="https://script.google.com/macros/s/AKfycbw9YNYK61XcpxxlAoUJtuyT0AVOKvLWpIkPx4pW0U4baS-Ze9oFc_aTaIUnQuFDO6in/exec";
+
 function loadDestination(destination){
 
-let html = `
+let html=`
 
 <div class="itinerary-box">
 
 <h3>Select Tour Type</h3>
 
-<button onclick="loadType('${destination}','holiday')">Holiday Packages</button>
+<button onclick="loadType('${destination}','holiday')">Holiday</button>
 
-<button onclick="loadType('${destination}','honeymoon')">Honeymoon Tours</button>
+<button onclick="loadType('${destination}','honeymoon')">Honeymoon</button>
 
-<button onclick="loadType('${destination}','family')">Family Tours</button>
-
-<button onclick="loadType('${destination}','custom')">Customised Tours</button>
+<button onclick="loadType('${destination}','family')">Family</button>
 
 </div>
 
 `;
 
-document.getElementById("itineraryContainer").innerHTML = html;
+document.getElementById("itineraryContainer").innerHTML=html;
 
 }
 
 function loadType(destination,type){
 
-document.getElementById("itineraryContainer").innerHTML =
-"<div class='itinerary-box'>Loading "+type+" itineraries for "+destination+"...</div>";
+document.getElementById("itineraryContainer").innerHTML="<div class='itinerary-box'>Loading itineraries...</div>";
 
-loadItineraries(destination,type);
+fetch(API_URL+"?destination="+destination+"&category="+type)
 
-}
+.then(res=>res.json())
 
-function loadItineraries(destination,type){
-
-let demo=[
-
-{
-name:""+destination+" Classic Tour",
-days:"5 Days / 4 Nights",
-desc:"Arrival, sightseeing and local experiences."
-},
-
-{
-name:""+destination+" Premium Tour",
-days:"6 Days / 5 Nights",
-desc:"Extended sightseeing with nearby destinations."
-}
-
-];
-
-renderItineraries(demo);
+.then(data=>renderTours(data));
 
 }
 
-function renderItineraries(data){
+function renderTours(data){
+
+let tours={};
+
+data.forEach(row=>{
+
+if(!tours[row.tour]){
+
+tours[row.tour]={
+days:row.days,
+items:[]
+};
+
+}
+
+tours[row.tour].items.push(row);
+
+});
 
 let html="";
 
-data.forEach(item=>{
+for(let tour in tours){
 
 html+=`
 
 <div class="itinerary-box">
 
-<h3>${item.name}</h3>
+<h3>${tour}</h3>
 
-<p><strong>Duration:</strong> ${item.days}</p>
+<p><strong>Duration:</strong> ${tours[tour].days} Days</p>
 
-<p>${item.desc}</p>
+<button onclick="viewItinerary('${tour}')">View Itinerary</button>
 
-<a href="global-tour-booking.html">
+<a href="forms/travel-form.html">
 
-<button>Book This Tour</button>
+<button>Send Enquiry</button>
 
 </a>
 
@@ -431,14 +374,49 @@ html+=`
 
 `;
 
+}
+
+document.getElementById("itineraryContainer").innerHTML=html;
+
+}
+
+function viewItinerary(tour){
+
+fetch(API_URL+"?tour="+tour)
+
+.then(res=>res.json())
+
+.then(data=>{
+
+let html="<div class='itinerary-box'><h3>"+tour+"</h3>";
+
+data.forEach(day=>{
+
+html+=`
+
+<p><strong>${day.day_number}</strong></p>
+
+<p>${day.title}</p>
+
+<p>${day.description}</p>
+
+<hr>
+
+`;
+
 });
 
-document.getElementById("itineraryContainer").innerHTML = html;
+html+="<button onclick='window.print()'>Print Itinerary</button>";
+
+html+="</div>";
+
+document.getElementById("itineraryContainer").innerHTML=html;
+
+});
 
 }
 
 </script>
 
 </body>
-
 </html>
