@@ -233,6 +233,14 @@ font-size:14px
 </div>
 </div>
 
+<div class="card" onclick="openSearch('NorthEast')">
+<img src="images/holiday-northeast.jpg">
+<div>
+<h3>North East</h3>
+<p>Sikkim and Meghalaya journeys.</p>
+</div>
+</div>
+  
 <div class="card" onclick="openSearch('Kerala')">
 <img src="images/holiday-kerala.png">
 <div>
@@ -272,11 +280,24 @@ let html=`
 <h3>Search Tours - ${destination}</h3>
 
 <select id="place">
-<option value="">Place</option>
+
+<option value="">Select Place</option>
+
 <option>Manali</option>
 <option>Shimla</option>
+<option>Shimla Manali</option>
+<option>Dharamshala</option>
+<option>Dalhousie</option>
+
 <option>Goa</option>
+
 <option>Kerala</option>
+
+<option>Gangtok</option>
+<option>Sikkim</option>
+<option>Meghalaya</option>
+<option>North East</option>
+
 </select>
 
 <select id="category">
@@ -346,15 +367,21 @@ document.getElementById("searchArea").innerHTML=html;
 
 function searchTours(){
 
-let place=document.getElementById("place").value;
-let category=document.getElementById("category").value;
-let days=document.getElementById("days").value;
+let place = document.getElementById("place").value;
+let category = document.getElementById("category").value;
+let days = document.getElementById("days").value;
 
-fetch(API+"?destination="+place+"&category="+category+"&days="+days)
+let url = API + "?destination=" + encodeURIComponent(place)
++ "&category=" + encodeURIComponent(category)
++ "&days=" + encodeURIComponent(days);
 
-.then(res=>res.json())
-
-.then(data=>showTours(data));
+fetch(url)
+.then(res => res.json())
+.then(data => showTours(data))
+.catch(err => {
+document.getElementById("results").innerHTML =
+"<div class='result-box'>No itineraries found.</div>";
+});
 
 }
 
