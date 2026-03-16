@@ -7,6 +7,15 @@
 
 <title>Global Expeditions | Yes We Care Travels</title>
 
+<meta name="description" content="Explore international tours including Peru, Thailand, Bali, Vietnam and more with Yes We Care Travels.">
+
+<meta name="keywords" content="international tours, peru tours, thailand tour packages, bali holidays">
+
+<meta name="robots" content="index, follow">
+
+<meta property="og:title" content="Global Expeditions | Yes We Care Travels">
+<meta property="og:description" content="Explore curated international tours.">
+
 <style>
 
 body{
@@ -42,6 +51,7 @@ color:white;
 border:none;
 padding:8px 12px;
 cursor:pointer;
+border-radius:5px;
 }
 
 /* HERO */
@@ -53,9 +63,13 @@ text-align:center;
 padding:70px 20px;
 }
 
+.hero h1{
+margin-bottom:10px;
+}
+
 .search input{
 padding:12px;
-width:250px;
+width:280px;
 border-radius:5px;
 border:none;
 }
@@ -82,6 +96,11 @@ border-radius:8px;
 box-shadow:0 4px 10px rgba(0,0,0,.1);
 cursor:pointer;
 overflow:hidden;
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
 }
 
 .card img{
@@ -116,13 +135,19 @@ border:none;
 padding:8px 14px;
 cursor:pointer;
 margin-top:10px;
+border-radius:4px;
+}
+
+button:hover{
+background:#372dc2;
 }
 
 .itinerary{
 display:none;
 background:#eef1ff;
-padding:10px;
+padding:15px;
 margin-top:10px;
+border-radius:5px;
 }
 
 /* CONTACT */
@@ -165,7 +190,9 @@ font-weight:bold;
 </div>
 
 <div class="language">
+
 <button>🌐 Language</button>
+
 </div>
 
 </header>
@@ -177,7 +204,9 @@ font-weight:bold;
 <p>Explore curated international tours</p>
 
 <div class="search">
+
 <input id="search" placeholder="Search destination or tour">
+
 </div>
 
 </section>
@@ -189,19 +218,59 @@ font-weight:bold;
 <div class="grid">
 
 <div class="card" onclick="showTours('peru')">
+
 <img src="https://images.unsplash.com/photo-1526392060635-9d6019884377">
+
 <div>
+
 <h3>Peru</h3>
+
 <p>Machu Picchu Tours</p>
+
 </div>
+
 </div>
 
 <div class="card" onclick="showTours('thailand')">
+
 <img src="https://images.unsplash.com/photo-1508009603885-50cf7c579365">
+
 <div>
+
 <h3>Thailand</h3>
-<p>Bangkok & Phuket</p>
+
+<p>Bangkok • Phuket • Pattaya</p>
+
 </div>
+
+</div>
+
+<div class="card" onclick="showTours('bali')">
+
+<img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4">
+
+<div>
+
+<h3>Bali</h3>
+
+<p>Island paradise tours</p>
+
+</div>
+
+</div>
+
+<div class="card" onclick="showTours('dubai')">
+
+<img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c">
+
+<div>
+
+<h3>Dubai</h3>
+
+<p>Luxury city experiences</p>
+
+</div>
+
 </div>
 
 </div>
@@ -221,7 +290,9 @@ font-weight:bold;
 </section>
 
 <a class="whatsapp"
+
 href="https://wa.me/919419287356"
+
 target="_blank">
 
 WhatsApp
@@ -241,7 +312,18 @@ peru:[
 
 thailand:[
 {name:"Bangkok Explorer",days:"4",price:"$650"},
-{name:"Phuket Escape",days:"5",price:"$850"}
+{name:"Phuket Escape",days:"5",price:"$850"},
+{name:"Bangkok Pattaya",days:"5",price:"$720"}
+],
+
+bali:[
+{name:"Bali Island Escape",days:"5",price:"$900"},
+{name:"Bali Adventure",days:"6",price:"$1050"}
+],
+
+dubai:[
+{name:"Dubai Explorer",days:"4",price:"$800"},
+{name:"Dubai Luxury Tour",days:"5",price:"$1200"}
 ]
 
 };
@@ -290,10 +372,11 @@ Book Tour
 
 <div class="itinerary" id="it${i}">
 
-Day 1 – Arrival<br>
-Day 2 – Local tour<br>
-Day 3 – Activities<br>
-Day 4 – Departure
+Day 1 – Arrival and hotel check-in<br>
+Day 2 – Local sightseeing<br>
+Day 3 – Adventure activities<br>
+Day 4 – Cultural experiences<br>
+Final Day – Departure
 
 </div>
 
