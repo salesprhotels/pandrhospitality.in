@@ -273,46 +273,39 @@ display:none
 <footer>    
 © 2026 Yes We Care Travels · Operated by P & R Hospitality Management Services    
 </footer>   
-
 <script>
 
-const API = "https://script.google.com/macros/s/AKfycbw1x94TiqnbDf2BQvd-3ef5s_0drtDjVl1kVyZGkIqAil9FLBuqyC4Zq3qOj5UBGy2C/exec";
+const API="https://script.google.com/macros/s/AKfycbw1x94TiqnbDf2BQvd-3ef5s_0drtDjVl1kVyZGkIqAil9FLBuqyC4Zq3qOj5UBGy2C/exec";
 
-let ALL_TOURS = [];
+let ALL_TOURS=[];
 
 
-// LOAD DATA ON PAGE START
+// LOAD DATA
 fetch(API)
-.then(res => res.json())
-.then(data => {
-
-ALL_TOURS = data;
-
-})
-.catch(err => {
-
-console.log("API ERROR", err);
-
+.then(res=>res.json())
+.then(data=>{
+ALL_TOURS=data;
 });
 
 
 
+// OPEN STATE
+function openSearch(state){
 
-// OPEN DESTINATION
-function openSearch(destination){
-
-document.getElementById("results").innerHTML =
+document.getElementById("results").innerHTML=
 "<div class='result-box'>Loading tours...</div>";
 
-let tours = {};
+let tours={};
 
-ALL_TOURS.forEach(row => {
+ALL_TOURS.forEach(row=>{
 
-if(row.destination.toLowerCase().includes(destination.toLowerCase())){
+if(row.state.toLowerCase().includes(state.toLowerCase())){
 
-let name = row.tour_name;
+let name=row.tour_name;
 
-if(!tours[name]) tours[name] = [];
+if(!tours[name]){
+tours[name]=[];
+}
 
 tours[name].push(row);
 
@@ -321,18 +314,19 @@ tours[name].push(row);
 });
 
 
-let html = "<div class='result-box'>";
+let html="";
 
-html += "<h2>"+destination+" Tour Packages</h2>";
+html+=`<div class="result-box">
+<h2>${state} Tour Packages</h2>
+`;
 
 for(let t in tours){
 
-html += `
+html+=`
 
 <div class="tour-card" style="border-bottom:1px solid #eee;padding:15px 0">
 
 <h3>${t}</h3>
-
 <p>${tours[t][0].days} Days</p>
 
 <button onclick="viewItinerary('${t}')">
@@ -352,27 +346,26 @@ Submit Enquiry
 
 }
 
-html += "</div>";
+html+="</div>";
 
-document.getElementById("results").innerHTML = html;
+document.getElementById("results").innerHTML=html;
 
 }
 
 
 
-
-// OPEN ITINERARY
+// VIEW ITINERARY
 function viewItinerary(tour){
 
-let html = "<div class='result-box'>";
+let html="<div class='result-box'>";
 
-html += "<h2>"+tour+"</h2>";
+html+="<h2>"+tour+"</h2>";
 
-ALL_TOURS.forEach(d => {
+ALL_TOURS.forEach(d=>{
 
-if(d.tour_name === tour){
+if(d.tour_name===tour){
 
-html += `
+html+=`
 
 <p><b>${d.day_number}</b></p>
 <p>${d.title}</p>
@@ -387,7 +380,7 @@ html += `
 });
 
 
-html += `
+html+=`
 
 <button onclick="window.print()">Print Itinerary</button>
 
@@ -400,13 +393,12 @@ Submit Enquiry
 
 `;
 
-html += "</div>";
+html+="</div>";
 
-document.getElementById("results").innerHTML = html;
+document.getElementById("results").innerHTML=html;
 
 }
 
 </script>
-       
-        </body>    
+</body>    
 </html>    
