@@ -261,23 +261,31 @@ cursor:pointer;
 <footer>    
 © 2026 Yes We Care Travels · Operated by P & R Hospitality Management Services    
 </footer>   
+
 <script>
 
 const API="https://script.google.com/macros/s/AKfycbw1x94TiqnbDf2BQvd-3ef5s_0drtDjVl1kVyZGkIqAil9FLBuqyC4Zq3qOj5UBGy2C/exec";
 
 
-function openSearch(state){
+function openSearch(destination){
 
-let url = API + "?state=" + encodeURIComponent(state);
+document.getElementById("results").innerHTML="<div class='result-box'>Loading tours...</div>";
 
-fetch(url)
-.then(res => res.json())
-.then(data => showTourList(data,state));
+fetch(API+"?destination="+encodeURIComponent(destination))
+
+.then(res=>res.json())
+
+.then(data=>showTours(data,destination))
+
+.catch(err=>{
+document.getElementById("results").innerHTML="<div class='result-box'>No tours found.</div>";
+});
 
 }
 
 
-function showTourList(data,destination){
+
+function showTours(data,destination){
 
 let tours={};
 
@@ -294,34 +302,44 @@ tours[name].push(row);
 });
 
 let html="<div class='result-box'>";
-html+="<h3>"+destination+" Tour Packages</h3>";
-html+="<div class='tour-grid'>";
+
+html+="<h2>"+destination+" Tour Packages</h2>";
 
 for(let t in tours){
 
 html+=`
-<div class="tour-card">
+
+<div style="border-bottom:1px solid #eee;padding:15px 0">
 
 <h3>${t}</h3>
+
 <p>${tours[t][0].days} Days</p>
 
 <button onclick="viewItinerary('${t}')">
 View Itinerary
 </button>
 
+<a href="contact-travel.html?tour=${encodeURIComponent(t)}" style="margin-left:10px;background:#ff8c00;color:#fff;padding:8px 14px;border-radius:6px;text-decoration:none">
+Book Package
+</a>
+
 </div>
+
 `;
 
 }
 
-html+="</div></div>";
+html+="</div>";
 
 document.getElementById("results").innerHTML=html;
 
 }
 
 
+
 function viewItinerary(tour){
+
+document.getElementById("results").innerHTML="<div class='result-box'>Loading itinerary...</div>";
 
 fetch(API+"?tour="+encodeURIComponent(tour))
 
@@ -329,22 +347,31 @@ fetch(API+"?tour="+encodeURIComponent(tour))
 
 .then(data=>{
 
-let html="<div class='result-box'><h3>"+tour+"</h3>";
+let html="<div class='result-box'>";
+
+html+="<h2>"+tour+"</h2>";
 
 data.forEach(d=>{
 
 html+=`
+
 <p><b>${d.day_number}</b></p>
 <p>${d.title}</p>
 <p>${d.description}</p>
+
 <hr>
+
 `;
 
 });
 
 html+=`
 
-<button onclick="window.print()">Print</button>
+<button onclick="window.print()">Print Itinerary</button>
+
+<a href="contact-travel.html?tour=${encodeURIComponent(tour)}" style="margin-left:10px;background:#ff8c00;color:#fff;padding:10px 16px;border-radius:6px;text-decoration:none">
+Book This Tour
+</a>
 
 `;
 
@@ -352,6 +379,10 @@ html+="</div>";
 
 document.getElementById("results").innerHTML=html;
 
+})
+
+.catch(err=>{
+document.getElementById("results").innerHTML="<div class='result-box'>Itinerary not available.</div>";
 });
 
 }
