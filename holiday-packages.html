@@ -282,7 +282,7 @@ function openSearch(destination){
 
 document.getElementById("results").innerHTML="<div class='result-box'>Loading tours...</div>";
 
-fetch(API+"?destination="+encodeURIComponent(destination))
+fetch(API)
 
 .then(res=>res.json())
 
@@ -292,13 +292,15 @@ let tours={};
 
 data.forEach(row=>{
 
+if(row.destination.toLowerCase()===destination.toLowerCase()){
+
 let name=row.tour_name;
 
-if(!tours[name]){
-tours[name]=[];
-}
+if(!tours[name]) tours[name]=[];
 
 tours[name].push(row);
+
+}
 
 });
 
@@ -310,7 +312,7 @@ for(let t in tours){
 
 html+=`
 
-<div class="tour-card">
+<div style="border-bottom:1px solid #eee;padding:15px 0">
 
 <h3>${t}</h3>
 
@@ -335,12 +337,6 @@ html+="</div>";
 
 document.getElementById("results").innerHTML=html;
 
-})
-
-.catch(err=>{
-
-document.getElementById("results").innerHTML="<div class='result-box'>No tours found.</div>";
-
 });
 
 }
@@ -348,7 +344,7 @@ document.getElementById("results").innerHTML="<div class='result-box'>No tours f
 
 function viewItinerary(tour){
 
-fetch(API+"?tour="+encodeURIComponent(tour))
+fetch(API)
 
 .then(res=>res.json())
 
@@ -360,6 +356,8 @@ html+="<h2>"+tour+"</h2>";
 
 data.forEach(d=>{
 
+if(d.tour_name===tour){
+
 html+=`
 
 <p><b>${d.day_number}</b></p>
@@ -369,6 +367,8 @@ html+=`
 <hr>
 
 `;
+
+}
 
 });
 
