@@ -1,226 +1,403 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Holiday Packages Across India | Yes We Care Travels</title><meta name="description" content="Explore curated holiday packages across India including Himachal, Goa, Kerala and North East tours. Custom itineraries with hotels, cabs and guided tours."><meta name="keywords" content="India holiday packages, Himachal tour package, Goa holiday package, Kerala tour itinerary, North East tour packages"><meta name="robots" content="index, follow"><meta name="author" content="Yes We Care Travels"><link rel="canonical" href="https://pandrhospitality.in/holiday-packages.html"><!-- Open Graph --><meta property="og:title" content="Holiday Packages Across India">
-<meta property="og:description" content="Discover curated travel experiences across India.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://pandrhospitality.in/holiday-packages.html">
-<meta property="og:image" content="https://pandrhospitality.in/images/holiday-himachal.png"><!-- Twitter --><meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Holiday Packages Across India">
-<meta name="twitter:description" content="Custom holiday packages across India">
-<meta name="twitter:image" content="https://pandrhospitality.in/images/holiday-himachal.png"><style>
-
-body{
-font-family:Arial,Helvetica,sans-serif;
-background:#f4f6fb;
-margin:0;
-}
-
-.section{
-max-width:1200px;
-margin:auto;
-padding:40px 20px;
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-}
-
-.card{
-background:#fff;
-border-radius:10px;
-box-shadow:0 4px 14px rgba(0,0,0,.1);
-overflow:hidden;
-cursor:pointer;
-}
-
-.card img{
-width:100%;
-height:180px;
-object-fit:cover;
-}
-
-.card div{
-padding:18px;
-text-align:center;
-}
-
-.search-panel{
-background:#fff;
-padding:25px;
-border-radius:10px;
-margin-top:30px;
-box-shadow:0 4px 14px rgba(0,0,0,.08);
-}
-
-.result-box{
-background:#fff;
-padding:25px;
-border-radius:10px;
-margin-top:20px;
-box-shadow:0 4px 14px rgba(0,0,0,.08);
-}
-
-button{
-padding:10px 20px;
-background:#0b5ed7;
-color:#fff;
-border:none;
-border-radius:6px;
-cursor:pointer;
-}
-
-</style></head><body><section class="section"><h1>Popular Holiday Destinations</h1><div class="grid"><div class="card" onclick="openSearch('Himachal')">
-<img src="images/holiday-himachal.png">
-<div>
-<h3>Himachal Tours</h3>
-<p>Shimla & Manali escapes</p>
-</div>
-</div><div class="card" onclick="openSearch('Goa')">
-<img src="images/holiday-goa.png">
-<div>
-<h3>Goa Holidays</h3>
-<p>Beach resorts & nightlife</p>
-</div>
-</div><div class="card" onclick="openSearch('NorthEast')">
-<img src="images/holiday-northeast.jpg">
-<div>
-<h3>North East</h3>
-<p>Sikkim & Meghalaya</p>
-</div>
-</div><div class="card" onclick="openSearch('Kerala')">
-<img src="images/holiday-kerala.png">
-<div>
-<h3>Kerala Tours</h3>
-<p>Backwaters & hill stations</p>
-</div>
-</div></div><div id="searchArea"></div><div id="results"></div></section><script>
-
-const API="https://script.google.com/macros/s/AKfycbw1x94TiqnbDf2BQvd-3ef5s_0drtDjVl1kVyZGkIqAil9FLBuqyC4Zq3qOj5UBGy2C/exec";
-
-function openSearch(destination){
-
-let html=`
-
-<div class="search-panel">
-
-<h3>Packages - ${destination}</h3>
-
-<select id="category">
-
-<option value="">All Categories</option>
-<option value="Holiday">Holiday</option>
-<option value="Honeymoon">Honeymoon</option>
-<option value="Family">Family</option>
-<option value="Adventure">Adventure</option>
-
-</select>
-
-<br><br>
-
-<button onclick="loadPackages('${destination}')">Show Packages</button>
-
-</div>
-
-`;
-
-document.getElementById("searchArea").innerHTML=html;
-
-document.getElementById("results").innerHTML="";
-
-}
-
-function loadPackages(destination){
-
-let category=document.getElementById("category").value;
-
-let url=API+"?destination="+destination+"&category="+category;
-
-fetch(url)
-
-.then(res=>res.json())
-
-.then(data=>{
-
-if(data.length==0){
-
-document.getElementById("results").innerHTML=
-"<div class='result-box'>No packages found.</div>";
-
-return;
-
-}
-
-let tours={};
-
-data.forEach(row=>{
-
-if(!tours[row.tour_name]){
-
-tours[row.tour_name]=row.days;
-
-}
-
-});
-
-let html="";
-
-for(let t in tours){
-
-html+=`
-
-<div class="result-box">
-
-<h3>${t}</h3>
-
-<p>${tours[t]} Days Tour</p>
-
-<button onclick="viewItinerary('${t}')">View Itinerary</button>
-
-</div>
-
-`;
-
-}
-
-document.getElementById("results").innerHTML=html;
-
-});
-
-}
-
-function viewItinerary(tour){
-
-fetch(API+"?tour="+tour)
-
-.then(res=>res.json())
-
-.then(data=>{
-
-let html="<div class='result-box'><h3>"+tour+"</h3>";
-
-data.forEach(d=>{
-
-html+=`
-
-<h4>${d.day_number} - ${d.title}</h4>
-
-<p>${d.description}</p>
-
-<hr>
-
-`;
-
-});
-
-html+="<button onclick='window.print()'>Print</button>";
-
-html+="</div>";
-
-document.getElementById("results").innerHTML=html;
-
-});
-
-}
-
-</script></body></html>
+<!DOCTYPE html>    <html lang="en">    <head>    <meta charset="UTF-8">    
+<meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>Holiday Packages Across India | Yes We Care Travels</title>    <meta name="description" content="Customised holiday packages across India including Himachal, Goa, Kerala and North East tours.">    <meta name="keywords" content="holiday packages India, Himachal tour package, Goa tour package, Kerala holiday">    <meta name="robots" content="index, follow">    <link rel="canonical" href="https://pandrhospitality.in/holiday-packages.html">    <meta name="author" content="Yes We Care Travels">    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-836426031"></script>    <script>    
+window.dataLayer = window.dataLayer || [];    
+function gtag(){dataLayer.push(arguments);}    
+gtag('js', new Date());    
+gtag('config', 'AW-836426031');    
+</script>    <style>    
+    
+*{margin:0;padding:0;box-sizing:border-box}    
+    
+body{    
+font-family:Arial,Helvetica,sans-serif;    
+background:#f4f6fb;    
+color:#222    
+}    
+    
+header{    
+background:#fff;    
+border-bottom:1px solid #ddd    
+}    
+    
+.header-wrap{    
+max-width:1200px;    
+margin:auto;    
+padding:12px 16px;    
+display:flex;    
+justify-content:center;    
+align-items:center;    
+gap:10px    
+}    
+    
+.logos img{height:40px}    
+    
+.hero{    
+background:linear-gradient(135deg,#0b5ed7,#ff8c00);    
+color:#fff;    
+text-align:center;    
+padding:70px 20px    
+}    
+    
+.hero h1{font-size:34px;margin-bottom:10px}    
+    
+.tabs{    
+background:#fff;    
+border-bottom:1px solid #eee    
+}    
+    
+.tabs-wrap{    
+max-width:1100px;    
+margin:auto;    
+display:flex;    
+justify-content:space-around;    
+padding:18px 10px;    
+text-align:center    
+}    
+    
+.tab{    
+text-decoration:none;    
+color:#0b5ed7;    
+font-weight:600;    
+font-size:14px    
+}    
+    
+.tab span{    
+display:block;    
+font-size:22px;    
+margin-bottom:5px    
+}    
+    
+.tab:hover{color:#ff8c00}    
+    
+.section{    
+max-width:1200px;    
+margin:auto;    
+padding:50px 20px    
+}    
+    
+.section h2{    
+text-align:center;    
+margin-bottom:30px    
+}    
+    
+.grid{    
+display:grid;    
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));    
+gap:20px    
+}    
+    
+.card{    
+background:#fff;    
+border-radius:10px;    
+box-shadow:0 4px 14px rgba(0,0,0,.08);    
+overflow:hidden;    
+text-align:center;    
+cursor:pointer    
+}    
+    
+.card img{    
+width:100%;    
+height:180px;    
+object-fit:cover    
+}    
+    
+.card div{padding:18px}    
+    
+.search-panel{    
+background:#fff;    
+padding:25px;    
+border-radius:10px;    
+box-shadow:0 4px 14px rgba(0,0,0,.08)    
+}    
+    
+.search-panel select,    
+.search-panel input{    
+width:100%;    
+padding:10px;    
+margin:6px 0;    
+border:1px solid #ccc;    
+border-radius:5px    
+}    
+    
+.search-panel button{    
+margin-top:10px;    
+padding:10px 20px;    
+background:#0b5ed7;    
+color:#fff;    
+border:none;    
+border-radius:5px;    
+cursor:pointer    
+}    
+    
+.result-box{    
+background:#fff;    
+padding:25px;    
+margin-top:20px;    
+border-radius:10px;    
+box-shadow:0 4px 14px rgba(0,0,0,.08)    
+}    
+    
+.whatsapp{    
+position:fixed;    
+bottom:20px;    
+left:20px;    
+background:#25D366;    
+color:#fff;    
+padding:12px 18px;    
+border-radius:30px;    
+text-decoration:none    
+}    
+    
+footer{    
+text-align:center;    
+padding:20px;    
+background:#fff;    
+color:#666;    
+font-size:14px    
+}    
+    
+</style>    </head>    <body>    <header>    
+<div class="header-wrap">    
+<div class="logos">    
+<a href="index.html"><img src="images/logo-pr-hospitality.png"></a>    
+<a href="travel.html"><img src="images/logo-yes-we-care-travels-1.png"></a>    
+</div>    
+</div>    
+</header>    <section class="hero">    
+<h1>Holiday Packages Across India</h1>    
+<p>Discover professionally curated travel experiences across India.</p>    
+</section>    <section class="tabs">    
+<div class="tabs-wrap">    
+<a href="air-tickets.html" class="tab"><span>✈</span>Flights</a>    
+<a href="hotel-booking.html" class="tab"><span>🏨</span>Hotels</a>    
+<a href="cab-services.html" class="tab"><span>🚕</span>Cabs</a>    
+<a href="holiday-packages.html" class="tab"><span>🌴</span>Holidays</a>    
+<a href="pilgrimage-services.html" class="tab"><span>🛕</span>Pilgrimage</a>    
+<a href="volvo-tour-packages.html" class="tab"><span>🚌</span>Volvo Bus</a>    
+<a href="contact-travel.html" class="tab"><span>📞</span>Contact</a>    
+</div>    
+</section>    <section class="section">    <h2>Popular Holiday Destinations</h2>    <div class="grid">    <div class="card" onclick="openSearch('Himachal')">    
+<img src="images/holiday-himachal.png">    
+<div>    
+<h3>Himachal Tours</h3>    
+<p>Shimla, Manali & mountain escapes.</p>    
+</div>    
+</div>    <div class="card" onclick="openSearch('Goa')">    
+<img src="images/holiday-goa.png">    
+<div>    
+<h3>Goa Holidays</h3>    
+<p>Beach resorts and nightlife.</p>    
+</div>    
+</div>    <div class="card" onclick="openSearch('NorthEast')">    
+<img src="images/holiday-northeast.jpg">    
+<div>    
+<h3>North East</h3>    
+<p>Sikkim and Meghalaya journeys.</p>    
+</div>    
+</div>    <div class="card" onclick="openSearch('Kerala')">    
+<img src="images/holiday-kerala.png">    
+<div>    
+<h3>Kerala Tours</h3>    
+<p>Backwaters and hill stations.</p>    
+</div>    
+</div>    </div>    </section>    <section class="section">    <div id="searchArea"></div>    <div id="results"></div>    </section>    <a class="whatsapp" href="https://wa.me/919419287356">WhatsApp</a>
+
+<footer>    
+© 2026 Yes We Care Travels · Operated by P & R Hospitality Management Services    
+</footer>    <script>    
+    
+const API="https://script.google.com/macros/s/AKfycbw9YNYK61XcpxxlAoUJtuyT0AVOKvLWpIkPx4pW0U4baS-Ze9oFc_aTaIUnQuFDO6in/exec";    
+    
+function openSearch(destination){    
+    
+let html=`    
+    
+<div class="search-panel">    
+    
+<h3>Search Tours - ${destination}</h3>    
+    
+<select id="place">    
+    
+<option value="">Select Place</option>    
+    
+<option>Manali</option>    
+<option>Shimla</option>    
+<option>Shimla Manali</option>    
+<option>Dharamshala</option>    
+<option>Dalhousie</option>    
+    
+<option>Goa</option>    
+    
+<option>Kerala</option>    
+    
+<option>Gangtok</option>    
+<option>Sikkim</option>    
+<option>Meghalaya</option>    
+<option>North East</option>    
+    
+</select>    
+    
+<select id="category">    
+    
+<option value="">Category</option>    
+    
+<option>Holiday</option>    
+<option>Honeymoon</option>    
+<option>Family</option>    
+<option>Adventure</option>    
+    
+</select>    
+    
+<select id="days">    
+<option value="">Days</option>    
+<option>2</option>    
+<option>3</option>    
+<option>4</option>    
+<option>5</option>    
+<option>6</option>    
+</select>    
+    
+<input type="date" id="travelDate">    
+    
+<select id="pickup">    
+<option>Pickup City</option>    
+<option>Delhi</option>    
+<option>Chandigarh</option>    
+<option>Amritsar</option>    
+<option>Jammu</option>    
+</select>    
+    
+<select id="drop">    
+<option>Drop City</option>    
+<option>Same as Pickup</option>    
+<option>Delhi</option>    
+<option>Chandigarh</option>    
+</select>    
+    
+<select id="vehicle">    
+<option>Vehicle</option>    
+<option>Sedan</option>    
+<option>SUV</option>    
+<option>Tempo Traveller</option>    
+</select>    
+    
+<select id="hotel">    
+<option>Hotel Category</option>    
+<option>Budget</option>    
+<option>3 Star</option>    
+<option>4 Star</option>    
+<option>5 Star</option>    
+</select>    
+    
+<select id="meal">    
+<option>Meal Plan</option>    
+<option>EP</option>    
+<option>CP</option>    
+<option>MAP</option>    
+<option>AP</option>    
+</select>    
+    
+<button onclick="searchTours()">Generate Itinerary</button>    
+    
+</div>    
+`;    
+    
+document.getElementById("searchArea").innerHTML=html;    
+    
+}    
+    
+function searchTours(){    
+    
+let place = document.getElementById("place").value;    
+let category = document.getElementById("category").value;    
+let days = document.getElementById("days").value;    
+    
+let url = API + "?destination=" + encodeURIComponent(place)    
++ "&category=" + encodeURIComponent(category)    
++ "&days=" + encodeURIComponent(days);    
+    
+fetch(url)    
+.then(res => res.json())    
+.then(data => showTours(data))    
+.catch(err => {    
+document.getElementById("results").innerHTML =    
+"<div class='result-box'>No itineraries found.</div>";    
+});    
+    
+}    
+    
+function showTours(data){    
+    
+let tours={};    
+    
+data.forEach(row=>{    
+    
+if(!tours[row.tour]){    
+tours[row.tour]=[];    
+}    
+    
+tours[row.tour].push(row);    
+    
+});    
+    
+let html="";    
+    
+for(let t in tours){    
+    
+html+=`    
+    
+<div class="result-box">    
+    
+<h3>${t}</h3>    
+    
+<button onclick="viewItinerary('${t}')">View Itinerary</button>    
+    
+</div>    
+    
+`;    
+    
+}    
+    
+document.getElementById("results").innerHTML=html;    
+    
+}    
+    
+function viewItinerary(tour){    
+    
+fetch(API+"?tour="+tour)    
+    
+.then(res=>res.json())    
+    
+.then(data=>{    
+    
+let html="<div class='result-box'><h3>"+tour+"</h3>";    
+    
+data.forEach(d=>{    
+    
+html+=`    
+    
+<p><b>${d.day_number}</b></p>    
+<p>${d.title}</p>    
+<p>${d.description}</p>    
+<hr>    
+    
+`;    
+    
+});    
+    
+html+=`    
+    
+<button onclick="window.print()">Print</button>    
+    
+`;    
+    
+html+="</div>";    
+    
+document.getElementById("results").innerHTML=html;    
+    
+});    
+    
+}    
+    
+</script>    </body>    
+</html>    
