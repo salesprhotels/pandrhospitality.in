@@ -301,20 +301,38 @@ document.getElementById("results").innerHTML="";
 
 }
 
+
+
 function loadPackages(destination){
+
+document.getElementById("btnStatus").innerHTML="BUTTON WORKING";
+document.getElementById("btnStatus").style.color="green";
 
 let category=document.getElementById("category").value;
 
 let url=API+"?destination="+encodeURIComponent(destination)
 +"&category="+encodeURIComponent(category);
 
+document.getElementById("apiStatus").innerHTML="CALLING API...";
+document.getElementById("apiStatus").style.color="orange";
+
 fetch(url)
 
-.then(res=>res.json())
+.then(res=>{
+
+document.getElementById("apiStatus").innerHTML="API CONNECTED";
+document.getElementById("apiStatus").style.color="green";
+
+return res.json();
+
+})
 
 .then(data=>{
 
 if(data.length==0){
+
+document.getElementById("dataStatus").innerHTML="NO DATA FOUND";
+document.getElementById("dataStatus").style.color="red";
 
 document.getElementById("results").innerHTML=
 "<div class='result-box'>No packages found.</div>";
@@ -322,6 +340,9 @@ document.getElementById("results").innerHTML=
 return;
 
 }
+
+document.getElementById("dataStatus").innerHTML="DATA RECEIVED";
+document.getElementById("dataStatus").style.color="green";
 
 let tours={};
 
@@ -357,9 +378,20 @@ html+=`
 
 document.getElementById("results").innerHTML=html;
 
+})
+
+.catch(err=>{
+
+document.getElementById("apiStatus").innerHTML="API ERROR";
+document.getElementById("apiStatus").style.color="red";
+
+console.log(err);
+
 });
 
 }
+
+
 
 function viewItinerary(tour){
 
@@ -400,6 +432,8 @@ document.getElementById("results").innerHTML=html;
 });
 
 }
+
+
 
 function downloadPDF(){
 
