@@ -292,7 +292,7 @@ let tours={};
 
 data.forEach(row=>{
 
-if(row.destination.toLowerCase()===destination.toLowerCase()){
+if(row.destination.toLowerCase().includes(destination.toLowerCase())){
 
 let name=row.tour_name;
 
@@ -304,9 +304,7 @@ tours[name].push(row);
 
 });
 
-let html="<div class='result-box'>";
-
-html+="<h2>"+destination+" Tour Packages</h2>";
+let html="<div class='result-box'><h2>"+destination+" Tour Packages</h2>";
 
 for(let t in tours){
 
@@ -315,7 +313,6 @@ html+=`
 <div style="border-bottom:1px solid #eee;padding:15px 0">
 
 <h3>${t}</h3>
-
 <p>${tours[t][0].days} Days</p>
 
 <button onclick="viewItinerary('${t}')">View Itinerary</button>
@@ -337,10 +334,15 @@ html+="</div>";
 
 document.getElementById("results").innerHTML=html;
 
+})
+
+.catch(err=>{
+
+document.getElementById("results").innerHTML="<div class='result-box'>Error loading tours</div>";
+
 });
 
 }
-
 
 function viewItinerary(tour){
 
@@ -350,9 +352,7 @@ fetch(API)
 
 .then(data=>{
 
-let html="<div class='result-box'>";
-
-html+="<h2>"+tour+"</h2>";
+let html="<div class='result-box'><h2>"+tour+"</h2>";
 
 data.forEach(d=>{
 
@@ -363,7 +363,6 @@ html+=`
 <p><b>${d.day_number}</b></p>
 <p>${d.title}</p>
 <p>${d.description}</p>
-
 <hr>
 
 `;
@@ -376,7 +375,7 @@ html+=`
 
 <button onclick="window.print()">Print Itinerary</button>
 
-<a href="travel-form.html?tour=${encodeURIComponent(tour)}"
+<a href="forms/travel-form.html?tour=${encodeURIComponent(tour)}"
 style="background:#ff8c00;color:#fff;padding:10px 16px;border-radius:6px;text-decoration:none;margin-left:10px">
 
 Submit Enquiry
