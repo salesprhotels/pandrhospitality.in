@@ -210,21 +210,18 @@ font-size:14px
 const API="https://script.google.com/macros/s/AKfycbw1x94TiqnbDf2BQvd-3ef5s_0drtDjVl1kVyZGkIqAil9FLBuqyC4Zq3qOj5UBGy2C/exec";
 
 
-function openSearch(destination){
+function openSearch(state){
 
-let url = API + "?destination=" + encodeURIComponent(destination);
+let url = API + "?state=" + encodeURIComponent(state);
 
 fetch(url)
 .then(res => res.json())
-.then(data => showTourList(data,destination))
-.catch(err=>{
-document.getElementById("results").innerHTML="<div class='result-box'>Tours not found</div>";
-});
+.then(data => showTourList(data,state));
 
 }
 
 
-function showTourList(data,destination){
+function showTourList(data,state){
 
 let tours={};
 
@@ -241,13 +238,12 @@ tours[name].push(row);
 });
 
 let html="<div class='result-box'>";
-
-html+="<h3>"+destination+" Tour Packages</h3>";
+html+="<h3>"+state+" Tour Packages</h3>";
 
 for(let t in tours){
 
 html+=`
-<div style="margin:10px 0;padding:10px;border-bottom:1px solid #ddd;cursor:pointer" onclick="viewItinerary('${t}')">
+<div style="padding:10px;border-bottom:1px solid #ddd;cursor:pointer" onclick="viewItinerary('${t}')">
 
 <b>${t}</b> (${tours[t][0].days} Days)
 
@@ -263,23 +259,21 @@ document.getElementById("results").innerHTML=html;
 }
 
 
-
 function viewItinerary(tour){
 
-let url = API + "?tour=" + encodeURIComponent(tour);
+fetch(API+"?tour="+encodeURIComponent(tour))
 
-fetch(url)
-.then(res => res.json())
+.then(res=>res.json())
+
 .then(data=>{
 
-let html="<div class='result-box'>";
-
-html+="<h2>"+tour+"</h2>";
+let html="<div class='result-box'><h3>"+tour+"</h3>";
 
 data.forEach(d=>{
 
 html+=`
-<h4>${d.day_number} : ${d.title}</h4>
+<p><b>${d.day_number}</b></p>
+<p>${d.title}</p>
 <p>${d.description}</p>
 <hr>
 `;
@@ -287,8 +281,9 @@ html+=`
 });
 
 html+=`
-<button onclick="window.print()">Print Itinerary</button>
-<button onclick="downloadPDF()">Download PDF</button>
+
+<button onclick="window.print()">Print</button>
+
 `;
 
 html+="</div>";
@@ -296,14 +291,6 @@ html+="</div>";
 document.getElementById("results").innerHTML=html;
 
 });
-
-}
-
-
-
-function downloadPDF(){
-
-window.print();
 
 }
 
