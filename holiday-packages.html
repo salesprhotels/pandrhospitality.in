@@ -204,200 +204,110 @@ font-size:14px
 
 <footer>    
 © 2026 Yes We Care Travels · Operated by P & R Hospitality Management Services    
-</footer>    <script>    
-    
-const API="https://script.google.com/macros/s/AKfycbw9YNYK61XcpxxlAoUJtuyT0AVOKvLWpIkPx4pW0U4baS-Ze9oFc_aTaIUnQuFDO6in/exec";    
-    
-function openSearch(destination){    
-    
-let html=`    
-    
-<div class="search-panel">    
-    
-<h3>Search Tours - ${destination}</h3>    
-    
-<select id="place">    
-    
-<option value="">Select Place</option>    
-    
-<option>Manali</option>    
-<option>Shimla</option>    
-<option>Shimla Manali</option>    
-<option>Dharamshala</option>    
-<option>Dalhousie</option>    
-    
-<option>Goa</option>    
-    
-<option>Kerala</option>    
-    
-<option>Gangtok</option>    
-<option>Sikkim</option>    
-<option>Meghalaya</option>    
-<option>North East</option>    
-    
-</select>    
-    
-<select id="category">    
-    
-<option value="">Category</option>    
-    
-<option>Holiday</option>    
-<option>Honeymoon</option>    
-<option>Family</option>    
-<option>Adventure</option>    
-    
-</select>    
-    
-<select id="days">    
-<option value="">Days</option>    
-<option>2</option>    
-<option>3</option>    
-<option>4</option>    
-<option>5</option>    
-<option>6</option>    
-</select>    
-    
-<input type="date" id="travelDate">    
-    
-<select id="pickup">    
-<option>Pickup City</option>    
-<option>Delhi</option>    
-<option>Chandigarh</option>    
-<option>Amritsar</option>    
-<option>Jammu</option>    
-</select>    
-    
-<select id="drop">    
-<option>Drop City</option>    
-<option>Same as Pickup</option>    
-<option>Delhi</option>    
-<option>Chandigarh</option>    
-</select>    
-    
-<select id="vehicle">    
-<option>Vehicle</option>    
-<option>Sedan</option>    
-<option>SUV</option>    
-<option>Tempo Traveller</option>    
-</select>    
-    
-<select id="hotel">    
-<option>Hotel Category</option>    
-<option>Budget</option>    
-<option>3 Star</option>    
-<option>4 Star</option>    
-<option>5 Star</option>    
-</select>    
-    
-<select id="meal">    
-<option>Meal Plan</option>    
-<option>EP</option>    
-<option>CP</option>    
-<option>MAP</option>    
-<option>AP</option>    
-</select>    
-    
-<button onclick="searchTours()">Generate Itinerary</button>    
-    
-</div>    
-`;    
-    
-document.getElementById("searchArea").innerHTML=html;    
-    
-}    
-    
-function searchTours(){    
-    
-let place = document.getElementById("place").value;    
-let category = document.getElementById("category").value;    
-let days = document.getElementById("days").value;    
-    
-let url = API + "?destination=" + encodeURIComponent(place)    
-+ "&category=" + encodeURIComponent(category)    
-+ "&days=" + encodeURIComponent(days);    
-    
-fetch(url)    
-.then(res => res.json())    
-.then(data => showTours(data))    
-.catch(err => {    
-document.getElementById("results").innerHTML =    
-"<div class='result-box'>No itineraries found.</div>";    
-});    
-    
-}    
-    
-function showTours(data){    
-    
-let tours={};    
-    
-data.forEach(row=>{    
-    
-if(!tours[row.tour]){    
-tours[row.tour]=[];    
-}    
-    
-tours[row.tour].push(row);    
-    
-});    
-    
-let html="";    
-    
-for(let t in tours){    
-    
-html+=`    
-    
-<div class="result-box">    
-    
-<h3>${t}</h3>    
-    
-<button onclick="viewItinerary('${t}')">View Itinerary</button>    
-    
-</div>    
-    
-`;    
-    
-}    
-    
-document.getElementById("results").innerHTML=html;    
-    
-}    
-    
-function viewItinerary(tour){    
-    
-fetch(API+"?tour="+tour)    
-    
-.then(res=>res.json())    
-    
-.then(data=>{    
-    
-let html="<div class='result-box'><h3>"+tour+"</h3>";    
-    
-data.forEach(d=>{    
-    
-html+=`    
-    
-<p><b>${d.day_number}</b></p>    
-<p>${d.title}</p>    
-<p>${d.description}</p>    
-<hr>    
-    
-`;    
-    
-});    
-    
-html+=`    
-    
-<button onclick="window.print()">Print</button>    
-    
-`;    
-    
-html+="</div>";    
-    
-document.getElementById("results").innerHTML=html;    
-    
-});    
-    
-}    
-    
-</script>    </body>    
+</footer>   
+<script>
+
+const API="https://script.google.com/macros/s/AKfycbw1x94TiqnbDf2BQvd-3ef5s_0drtDjVl1kVyZGkIqAil9FLBuqyC4Zq3qOj5UBGy2C/exec";
+
+
+function openSearch(destination){
+
+let url = API + "?destination=" + encodeURIComponent(destination);
+
+fetch(url)
+.then(res => res.json())
+.then(data => showTourList(data,destination))
+.catch(err=>{
+document.getElementById("results").innerHTML="<div class='result-box'>Tours not found</div>";
+});
+
+}
+
+
+function showTourList(data,destination){
+
+let tours={};
+
+data.forEach(row=>{
+
+let name=row.tour;
+
+if(!tours[name]){
+tours[name]=[];
+}
+
+tours[name].push(row);
+
+});
+
+let html="<div class='result-box'>";
+
+html+="<h3>"+destination+" Tour Packages</h3>";
+
+for(let t in tours){
+
+html+=`
+<div style="margin:10px 0;padding:10px;border-bottom:1px solid #ddd;cursor:pointer" onclick="viewItinerary('${t}')">
+
+<b>${t}</b> (${tours[t][0].days} Days)
+
+</div>
+`;
+
+}
+
+html+="</div>";
+
+document.getElementById("results").innerHTML=html;
+
+}
+
+
+
+function viewItinerary(tour){
+
+let url = API + "?tour=" + encodeURIComponent(tour);
+
+fetch(url)
+.then(res => res.json())
+.then(data=>{
+
+let html="<div class='result-box'>";
+
+html+="<h2>"+tour+"</h2>";
+
+data.forEach(d=>{
+
+html+=`
+<h4>${d.day_number} : ${d.title}</h4>
+<p>${d.description}</p>
+<hr>
+`;
+
+});
+
+html+=`
+<button onclick="window.print()">Print Itinerary</button>
+<button onclick="downloadPDF()">Download PDF</button>
+`;
+
+html+="</div>";
+
+document.getElementById("results").innerHTML=html;
+
+});
+
+}
+
+
+
+function downloadPDF(){
+
+window.print();
+
+}
+
+</script>
+       
+        </body>    
 </html>    
