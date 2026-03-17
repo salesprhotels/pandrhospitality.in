@@ -266,7 +266,6 @@ cursor:pointer;
 
 const API="https://script.google.com/macros/s/AKfycbw1x94TiqnbDf2BQvd-3ef5s_0drtDjVl1kVyZGkIqAil9FLBuqyC4Zq3qOj5UBGy2C/exec";
 
-
 function openSearch(destination){
 
 document.getElementById("results").innerHTML="<div class='result-box'>Loading tours...</div>";
@@ -275,17 +274,7 @@ fetch(API+"?destination="+encodeURIComponent(destination))
 
 .then(res=>res.json())
 
-.then(data=>showTours(data,destination))
-
-.catch(err=>{
-document.getElementById("results").innerHTML="<div class='result-box'>No tours found.</div>";
-});
-
-}
-
-
-
-function showTours(data,destination){
+.then(data=>{
 
 let tours={};
 
@@ -309,18 +298,19 @@ for(let t in tours){
 
 html+=`
 
-<div style="border-bottom:1px solid #eee;padding:15px 0">
+<div class="tour-card">
 
 <h3>${t}</h3>
 
 <p>${tours[t][0].days} Days</p>
 
-<button onclick="viewItinerary('${t}')">
-View Itinerary
-</button>
+<button onclick="viewItinerary('${t}')">View Itinerary</button>
 
-<a href="contact-travel.html?tour=${encodeURIComponent(t)}" style="margin-left:10px;background:#ff8c00;color:#fff;padding:8px 14px;border-radius:6px;text-decoration:none">
-Book Package
+<a href="contact-travel.html?tour=${encodeURIComponent(t)}"
+style="background:#ff8c00;color:#fff;padding:10px 16px;border-radius:6px;text-decoration:none;margin-left:10px">
+
+Submit Enquiry
+
 </a>
 
 </div>
@@ -333,13 +323,18 @@ html+="</div>";
 
 document.getElementById("results").innerHTML=html;
 
+})
+
+.catch(err=>{
+
+document.getElementById("results").innerHTML="<div class='result-box'>No tours found.</div>";
+
+});
+
 }
 
 
-
 function viewItinerary(tour){
-
-document.getElementById("results").innerHTML="<div class='result-box'>Loading itinerary...</div>";
 
 fetch(API+"?tour="+encodeURIComponent(tour))
 
@@ -369,8 +364,11 @@ html+=`
 
 <button onclick="window.print()">Print Itinerary</button>
 
-<a href="contact-travel.html?tour=${encodeURIComponent(tour)}" style="margin-left:10px;background:#ff8c00;color:#fff;padding:10px 16px;border-radius:6px;text-decoration:none">
-Book This Tour
+<a href="contact-travel.html?tour=${encodeURIComponent(tour)}"
+style="background:#ff8c00;color:#fff;padding:10px 16px;border-radius:6px;text-decoration:none;margin-left:10px">
+
+Submit Enquiry
+
 </a>
 
 `;
@@ -379,10 +377,6 @@ html+="</div>";
 
 document.getElementById("results").innerHTML=html;
 
-})
-
-.catch(err=>{
-document.getElementById("results").innerHTML="<div class='result-box'>Itinerary not available.</div>";
 });
 
 }
