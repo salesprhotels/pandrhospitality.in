@@ -273,6 +273,7 @@ display:none
 <footer>    
 © 2026 Yes We Care Travels · Operated by P & R Hospitality Management Services    
 </footer>   
+ tours){
 <script>
 
 const API="https://script.google.com/macros/s/AKfycbw1x94TiqnbDf2BQvd-3ef5s_0drtDjVl1kVyZGkIqAil9FLBuqyC4Zq3qOj5UBGy2C/exec";
@@ -289,42 +290,42 @@ ALL_TOURS=data;
 
 
 
-// OPEN STATE
-function openSearch(state){
+function openSearch(destination){
 
-document.getElementById("results").innerHTML=
-"<div class='result-box'>Loading tours...</div>";
+let container=document.getElementById("results");
+
+container.innerHTML="Loading tours...";
+
 
 let tours={};
 
 ALL_TOURS.forEach(row=>{
 
-if(row.state.toLowerCase().includes(state.toLowerCase())){
+let dest=row.destination.trim().toLowerCase();
+let tour=row.tour_name.trim();
 
-let name=row.tour_name;
+if(dest.includes(destination.toLowerCase())){
 
-if(!tours[name]){
-tours[name]=[];
+if(!tours[tour]){
+tours[tour]=[];
 }
 
-tours[name].push(row);
+tours[tour].push(row);
 
 }
 
 });
 
 
-let html="";
+let html="<div class='result-box'>";
+html+="<h2>"+destination+" Tour Packages</h2>";
 
-html+=`<div class="result-box">
-<h2>${state} Tour Packages</h2>
-`;
 
 for(let t in tours){
 
 html+=`
 
-<div class="tour-card" style="border-bottom:1px solid #eee;padding:15px 0">
+<div style="padding:15px;border-bottom:1px solid #eee">
 
 <h3>${t}</h3>
 <p>${tours[t][0].days} Days</p>
@@ -333,8 +334,8 @@ html+=`
 View Itinerary
 </button>
 
-<a href="forms/travel-form.html?tour=${encodeURIComponent(t)}"
-style="background:#ff8c00;color:#fff;padding:10px 16px;border-radius:6px;text-decoration:none;margin-left:10px">
+<a href="/forms/travel-form.html?tour=${encodeURIComponent(t)}"
+class="btn-book">
 
 Submit Enquiry
 
@@ -348,22 +349,28 @@ Submit Enquiry
 
 html+="</div>";
 
-document.getElementById("results").innerHTML=html;
+container.innerHTML=html;
+
+
+
+// AUTO SCROLL FIX
+container.scrollIntoView({
+behavior:"smooth"
+});
 
 }
 
 
 
-// VIEW ITINERARY
+
 function viewItinerary(tour){
 
 let html="<div class='result-box'>";
-
 html+="<h2>"+tour+"</h2>";
 
 ALL_TOURS.forEach(d=>{
 
-if(d.tour_name===tour){
+if(d.tour_name.trim()==tour){
 
 html+=`
 
@@ -379,16 +386,12 @@ html+=`
 
 });
 
-
 html+=`
 
-<button onclick="window.print()">Print Itinerary</button>
+<button onclick="window.print()">Print</button>
 
-<a href="forms/travel-form.html?tour=${encodeURIComponent(tour)}"
-style="background:#ff8c00;color:#fff;padding:10px 16px;border-radius:6px;text-decoration:none;margin-left:10px">
-
+<a href="/forms/travel-form.html?tour=${encodeURIComponent(tour)}">
 Submit Enquiry
-
 </a>
 
 `;
