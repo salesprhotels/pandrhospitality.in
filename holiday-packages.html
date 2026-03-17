@@ -276,27 +276,43 @@ display:none
 
 <script>
 
-const API="https://script.google.com/macros/s/AKfycbw1x94TiqnbDf2BQvd-3ef5s_0drtDjVl1kVyZGkIqAil9FLBuqyC4Zq3qOj5UBGy2C/exec";
+const API = "https://script.google.com/macros/s/AKfycbw1x94TiqnbDf2BQvd-3ef5s_0drtDjVl1kVyZGkIqAil9FLBuqyC4Zq3qOj5UBGy2C/exec";
 
+let ALL_TOURS = [];
+
+
+// LOAD DATA ON PAGE START
+fetch(API)
+.then(res => res.json())
+.then(data => {
+
+ALL_TOURS = data;
+
+})
+.catch(err => {
+
+console.log("API ERROR", err);
+
+});
+
+
+
+
+// OPEN DESTINATION
 function openSearch(destination){
 
-document.getElementById("results").innerHTML="<div class='result-box'>Loading tours...</div>";
+document.getElementById("results").innerHTML =
+"<div class='result-box'>Loading tours...</div>";
 
-fetch(API)
+let tours = {};
 
-.then(res=>res.json())
-
-.then(data=>{
-
-let tours={};
-
-data.forEach(row=>{
+ALL_TOURS.forEach(row => {
 
 if(row.destination.toLowerCase().includes(destination.toLowerCase())){
 
-let name=row.tour_name;
+let name = row.tour_name;
 
-if(!tours[name]) tours[name]=[];
+if(!tours[name]) tours[name] = [];
 
 tours[name].push(row);
 
@@ -304,18 +320,24 @@ tours[name].push(row);
 
 });
 
-let html="<div class='result-box'><h2>"+destination+" Tour Packages</h2>";
+
+let html = "<div class='result-box'>";
+
+html += "<h2>"+destination+" Tour Packages</h2>";
 
 for(let t in tours){
 
-html+=`
+html += `
 
-<div style="border-bottom:1px solid #eee;padding:15px 0">
+<div class="tour-card" style="border-bottom:1px solid #eee;padding:15px 0">
 
 <h3>${t}</h3>
+
 <p>${tours[t][0].days} Days</p>
 
-<button onclick="viewItinerary('${t}')">View Itinerary</button>
+<button onclick="viewItinerary('${t}')">
+View Itinerary
+</button>
 
 <a href="forms/travel-form.html?tour=${encodeURIComponent(t)}"
 style="background:#ff8c00;color:#fff;padding:10px 16px;border-radius:6px;text-decoration:none;margin-left:10px">
@@ -330,39 +352,32 @@ Submit Enquiry
 
 }
 
-html+="</div>";
+html += "</div>";
 
-document.getElementById("results").innerHTML=html;
-
-})
-
-.catch(err=>{
-
-document.getElementById("results").innerHTML="<div class='result-box'>Error loading tours</div>";
-
-});
+document.getElementById("results").innerHTML = html;
 
 }
 
+
+
+
+// OPEN ITINERARY
 function viewItinerary(tour){
 
-fetch(API)
+let html = "<div class='result-box'>";
 
-.then(res=>res.json())
+html += "<h2>"+tour+"</h2>";
 
-.then(data=>{
+ALL_TOURS.forEach(d => {
 
-let html="<div class='result-box'><h2>"+tour+"</h2>";
+if(d.tour_name === tour){
 
-data.forEach(d=>{
-
-if(d.tour_name===tour){
-
-html+=`
+html += `
 
 <p><b>${d.day_number}</b></p>
 <p>${d.title}</p>
 <p>${d.description}</p>
+
 <hr>
 
 `;
@@ -371,7 +386,8 @@ html+=`
 
 });
 
-html+=`
+
+html += `
 
 <button onclick="window.print()">Print Itinerary</button>
 
@@ -384,11 +400,9 @@ Submit Enquiry
 
 `;
 
-html+="</div>";
+html += "</div>";
 
-document.getElementById("results").innerHTML=html;
-
-});
+document.getElementById("results").innerHTML = html;
 
 }
 
