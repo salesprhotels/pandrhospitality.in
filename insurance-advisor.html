@@ -1,144 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Krishanu Pratap Khajuria - Insurance Advisor</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Krishanu Pratap Khajuria - Insurance Advisor</title>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background: #f5f7fa;
-            color: #333;
-        }
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f4f6f9;
+}
 
-        header {
-            background: linear-gradient(135deg, #004aad, #007bff);
-            color: white;
-            text-align: center;
-            padding: 60px 20px;
-        }
+header {
+    background: linear-gradient(135deg, #004aad, #007bff);
+    color: white;
+    padding: 40px 20px;
+}
 
-        header h1 {
-            margin: 0;
-            font-size: 32px;
-        }
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
 
-        header p {
-            font-size: 18px;
-            margin-top: 10px;
-        }
+.hero img {
+    width: 140px;
+    border-radius: 50%;
+    border: 4px solid white;
+}
 
-        .btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 25px;
-            background: #ff9800;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
+.hero-text {
+    max-width: 500px;
+}
 
-        section {
-            padding: 40px 20px;
-            max-width: 1000px;
-            margin: auto;
-        }
+.badge {
+    display: inline-block;
+    background: #28a745;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    margin-top: 10px;
+}
 
-        h2 {
-            color: #004aad;
-            margin-bottom: 15px;
-        }
+.btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 25px;
+    background: #ff9800;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
 
-        .card {
-            background: white;
-            padding: 20px;
-            margin: 15px 0;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
+section {
+    padding: 40px 20px;
+    max-width: 1000px;
+    margin: auto;
+}
 
-        ul {
-            padding-left: 20px;
-        }
+h2 {
+    color: #004aad;
+}
 
-        .services {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
+.card {
+    background: white;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
 
-        .certificates {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
+.services, .certificates {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
 
-        .certificates img {
-            width: 100%;
-            border-radius: 5px;
-        }
+.certificates img {
+    width: 100%;
+    border-radius: 5px;
+}
 
-        .certificates a {
-            display: inline-block;
-            margin-top: 10px;
-            color: #007bff;
-            text-decoration: none;
-        }
+form input, form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+}
 
-        footer {
-            background: #004aad;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
+form button {
+    background: #004aad;
+    color: white;
+    padding: 12px;
+    border: none;
+    cursor: pointer;
+}
 
-        .contact a {
-            display: inline-block;
-            margin: 10px;
-            text-decoration: none;
-            color: white;
-            background: #25D366;
-            padding: 10px 20px;
-            border-radius: 5px;
-        }
+footer {
+    background: #004aad;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
 
-        @media (max-width: 768px) {
-            .services, .certificates {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+@media(max-width:768px){
+    .services, .certificates {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
 </head>
 
 <body>
 
 <header>
-    <h1>Krishanu Pratap Khajuria</h1>
-    <p>Certified Insurance Advisor | Life & General Insurance Expert</p>
-    <a href="https://wa.me/91XXXXXXXXXX" class="btn">Get Free Consultation</a>
+    <div class="hero">
+        <!-- YOUR PHOTO -->
+        <img src="profile.jpg" alt="Krishanu Pratap Khajuria">
+
+        <div class="hero-text">
+            <h1>Krishanu Pratap Khajuria</h1>
+            <p>Certified Insurance Advisor | Life & General Insurance Expert</p>
+
+            <div class="badge">✔ Verified Advisor</div>
+
+            <br>
+            <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20I%20want%20insurance%20consultation" class="btn">
+                Get Free Consultation
+            </a>
+        </div>
+    </div>
 </header>
 
 <section>
     <h2>About Me</h2>
     <div class="card">
         <p>
-            I am a certified insurance advisor associated with Turtlemint, specializing in both Life Insurance and General Insurance solutions.
-            I help individuals and families choose the right insurance plans with complete transparency and trust.
+            I am a certified POSP insurance advisor associated with Turtlemint, helping clients choose the right life and general insurance plans.
+            My goal is to provide honest advice and complete support from purchase to claim settlement.
         </p>
     </div>
 </section>
 
 <section>
-    <h2>Certifications & Credentials</h2>
+    <h2>Certifications & Trust</h2>
     <div class="card">
-        <ul>
-            <li>Certified Life Insurance Advisor</li>
-            <li>Certified General Insurance Advisor</li>
-            <li>Licensed Insurance Consultant</li>
-            <li>IRDAI Licensed Advisor (License No: XXXXX)</li>
-        </ul>
+        <p><strong>✔ Certified POSP Insurance Advisor under IRDAI guidelines</strong></p>
+        <p>✔ Life Insurance Certified</p>
+        <p>✔ General Insurance Certified</p>
     </div>
 </section>
 
@@ -148,14 +159,16 @@
 
         <div class="card">
             <h3>Life Insurance Certificate</h3>
-            <img src="life-cert.jpg" alt="Life Insurance Certificate">
-            <a href="life-cert.jpg" target="_blank">View Full Certificate</a>
+            <img src="life-preview.jpg">
+            <br><br>
+            <a href="turtlemint_LI_POSP_CERTIFICATE-2.pdf" target="_blank" class="btn">View Certificate</a>
         </div>
 
         <div class="card">
             <h3>General Insurance Certificate</h3>
-            <img src="general-cert.jpg" alt="General Insurance Certificate">
-            <a href="general-cert.jpg" target="_blank">View Full Certificate</a>
+            <img src="general-preview.jpg">
+            <br><br>
+            <a href="turtlemint_GI_POSP_CERTIFICATE-3.pdf" target="_blank" class="btn">View Certificate</a>
         </div>
 
     </div>
@@ -167,9 +180,8 @@
         <div class="card">
             <h3>Life Insurance</h3>
             <ul>
-                <li>Term Insurance</li>
-                <li>ULIPs & Investment Plans</li>
-                <li>Child Plans</li>
+                <li>Term Plans</li>
+                <li>ULIPs</li>
                 <li>Retirement Plans</li>
             </ul>
         </div>
@@ -186,29 +198,60 @@
 </section>
 
 <section>
-    <h2>Why Choose Me</h2>
+    <h2>Apply / Get Consultation</h2>
     <div class="card">
+
+        <!-- LEAD FORM -->
+        <form onsubmit="sendToWhatsApp(); return false;">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="tel" id="phone" placeholder="Mobile Number" required>
+            <textarea id="message" placeholder="Your Requirement"></textarea>
+
+            <button type="submit">Submit & Contact on WhatsApp</button>
+        </form>
+
+    </div>
+</section>
+
+<section>
+    <h2>Digital Services (Coming Soon)</h2>
+    <div class="card">
+        <p>We will soon provide Digital Seva services including:</p>
         <ul>
-            <li>Personalized insurance advice</li>
-            <li>100% transparent guidance</li>
-            <li>End-to-end support (purchase to claims)</li>
-            <li>Quick and reliable service</li>
+            <li>PAN Card Services</li>
+            <li>Aadhar Related Services</li>
+            <li>Online Form Filling</li>
+            <li>Government Schemes</li>
         </ul>
     </div>
 </section>
 
 <section>
-    <h2>Contact Me</h2>
-    <div class="card contact">
-        <p>📞 Phone: +91 XXXXX XXXXX</p>
+    <h2>Contact</h2>
+    <div class="card">
         <p>📧 Email: kpkjulia@gmail.com</p>
-        <a href="https://wa.me/91XXXXXXXXXX">Chat on WhatsApp</a>
+        <p>📞 Phone: +91 XXXXX XXXXX</p>
     </div>
 </section>
 
 <footer>
-    <p>© 2026 Krishanu Pratap Khajuria | Insurance Advisor</p>
+    <p>© 2026 Krishanu Pratap Khajuria | All Rights Reserved</p>
 </footer>
+
+<script>
+function sendToWhatsApp(){
+    var name = document.getElementById("name").value;
+    var phone = document.getElementById("phone").value;
+    var message = document.getElementById("message").value;
+
+    var url = "https://wa.me/91XXXXXXXXXX?text="
+    + "Name: " + name + "%0a"
+    + "Phone: " + phone + "%0a"
+    + "Requirement: " + message;
+
+    window.open(url, '_blank');
+}
+</script>
 
 </body>
 </html>
