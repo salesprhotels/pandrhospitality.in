@@ -259,12 +259,13 @@ display:none
 </div>    </div>    </section>    <section class="section">    <div id="searchArea"></div>    <div id="results"></div>    </section>    <a class="whatsapp" href="https://wa.me/919419287356">WhatsApp</a>  <footer>      
 © 2026 Yes We Care Travels · Operated by P & R Hospitality Management Services      
 </footer>     
- tours){  
+ 
 <script>
 
 const API="https://script.google.com/macros/s/AKfycbw1x94TiqnbDf2BQvd-3ef5s_0drtDjVl1kVyZGkIqAil9FLBuqyC4Zq3qOj5UBGy2C/exec";
 
 let ALL_TOURS=[];
+let DATA_LOADED = false;
 
 /* DESTINATION → STATE MAPPING */
 const DEST_STATE_MAP = {
@@ -298,7 +299,7 @@ ALL_TOURS = data.filter(item=>{
   unique.add(key);
   return true;
 });
-
+DATA_LOADED = true;
 });
 
 
